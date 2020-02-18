@@ -1,13 +1,11 @@
 .metadata
 bin/
 tmp/
-Servers/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
 .loadpath
 .recommenders
 
