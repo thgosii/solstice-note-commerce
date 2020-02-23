@@ -17,13 +17,13 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
 ## Running
 1. Clone the project: `git clone https://github.com/thiago-bezerra/solstice-note-commerce.git`
 2. Open it with your IDE
-3. Install the Maven dependencies
-4. Install and setup MySQL
-5. Create the MySQL database, database user and schema
-6. Run the scripts at `sql/MySQL` to fill the database 
+3. Install and setup MySQL
+4. Create the MySQL database, database user and schema
+5. Run the scripts at `sql/MySQL` to fill the database 
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
 
 ## License
-MIT
+This project is licensed under [MIT](/LICENSE), and uses [AdminLTE 3](https://github.com/ColorlibHQ/AdminLTE/tree/v3.0.2), 
+also licensed under MIT.
