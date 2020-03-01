@@ -14,6 +14,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../../static/plugins/daterangepicker/daterangepicker.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -179,7 +182,30 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <div id="chart"></div>
+          <div class="row">
+            <div class="col col-12">
+              <div class="form-group">
+                <h4><label>Intervalo dos dados</label></h4>
+
+                <div class="input-group input-group-lg">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
+                  </div>
+                  <button type="button" class="btn btn-default float-right" id="saleschart-timeoption">
+                    Escolha um periodo
+                    <i class="fas fa-caret-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-12">
+              <div id="chart"></div>
+            </div>
+          </div>
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
@@ -221,6 +247,9 @@
 
   <!-- ApexCharts -->
   <script src="../../static/plugins/apexcharts/apexcharts.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="../../static/plugins/moment/moment.min.js"></script>
+  <script src="../../static/plugins/daterangepicker/daterangepicker.js"></script>
 
   <script>
     // Script to generate fake series of data
@@ -239,9 +268,7 @@
         data: v
       })
     }
-    console.log(d)
 
-    
     var options = {
       series: d, // update series: https://apexcharts.com/docs/methods/
       chart: {
@@ -297,6 +324,27 @@
 
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
+
+
+    $('#saleschart-timeoption').daterangepicker(
+      {
+        ranges: {
+          'Hoje': [moment(), moment()],
+          'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
+          'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+          'Esse mês': [moment().startOf('month'), moment().endOf('month')],
+          'Último mês': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment(),
+        // pt-BR Locale by João Pedro Raldi (https://stackoverflow.com/a/47271070/11138267)
+        locale: { "format": "DD/MM/YYYY", "separator": " - ", "applyLabel": "Aplicar", "cancelLabel": "Cancelar", "fromLabel": "De", "toLabel": "Até", "customRangeLabel": "Período customizado", "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"], "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"], "firstDay": 0 }
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
   </script>
 </body>
 
