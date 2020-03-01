@@ -47,11 +47,26 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <select class="form-control" name="gender">
+            <option disabled>Gênero...</option>
+            <option value="f">Feminino</option>
+            <option value="m">Masculino</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
           <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento">
           <div class="input-group-append">
               <div class="input-group-text">
               <span class="fas fa-calendar-alt"></span>
               </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-phone"></span>
+            </div>
           </div>
         </div>
         <div class="input-group mb-3">
@@ -77,6 +92,9 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
+        </div>
+        <div class="text-center mb-3">
+          <p>Endereço</p>
         </div>
         <div class="row">
           <div class="col-8">
@@ -104,6 +122,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#cpf").inputmask("999.999.999-99");
+    $("#phone").inputmask({
+      mask: ["(99) 9999-9999", "(99) 99999-9999"]
+    });
   });	
 </script>
 
