@@ -179,6 +179,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <div id="chart"></div>
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
@@ -217,6 +218,86 @@
   <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="../../static/dist/js/adminlte.min.js"></script>
+
+  <!-- ApexCharts -->
+  <script src="../../static/plugins/apexcharts/apexcharts.min.js"></script>
+
+  <script>
+    // Script to generate fake series of data
+    var d = []
+    var names = ['a', 'b', 'c']
+    for (let i = 0; i < 3; i++) {
+      var v = []
+      for (let j = 0; j < 30; j++) {
+        v.push({
+          x: new Date(1483057000025 + (j * 1000 * 3600 * 24)).toISOString().split('T')[0],
+          y: Math.round(Math.random() * 10000)
+        })
+      }
+      d.push({
+        name: names[i],
+        data: v
+      })
+    }
+    console.log(d)
+
+    
+    var options = {
+      series: d, // update series: https://apexcharts.com/docs/methods/
+      chart: {
+        type: 'area',
+        stacked: false,
+        height: 350,
+        zoom: {
+          type: 'x',
+          enabled: true,
+          autoScaleYaxis: false
+        },
+        toolbar: {
+          autoSelected: 'zoom'
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      markers: {
+        size: 0,
+      },
+      title: {
+        text: 'Vendas',
+        align: 'left'
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shadeIntensity: 1,
+          inverseColors: false,
+          opacityFrom: 0.5,
+          opacityTo: 0,
+          stops: [0, 90, 100]
+        },
+      },
+      yaxis: {
+        title: {
+          text: 'Price'
+        },
+      },
+      xaxis: {
+        type: 'datetime',
+      },
+      tooltip: {
+        shared: true,
+        y: {
+          formatter: function (val) {
+            return (val).toFixed(0)
+          }
+        }
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
 </body>
 
 </html>
