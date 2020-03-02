@@ -17,6 +17,8 @@
 
   <!-- daterange picker -->
   <link rel="stylesheet" href="../../static/plugins/daterangepicker/daterangepicker.css">
+  <!-- jVectorMap -->
+  <link rel="stylesheet" href="../../static/plugins/jvectormap/jquery-jvectormap-2.0.5.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -193,7 +195,7 @@
                       <i class="far fa-calendar-alt"></i>
                     </span>
                   </div>
-                  <button type="button" class="btn btn-default float-right" id="saleschart-timeoption">
+                  <button type="button" class="btn btn-default float-right" id="time-option">
                     Escolha um periodo
                     <i class="fas fa-caret-down"></i>
                   </button>
@@ -202,8 +204,41 @@
             </div>
           </div>
           <div class="row">
-            <div class="col col-12">
-              <div id="chart"></div>
+            <div class="col col-7">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Vendas por Marca</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div id="sales-brand-chart"></div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+            <div class="col col-5">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Vendas por Região de Entrega</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div id="region-sales-map" style="height: 465px;"></div>
+                </div>
+                <!-- /.card-body -->
+              </div>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -250,17 +285,53 @@
   <!-- date-range-picker -->
   <script src="../../static/plugins/moment/moment.min.js"></script>
   <script src="../../static/plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- jVectorMap -->
+  <script src="../../static/plugins/jvectormap/jquery-jvectormap-2.0.5.min.js"></script>
+  <script src="../../static/plugins/jvectormap/brazil.js"></script>
 
   <script>
+
+    // ***********************************************************************************
+
+    /*
+      Time Interval Selection
+    */
+
+    $('#time-option').daterangepicker(
+      {
+        ranges: {
+          'Hoje': [moment(), moment()],
+          'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
+          'Esse mês': [moment().startOf('month'), moment().endOf('month')],
+          'Mês anterior': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+          'Últimos 6 meses': [moment().startOf('month'), moment().subtract(6, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment(),
+        // pt-BR Locale by João Pedro Raldi (https://stackoverflow.com/a/47271070/11138267)
+        locale: { "format": "DD/MM/YYYY", "separator": " - ", "applyLabel": "Aplicar", "cancelLabel": "Cancelar", "fromLabel": "De", "toLabel": "Até", "customRangeLabel": "Período customizado", "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"], "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"], "firstDay": 0 }
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    // ***********************************************************************************
+
+    /*
+      Sales per brand line chart
+    */
+
     // Script to generate fake series of data
     var d = []
-    var names = ['a', 'b', 'c']
-    for (let i = 0; i < 3; i++) {
+    var names = ['Acer', 'Asus', 'Dell', 'Hp', 'Lenovo', 'Positivo', 'Samsung', 'Outros']
+    for (let i = 0; i < 8; i++) {
       var v = []
-      for (let j = 0; j < 30; j++) {
+      for (let j = 0; j < 10; j++) {
         v.push({
           x: new Date(1483057000025 + (j * 1000 * 3600 * 24)).toISOString().split('T')[0],
-          y: Math.round(Math.random() * 10000)
+          y: Math.round(Math.random() * 150)
         })
       }
       d.push({
@@ -274,7 +345,7 @@
       chart: {
         type: 'area',
         stacked: false,
-        height: 350,
+        height: 450,
         zoom: {
           type: 'x',
           enabled: true,
@@ -290,10 +361,10 @@
       markers: {
         size: 0,
       },
-      title: {
-        text: 'Vendas',
-        align: 'left'
-      },
+      // title: {
+      //   text: 'Vendas por Marca',
+      //   align: 'left'
+      // },
       fill: {
         type: 'gradient',
         gradient: {
@@ -306,7 +377,7 @@
       },
       yaxis: {
         title: {
-          text: 'Price'
+          text: 'Vendas'
         },
       },
       xaxis: {
@@ -322,29 +393,38 @@
       }
     };
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    var chart = new ApexCharts(document.querySelector("#sales-brand-chart"), options);
     chart.render();
 
+    // ***********************************************************************************
 
-    $('#saleschart-timeoption').daterangepicker(
-      {
-        ranges: {
-          'Hoje': [moment(), moment()],
-          'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
-          'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
-          'Esse mês': [moment().startOf('month'), moment().endOf('month')],
-          'Último mês': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate: moment(),
-        // pt-BR Locale by João Pedro Raldi (https://stackoverflow.com/a/47271070/11138267)
-        locale: { "format": "DD/MM/YYYY", "separator": " - ", "applyLabel": "Aplicar", "cancelLabel": "Cancelar", "fromLabel": "De", "toLabel": "Até", "customRangeLabel": "Período customizado", "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"], "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"], "firstDay": 0 }
+    /*
+      Sales per region map
+    */
+
+    // Fake demo values
+    let mapvalues = {}
+    "ac al ap am ba ce df es go ma mt ms mg pa pr pr pe pi rj rn rs ro rr sc sp se to"
+    .split(' ').forEach(e => mapvalues[e] = Math.random() > 0.2 ? Math.round(Math.random() * 10000) : undefined)
+
+    $('#region-sales-map').vectorMap({
+      map: 'brazil',
+      backgroundColor: '#9aa',
+      regionStyle: { initial: { fill: '#ccc' }, hover: { fill: '#A0D1DC' } },
+      // colors: { 'am-to': '#222222' },
+      series: {
+        regions: [{
+          values: mapvalues,
+          scale: ['#C8FFEE', '#005411'],
+          normalizeFunction: 'polynomial'
+        }]
       },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      onRegionTipShow: function (e, el, code) {
+        el.html(`${el.html()}: ${mapvalues[code] ? mapvalues[code] + ' vendas' : 'sem vendas'} (12%)`);
       }
-    )
+    });
+
+
   </script>
 </body>
 
