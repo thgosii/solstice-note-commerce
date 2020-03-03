@@ -300,7 +300,7 @@
                     <div class="col col-2">
                       <div class="form-group">
                         <div class="icheck-primary d-inline">
-                          <input type="checkbox" id="has-hd" name="has-hd">
+                          <input type="checkbox" id="has-hd" name="has-hd" checked required>
                           <label for="has-hd">HD</label>
                         </div>
                         <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline">
@@ -426,11 +426,36 @@
 
       $('.product-img-display').click(() => $('#imagem').click());
 
-      $('#has-hd').click(() => $('#hd-capacity').prop('disabled', !$('#has-hd')[0].checked));
+      $('#has-hd').click(() => { 
+        $('#hd-capacity').prop('disabled', !$('#has-hd')[0].checked);
+        if ($('#hd-capacity').prop('disabled')) {
+          $('#hd-capacity').val(null);
+          $('#has-ssd')[0].checked = true;
+          $('#ssd-capacity').prop('disabled', false);
+        }
+      });
 
       $('#hd-capacity').inputmask('numeric', {
         digits: 0,
-        min: 1,
+        max: 4000,
+        suffix: ' GB',
+        allowMinus: false,
+        autoUnmask: true,
+        removeMaskOnSubmit: true
+      });
+
+      $('#has-ssd').click(() => {
+        $('#ssd-capacity').prop('disabled', !$('#has-ssd')[0].checked);
+        if ($('#ssd-capacity').prop('disabled')) {
+          console.log(2)
+          $('#ssd-capacity').val(null);
+          $('#has-hd')[0].checked = true;
+          $('#hd-capacity').prop('disabled', false);
+        }
+      });
+
+      $('#ssd-capacity').inputmask('numeric', {
+        digits: 0,
         max: 4000,
         suffix: ' GB',
         allowMinus: false,
