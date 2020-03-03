@@ -219,17 +219,15 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col col-12">
-                      <div class="form-group">
+                    <div class="col col-6">
+                      <div class="form-group" style="height: 75px;">
                         <label for="title">Imagem<span class="text-danger text-bold"> *</span></label>
-                        <div class="product-img-display">
-                          <input type="file" class="custom-file-input">
+                        <div class="h-100 product-img-display">
                         </div>
+                        <input id="imagem" name="imagem" type="file" class="custom-file-input">
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col col-12">
+                    <div class="col col-6">
                       <div class="form-group">
                         <label for="price">Descrição</label>
                         <textarea class="form-control" maxlength="2000" name="price" id="price"></textarea>
@@ -404,6 +402,8 @@
         autoUnmask: true,
         removeMaskOnSubmit: true
       });
+
+      $('.product-img-display').click(() => $('#imagem').click());
 
     })
   </script>
