@@ -10,3 +10,8 @@ table td.icon_table_item {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Used in date columns in datatables to hide the sorting text */
+.dt-date-sort {
+  display: none;
+}
