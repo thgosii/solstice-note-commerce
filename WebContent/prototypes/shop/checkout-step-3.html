@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="cart.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -145,8 +145,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
-          <div class="col-sm-6">
-            <h1>Carrinho</h1>
+          <div class="col-sm-6 mb-3">
+            <h1>Passo 3 de 3 - Finalizar</h1>
+          </div>
+          <div class="progress mb-3">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+              aria-valuemax="100" style="width: 100%">
+            </div>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -172,9 +177,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <th>
                   Subtotal
                 </th>
-                <th>
-                  Ações
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -185,16 +187,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
                 <td>R$ 2.444,21</td>
                 <td>
-                  <input type="number" style="width: 100px;" value="2">
+                  2
                 </td>
                 <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
               </tr>
               <tr>
                 <td>
@@ -203,34 +198,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
                 <td>R$ 2.444,21</td>
                 <td>
-                  <input type="number" style="width: 100px;" value="2">
+                  2
                 </td>
                 <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
               </tr>
               <tr>
                 <td>
                   <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
                 </td>
-                <td>Notebook Ideapad  l340 - 16GB RAM - 250GB SSD - I7 </td>
+                <td>Notebook Ideapad l340 - 16GB RAM - 250GB SSD - I7 </td>
                 <td>R$ 2.444,21</td>
                 <td>
-                  <input type="number" style="width: 100px;" value="2">
+                  2
                 </td>
                 <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
               </tr>
               <tr>
                 <td>
@@ -239,25 +220,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
                 <td>R$ 2.444,21</td>
                 <td>
-                  <input type="number" style="width: 100px;" value="2">
+                  2
                 </td>
                 <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
               </tr>
           </table>
           <hr>
-          <div style="display: flex; justify-content: space-between;">
-            <h3>Total: R$ 14665,26</h3>
-            <a href="../customer/customer-register.html" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
-              <i class="fas fa-credit-card fa-lg mr-2"></i>
-              Iniciar compra
-            </a>
+          <div class="mb-4">
+            <h4>Endereço</h4>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td><strong>Cidade</strong></td>
+                  <td>São Paulo</td>
+                </tr>
+                <tr>
+                  <td><strong>Estado</strong></td>
+                  <td>São Paulo - SP</td>
+                </tr>
+                <tr>
+                  <td><strong>Número</strong></td>
+                  <td>130</td>
+                </tr>
+                <tr>
+                  <td><strong>Complemento</strong></td>
+                  <td>apt 3 - bloco 2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr>
+          <div class="mb-4">
+            <h4>Pagamento</h4>
+            <table class="table table-striped">
+              <thead>
+                <td><strong>Forma de pagamento</strong></td>
+                <td><strong>Valor</strong></td>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Cartão</strong>
+                  </td>
+                  <td>
+                    R$ 14465,26
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Saldo virtual</strong>
+                  </td>
+                  <td>
+                    R$ 200,00
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td style="width: 61%;">
+                    <strong>Subtotal</strong>
+                  </td>
+                  <td>R$ 14665,26</td>
+                </tr>
+                <tr>
+                  <td style="width: 61%;">
+                    <strong>Entrega</strong>
+                  </td>
+                  <td>R$ 20,00</td>
+                </tr>
+                <tr>
+                  <td style="width: 61%;">
+                    <strong>Total</strong>
+                  </td>
+                  <td>R$ 14685,26</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding-bottom: 60px;">
+            <a href="checkout-finish.html" class="btn btn-primary float-right"
+            id="nextStepButtonByData"><i class="fas fa-check-circle fa-lg mr-2"></i>Finalizar</a>
           </div>
         </div><!-- /.container-fluid -->
       </div>
