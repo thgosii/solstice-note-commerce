@@ -77,10 +77,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3" >
+          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
-              <input name="descricao" class="form-control form-control-navbar" type="search" placeholder="Pesquisar Laptops"
-                aria-label="Pesquisar Laptops">
+              <input name="descricao" class="form-control form-control-navbar" type="search"
+                placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="checkout.html">
+            <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -148,9 +148,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
-
-
-  
+          <div class="col-sm-6">
+            <h1>Carrinho</h1>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
@@ -158,9 +158,110 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-
-
-
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Produto
+                </th>
+                <th>
+                </th>
+                <th>
+                  Preço unitário
+                </th>
+                <th>
+                  Quantidade
+                </th>
+                <th>
+                  Subtotal
+                </th>
+                <th>
+                  Ações
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
+                </td>
+                <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
+                <td>R$ 2.444,21</td>
+                <td>
+                  <input type="number" style="width: 100px;" value="2">
+                </td>
+                <td>R$ 4888,42</td>
+                <td>
+                  <a class="btn btn-danger btn-sm" href="#">
+                    <i class="fas fa-trash">
+                    </i>
+                    Remover
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
+                </td>
+                <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
+                <td>R$ 2.444,21</td>
+                <td>
+                  <input type="number" style="width: 100px;" value="2">
+                </td>
+                <td>R$ 4888,42</td>
+                <td>
+                  <a class="btn btn-danger btn-sm" href="#">
+                    <i class="fas fa-trash">
+                    </i>
+                    Remover
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
+                </td>
+                <td>Notebook Ideapad  l340 - 16GB RAM - 250GB SSD - I7 </td>
+                <td>R$ 2.444,21</td>
+                <td>
+                  <input type="number" style="width: 100px;" value="2">
+                </td>
+                <td>R$ 4888,42</td>
+                <td>
+                  <a class="btn btn-danger btn-sm" href="#">
+                    <i class="fas fa-trash">
+                    </i>
+                    Remover
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
+                </td>
+                <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
+                <td>R$ 2.444,21</td>
+                <td>
+                  <input type="number" style="width: 100px;" value="2">
+                </td>
+                <td>R$ 4888,42</td>
+                <td>
+                  <a class="btn btn-danger btn-sm" href="#">
+                    <i class="fas fa-trash">
+                    </i>
+                    Remover
+                  </a>
+                </td>
+              </tr>
+          </table>
+          <hr>
+          <div style="display: flex; justify-content: space-between;">
+            <h3>Total: R$ 14665,26</h3>
+            <button type="button" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
+              <i class="fas fa-credit-card fa-lg mr-2"></i>
+              Finalizar
+            </button>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
