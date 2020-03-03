@@ -1,5 +1,5 @@
 /* Aligns the font-awesome icon in the middle of the column */
-table td.item_icone {
+table td.icon_table_item {
   vertical-align: middle;
   text-align: center;
 }
