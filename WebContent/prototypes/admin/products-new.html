@@ -53,7 +53,7 @@
           <a href="#" class="nav-link">admin@email.com</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../customer/customer-login.html">
+          <a class="nav-link" href="../login.html">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -144,7 +144,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="../customer/customer-login.html" class="nav-link">
+              <a href="../login.html" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>Sair</p>
               </a>
@@ -219,7 +219,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col col-6">
+                    <div class="col col-3">
                       <div class="form-group" style="height: 75px;">
                         <label for="title">Imagem<span class="text-danger text-bold"> *</span></label>
                         <div class="h-100 product-img-display">
@@ -227,7 +227,7 @@
                         <input id="imagem" name="imagem" type="file" class="custom-file-input">
                       </div>
                     </div>
-                    <div class="col col-6">
+                    <div class="col col-9">
                       <div class="form-group">
                         <label for="price">Descrição</label>
                         <textarea class="form-control" maxlength="2000" name="price" id="price"></textarea>
@@ -295,29 +295,37 @@
                         <input type="text" class="form-control" name="monitor" id="monitor">
                       </div>
                     </div>
-                    <div class="col col-3">
-                      <!-- <div class="form-group">
-                        <label for="processor">Armazenamento<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="processor" id="processor"
-                          placeholder="i5-2900, Pentium...">
-                      </div> -->
+                    <div class="col col-2">
                       <div class="form-group">
-                        <label for="monitor">HD<span class="text-danger text-bold"> *</span></label>
                         <div class="icheck-primary d-inline">
-                          <input type="checkbox" name="has-ssd" id="has-ssd" checked>
-                          <label for="checkboxPrimary1">sadads
-                          </label>
+                          <input type="checkbox" id="has-hd" name="has-hd">
+                          <label for="has-hd">HD</label>
                         </div>
+                        <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline">
+                      </div>
+                    </div>
+                    <div class="col col-2">
+                      <div class="form-group">
                         <div class="icheck-primary d-inline">
-                          <input type="checkbox" name="has-hd" id="has-hd">
-                          <label for="checkboxPrimary2">asd
-                          </label>
+                          <input type="checkbox" id="has-ssd" name="has-ssd">
+                          <label for="has-ssd">SSD</label>
                         </div>
+                        <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-6">
+              <a href="products-list.html" class="btn btn-block btn-danger" role="button">Cancelar</a>
+            </div>
+            <div class="col col-6">
+              <a href="products-list.html" class="btn btn-block btn-primary" role="button">Cadastrar</a>
+              <!-- <button type="submit" class="btn btn-block btn-primary">Cadastrar</button> -->
             </div>
           </div>
 
@@ -404,6 +412,18 @@
       });
 
       $('.product-img-display').click(() => $('#imagem').click());
+
+      $('#has-hd').click(() => $('#hd-capacity').prop('disabled', !$('#has-hd')[0].checked));
+
+      $('#hd-capacity').inputmask('numeric', {
+        digits: 0,
+        min: 1,
+        max: 4000,
+        suffix: ' GB',
+        allowMinus: false,
+        autoUnmask: true,
+        removeMaskOnSubmit: true
+      });
 
     })
   </script>
