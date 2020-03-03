@@ -3,3 +3,10 @@ table td.icon_table_item {
   vertical-align: middle;
   text-align: center;
 }
+
+.truncate-text {
+  max-width:50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
