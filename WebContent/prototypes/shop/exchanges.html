@@ -77,10 +77,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3" >
+          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
-              <input name="descricao" class="form-control form-control-navbar" type="search" placeholder="Pesquisar Laptops"
-                aria-label="Pesquisar Laptops">
+              <input name="descricao" class="form-control form-control-navbar" type="search"
+                placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="sales.html" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
-              <a href="exchanges.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="../login.html" class="dropdown-item dropdown-footer text-left">
@@ -148,9 +148,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
-
-
-  
+          <div class="col-sm-6 mb-3">
+            <h1>Minhas trocas</h1>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
@@ -158,9 +158,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-
-
-
+          <div class="card card-default">
+            <div class="card-body table-responsive">
+              <table id="products-table" class="table table-borderless table-striped">
+                <thead>
+                  <tr>
+                    <th>Data do pedido de troca</th>
+                    <th>Venda relacionada</th>
+                    <th>Produto</th>
+                    <th>Nº Rastreamento</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
+                    <td><a href="sales.html">324543535</a></td>
+                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
+                    <td></td>
+                    <td><span class="badge bg-warning">Em troca</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
+                    <td><a href="sales.html">6568768</a></td>
+                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
+                    <td>0-678678678</td>
+                    <td><span class="badge bg-info">Troca Autorizada</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
+                    <td><a href="sales.html">234234</a></td>
+                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
+                    <td></td>
+                    <td><span class="badge bg-warning">Em troca</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="dt-date-sort">2020-05-05</span>05/05/2020</td>
+                    <td><a href="sales.html">324543535</a></td>
+                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
+                    <td>0-768686</td>
+                    <td><span class="badge bg-success">Trocado</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
