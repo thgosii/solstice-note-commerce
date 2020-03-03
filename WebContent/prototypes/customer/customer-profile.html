@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="../shop/checkout.html">
+            <a class="nav-link" href="../shop/cart.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -148,79 +148,83 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <div class="card-body register-card-body">
-            <form action="update" method="POST">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" name="name" placeholder="Nome" value="João de Souza">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-user"></span>
+          <div class="card">
+            <div class="card-body register-card-body">
+              <form action="update" method="POST">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="name" placeholder="Nome" value="João de Souza">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="353.783.120-00"
-                  disabled>
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-address-card"></span>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="353.783.120-00"
+                    disabled>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-address-card"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <select class="form-control" name="gender">
-                  <option disabled>Gênero...</option>
-                  <option value="f">Feminino</option>
-                  <option value="m" selected>Masculino</option>
-                </select>
-              </div>
-              <div class="input-group mb-3">
-                <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-calendar-alt"></span>
+                <div class="input-group mb-3">
+                  <select class="form-control" name="gender">
+                    <option disabled>Gênero...</option>
+                    <option value="f">Feminino</option>
+                    <option value="m" selected>Masculino</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-calendar-alt"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" value="(99) 9999-9999">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-phone"></span>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone"
+                    value="(99) 9999-9999">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-phone"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="email" class="form-control" name="email" placeholder="E-mail" value="joao.s122@gmail.com">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" name="email" placeholder="E-mail"
+                    value="joao.s122@gmail.com">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Senha">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" name="password" placeholder="Senha">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="input-group mb-3">
-                <input type="password" class="form-control" name="confirmPassword"
-                  placeholder="Insira a senha novamente">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" name="confirmPassword"
+                    placeholder="Insira a senha novamente">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-1">
-                  <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                <div class="row">
+                  <div class="col-1">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -252,7 +256,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="../../static/dist/js/adminlte.min.js"></script>
   <script src="../../static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
   <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
       $("#cpf").inputmask("999.999.999-99");
       $("#phone").inputmask({
         mask: ["(99) 9999-9999", "(99) 99999-9999"]

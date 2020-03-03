@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="../shop/checkout.html">
+            <a class="nav-link" href="../shop/cart.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -155,51 +155,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <div class="card-body register-card-body">
-            <form action="#" method="POST">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="publicPlace" name="publicPlace" placeholder="Logradouro">
-              </div>
-              <div class="form-group">
-                <label for="state">Estado</label>
-                <select class="form-control" id="state" name="state">
-                  <option value="acre">Acre</option>
-                  <option value="sp">São Paulo</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="city">Cidade</label>
-                <select class="form-control" id="city" name="city">
-                  <option value="mogi das cruzes">Mogi das Cruzes</option>
-                  <option value="são paulo">São Paulo</option>
-                </select>
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" placeholder="Bairro">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="number" name="number" placeholder="Número">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="complement" name="complement" placeholder="Complemento">
-              </div>
-              <div class="form-group">
+          <div class="card">
+            <div class="card-body register-card-body">
+              <form action="#" method="POST">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="publicPlace" name="publicPlace" placeholder="Logradouro">
+                </div>
+                <div class="form-group">
+                  <label for="state">Estado</label>
+                  <select class="form-control" id="state" name="state">
+                    <option value="acre">Acre</option>
+                    <option value="sp">São Paulo</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="city">Cidade</label>
+                  <select class="form-control" id="city" name="city">
+                    <option value="mogi das cruzes">Mogi das Cruzes</option>
+                    <option value="são paulo">São Paulo</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" placeholder="Bairro">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="number" name="number" placeholder="Número">
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="complement" name="complement" placeholder="Complemento">
+                </div>
+                <!--<div class="form-group">
                 <label for="addressType">Tipo de endereço</label>
                 <select class="form-control" id="addressType" name="addressType">
                   <option value="shipping">Entrega</option>
                   <option value="billing">Cobrança</option>
                   <option value="shipping_and_billing">Entrega e cobrança</option>
                 </select>
-              </div>
-              <div class="row">
-                <div class="col-1">
-                  <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+              </div>-->
+                <div class="row">
+                  <div class="col-1">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div><!-- /.container-fluid -->
       </div>
