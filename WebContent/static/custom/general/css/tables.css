@@ -4,8 +4,8 @@ table td.icon_table_item {
   text-align: center;
 }
 
+/* inline css to set max-width is required for this to work */
 .truncate-text {
-  max-width:50px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
