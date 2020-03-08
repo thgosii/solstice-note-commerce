@@ -1,0 +1,17 @@
+/* Aligns the font-awesome icon in the middle of the column */
+table td.icon_table_item {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* inline css to set max-width is required for this to work */
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Used in date columns in datatables to hide the sorting text */
+.dt-date-sort {
+  display: none;
+}

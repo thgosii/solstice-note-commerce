@@ -1,0 +1,15 @@
+.product-img-display {
+  border: 5px dashed grey;
+  border-radius: .25rem;
+  display: block;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product-img-display input {
+  cursor: pointer;
+}
