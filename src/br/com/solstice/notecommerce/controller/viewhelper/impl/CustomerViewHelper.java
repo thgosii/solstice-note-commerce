@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
-import br.com.solstice.notecommerce.domain.client.Client;
+import br.com.solstice.notecommerce.domain.customer.Customer;
 
-public class ClientViewHelper implements IViewHelper {
+public class CustomerViewHelper implements IViewHelper {
 
 	@Override
 	public DomainEntity getEntity(HttpServletRequest request) {
@@ -42,7 +42,7 @@ public class ClientViewHelper implements IViewHelper {
 					}
 				}
 				
-				Client client = new Client();
+				Customer client = new Customer();
 				client.setName(name);
 				client.setDescription(description);
 				
@@ -59,17 +59,17 @@ public class ClientViewHelper implements IViewHelper {
 		String operation = request.getParameter("operation");
 
 		if (operation.equals("save")) {
-			Client client = (Client) result.getEntities().get(0);
-			request.setAttribute("client", client);
+			Customer client = (Customer) result.getEntities().get(0);
+			request.setAttribute("customer", client);
 			if (null == client) {
 				return;
 			}
 			if (null == result.getMessage()) {
-				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
+//				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
 			} else {
 				String[] messages = result.getMessage().trim().split("\n");
 				request.setAttribute("messages", messages);
-				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
+//				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
 			}
 		}
 	}

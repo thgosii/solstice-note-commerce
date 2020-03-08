@@ -11,9 +11,9 @@ import java.util.List;
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 
-public class ClientDAO extends AbstractDAO {
+public class CustomerDAO extends AbstractDAO {
 
-	public ClientDAO() {
+	public CustomerDAO() {
 		super("clients", "cli_id");
 	}
 

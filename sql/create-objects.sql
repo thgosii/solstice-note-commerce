@@ -11,15 +11,16 @@ create table if not exists users(
 	primary key (usr_id)
 );
 
-create table if not exists clients(
-	cli_id int auto_increment not null,
-    cli_name varchar(255),
-    cli_cpf varchar(255),
-    cli_date_of_birth date,
-    cli_gender varchar(255),
-    cli_usr_id int,
-    primary key (cli_id),
-    foreign key (cli_usr_id) references users(usr_id)
+create table if not exists customers(
+	cus_id int auto_increment not null,
+    cus_name varchar(255),
+    cus_cpf varchar(255),
+    cus_date_of_birth date,
+    cus_phone varchar(255),
+    cus_gender varchar(255),
+    cus_usr_id int,
+    primary key (cus_id),
+    foreign key (cus_usr_id) references users(usr_id)
 );
 
 create table if not exists brands(

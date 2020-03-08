@@ -31,7 +31,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Crie sua conta</p>
 
-      <form action="signup" method="POST">
+      <form action="customer/signup" method="POST">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Nome">
           <div class="input-group-append">

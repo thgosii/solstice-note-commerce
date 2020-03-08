@@ -7,12 +7,12 @@ import java.util.Map;
 
 import br.com.solstice.notecommerce.controller.facade.IFacade;
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.controller.strategy.impl.client.ValidateClientData;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerData;
 import br.com.solstice.notecommerce.dao.IDAO;
-import br.com.solstice.notecommerce.dao.impl.ClientDAO;
+import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
-import br.com.solstice.notecommerce.domain.client.Client;
+import br.com.solstice.notecommerce.domain.customer.Customer;
 
 public class Facade implements IFacade {
 
@@ -27,18 +27,18 @@ public class Facade implements IFacade {
 		stringBuilder = new StringBuilder();
 		
 		daosMap = new HashMap<String, IDAO>();
-		daosMap.put(Client.class.getName(), new ClientDAO());
+		daosMap.put(Customer.class.getName(), new CustomerDAO());
 		
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
 		Map<String, List<IStrategy>> clientBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
 		List<IStrategy> clientBusinessRulesSave = new ArrayList<IStrategy>();
-		clientBusinessRulesSave.add(new ValidateClientData());
+		clientBusinessRulesSave.add(new ValidateCustomerData());
 
 		clientBusinessRulesMap.put("save", clientBusinessRulesSave);
 
-		businessRulesMap.put(Client.class.getName(), clientBusinessRulesMap);
+		businessRulesMap.put(Customer.class.getName(), clientBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, DomainEntity entity) {
@@ -81,7 +81,7 @@ public class Facade implements IFacade {
 
 		String entityName = entity.getClass().getName();
 
-		daosMap.get(entityName).remove(entity, operation);
+//		daosMap.get(entityName).remove(entity, operation);
 
 		result.getEntities().add(entity);
 
@@ -103,7 +103,7 @@ public class Facade implements IFacade {
 		result.getEntities().add(entity);
 
 		if (stringBuilder.length() == 0) {
-			daosMap.get(entityName).update(entity, operation);
+//			daosMap.get(entityName).update(entity, operation);
 		} else {
 			result.setMessage(stringBuilder.toString());
 		}
@@ -117,9 +117,9 @@ public class Facade implements IFacade {
 
 		String entityName = entity.getClass().getName();
 
-		List<DomainEntity> consultEntities = daosMap.get(entityName).consult(entity, operation);
+//		List<DomainEntity> consultEntities = daosMap.get(entityName).consult(entity, operation);
 
-		result.setEntities(consultEntities);
+//		result.setEntities(consultEntities);
 
 		return result;
 	}

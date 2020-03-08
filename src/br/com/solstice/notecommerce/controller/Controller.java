@@ -17,11 +17,11 @@ import br.com.solstice.notecommerce.controller.command.impl.RemoveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.SaveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.UpdateCommand;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.ClientViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.CustomerViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
-@WebServlet(urlPatterns = { "/signup" })
+@WebServlet(urlPatterns = { "/customer/signup" })
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -37,8 +37,8 @@ public class Controller extends HttpServlet {
 		commandsMap.put("remove", new RemoveCommand());
 		
 		viewHelpersMap = new HashMap<String, IViewHelper>();
-		// client
-		viewHelpersMap.put("/note-commerce/signup", new ClientViewHelper());
+		// customer
+		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
 	}
 	
 	@Override
