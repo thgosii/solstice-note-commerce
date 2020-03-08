@@ -7,7 +7,7 @@ create table if not exists users(
     usr_email varchar(255),
     usr_password varchar(255),
     usr_role varchar(255),
-	usr_is_active boolean,
+    usr_deleted boolean,
 	primary key (usr_id)
 );
 
@@ -19,6 +19,7 @@ create table if not exists customers(
     cus_phone varchar(255),
     cus_gender varchar(255),
     cus_usr_id int,
+    cus_deleted boolean,
     primary key (cus_id),
     foreign key (cus_usr_id) references users(usr_id)
 );
@@ -26,6 +27,7 @@ create table if not exists customers(
 create table if not exists brands(
 	brd_id int auto_increment not null,
     brd_name varchar(255),
+    brd_deleted boolean,
     primary key (brd_id)
 );
 
@@ -43,6 +45,7 @@ create table if not exists products(
     prd_hd int,
     prd_ssd int,
     prd_so varchar(255),
+    prd_deleted boolean,
     primary key (prd_id),
     foreign key (prd_brd_id) references brands(brd_id)
 );

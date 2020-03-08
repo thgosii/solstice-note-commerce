@@ -2,6 +2,8 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
-import br.com.solstice.notecommerce.domain.customer.Customer;
+import br.com.solstice.notecommerce.domain.user.User;
+import br.com.solstice.notecommerce.domain.user.UserRole;
+import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.domain.user.customer.Gender;
 
 public class CustomerViewHelper implements IViewHelper {
 
@@ -27,26 +32,89 @@ public class CustomerViewHelper implements IViewHelper {
 		if (operation != null) {
 			if (operation.equals("save")) {
 				String name = null;
-				if (request.getParameter("name") != null) {
+				if (null != request.getParameter("name")) {
 					try {
 						name = request.getParameter("name");
 					} catch (Exception ex) {
 					}
 				}
-				
-				String description = null;
-				if (request.getParameter("description") != null) {
+
+				String cpf = null;
+				if (null != request.getParameter("cpf")) {
 					try {
-						description = request.getParameter("description");
+						cpf = request.getParameter("cpf").replaceAll("\\.", "").replaceAll("-", "");
+					} catch (Exception ex) {
+					}
+				}
+
+				LocalDate dateOfBirth = null;
+				if (null != request.getParameter("birthDate")) {
+					try {
+						dateOfBirth = LocalDate.parse(request.getParameter("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 					} catch (Exception ex) {
 					}
 				}
 				
-				Customer client = new Customer();
-				client.setName(name);
-				client.setDescription(description);
-				
-				return client;
+				String phone = null;
+				if (null != request.getParameter("phone")) {
+					try {
+						phone = request.getParameter("phone");
+					} catch (Exception ex) {
+					}
+				}
+
+				String email = null;
+				if (null != request.getParameter("email")) {
+					try {
+						email = request.getParameter("email");
+					} catch (Exception ex) {
+					}
+				}
+
+				String password = null;
+				if (null != request.getParameter("password")) {
+					try {
+						password = request.getParameter("password");
+					} catch (Exception ex) {
+					}
+				}
+
+				String confirmPassword = null;
+				if (null != request.getParameter("confirmPassword")) {
+					try {
+						confirmPassword = request.getParameter("confirmPassword");
+					} catch (Exception ex) {
+					}
+				}
+
+				Gender gender = null;
+				if (null != request.getParameter("gender")) {
+					try {
+						if (request.getParameter("gender").charAt(0) == 'm') {
+							gender = Gender.MALE;
+						} else if (request.getParameter("gender").charAt(0) == 'f') {
+							gender = Gender.FEMALE;
+						}
+					} catch (Exception ex) {
+					}
+				}
+
+				Customer customer = new Customer();
+				customer.setName(name);
+				customer.setCpf(cpf);
+				customer.setDateOfBirth(dateOfBirth);
+				customer.setPhone(phone);
+
+				User user = new User();
+				user.setEmail(email);
+				user.setPassword(password);
+				user.setConfirmPassword(confirmPassword);
+				user.setRole(UserRole.CLIENT);
+
+				customer.setUser(user);
+				customer.setGender(gender);
+
+				return customer;
 			}
 		}
 		
@@ -59,17 +127,19 @@ public class CustomerViewHelper implements IViewHelper {
 		String operation = request.getParameter("operation");
 
 		if (operation.equals("save")) {
-			Customer client = (Customer) result.getEntities().get(0);
-			request.setAttribute("customer", client);
-			if (null == client) {
+			Customer customer = (Customer) result.getEntities().get(0);
+			request.setAttribute("customer", customer);
+
+			if (null == customer) {
 				return;
 			}
 			if (null == result.getMessage()) {
-//				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
 			} else {
 				String[] messages = result.getMessage().trim().split("\n");
 				request.setAttribute("messages", messages);
-//				request.getRequestDispatcher("sign-up-success.jsp").forward(request, response);
+				
+				request.getRequestDispatcher("/pages/customer/customer-register.jsp").forward(request, response);
 			}
 		}
 	}

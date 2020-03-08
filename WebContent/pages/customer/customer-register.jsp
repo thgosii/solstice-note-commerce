@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,13 @@
   <title>LapTop Computadores</title>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="./static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="./static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -25,13 +26,23 @@
   <div class="register-logo">
     <a href="#">LapTop <b>Computadores</b></a>
   </div>
-
+  <c:if test="${not empty requestScope.messages}">
+	<div class="alert alert-danger" role="alert" style="font-size: 16px;">
+		Erros encontrados no preenchimento do formulário:
+		<ul>
+			<c:forEach var="message" items="${messages}">
+				<li><c:out value="${message}"/></li>
+			</c:forEach>
+		</ul>
+	</div>
+  </c:if>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Crie sua conta</p>
 
       <form action="customer/signup" method="POST">
+      	<input type="hidden" name="operation" value="save">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Nome" required>
           <div class="input-group-append">
@@ -97,7 +108,7 @@
         </div>
         <div class="row">
           <div class="col-8">
-            <a href="../login.html">Já possuo uma conta</a>
+            <a href="#">Já possuo uma conta</a>
           </div>
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
@@ -112,12 +123,12 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="./static/plugins/jquery/jquery.min.js"></script>
+<script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="./static/dist/js/adminlte.min.js"></script>
-<script src="./static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+<script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+<script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $("#cpf").inputmask("999.999.999-99");
