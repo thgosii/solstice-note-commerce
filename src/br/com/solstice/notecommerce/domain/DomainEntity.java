@@ -3,7 +3,7 @@ package br.com.solstice.notecommerce.domain;
 public class DomainEntity {
 
 	private Long id;
-	private Boolean deleted;
+	private boolean deleted;
 
 	public Long getId() {
 		return id;
@@ -13,11 +13,11 @@ public class DomainEntity {
 		this.id = id;
 	}
 
-	public Boolean getDeleted() {
+	public boolean isDeleted() {
 		return deleted;
 	}
 
-	public void setDeleted(Boolean deleted) {
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 
