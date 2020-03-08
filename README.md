@@ -15,11 +15,9 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
   - Control options for simulated features
 
 ## Running
+Requirements: IDE that opens Java Web Applications and MySQL
 1. Clone the project: `git clone https://github.com/thiago-bezerra/solstice-note-commerce.git`
-2. Open it with your IDE
-3. Install and setup MySQL
-4. Create the MySQL database, database user and schema
-5. Run the scripts at `sql/MySQL` to fill the database 
+2. Run the scripts at `sql/` to create the database, user and to fill table data
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
