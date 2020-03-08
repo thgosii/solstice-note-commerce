@@ -33,7 +33,7 @@
 
       <form action="customer/signup" method="POST">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Nome">
+          <input type="text" class="form-control" name="name" placeholder="Nome" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
+          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
           <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-address-card"></span>
@@ -56,7 +56,7 @@
           </select>
         </div>
         <div class="input-group mb-3">
-          <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento">
+          <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento" required>
           <div class="input-group-append">
               <div class="input-group-text">
               <span class="fas fa-calendar-alt"></span>
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone">
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -72,7 +72,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="E-mail">
+          <input type="email" class="form-control" name="email" placeholder="E-mail" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Senha">
+          <input type="password" class="form-control" name="password" placeholder="Senha" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="confirmPassword" placeholder="Insira a senha novamente">
+          <input type="password" class="form-control" name="confirmPassword" placeholder="Insira a senha novamente" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -100,7 +100,7 @@
             <a href="../login.html">Já possuo uma conta</a>
           </div>
           <div class="col-4">
-            <a href="../shop/checkout-step-1.html" class="btn btn-primary btn-block">Cadastrar</a>
+            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
           </div>
         </div>
       </form>
@@ -112,7 +112,7 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="../static/plugins/jquery/jquery.min.js"></script>
+<script src="./static/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
