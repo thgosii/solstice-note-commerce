@@ -30,7 +30,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Entre em sua conta</p>
 
-      <form action="login" method="POST">
+      <form action="#" method="POST">
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="E-mail">
           <div class="input-group-append">
@@ -49,10 +49,10 @@
         </div>
         <div class="row">
           <div class="col-8">
-              <a href="customer/customer-register.html">Não possuo uma conta</a>
+              <a href="/note-commerce/pages/customer/customer-register.jsp">Não possuo uma conta</a>
           </div>
           <div class="col-4">
-            <a href="admin/dashboard.html" class="btn btn-primary btn-block">Entrar</a>
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
           </div>
         </div>
       </form>

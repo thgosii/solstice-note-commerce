@@ -12,13 +12,17 @@ public class ValidateDateOfBirth implements IStrategy {
 	@Override
 	public String process(DomainEntity entity) {
 		Customer customer = (Customer) entity;
-		
+
 		LocalDateTime now = LocalDate.now().atStartOfDay();
+		
+		if (customer.getDateOfBirth() == null) {
+			return "Data de nascimento inválida";
+		}
 
 		if (!customer.getDateOfBirth().atStartOfDay().isBefore(now)) {
 			return "Data de nascimento inválida";
 		}
-		
+
 		return null;
 	}
 

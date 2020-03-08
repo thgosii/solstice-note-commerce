@@ -41,7 +41,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Crie sua conta</p>
 
-      <form action="customer/signup" method="POST">
+      <form action="/note-commerce/customer/signup" method="POST">
       	<input type="hidden" name="operation" value="save">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Nome" required>
@@ -108,7 +108,7 @@
         </div>
         <div class="row">
           <div class="col-8">
-            <a href="#">Já possuo uma conta</a>
+            <a href="/note-commerce/pages/login.jsp">Já possuo uma conta</a>
           </div>
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
