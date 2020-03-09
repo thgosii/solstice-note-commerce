@@ -74,7 +74,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
-            <a href="#" class="d-block">UsuÃ¡rio Admin</a>
+            <a href="#" class="d-block">Usuário Admin</a>
           </div>
         </div>
 
@@ -199,9 +199,9 @@
                 <thead>
                   <tr>
                     <th>Excluir</th>
-                    <th>TÃ­tulo</th>
+                    <th>Título</th>
                     <th>Marca</th>
-                    <th>PreÃ§o</th>
+                    <th>Preço</th>
                     <th>Vendas</th>
                     <th>Editar</th>
                   </tr>
@@ -388,7 +388,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="delete-modal-label">Confirmar ExclusÃ£o</h4>
+            <h4 class="modal-title" id="delete-modal-label">Confirmar Exclusão</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
           </div>
@@ -455,8 +455,8 @@
             orderable: false
           }
         ],
-        // InternacionalizaÃ§Ã£o PortuguÃªs-Brasil - https://datatables.net/plug-ins/i18n/Portuguese-Brasil
-        language: { "sEmptyTable": "Nenhum registro encontrado", "sInfo": "Mostrando de _START_ atÃ© _END_ de _TOTAL_ registros", "sInfoEmpty": "Mostrando 0 atÃ© 0 de 0 registros", "sInfoFiltered": "(Filtrados de _MAX_ registros)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "_MENU_ resultados por pÃ¡gina", "sLoadingRecords": "Carregando...", "sProcessing": "Processando...", "sZeroRecords": "Nenhum registro encontrado", "sSearch": "Pesquisar", "oPaginate": { "sNext": "PrÃ³ximo", "sPrevious": "Anterior", "sFirst": "Primeiro", "sLast": "Ãltimo" }, "oAria": { "sSortAscending": ": Ordenar colunas de forma ascendente", "sSortDescending": ": Ordenar colunas de forma descendente" }, "select": { "rows": { "0": "Nenhuma linha selecionada", "1": "Selecionado 1 linha", "_": "Selecionado %d linhas" } } }
+        // Internacionalização Português-Brasil - https://datatables.net/plug-ins/i18n/Portuguese-Brasil
+        language: { "sEmptyTable": "Nenhum registro encontrado", "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros", "sInfoEmpty": "Mostrando 0 até 0 de 0 registros", "sInfoFiltered": "(Filtrados de _MAX_ registros)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "_MENU_ resultados por página", "sLoadingRecords": "Carregando...", "sProcessing": "Processando...", "sZeroRecords": "Nenhum registro encontrado", "sSearch": "Pesquisar", "oPaginate": { "sNext": "Próximo", "sPrevious": "Anterior", "sFirst": "Primeiro", "sLast": "Último" }, "oAria": { "sSortAscending": ": Ordenar colunas de forma ascendente", "sSortDescending": ": Ordenar colunas de forma descendente" }, "select": { "rows": { "0": "Nenhuma linha selecionada", "1": "Selecionado 1 linha", "_": "Selecionado %d linhas" } } }
       });
 
     })

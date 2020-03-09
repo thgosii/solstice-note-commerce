@@ -194,7 +194,7 @@
               <div class="col col-12">
                 <div class="card card-default">
                   <div class="card-header">
-                    <h3 class="card-title">Dados BÃ¡sicos</h3>
+                    <h3 class="card-title">Dados Básicos</h3>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -206,14 +206,14 @@
                     <div class="row">
                       <div class="col col-9">
                         <div class="form-group">
-                          <label for="title">TÃ­tulo<span class="text-danger text-bold"> *</span></label>
+                          <label for="title">Título<span class="text-danger text-bold"> *</span></label>
                           <input type="text" maxlength="200" class="form-control" name="title" id="title"
-                            placeholder="TÃ­tulo completo do laptop" required>
+                            placeholder="Título completo do laptop" required>
                         </div>
                       </div>
                       <div class="col col-3">
                         <div class="form-group">
-                          <label for="price">PreÃ§o<span class="text-danger text-bold"> *</span></label>
+                          <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="price" id="price" required>
                         </div>
                       </div>
@@ -229,7 +229,7 @@
                       </div>
                       <div class="col col-8">
                         <div class="form-group">
-                          <label for="price">DescriÃ§Ã£o</label>
+                          <label for="price">Descrição</label>
                           <textarea class="form-control" maxlength="4000" name="description" id="description" required></textarea>
                         </div>
                       </div>
@@ -243,7 +243,7 @@
               <div class="col col-12">
                 <div class="card card-default">
                   <div class="card-header">
-                    <h3 class="card-title">EspecificaÃ§Ãµes</h3>
+                    <h3 class="card-title">Especificações</h3>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -276,14 +276,14 @@
                       </div>
                       <div class="col col-4">
                         <div class="form-group">
-                          <label for="processor">Placa de VÃ­deo<span class="text-danger text-bold"> *</span></label>
+                          <label for="processor">Placa de Vídeo<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="graphics_card" id="graphics_card"
                             placeholder="Intel Graphics Card 20, NVDIA..." required>
                         </div>
                       </div>
                       <div class="col col-2">
                         <div class="form-group">
-                          <label for="ram">MemÃ³ria RAM<span class="text-danger text-bold"> *</span></label>
+                          <label for="ram">Memória RAM<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="ram" id="ram" value="4" required>
                         </div>
                       </div>
