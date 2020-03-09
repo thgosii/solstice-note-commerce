@@ -76,7 +76,7 @@ public class LoginViewHelper implements IViewHelper {
 					response.sendRedirect("/note-commerce/pages/shop/products.jsp");
 					return;
 				} else {
-					// TODO admin
+					response.sendRedirect("/note-commerce/pages/admin/dashboard.jsp");
 					return;
 				}
 			} else {
