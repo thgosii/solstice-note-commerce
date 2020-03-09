@@ -4,8 +4,8 @@ import java.io.InputStream;
 
 public class ProductFile {
 	
-	private InputStream fileContent;
-	private String url;
+	private InputStream fileContent; // For upload and save file only
+	private String url;              // For use in JSP
 
 	public InputStream getFileContent() {
 		return fileContent;

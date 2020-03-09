@@ -19,6 +19,10 @@ public class Product extends DomainEntity {
 	private int ssd;
 	private String os;
 	
+	public Product(long id) {
+		this.setId(id);
+	}
+	
 	public String getTitle() {
 		return title;
 	}

@@ -5,6 +5,10 @@ import br.com.solstice.notecommerce.domain.DomainEntity;
 public class Brand extends DomainEntity {
 	
 	private String name;
+	
+	public Brand(long id) {
+		this.setId(id);
+	}
 
 	public String getName() {
 		return name;
