@@ -49,7 +49,7 @@ create table if not exists products(
 	prd_monitor varchar(255),
     prd_hd int,
     prd_ssd int,
-    prd_so varchar(255),
+    prd_os varchar(255),
     prd_deleted boolean default false,
     primary key (prd_id),
     foreign key (prd_brd_id) references brands(brd_id)
