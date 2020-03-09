@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
 @WebServlet(urlPatterns = { "/customer/signup", "/customer/update", "/customer/consultAccountData", "/login", "/logout" })
+@MultipartConfig
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
