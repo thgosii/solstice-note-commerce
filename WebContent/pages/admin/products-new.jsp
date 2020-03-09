@@ -262,13 +262,13 @@
                         <div class="form-group">
                           <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
                           <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand" required>
-                            <option selected="selected">Acer</option>
-                            <option>Asus</option>
-                            <option>Dell</option>
-                            <option>Hp</option>
-                            <option>Lenovo</option>
-                            <option>Positivo</option>
-                            <option>Samsung</option>
+                            <option value="1" selected="selected">Acer</option>
+                            <option value="2" >Asus</option>
+                            <option value="3" >Dell</option>
+                            <option value="4" >Hp</option>
+                            <option value="5" >Lenovo</option>
+                            <option value="6" >Positivo</option>
+                            <option value="7" >Samsung</option>
                           </select>
                         </div>
                       </div>
@@ -474,7 +474,9 @@
       });
 
       <c:if test="${not empty message}">
-        displayFormErrors(`<c:out value="${message}"/>`)
+        displayFormErrors(`
+     		<c:out value="${message}"/>
+        `)
       </c:if>
     })
   </script>
