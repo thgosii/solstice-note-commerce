@@ -1,7 +1,7 @@
 function displayFormErrors(errorListString) {
   $(document).ready(() => {
   
-    if (errorListString || errorListString.trim())
+    if (!errorListString || !errorListString.trim())
       return
     
     const errors = errorListString.split('\n')
