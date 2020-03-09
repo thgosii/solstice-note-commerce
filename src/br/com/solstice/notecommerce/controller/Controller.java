@@ -24,7 +24,14 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.ProductViewHelper
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
-@WebServlet(urlPatterns = { "/customer/signup", "/customer/update", "/customer/consultAccountData", "/login", "/logout" })
+@WebServlet(urlPatterns = { 
+		"/login",
+		"/logout",
+		"/admin/products",
+		"/customer/signup", 
+		"/customer/update", 
+		"/customer/consultAccountData", 
+})
 @MultipartConfig
 public class Controller extends HttpServlet {
 
@@ -79,9 +86,9 @@ public class Controller extends HttpServlet {
 		String operation = request.getParameter("operation");
 		
 		ICommand command = commandsMap.get(operation);
-		
+		System.out.println("operation:" + operation);
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
-
+		System.out.println("viewHelper:" + viewHelper.getClass().getSimpleName());
 		DomainEntity entity = viewHelper.getEntity(request);
 		
 		if (null == entity) {
