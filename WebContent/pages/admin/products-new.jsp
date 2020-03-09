@@ -219,7 +219,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="price" id="price" required>
+                          <input type="text" class="form-control" name="price" id="price">
                         </div>
                       </div>
                     </div>
@@ -235,7 +235,7 @@
                       <div class="col col-8">
                         <div class="form-group">
                           <label for="price">Descrição</label>
-                          <textarea class="form-control" maxlength="4000" name="description" id="description" required></textarea>
+                          <textarea class="form-control" maxlength="4000" name="description" id="description"></textarea>
                         </div>
                       </div>
                     </div>
@@ -261,7 +261,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
-                          <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand" required>
+                          <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand">
                             <option value="1" selected="selected">Acer</option>
                             <option value="2" >Asus</option>
                             <option value="3" >Dell</option>
@@ -276,20 +276,20 @@
                         <div class="form-group">
                           <label for="processor">Processador<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="processor" id="processor"
-                            placeholder="i5-2900, Pentium..." required>
+                            placeholder="i5-2900, Pentium...">
                         </div>
                       </div>
                       <div class="col col-4">
                         <div class="form-group">
                           <label for="processor">Placa de Vídeo<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="graphics_card" id="graphics_card"
-                            placeholder="Intel Graphics Card 20, NVDIA..." required>
+                            placeholder="Intel Graphics Card 20, NVDIA...">
                         </div>
                       </div>
                       <div class="col col-2">
                         <div class="form-group">
                           <label for="ram">Memória RAM<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="ram" id="ram" value="4" required>
+                          <input type="text" class="form-control" name="ram" id="ram" value="4">
                         </div>
                       </div>
                     </div>
@@ -297,7 +297,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="monitor">Monitor<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="monitor" id="monitor" required>
+                          <input type="text" class="form-control" name="monitor" id="monitor">
                         </div>
                       </div>
                       <div class="col col-1">
@@ -325,7 +325,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="monitor">Sistema Operacional<span class="text-danger text-bold"> *</span></label>
-                          <select class="form-control select2bs4" style="width: 100%;" name="os" id="os" required>
+                          <select class="form-control select2bs4" style="width: 100%;" name="os" id="os">
                             <option selected>Windows</option>
                             <option>Linux</option>
                           </select>
