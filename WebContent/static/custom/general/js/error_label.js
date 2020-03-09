@@ -17,7 +17,11 @@ function displayFormErrors(errorListString) {
 
       // Add error label and mark input as invalid
       $(`[name=${errorField}]`).addClass('is-invalid')
-      $(`[name=${errorField}]`).after(`<span class="text-danger">${errorMessage}</span>`)
+      if ($(`[name=${errorField}]`).next('span[class=text-danger]').length === 0) {
+        $(`[name=${errorField}]`).after(`<span class="text-danger">${errorMessage}</span>`) // Span does not exist, creating
+      } else {
+        $(`[name=${errorField}]`).next('span[class=text-danger]').html(errorMessage)        // Span exists, replacing inner text
+      }
     });
 
   })
