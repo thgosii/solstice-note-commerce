@@ -473,6 +473,9 @@
         removeMaskOnSubmit: true
       });
 
+      <c:if test="${not empty message}">
+        displayFormErrors(`<c:out value="${message}"/>`)
+      </c:if>
     })
   </script>
 </body>
