@@ -53,7 +53,7 @@
           <a href="#" class="nav-link">admin@email.com</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../login.html">
+          <a class="nav-link" href="/note-commerce/logout">
             <i class="fas fa-sign-out-alt"></i>
           </a>
         </li>
@@ -184,157 +184,160 @@
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row">
-            <div class="col col-12">
-              <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">Dados Básicos</h3>
+          <form action="/note-commerce/admin/products" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="save">
+            <div class="row">
+              <div class="col col-12">
+                <div class="card card-default">
+                  <div class="card-header">
+                    <h3 class="card-title">Dados Básicos</h3>
 
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                        class="fas fa-minus"></i></button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col col-9">
-                      <div class="form-group">
-                        <label for="title">Título<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" maxlength="200" class="form-control" name="title" id="title"
-                          placeholder="Título completo do laptop">
-                      </div>
-                    </div>
-                    <div class="col col-3">
-                      <div class="form-group">
-                        <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="price" id="price">
-                      </div>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                          class="fas fa-minus"></i></button>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col col-3">
-                      <div class="form-group" style="height: 75px;">
-                        <label for="title">Imagem<span class="text-danger text-bold"> *</span></label>
-                        <div class="h-100 product-img-display">
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col col-9">
+                        <div class="form-group">
+                          <label for="title">Título<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" maxlength="200" class="form-control" name="title" id="title"
+                            placeholder="Título completo do laptop" required>
                         </div>
-                        <input id="imagem" name="imagem" type="file" class="custom-file-input">
+                      </div>
+                      <div class="col col-3">
+                        <div class="form-group">
+                          <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" class="form-control" name="price" id="price" required>
+                        </div>
                       </div>
                     </div>
-                    <div class="col col-9">
-                      <div class="form-group">
-                        <label for="price">Descrição</label>
-                        <textarea class="form-control" maxlength="2000" name="price" id="price"></textarea>
+                    <div class="row">
+                      <div class="col col-4">
+                        <div class="form-group h-100">
+                          <label for="title">Imagem<span class="text-danger text-bold"> *</span></label>
+                          <div class="product-img-display">
+                          </div>
+                          <input id="image" name="image" type="file" class="custom-file-input" required>
+                        </div>
+                      </div>
+                      <div class="col col-8">
+                        <div class="form-group">
+                          <label for="price">Descrição</label>
+                          <textarea class="form-control" maxlength="4000" name="description" id="description" required></textarea>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col col-12">
-              <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">Especificações</h3>
+            <div class="row">
+              <div class="col col-12">
+                <div class="card card-default">
+                  <div class="card-header">
+                    <h3 class="card-title">Especificações</h3>
 
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                        class="fas fa-minus"></i></button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col col-3">
-                      <div class="form-group">
-                        <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
-                        <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand">
-                          <option selected="selected">Acer</option>
-                          <option>Asus</option>
-                          <option>Dell</option>
-                          <option>Hp</option>
-                          <option>Lenovo</option>
-                          <option>Positivo</option>
-                          <option>Samsung</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col col-3">
-                      <div class="form-group">
-                        <label for="processor">Processador<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="processor" id="processor"
-                          placeholder="i5-2900, Pentium...">
-                      </div>
-                    </div>
-                    <div class="col col-4">
-                      <div class="form-group">
-                        <label for="processor">Placa de Vídeo<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="processor" id="processor"
-                          placeholder="Intel Graphics Card 20, NVDIA...">
-                      </div>
-                    </div>
-                    <div class="col col-2">
-                      <div class="form-group">
-                        <label for="ram">Memória RAM<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="ram" id="ram" value="4">
-                      </div>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                          class="fas fa-minus"></i></button>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col col-3">
-                      <div class="form-group">
-                        <label for="monitor">Monitor<span class="text-danger text-bold"> *</span></label>
-                        <input type="text" class="form-control" name="monitor" id="monitor">
-                      </div>
-                    </div>
-                    <div class="col col-1">
-                    </div>
-                    <div class="col col-2">
-                      <div class="form-group">
-                        <div class="icheck-primary d-inline">
-                          <input type="checkbox" id="has-hd" name="has-hd" checked required>
-                          <label for="has-hd">HD</label>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col col-3">
+                        <div class="form-group">
+                          <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
+                          <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand" required>
+                            <option selected="selected">Acer</option>
+                            <option>Asus</option>
+                            <option>Dell</option>
+                            <option>Hp</option>
+                            <option>Lenovo</option>
+                            <option>Positivo</option>
+                            <option>Samsung</option>
+                          </select>
                         </div>
-                        <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline">
                       </div>
-                    </div>
-                    <div class="col col-2">
-                      <div class="form-group">
-                        <div class="icheck-primary d-inline">
-                          <input type="checkbox" id="has-ssd" name="has-ssd">
-                          <label for="has-ssd">SSD</label>
+                      <div class="col col-3">
+                        <div class="form-group">
+                          <label for="processor">Processador<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" class="form-control" name="processor" id="processor"
+                            placeholder="i5-2900, Pentium..." required>
                         </div>
-                        <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline">
+                      </div>
+                      <div class="col col-4">
+                        <div class="form-group">
+                          <label for="processor">Placa de Vídeo<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" class="form-control" name="graphics_card" id="graphics_card"
+                            placeholder="Intel Graphics Card 20, NVDIA..." required>
+                        </div>
+                      </div>
+                      <div class="col col-2">
+                        <div class="form-group">
+                          <label for="ram">Memória RAM<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" class="form-control" name="ram" id="ram" value="4" required>
+                        </div>
                       </div>
                     </div>
-                    <div class="col col-1">
-                    </div>
-                    <div class="col col-3">
-                      <div class="form-group">
-                        <label for="monitor">Sistema Operacional<span class="text-danger text-bold"> *</span></label>
-                        <select class="form-control select2bs4" style="width: 100%;" name="so" id="so">
-                          <option selected>Windows</option>
-                          <option>Linux</option>
-                        </select>
+                    <div class="row">
+                      <div class="col col-3">
+                        <div class="form-group">
+                          <label for="monitor">Monitor<span class="text-danger text-bold"> *</span></label>
+                          <input type="text" class="form-control" name="monitor" id="monitor" required>
+                        </div>
+                      </div>
+                      <div class="col col-1">
+                      </div>
+                      <div class="col col-2">
+                        <div class="form-group">
+                          <div class="icheck-primary d-inline">
+                            <input type="checkbox" id="has-hd" name="has-hd" checked>
+                            <label for="has-hd">HD</label>
+                          </div>
+                          <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline">
+                        </div>
+                      </div>
+                      <div class="col col-2">
+                        <div class="form-group">
+                          <div class="icheck-primary d-inline">
+                            <input type="checkbox" id="has-ssd" name="has-ssd">
+                            <label for="has-ssd">SSD</label>
+                          </div>
+                          <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline">
+                        </div>
+                      </div>
+                      <div class="col col-1">
+                      </div>
+                      <div class="col col-3">
+                        <div class="form-group">
+                          <label for="monitor">Sistema Operacional<span class="text-danger text-bold"> *</span></label>
+                          <select class="form-control select2bs4" style="width: 100%;" name="os" id="os" required>
+                            <option selected>Windows</option>
+                            <option>Linux</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col col-6">
-              <a href="products-list.html" class="btn btn-block btn-danger" role="button">Cancelar</a>
+            <div class="row">
+              <div class="col col-6">
+                <a href="products-list.html" class="btn btn-block btn-danger" role="button">Cancelar</a>
+              </div>
+              <div class="col col-6">
+                <!-- <a href="products-list.html" class="btn btn-block btn-primary" role="button">Cadastrar</a> -->
+                <button type="submit" class="btn btn-block btn-primary">Cadastrar</button>
+              </div>
             </div>
-            <div class="col col-6">
-              <a href="products-list.html" class="btn btn-block btn-primary" role="button">Cadastrar</a>
-              <!-- <button type="submit" class="btn btn-block btn-primary">Cadastrar</button> -->
-            </div>
-          </div>
+          </form>
 
         </div><!-- /.container-fluid -->
       </section>
@@ -380,9 +383,13 @@
   <!-- InputMask -->
   <script src="../../static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 
+  <!-- Page JavaScript -->
+  <script src="../../static/custom/admin/products/js/image-display.js"></script>
+  <script src="../../static/custom/general/js/error_label.js"></script>
+
   <script>
     $(document).ready(() => {
-      //Initialize Select2 Elements
+      // Initialize Select2 Elements
       $('.select2bs4').select2({
         theme: 'bootstrap4'
       })
@@ -418,9 +425,9 @@
         removeMaskOnSubmit: true
       });
 
-      $('.product-img-display').click(() => $('#imagem').click());
+      $('.product-img-display').click(() => $('#image').click());
 
-      $('#has-hd').click(() => { 
+      $('#has-hd').click(() => {
         $('#hd-capacity').prop('disabled', !$('#has-hd')[0].checked);
         if ($('#hd-capacity').prop('disabled')) {
           $('#hd-capacity').val(null);
