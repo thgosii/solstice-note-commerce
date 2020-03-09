@@ -9,6 +9,9 @@ function displayFormErrors(errorListString) {
     console.log('Error list:', errors)
 
     errors.forEach(error => {
+      if (!error || !error.trim())
+        return
+
       const errorField = error.split(':')[0].trim()
       const errorMessage = error.split(':')[1].trim()
 
