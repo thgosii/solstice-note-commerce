@@ -1,6 +1,6 @@
 create database if not exists notecommerce_db;
 
-create user if not exists notecommerce_user@localhost identified by 'Th@67245261';
+create user if not exists notecommerce_user@localhost identified by 'notecommerce_password';
 grant all privileges on notecommerce_db.* to notecommerce_user@localhost;
 
 use notecommerce_db;
