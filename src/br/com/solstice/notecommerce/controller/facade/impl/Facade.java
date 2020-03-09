@@ -13,11 +13,17 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCu
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerDataUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDateOfBirth;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
+import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateBrand;
+import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductSave;
+import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductUpdate;
+import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateStorage;
 import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
+import br.com.solstice.notecommerce.dao.impl.ProductDAO;
 import br.com.solstice.notecommerce.dao.impl.UserDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
+import br.com.solstice.notecommerce.domain.product.Product;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
 
@@ -34,11 +40,41 @@ public class Facade implements IFacade {
 		stringBuilder = new StringBuilder();
 
 		daosMap = new HashMap<String, IDAO>();
-		daosMap.put(Customer.class.getName(), new CustomerDAO());
-		daosMap.put(User.class.getName(), new UserDAO());
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
+		/*
+		 * Admin
+		 */
+		
+		// Products
+		daosMap.put(Product.class.getName(), new ProductDAO());
+		Map<String, List<IStrategy>> productBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+
+		List<IStrategy> productBusinessRulesSave = new ArrayList<IStrategy>();
+		productBusinessRulesSave.add(new ValidateProductSave());
+		productBusinessRulesSave.add(new ValidateBrand());
+		productBusinessRulesSave.add(new ValidateStorage());
+
+		List<IStrategy> productBusinessRulesUpdate = new ArrayList<IStrategy>();
+		productBusinessRulesUpdate.add(new ValidateProductUpdate());
+		productBusinessRulesUpdate.add(new ValidateBrand());
+		productBusinessRulesUpdate.add(new ValidateStorage());
+
+		productBusinessRulesMap.put("save", productBusinessRulesSave);
+		productBusinessRulesMap.put("update", productBusinessRulesUpdate);
+		
+		businessRulesMap.put(Product.class.getName(), productBusinessRulesMap);
+		
+		// Stock
+		
+		
+		/*
+		 * Customer
+		 */
+		
+		// Customer
+		daosMap.put(Customer.class.getName(), new CustomerDAO());
 		Map<String, List<IStrategy>> customerBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
 		List<IStrategy> customerBusinessRulesSave = new ArrayList<IStrategy>();
@@ -55,8 +91,24 @@ public class Facade implements IFacade {
 
 		customerBusinessRulesMap.put("save", customerBusinessRulesSave);
 		customerBusinessRulesMap.put("update", customerBusinessRulesUpdate);
-
+		
 		businessRulesMap.put(Customer.class.getName(), customerBusinessRulesMap);
+		
+		// Address
+		
+		
+		// Credit Card
+		
+		
+		
+		/*
+		 * Shop
+		 */
+		
+		
+
+		daosMap.put(User.class.getName(), new UserDAO());
+		
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, DomainEntity entity) {
@@ -67,6 +119,7 @@ public class Facade implements IFacade {
 			if (message != null) {
 				stringBuilder.append(message + '\n');
 			}
+			System.out.println(stringBuilder.toString());
 		}
 	}
 
