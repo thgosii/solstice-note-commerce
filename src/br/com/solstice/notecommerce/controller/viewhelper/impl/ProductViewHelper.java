@@ -154,6 +154,22 @@ public class ProductViewHelper implements IViewHelper {
 				System.out.println(product);
 				
 				return product;
+			} else if (operation == "consult") {
+				
+				long productId = -1;
+				if (null != request.getParameter("productId")) {
+					try {
+						productId = Long.parseLong(request.getParameter("productId"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				Product product = new Product();
+				product.setId(productId);
+				
+				System.out.println(product);
+				
+				return product;
 			}
 		}
 		
