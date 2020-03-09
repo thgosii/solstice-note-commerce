@@ -16,10 +16,10 @@ public class ValidateStorage implements IStrategy {
 			sb.append("hd: É necessário possuir pelo menos HD ou SSD\n");
 		} else {
 			if (hd < 0 || hd > 5000) {
-				sb.append("hd: Quantidade inválida\n");
+				sb.append("hd-capacity: Quantidade inválida\n");
 			}
 			if (ssd < 0 || ssd > 5000) {
-				sb.append("ssd: Quantidade inválida\n");
+				sb.append("ssd-capacity: Quantidade inválida\n");
 			}
 		}
 			
