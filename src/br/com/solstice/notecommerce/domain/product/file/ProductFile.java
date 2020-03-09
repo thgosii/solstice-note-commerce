@@ -1,18 +1,18 @@
 package br.com.solstice.notecommerce.domain.product.file;
 
-import java.io.File;
+import java.io.InputStream;
 
 public class ProductFile {
 	
-	private File file;
+	private InputStream fileContent;
 	private String url;
 
-	public File getFile() {
-		return file;
+	public InputStream getFileContent() {
+		return fileContent;
 	}
 	
-	public void setFile(File file) {
-		this.file = file;
+	public void setFileContent(InputStream fileContent) {
+		this.fileContent = fileContent;
 	}
 	
 	public String getUrl() {
