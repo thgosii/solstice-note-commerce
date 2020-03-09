@@ -162,9 +162,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
+		  <c:if test="${not empty requestScope.messages}">
+		  <div class="alert alert-danger" role="alert" style="font-size: 16px;">
+		  Erros encontrados no preenchimento do formulário:
+		  <ul>
+			<c:forEach var="message" items="${messages}">
+		      <li><c:out value="${message}"/></li>
+		    </c:forEach>
+		  </ul>
+		</div>
+		</c:if>
           <div class="card">
             <div class="card-body register-card-body">
-              <form action="#" method="POST">
+              <form action="/note-commerce/customer/update" method="POST">
+              	<input type="hidden" name="operation" value="update">
+				<input type="hidden" name="customerId" value="${customer.id}">
+				<input type="hidden" name="customerUserId" value="${customer.user.id}">
+				<input type="hidden" name="cpf" value="${customer.getDecoratedCpf()}">
+				<input type="hidden" name="email" value="${customer.user.email}">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" name="name" placeholder="Nome" value="${customer.name}">
                   <div class="input-group-append">
@@ -174,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="${customer.cpf}" disabled>
+                  <input type="text" class="form-control" id="cpf" placeholder="CPF" value="${customer.cpf}" disabled>
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-address-card"></span>
@@ -184,8 +199,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="input-group mb-3">
                   <select class="form-control" name="gender">
                     <option disabled>Gênero...</option>
-                    <option value="f" ${client.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
-                    <option value="m" ${client.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
+                    <option value="f" ${customer.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
+                    <option value="m" ${customer.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
                   </select>
                 </div>
                 <div class="input-group mb-3">
@@ -205,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" name="email" placeholder="E-mail" value="${customer.user.email}">
+                  <input type="email" class="form-control" placeholder="E-mail" value="${customer.user.email}" disabled>
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -232,9 +247,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="row">
                   <div class="col-1">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-                  </div>
-                  <div class="col-2">
-                    <button type="submit" class="btn btn-danger btn-block">Invativar Conta</button>
                   </div>
                 </div>
               </form>

@@ -132,6 +132,109 @@ public class CustomerViewHelper implements IViewHelper {
 				customer.setUser(user);
 				
 				return customer;
+			} else if (operation.equals("update")) {
+				String name = null;
+				if (null != request.getParameter("name")) {
+					try {
+						name = request.getParameter("name");
+					} catch (Exception ex) {
+					}
+				}
+
+				String cpf = null;
+				if (null != request.getParameter("cpf")) {
+					try {
+						cpf = request.getParameter("cpf").replaceAll("\\.", "").replaceAll("-", "");
+					} catch (Exception ex) {
+					}
+				}
+
+				LocalDate dateOfBirth = null;
+				if (null != request.getParameter("dateOfBirth")) {
+					try {
+						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				String phone = null;
+				if (null != request.getParameter("phone")) {
+					try {
+						phone = request.getParameter("phone");
+					} catch (Exception ex) {
+					}
+				}
+
+				String email = null;
+				if (null != request.getParameter("email")) {
+					try {
+						email = request.getParameter("email");
+					} catch (Exception ex) {
+					}
+				}
+
+				String password = null;
+				if (null != request.getParameter("password")) {
+					try {
+						password = request.getParameter("password");
+					} catch (Exception ex) {
+					}
+				}
+
+				String confirmPassword = null;
+				if (null != request.getParameter("confirmPassword")) {
+					try {
+						confirmPassword = request.getParameter("confirmPassword");
+					} catch (Exception ex) {
+					}
+				}
+
+				Gender gender = null;
+				if (null != request.getParameter("gender")) {
+					try {
+						if (request.getParameter("gender").charAt(0) == 'm') {
+							gender = Gender.MALE;
+						} else if (request.getParameter("gender").charAt(0) == 'f') {
+							gender = Gender.FEMALE;
+						}
+					} catch (Exception ex) {
+					}
+				}
+				
+				Long customerUserId = 0L;
+				if (null != request.getParameter("customerUserId")) {
+					try {
+						customerUserId = Long.valueOf(request.getParameter("customerUserId"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				Long customerId = 0L;
+				if (null != request.getParameter("customerId")) {
+					try {
+						customerId = Long.valueOf(request.getParameter("customerId"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				Customer customer = new Customer();
+				customer.setId(customerId);
+				customer.setName(name);
+				customer.setCpf(cpf);
+				customer.setDateOfBirth(dateOfBirth);
+				customer.setPhone(phone);
+
+				User user = new User();
+				user.setId(customerUserId);
+				user.setEmail(email);
+				user.setPassword(password);
+				user.setConfirmPassword(confirmPassword);
+				user.setRole(UserRole.CLIENT);
+
+				customer.setUser(user);
+				customer.setGender(gender);
+				
+				return customer;
 			}
 		}
 		
@@ -166,6 +269,20 @@ public class CustomerViewHelper implements IViewHelper {
 			}
 			
 			request.getRequestDispatcher("/pages/customer/customer-profile.jsp").forward(request, response);
+		} else if (operation.equals("update")) {
+			Customer customer = (Customer) result.getEntities().get(0);
+			request.setAttribute("customer", customer);
+			if (null == customer) {
+				return;
+			}
+			if (null == result.getMessage()) {
+				request.getSession().setAttribute("loggedUser", customer.getUser());
+				request.getRequestDispatcher("/pages/customer/customer-profile.jsp").forward(request, response);
+			} else {
+				String[] messages = result.getMessage().trim().split("\n");
+				request.setAttribute("messages", messages);
+				request.getRequestDispatcher("/pages/customer/customer-profile.jsp").forward(request, response);
+			}
 		}
 	}
 
