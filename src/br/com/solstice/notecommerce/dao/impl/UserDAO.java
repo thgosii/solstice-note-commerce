@@ -4,12 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.user.User;
-
+import br.com.solstice.notecommerce.domain.user.UserRole;
 
 public class UserDAO extends AbstractDAO {
 
@@ -72,12 +73,66 @@ public class UserDAO extends AbstractDAO {
 
 	@Override
 	public void update(DomainEntity entity, String operation) {
-		
+
 	}
 
 	@Override
 	public List<DomainEntity> consult(DomainEntity entity, String operation) {
-		return null;
+		openConnection();
+
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		User user = (User) entity;
+
+		String sql = "";
+		if (operation.equals("login")) {
+			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_password=?";
+		}
+
+		List<DomainEntity> users = new ArrayList<DomainEntity>();
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			if (operation.equals("login")) {
+				pstm.setString(1, user.getEmail());
+				pstm.setString(2, user.getPassword());
+			}
+
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				User currentUser = new User();
+				currentUser.setId(rs.getLong(idTable));
+				currentUser.setEmail(rs.getString("usr_email"));
+				currentUser.setPassword(rs.getString("usr_password"));
+				currentUser.setRole(rs.getString("usr_role").equals("client") ? UserRole.CLIENT : UserRole.ADMIN);
+				currentUser.setDeleted(rs.getBoolean("usr_deleted"));
+
+				users.add(currentUser);
+			}
+
+			return users;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection...");
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+
+		return users;
 	}
 
 }

@@ -18,10 +18,11 @@ import br.com.solstice.notecommerce.controller.command.impl.SaveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.UpdateCommand;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.CustomerViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.LoginViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
-@WebServlet(urlPatterns = { "/customer/signup" })
+@WebServlet(urlPatterns = { "/customer/signup", "/login", "/logout" })
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -35,10 +36,23 @@ public class Controller extends HttpServlet {
 		commandsMap.put("update", new UpdateCommand());
 		commandsMap.put("consult", new ConsultCommand());
 		commandsMap.put("remove", new RemoveCommand());
+		commandsMap.put("login", new ConsultCommand());
 		
 		viewHelpersMap = new HashMap<String, IViewHelper>();
 		// customer
 		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
+		viewHelpersMap.put("/note-commerce/login", new LoginViewHelper());
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getRequestURI().equals("/note-commerce/shop/logout")) {
+			if (null != request.getSession().getAttribute("loggedUser")) {
+				request.getSession().removeAttribute("loggedUser");
+			}
+		}
+		response.sendRedirect("/note-commerce/pages/login.jsp");
 	}
 	
 	@Override

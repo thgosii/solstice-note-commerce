@@ -14,8 +14,10 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDa
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
 import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
+import br.com.solstice.notecommerce.dao.impl.UserDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
+import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
 
 public class Facade implements IFacade {
@@ -32,6 +34,7 @@ public class Facade implements IFacade {
 
 		daosMap = new HashMap<String, IDAO>();
 		daosMap.put(Customer.class.getName(), new CustomerDAO());
+		daosMap.put(User.class.getName(), new UserDAO());
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 

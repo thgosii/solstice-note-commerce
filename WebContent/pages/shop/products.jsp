@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,7 +138,7 @@
               <a href="exchanges.html" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
-              <a href="../login.html" class="dropdown-item dropdown-footer text-left">
+              <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
                 <i class="fas fa-sign-out-alt mr-2"></i>
                 Sair
               </a>
