@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +28,17 @@
     <a href="#">LapTop <b>Computadores</b></a>
   </div>
   <!-- /.login-logo -->
+  <c:if test="${not empty requestScope.message}">
+	<div class="alert alert-danger" role="alert" style="font-size: 16px;">
+		<c:out value="${requestScope.message}"/>
+	</div>
+  </c:if>
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Entre em sua conta</p>
 
-      <form action="#" method="POST">
+      <form action="/note-commerce/login" method="POST">
+      	<input type="hidden" name="operation" value="login">
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="E-mail">
           <div class="input-group-append">

@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.domain.user.customer.Gender;
 
 public class CustomerDAO extends AbstractDAO {
 
@@ -90,7 +92,69 @@ public class CustomerDAO extends AbstractDAO {
 
 	@Override
 	public List<DomainEntity> consult(DomainEntity entity, String operation) {
-		// Com a operation aqui conseguimos fazer queries específicas :)
+		openConnection();
+
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		Customer customer = (Customer) entity;
+
+		String sql = "";
+
+		if (operation.equals("consult")) {
+			sql = "SELECT * from " + table + " WHERE cus_usr_id=?";
+		}
+		
+		List<DomainEntity> customers = new ArrayList<DomainEntity>();
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			if (operation.equals("consult")) {
+				pstm.setLong(1, customer.getUser().getId());
+			}
+			
+			rs = pstm.executeQuery();
+
+			UserDAO userDAO = new UserDAO();
+
+			while (rs.next()) {
+				Customer currentCustomer = new Customer();
+				currentCustomer.setId(rs.getLong(idTable));
+				currentCustomer.setName(rs.getString("cus_name"));
+				currentCustomer.setCpf(rs.getString("cus_cpf"));
+				currentCustomer.setDateOfBirth((rs.getDate("cus_date_of_birth").toLocalDate()));
+				currentCustomer.setGender(rs.getString("cus_gender").equals("male") ? Gender.MALE : Gender.FEMALE);
+				currentCustomer.setPhone(rs.getString("cus_phone"));
+				
+				User user = new User();
+				user.setId(rs.getLong("cus_usr_id"));
+
+				user = (User) userDAO.consult(user, "findById").get(0);
+				
+				currentCustomer.setUser(user);
+
+				customers.add(currentCustomer);
+			}
+
+			return customers;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection...");
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 		
 		return null;
 	}

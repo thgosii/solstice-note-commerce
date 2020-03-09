@@ -67,7 +67,7 @@
           </select>
         </div>
         <div class="input-group mb-3">
-          <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento" required>
+          <input type="date" class="form-control" name="dateOfBirth" placeholder="Data de nascimento" required>
           <div class="input-group-append">
               <div class="input-group-text">
               <span class="fas fa-calendar-alt"></span>

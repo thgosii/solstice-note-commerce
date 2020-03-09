@@ -16,7 +16,7 @@ public class MySQLConnection {
 		driver = "com.mysql.jdbc.Driver";
 		url = "jdbc:mysql://localhost:3306/notecommerce_db";
 		user = "notecommerce_user";
-		password = "notecommerce_password";
+		password = "Th@67245261";
 
 		try {
 			Class.forName(driver);
