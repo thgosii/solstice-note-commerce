@@ -13,22 +13,22 @@
   <title>Produtos | LapTop Computadores</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 
 
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- bootstrap slider -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-slider/css/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="/note-commerce/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
 
 
   <!-- custom css -->
-  <link rel="stylesheet" href="../../static/custom/shop/products/css/products.css">
+  <link rel="stylesheet" href="/note-commerce/static/custom/shop/products/css/products.css">
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -88,7 +88,7 @@
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
+          <form id="form-header-search" action="#" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
@@ -110,7 +110,7 @@
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="cart.html">
+            <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -131,16 +131,16 @@
 	                <i class="fas fa-user mr-2"></i> Meus dados
 	              </button>
               </form>
-              <a href="../customer/customer-address-list.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
-              <a href="../customer/customer-credit-card-list.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
-              <a href="sales.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
-              <a href="exchanges.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
@@ -386,14 +386,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample2.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -415,14 +415,14 @@
                 <div class="col col-4 product-col">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample3.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -444,14 +444,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample4.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -473,14 +473,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample1.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -502,14 +502,14 @@
                 <div class="col col-4 product-col">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample2.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -531,14 +531,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample3.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -560,14 +560,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample2.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -589,14 +589,14 @@
                 <div class="col col-4 product-col">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample3.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -618,14 +618,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample4.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -647,14 +647,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample1.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -676,14 +676,14 @@
                 <div class="col col-4 product-col">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample2.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -705,14 +705,14 @@
                 <div class="col col-4">
                   <div class="card card-primary product-card">
                     <div class="card-body text-center">
-                      <a href="product-details.html">
+                      <a href="#">
                         <img src="../../static/custom/general/img/laptop-sample3.png" class="img-fluid">
                       </a>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
                       <div class="row mb-3">
-                        <a href="product-details.html" class="product-desc text-sm">
+                        <a href="#" class="product-desc text-sm">
                           Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
                           ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
                         </a>
@@ -768,14 +768,14 @@
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
 
   <!-- Bootstrap slider -->
-  <script src="../../plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+  <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
 </body>
 
 </html>
