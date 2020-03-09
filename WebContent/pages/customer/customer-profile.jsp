@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="../shop/products.html" class="navbar-brand">
+        <a href="/note-commerce/pages/shop/products.jsp" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
           <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="../shop/products.html" class="nav-link">Home</a>
+              <a href="/note-commerce/pages/shop/products.jsp" class="nav-link">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
+          <form id="form-header-search" action="#" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
@@ -105,7 +105,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="../shop/cart.html">
+            <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -122,16 +122,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="#" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Meus dados
               </a>
-              <a href="../customer/customer-address-list.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
-              <a href="../customer/customer-credit-card-list.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
-              <a href="../shop/sales.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
-              <a href="../shop/exchanges.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
