@@ -53,7 +53,7 @@ public class BrandDAO extends AbstractDAO {
 		if (operation.equals("consult")) {
 			sql = "SELECT * from " + table + " WHERE brd_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE brd_id = ? AND brd_deleted = false";
+			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND brd_deleted = false";
 		}
 		List<DomainEntity> brands = new ArrayList<DomainEntity>();
 
