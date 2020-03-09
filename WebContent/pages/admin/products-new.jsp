@@ -54,7 +54,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">admin@email.com</a>
+          <a href="#" class="nav-link"><c:out value="${loggedUser.email}"/></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/note-commerce/logout">
@@ -189,7 +189,12 @@
         <div class="container-fluid">
 
           <form action="/note-commerce/admin/products" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="operation" value="save">
+            <c:if test="${empty param.operation}">
+              <input type="hidden" name="operation" value="save">
+            </c:if>
+            <c:if test="${not empty param.operation}">
+              <input type="hidden" name="operation" value="<c:out value="${param.operation}"/>">
+            </c:if>
             <div class="row">
               <div class="col col-12">
                 <div class="card card-default">
