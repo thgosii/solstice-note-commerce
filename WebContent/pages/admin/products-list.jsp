@@ -12,18 +12,18 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../../static/custom/general/css/tables.css">
+  <link rel="stylesheet" href="/note-commerce/static/custom/general/css/tables.css">
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">
@@ -431,18 +431,18 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
 
   <!-- DataTables -->
-  <script src="../../static/plugins/datatables/jquery.dataTables.js"></script>
-  <script src="../../static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <script src="/note-commerce/static/plugins/datatables/jquery.dataTables.js"></script>
+  <script src="/note-commerce/static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
   <!-- Custom JS -->
-  <script src="../../static/custom/general/js/tables.js"></script>
+  <script src="/note-commerce/static/custom/general/js/tables.js"></script>
 
   <script>
     $(document).ready(() => {

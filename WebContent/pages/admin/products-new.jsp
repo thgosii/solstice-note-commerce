@@ -12,21 +12,21 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="../../static/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="../../static/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
   <!-- Page CSS -->
-  <link rel="stylesheet" href="../../static/custom/admin/products/css/products.css">
+  <link rel="stylesheet" href="/note-commerce/static/custom/admin/products/css/products.css">
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">
@@ -381,20 +381,20 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
 
   <!-- Select2 -->
-  <script src="../../static/plugins/select2/js/select2.full.min.js"></script>
+  <script src="/note-commerce/static/plugins/select2/js/select2.full.min.js"></script>
   <!-- InputMask -->
-  <script src="../../static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 
   <!-- Page JavaScript -->
-  <script src="../../static/custom/admin/products/js/image-display.js"></script>
-  <script src="../../static/custom/general/js/error_label.js"></script>
+  <script src="/note-commerce/static/custom/admin/products/js/image-display.js"></script>
+  <script src="/note-commerce/static/custom/general/js/error_label.js"></script>
 
   <script>
     $(document).ready(() => {
