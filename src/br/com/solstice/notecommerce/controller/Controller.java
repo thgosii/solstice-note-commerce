@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getRequestURI().equals("/note-commerce/shop/logout")) {
+		if (request.getRequestURI().equals("/note-commerce/logout")) {
 			if (null != request.getSession().getAttribute("loggedUser")) {
 				request.getSession().removeAttribute("loggedUser");
 			}
