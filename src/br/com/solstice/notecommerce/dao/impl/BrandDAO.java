@@ -63,8 +63,6 @@ public class BrandDAO extends AbstractDAO {
 
 			rs = pstm.executeQuery();
 
-			UserDAO userDAO = new UserDAO();
-
 			while (rs.next()) {
 				Brand currentBrand = new Brand();
 				currentBrand.setId(rs.getLong(idTable));
