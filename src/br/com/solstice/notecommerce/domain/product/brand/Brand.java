@@ -14,4 +14,9 @@ public class Brand extends DomainEntity {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Brand [name=" + name + "]";
+	}
+
 }

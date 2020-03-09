@@ -23,4 +23,9 @@ public class ProductFile {
 		this.url = url;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductFile [fileContent=" + fileContent + ", url=" + url + "]";
+	}
+
 }

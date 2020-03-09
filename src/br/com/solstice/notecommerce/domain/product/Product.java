@@ -115,4 +115,13 @@ public class Product extends DomainEntity {
 		this.os = os;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [title=" + title + ", image=" + image + ", price=" + price + ", description=" + description
+				+ ", brand=" + brand + ", processor=" + processor + ", graphicsCard=" + graphicsCard + ", ram=" + ram
+				+ ", monitor=" + monitor + ", hd=" + hd + ", ssd=" + ssd + ", os=" + os + ", getId()=" + getId() + "]";
+	}
+	
+	
+
 }
