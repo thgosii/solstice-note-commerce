@@ -48,9 +48,9 @@ public class CustomerViewHelper implements IViewHelper {
 				}
 
 				LocalDate dateOfBirth = null;
-				if (null != request.getParameter("birthDate")) {
+				if (null != request.getParameter("dateOfBirth")) {
 					try {
-						dateOfBirth = LocalDate.parse(request.getParameter("birthDate"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 					} catch (Exception ex) {
 					}
 				}
@@ -115,6 +115,23 @@ public class CustomerViewHelper implements IViewHelper {
 				customer.setGender(gender);
 
 				return customer;
+			} else if (operation.equals("consult")) {
+				Long clientUserId = 0L;
+				if (null != request.getParameter("userId")) {
+					try {
+						clientUserId = Long.valueOf(request.getParameter("userId"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				Customer customer = new Customer();
+				
+				User user = new User();
+				user.setId(clientUserId);
+				
+				customer.setUser(user);
+				
+				return customer;
 			}
 		}
 		
@@ -141,6 +158,14 @@ public class CustomerViewHelper implements IViewHelper {
 				
 				request.getRequestDispatcher("/pages/customer/customer-register.jsp").forward(request, response);
 			}
+		} else if (operation.equals("consult")) {
+			Customer customer = (Customer) result.getEntities().get(0);
+			request.setAttribute("customer", customer);
+			if (null == customer) {
+				return;
+			}
+			
+			request.getRequestDispatcher("/pages/customer/customer-profile.jsp").forward(request, response);
 		}
 	}
 

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -13,15 +16,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>LapTop Computadores</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 </head>
 
 <body class="hold-transition layout-top-nav">
+  <c:if test="${not empty requestScope.client}">
+    <c:set var="customer" value="${requestScope.client}"/>
+  </c:if>
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -128,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="../shop/exchanges.html" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
-              <a href="../login.html" class="dropdown-item dropdown-footer text-left">
+              <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
                 <i class="fas fa-sign-out-alt mr-2"></i>
                 Sair
               </a>
@@ -158,9 +164,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="container">
           <div class="card">
             <div class="card-body register-card-body">
-              <form action="update" method="POST">
+              <form action="#" method="POST">
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="name" placeholder="Nome" value="João de Souza">
+                  <input type="text" class="form-control" name="name" placeholder="Nome" value="${customer.name}">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-user"></span>
@@ -168,8 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="353.783.120-00"
-                    disabled>
+                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="${customer.cpf}" disabled>
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-address-card"></span>
@@ -179,12 +184,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="input-group mb-3">
                   <select class="form-control" name="gender">
                     <option disabled>Gênero...</option>
-                    <option value="f">Feminino</option>
-                    <option value="m" selected>Masculino</option>
+                    <option value="f" ${client.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
+                    <option value="m" ${client.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
                   </select>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="date" class="form-control" name="birthDate" placeholder="Data de nascimento">
+                  <input type="date" class="form-control" name="dateOfBirth" placeholder="Data de nascimento" value="${customer.dateOfBirth}">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-calendar-alt"></span>
@@ -192,8 +197,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone"
-                    value="(99) 9999-9999">
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" value="${customer.phone}">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-phone"></span>
@@ -201,8 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </div>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="email" class="form-control" name="email" placeholder="E-mail"
-                    value="joao.s122@gmail.com">
+                  <input type="email" class="form-control" name="email" placeholder="E-mail" value="${customer.user.email}">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
@@ -260,12 +263,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
-  <script src="../../static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $("#cpf").inputmask("999.999.999-99");

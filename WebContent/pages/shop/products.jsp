@@ -32,6 +32,7 @@
 </head>
 
 <body class="hold-transition layout-top-nav">
+  <c:set var="loggedUser" value="${sessionScope.loggedUser}" />
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -123,9 +124,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
-              <a href="../customer/customer-profile.html" class="dropdown-item">
-                <i class="fas fa-user mr-2"></i> Meus dados
-              </a>
+              <form action="/note-commerce/customer/consultAccountData" method="POST">
+			      <input type="hidden" name="operation" value="consult">
+			      <input type="hidden" name="userId" value="<c:out value="${loggedUser.id}" />">
+	              <button type="submit" class="dropdown-item">
+	                <i class="fas fa-user mr-2"></i> Meus dados
+	              </button>
+              </form>
               <a href="../customer/customer-address-list.html" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>

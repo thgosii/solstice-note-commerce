@@ -88,6 +88,8 @@ public class UserDAO extends AbstractDAO {
 		String sql = "";
 		if (operation.equals("login")) {
 			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_password=?";
+		} else if (operation.equals("findById")) {
+			sql = "SELECT * from " + table + " WHERE usr_id=?";
 		}
 
 		List<DomainEntity> users = new ArrayList<DomainEntity>();
@@ -98,6 +100,8 @@ public class UserDAO extends AbstractDAO {
 			if (operation.equals("login")) {
 				pstm.setString(1, user.getEmail());
 				pstm.setString(2, user.getPassword());
+			}  else if (operation.equals("findById")) {
+				pstm.setLong(1, user.getId());
 			}
 
 			rs = pstm.executeQuery();
