@@ -1,5 +1,7 @@
+drop database if exists notecommerce_db;
 create database if not exists notecommerce_db;
 
+drop user if exists notecommerce_user@localhost;
 create user if not exists notecommerce_user@localhost identified by 'notecommerce_password';
 grant all privileges on notecommerce_db.* to notecommerce_user@localhost;
 
@@ -10,7 +12,7 @@ create table if not exists users(
     usr_email varchar(255),
     usr_password varchar(255),
     usr_role varchar(255),
-    usr_deleted boolean,
+    usr_deleted boolean default false,
 	primary key (usr_id)
 );
 
@@ -22,7 +24,7 @@ create table if not exists customers(
     cus_phone varchar(255),
     cus_gender varchar(255),
     cus_usr_id int,
-    cus_deleted boolean,
+    cus_deleted boolean default false,
     primary key (cus_id),
     foreign key (cus_usr_id) references users(usr_id)
 );
@@ -30,7 +32,7 @@ create table if not exists customers(
 create table if not exists brands(
 	brd_id int auto_increment not null,
     brd_name varchar(255),
-    brd_deleted boolean,
+    brd_deleted boolean default false,
     primary key (brd_id)
 );
 
@@ -48,7 +50,7 @@ create table if not exists products(
     prd_hd int,
     prd_ssd int,
     prd_so varchar(255),
-    prd_deleted boolean,
+    prd_deleted boolean default false,
     primary key (prd_id),
     foreign key (prd_brd_id) references brands(brd_id)
 );
