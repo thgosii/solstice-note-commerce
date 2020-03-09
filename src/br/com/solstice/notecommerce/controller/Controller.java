@@ -19,6 +19,7 @@ import br.com.solstice.notecommerce.controller.command.impl.UpdateCommand;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.CustomerViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.LoginViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.ProductViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
@@ -39,11 +40,19 @@ public class Controller extends HttpServlet {
 		commandsMap.put("login", new ConsultCommand());
 		
 		viewHelpersMap = new HashMap<String, IViewHelper>();
+		
+		// general
+		viewHelpersMap.put("/note-commerce/login", new LoginViewHelper());
+		
+		// admin
+		viewHelpersMap.put("/note-commerce/admin/products", new ProductViewHelper());
+		
 		// customer
 		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/update", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/consultAccountData", new CustomerViewHelper());
-		viewHelpersMap.put("/note-commerce/login", new LoginViewHelper());
+		
+		// shop
 	}
 	
 	@Override
