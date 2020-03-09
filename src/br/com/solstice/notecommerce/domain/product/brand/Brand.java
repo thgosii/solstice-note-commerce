@@ -16,7 +16,7 @@ public class Brand extends DomainEntity {
 
 	@Override
 	public String toString() {
-		return "Brand [name=" + name + "]";
+		return "Brand [getId()=" + getId() + ", name=" + name + "]";
 	}
 
 }
