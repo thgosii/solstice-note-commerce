@@ -19,6 +19,10 @@ public class BrandDAO extends AbstractDAO {
 		super("brands", "brd_id");
 	}
 
+	public BrandDAO(String table, String idtable) {
+		super(table, idtable);
+	}
+
 	@Override
 	public int save(DomainEntity entity, String operation) {
 		// TODO Auto-generated method stub
