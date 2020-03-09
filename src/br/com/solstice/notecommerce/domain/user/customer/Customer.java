@@ -83,4 +83,24 @@ public class Customer extends DomainEntity {
 		this.user = user;
 	}
 
+	public String getDecoratedCpf() {
+		String decoratedCpf = "";
+
+		int count = 1;
+
+		for (Character chr : cpf.toCharArray()) {
+			decoratedCpf += chr;
+			if (count % 3 == 0) {
+				if (count == 9) {
+					decoratedCpf += '-';
+				} else {
+					decoratedCpf += '.';
+				}
+			}
+			count++;
+		}
+
+		return decoratedCpf;
+	}
+
 }

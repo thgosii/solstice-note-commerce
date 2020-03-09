@@ -10,6 +10,7 @@ import br.com.solstice.notecommerce.controller.strategy.IStrategy;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCPF;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateConfirmPassword;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerDataSignup;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerDataUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDateOfBirth;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
 import br.com.solstice.notecommerce.dao.IDAO;
@@ -38,18 +39,24 @@ public class Facade implements IFacade {
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
-		Map<String, List<IStrategy>> clientBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+		Map<String, List<IStrategy>> customerBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
-		List<IStrategy> clientBusinessRulesSave = new ArrayList<IStrategy>();
-		clientBusinessRulesSave.add(new ValidateCustomerDataSignup());
-		clientBusinessRulesSave.add(new ValidateConfirmPassword());
-		clientBusinessRulesSave.add(new ValidateCPF());
-		clientBusinessRulesSave.add(new ValidateDateOfBirth());
-		clientBusinessRulesSave.add(new ValidateEmail());
+		List<IStrategy> customerBusinessRulesSave = new ArrayList<IStrategy>();
+		customerBusinessRulesSave.add(new ValidateCustomerDataSignup());
+		customerBusinessRulesSave.add(new ValidateConfirmPassword());
+		customerBusinessRulesSave.add(new ValidateCPF());
+		customerBusinessRulesSave.add(new ValidateDateOfBirth());
+		customerBusinessRulesSave.add(new ValidateEmail());
 
-		clientBusinessRulesMap.put("save", clientBusinessRulesSave);
+		List<IStrategy> customerBusinessRulesUpdate = new ArrayList<IStrategy>();
+		customerBusinessRulesUpdate.add(new ValidateCustomerDataUpdate());
+		customerBusinessRulesUpdate.add(new ValidateDateOfBirth());
+		customerBusinessRulesUpdate.add(new ValidateConfirmPassword());
 
-		businessRulesMap.put(Customer.class.getName(), clientBusinessRulesMap);
+		customerBusinessRulesMap.put("save", customerBusinessRulesSave);
+		customerBusinessRulesMap.put("update", customerBusinessRulesUpdate);
+
+		businessRulesMap.put(Customer.class.getName(), customerBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, DomainEntity entity) {

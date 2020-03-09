@@ -87,7 +87,42 @@ public class CustomerDAO extends AbstractDAO {
 
 	@Override
 	public void update(DomainEntity entity, String operation) {
-		
+		openConnection();
+
+		PreparedStatement pstm = null;
+
+		Customer customer = (Customer) entity;
+
+		String sql = "UPDATE " + table + " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=? WHERE "
+				+ idTable + "=?";
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			pstm.setString(1, customer.getName());
+			pstm.setDate(2, Date.valueOf(customer.getDateOfBirth()));
+			pstm.setString(3, customer.getGender().toString().toLowerCase());
+			pstm.setString(4, customer.getPhone());
+			pstm.setLong(5, customer.getId());
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection...");
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 	@Override

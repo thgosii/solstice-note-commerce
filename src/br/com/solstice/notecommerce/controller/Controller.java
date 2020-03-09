@@ -22,7 +22,7 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.LoginViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
-@WebServlet(urlPatterns = { "/customer/signup", "/customer/consultAccountData", "/login", "/logout" })
+@WebServlet(urlPatterns = { "/customer/signup", "/customer/update", "/customer/consultAccountData", "/login", "/logout" })
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +41,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap = new HashMap<String, IViewHelper>();
 		// customer
 		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
+		viewHelpersMap.put("/note-commerce/customer/update", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/consultAccountData", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/login", new LoginViewHelper());
 	}
