@@ -84,11 +84,14 @@ public class Controller extends HttpServlet {
 		}
 		
 		String operation = request.getParameter("operation");
+
+		System.out.println("\n--------------------------------");
+		System.out.println("New POST request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
 		
 		ICommand command = commandsMap.get(operation);
-		System.out.println("operation:" + operation);
+
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
-		System.out.println("viewHelper:" + viewHelper.getClass().getSimpleName());
+
 		DomainEntity entity = viewHelper.getEntity(request);
 		
 		if (null == entity) {
@@ -98,6 +101,8 @@ public class Controller extends HttpServlet {
 		Result result = command.execute(entity, operation);
 		
 		viewHelper.setView(result, request, response);
+		
+		System.out.println("\n--------------------------------");
 	}
 
 }
