@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,11 +57,13 @@ public class ProductViewHelper implements IViewHelper {
 					}
 				}
 				
+				String imageUrl = null;
 				InputStream imageFileContent = null;
 				try {
 					Part imageFilePart = request.getPart("image");
 					imageFileContent = imageFilePart.getInputStream();
-					// String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
+					String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
+					imageUrl = ProductFile.generateUrl(fileName);
 				} catch (Exception ex) {
 				}
 
@@ -110,17 +116,17 @@ public class ProductViewHelper implements IViewHelper {
 				}
 
 				int hd = -1;
-				if (null != request.getParameter("hd")) {
+				if (null != request.getParameter("hd-capacity")) {
 					try {
-						hd = Integer.parseInt(request.getParameter("hd"));
+						hd = Integer.parseInt(request.getParameter("hd-capacity"));
 					} catch (Exception ex) {
 					}
 				}
 
 				int ssd = -1;
-				if (null != request.getParameter("ssd")) {
+				if (null != request.getParameter("ssd-capacity")) {
 					try {
-						hd = Integer.parseInt(request.getParameter("ssd"));
+						hd = Integer.parseInt(request.getParameter("ssd-capacity"));
 					} catch (Exception ex) {
 					}
 				}
@@ -137,6 +143,7 @@ public class ProductViewHelper implements IViewHelper {
 				brand.setId(brandId);
 				ProductFile image = new ProductFile();
 				image.setFileContent(imageFileContent);
+				image.setUrl(imageUrl);
 				Product product = new Product();
 				product.setTitle(title);
 				product.setPrice(price);
@@ -179,8 +186,36 @@ public class ProductViewHelper implements IViewHelper {
 	@Override
 	public void setView(Result result, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		String operation = request.getParameter("operation");
+		
+		request.setAttribute("loggedUser", (User) request.getSession().getAttribute("loggedUser"));
+		request.setAttribute("message", result.getMessage());
 
+		if (operation.equals("save")) {
+			if (null == result.getMessage()) {
+				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+			} else {
+				request.setAttribute("invalidProduct", getEntity(request));
+				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
+			}
+		} else if (operation.equals("consult")) {
+			List<Product> products = new ArrayList<>();
+			for (DomainEntity entity : result.getEntities()) {
+				products.add((Product) entity);
+			}
+			request.setAttribute("products", products);
+
+			request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+		} else if (operation.equals("update")) {
+			if (null == result.getMessage()) {
+				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+			} else {
+				request.setAttribute("invalidProduct", getEntity(request));
+				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
+			}
+		} else if (operation.equals("remove")) {
+			request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+		}
 	}
 
 }
