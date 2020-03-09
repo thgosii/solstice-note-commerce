@@ -8,8 +8,20 @@
   align-items: center; 
   justify-content: center;
   cursor: pointer;
+
+  min-height: 150px;
+}
+
+.product-img-display img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain
 }
 
 .product-img-display input {
   cursor: pointer;
+}
+
+#description {
+  height: 200px;
 }
