@@ -226,7 +226,7 @@
                     <div class="row">
                       <div class="col col-4">
                         <div class="form-group h-100">
-                          <label for="title">Imagem<span class="text-danger text-bold"> *</span></label>
+                          <label for="title">Imagem</label>
                           <div class="product-img-display">
                           </div>
                           <input id="image" name="image" type="file" class="custom-file-input">

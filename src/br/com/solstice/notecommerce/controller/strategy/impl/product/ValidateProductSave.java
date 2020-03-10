@@ -17,9 +17,9 @@ public class ValidateProductSave implements IStrategy {
 		if (-1d == product.getPrice()) {
 			sb.append("price: O preço é obrigatório\n");
 		}
-		if (null == product.getImage().getFileContent()) {
-			sb.append("image: A imagem é obrigatória\n");
-		}
+//		if (null == product.getImage().getFileContent()) {
+//			sb.append("image: A imagem é obrigatória\n");
+//		}
 		if (null == product.getProcessor() || product.getProcessor().trim().isEmpty()) {
 			sb.append("processor: O processador é obrigatório\n");
 		}
