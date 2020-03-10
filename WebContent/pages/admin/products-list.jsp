@@ -138,7 +138,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="../login.html" class="nav-link">
+              <a href="/note-commerce/logout" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>Sair</p>
               </a>
