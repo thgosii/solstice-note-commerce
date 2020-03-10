@@ -406,7 +406,7 @@
 	   	    success: function( json ) {
 	   	        $.each(json, function(i, value) {
 	   	        	let brandName = value.name;
-	   	            $('#brand').append($('<option>').text(brandName).attr('value', brandName));
+	   	            $('#brand').append($(`<option>`).text(brandName).attr('value', value.id));
 	   	        });
 	   	    }
 	   	});
