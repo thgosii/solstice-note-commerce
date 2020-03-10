@@ -99,8 +99,38 @@ public class ProductDAO extends AbstractDAO {
 
 	@Override
 	public void remove(DomainEntity entity, String operation) {
-		// TODO Auto-generated method stub
+		openConnection();
+		PreparedStatement pstm = null;
 
+		Product product = (Product) entity;
+
+		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_deleted`='1' WHERE `prd_id`=?";
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			pstm.setLong(1, product.getId());
+			
+			System.out.println("pstm: " + pstm.toString());
+
+			pstm.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 	@Override
