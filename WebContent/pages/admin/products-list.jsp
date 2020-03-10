@@ -104,10 +104,13 @@
                   </a>
                 </li>
                 <li class="nav-item has-treeview">
-                  <a href="products-list.html" class="nav-link">
-                    <i class="fas fa-table nav-icon text-info"></i>
-                    <p>Todos Laptops</p>
-                  </a>
+                  <form action="/note-commerce/admin/products" method="POST">
+                    <input type="hidden" name="operation" value="consult">
+                    <button class="nav-link btn text-white w-100 text-left">
+                      <i class="fas fa-table nav-icon text-info"></i>
+                      <p>Todos Laptops</p>
+                    </button>
+                  </form>
                 </li>
               </ul>
             </li>
@@ -202,167 +205,28 @@
                     <th>Título</th>
                     <th>Marca</th>
                     <th>Preço</th>
-                    <th>Vendas</th>
                     <th>Editar</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Acer i5 Akr-5231 ohaee KDOWasd d as dfgsa asgasg as as a g  g</td>
-                    <td>Acer</td>
-                    <td>R$ 421,215</td>
-                    <td>14</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Dell i5 5Akr-5231 ohad a asd asd d as dfgsa asgasg as as a g  g</td>
-                    <td>Dell</td>
-                    <td>R$ 123.123</td>
-                    <td>32</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Lenovo idepad L4205-1525 i5-1024k GFXg</td>
-                    <td>Lenovo</td>
-                    <td>R$ 214414214</td>
-                    <td>123</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Acer i5 Akr-5231 ohaee KDOWasd d as dfgsa asgasg as as a g  g</td>
-                    <td>Acer</td>
-                    <td>R$ 421,215</td>
-                    <td>14</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Dell i5 5Akr-5231 ohad a asd asd d as dfgsa asgasg as as a g  g</td>
-                    <td>Dell</td>
-                    <td>R$ 123.123</td>
-                    <td>32</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Lenovo idepad L4205-1525 i5-1024k GFXg</td>
-                    <td>Lenovo</td>
-                    <td>R$ 214414214</td>
-                    <td>123</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Acer i5 Akr-5231 ohaee KDOWasd d as dfgsa asgasg as as a g  g</td>
-                    <td>Acer</td>
-                    <td>R$ 421,215</td>
-                    <td>14</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Dell i5 5Akr-5231 ohad a asd asd d as dfgsa asgasg as as a g  g</td>
-                    <td>Dell</td>
-                    <td>R$ 123.123</td>
-                    <td>32</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Lenovo idepad L4205-1525 i5-1024k GFXg</td>
-                    <td>Lenovo</td>
-                    <td>R$ 214414214</td>
-                    <td>123</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Acer i5 Akr-5231 ohaee KDOWasd d as dfgsa asgasg as as a g  g</td>
-                    <td>Acer</td>
-                    <td>R$ 421,215</td>
-                    <td>14</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Dell i5 5Akr-5231 ohad a asd asd d as dfgsa asgasg as as a g  g</td>
-                    <td>Dell</td>
-                    <td>R$ 123.123</td>
-                    <td>32</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="icon_table_item">
-                      <a href="#delete-modal" data-id="${laptop.id}" data-toggle="modal"
-                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
-                    </td>
-                    <td class="title truncate-text" style="max-width: 400px;">Notebook Lenovo idepad L4205-1525 i5-1024k GFXg</td>
-                    <td>Lenovo</td>
-                    <td>R$ 214414214</td>
-                    <td>123</td>
-                    <td class="icon_table_item">
-                      <a href="/note-commerce/pages/admin/products-new.jsp"><i class="nav-icon fas fa-edit text-info text-lg"></i></a>
-                    </td>
-                  </tr>
+                  <c:forEach items="${products}" var="product">
+	                  <tr>
+	                    <td class="icon_table_item">
+	                      <a href="#delete-modal" data-id="<c:out value="${product.id}"/>" data-toggle="modal"
+	                        data-target="#delete-modal"><i class="nav-icon fas fa-trash text-danger text-lg"></i></a>
+	                    </td>
+	                    <td class="title truncate-text" style="max-width: 400px;"><c:out value="${product.title}"/></td>
+	                    <td><c:out value="${product.brand.name}"/></td>
+	                    <td>R$ <c:out value="${product.price}"/></td>
+		                <td class="icon_table_item">
+	                  	  <form action="/note-commerce/admin/products" method="POST">
+	                        <input type="hidden" name="operation" value="consult">
+	                        <input type="hidden" name="id" value="<c:out value="${product.id}"/>">
+		                  	<button class="btn p-0" type="submit"><i class="nav-icon fas fa-edit text-info text-lg"></i></button>
+		                </form>
+	                    </td>
+	                  </tr>
+                  </c:forEach>
                 </tbody>
               </table>
             </div>
@@ -396,8 +260,9 @@
             Deseja realmente excluir o laptop "<span id="delete-modal-text" class="text-bold"></span>"?
           </div>
           <div class="modal-footer">
-            <form method="POST">
-              <input type="hidden" name="operation" value="delete">
+            <form action="/note-commerce/admin/products" method="POST">
+              <input type="hidden" name="operation" value="remove">
+              <input type="hidden" id="id" name="id">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
               <button id="delete-modal-btn" name="delete-modal-btn" type="submit" class="btn btn-danger">Excluir</button>
             </form>
@@ -450,7 +315,7 @@
       $('#products-table').DataTable({
         columnDefs: [
           {
-            targets: [0, 5], // Colunas de: [Editar, Excluir]
+            targets: [0, 4], // Colunas de: [Editar, Excluir]
             searchable: false,
             orderable: false
           }
