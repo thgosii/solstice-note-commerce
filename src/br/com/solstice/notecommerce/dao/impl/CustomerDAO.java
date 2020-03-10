@@ -71,7 +71,7 @@ public class CustomerDAO extends AbstractDAO {
 			}
 			if (connection != null) {
 				try {
-					System.out.println("Closing connection...");
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
 					connection.close();
 				} catch (SQLException e) {
 				}
@@ -117,7 +117,7 @@ public class CustomerDAO extends AbstractDAO {
 			}
 			if (connection != null) {
 				try {
-					System.out.println("Closing connection...");
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
 					connection.close();
 				} catch (SQLException e) {
 				}
@@ -184,7 +184,7 @@ public class CustomerDAO extends AbstractDAO {
 			}
 			if (connection != null) {
 				try {
-					System.out.println("Closing connection...");
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
 					connection.close();
 				} catch (SQLException e) {
 				}

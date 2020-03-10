@@ -91,8 +91,10 @@ public class Controller extends HttpServlet {
 		ICommand command = commandsMap.get(operation);
 
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
+		System.out.println("viewHelper: " + viewHelper.getClass().getSimpleName());
 
 		DomainEntity entity = viewHelper.getEntity(request);
+		System.out.println("entity: " + entity.toString());
 		
 		if (null == entity) {
 			return;

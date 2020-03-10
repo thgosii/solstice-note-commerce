@@ -41,4 +41,10 @@ public class User extends DomainEntity {
 		this.role = role;
 	}
 
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password + ", confirmPassword=" + confirmPassword + ", role="
+				+ role + ", getId()=" + getId() + "]";
+	}	
+
 }
