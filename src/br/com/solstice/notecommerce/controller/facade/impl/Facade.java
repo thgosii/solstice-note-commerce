@@ -115,7 +115,7 @@ public class Facade implements IFacade {
 				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			}
-			System.out.println(stringBuilder.toString());
+//			System.out.println(stringBuilder.toString());
 		}
 	}
 
