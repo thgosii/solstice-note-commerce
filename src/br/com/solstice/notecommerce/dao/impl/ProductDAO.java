@@ -135,8 +135,52 @@ public class ProductDAO extends AbstractDAO {
 
 	@Override
 	public void update(DomainEntity entity, String operation) {
-		// TODO Auto-generated method stub
+		openConnection();
+		PreparedStatement pstm = null;
 
+		Product product = (Product) entity;
+	
+		saveOrOverwriteFile(product.getImage());
+
+		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? WHERE `prd_id`=?";
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			pstm.setString(1, product.getTitle());
+			pstm.setString(2, product.getImage().getUrl());
+			pstm.setDouble(3, product.getPrice());
+			pstm.setString(4, product.getDescription());
+			pstm.setLong(5, product.getBrand().getId());
+			pstm.setString(6, product.getProcessor());
+			pstm.setString(7, product.getGraphicsCard());
+			pstm.setInt(8, product.getRam());
+			pstm.setString(9, product.getMonitor());
+			pstm.setInt(10, product.getHd());
+			pstm.setInt(11, product.getSsd());
+			pstm.setString(12, product.getOs());
+
+			pstm.setLong(13, product.getId());
+			
+			System.out.println("pstm: " + pstm.toString());
+
+			pstm.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 	@Override
