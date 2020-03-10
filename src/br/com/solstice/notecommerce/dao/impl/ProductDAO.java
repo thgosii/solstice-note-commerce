@@ -45,7 +45,7 @@ public class ProductDAO extends AbstractDAO {
 		saveOrOverwriteFile(product.getImage());
 
 		String sql = "INSERT INTO `notecommerce_db`.`products` "
-				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_so`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_os`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -119,6 +119,10 @@ public class ProductDAO extends AbstractDAO {
 		Product product = (Product) entity;
 
 		String sql = "";
+		
+		if (product.getId() != -1L) {
+			operation = "findById";
+		}
 
 		if (operation.equals("consult")) {
 			sql = "SELECT * from " + table + " WHERE prd_deleted = false";
@@ -194,7 +198,7 @@ public class ProductDAO extends AbstractDAO {
 	
 	private void saveOrOverwriteFile(ProductFile productFile) {
 		System.out.println("Trying to save file...");
-		if (null == productFile || null == productFile.getAbsoluteFilePath()) {
+		if (null == productFile || null == productFile.getFileContent() || null == productFile.getAbsoluteFilePath()) {
 			System.out.println("no file path to save product file: " + productFile);
 			return;
 		}
