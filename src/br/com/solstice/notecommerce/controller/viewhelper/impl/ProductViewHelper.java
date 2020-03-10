@@ -216,6 +216,8 @@ public class ProductViewHelper implements IViewHelper {
 				product.setSsd(ssd);
 				product.setOs(os);
 				
+				product.setId(productId);
+				
 				return product;
 			} else if (operation.equals("remove")) {
 				long productId = -1L;
