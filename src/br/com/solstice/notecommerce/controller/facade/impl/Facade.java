@@ -18,12 +18,14 @@ import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidatePro
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateStorage;
 import br.com.solstice.notecommerce.dao.IDAO;
+import br.com.solstice.notecommerce.dao.impl.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
 import br.com.solstice.notecommerce.dao.impl.ProductDAO;
 import br.com.solstice.notecommerce.dao.impl.UserDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 import br.com.solstice.notecommerce.domain.product.Product;
+import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
 
@@ -66,6 +68,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(Product.class.getName(), productBusinessRulesMap);
 
+		// Brands
+		daosMap.put(Brand.class.getName(), new BrandDAO());
+		
 		// Stock
 
 		/*
