@@ -46,7 +46,7 @@ public class Facade implements IFacade {
 		/*
 		 * Admin
 		 */
-		
+
 		// Products
 		daosMap.put(Product.class.getName(), new ProductDAO());
 		Map<String, List<IStrategy>> productBusinessRulesMap = new HashMap<String, List<IStrategy>>();
@@ -63,16 +63,15 @@ public class Facade implements IFacade {
 
 		productBusinessRulesMap.put("save", productBusinessRulesSave);
 		productBusinessRulesMap.put("update", productBusinessRulesUpdate);
-		
+
 		businessRulesMap.put(Product.class.getName(), productBusinessRulesMap);
-		
+
 		// Stock
-		
-		
+
 		/*
 		 * Customer
 		 */
-		
+
 		// Customer
 		daosMap.put(Customer.class.getName(), new CustomerDAO());
 		Map<String, List<IStrategy>> customerBusinessRulesMap = new HashMap<String, List<IStrategy>>();
@@ -91,32 +90,29 @@ public class Facade implements IFacade {
 
 		customerBusinessRulesMap.put("save", customerBusinessRulesSave);
 		customerBusinessRulesMap.put("update", customerBusinessRulesUpdate);
-		
+
 		businessRulesMap.put(Customer.class.getName(), customerBusinessRulesMap);
-		
+
 		// Address
-		
-		
+
 		// Credit Card
-		
-		
-		
+
 		/*
 		 * Shop
 		 */
-		
-		
 
 		daosMap.put(User.class.getName(), new UserDAO());
-		
+
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, DomainEntity entity) {
 		stringBuilder = new StringBuilder();
 		for (IStrategy businessRule : businessRules) {
+			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
 			String message = businessRule.process(entity);
 
-			if (message != null) {
+			if (message != null && !message.trim().isEmpty()) {
+				System.out.println("\tmessage:" + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			}
 			System.out.println(stringBuilder.toString());
