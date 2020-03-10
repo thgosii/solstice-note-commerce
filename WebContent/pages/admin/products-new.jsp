@@ -107,13 +107,9 @@
                   </a>
                 </li>
                 <li class="nav-item has-treeview">
-                  <form action="/note-commerce/admin/products" method="POST">
-                    <input type="hidden" name="operation" value="consult">
-                    <button class="nav-link btn text-white w-100 text-left">
-                      <i class="fas fa-table nav-icon text-info"></i>
-                      <p>Todos Laptops</p>
-                    </button>
-                  </form>
+                  <a href="/note-commerce/admin/products?operation=consult" class="nav-link">
+                  <i class="fas fa-table nav-icon text-info"></i>
+                  <p>Todos Laptops</p></a>
                 </li>
               </ul>
             </li>
