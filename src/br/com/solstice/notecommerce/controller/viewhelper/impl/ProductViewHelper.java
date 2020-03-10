@@ -270,22 +270,26 @@ public class ProductViewHelper implements IViewHelper {
 			if (null == result.getMessage()) {
 				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
 			} else {
-				request.setAttribute("invalidProduct", getEntity(request));
+				request.setAttribute("previousProduct", getEntity(request));
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
-			List<Product> products = new ArrayList<>();
-			for (DomainEntity entity : result.getEntities()) {
-				products.add((Product) entity);
+			if (getEntity(request).getId() != -1L) {
+				request.setAttribute("previousProduct", result.getEntities().get(0));
+				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
+			} else {
+				List<Product> products = new ArrayList<>();
+				for (DomainEntity entity : result.getEntities()) {
+					products.add((Product) entity);
+				}
+				request.setAttribute("products", products);
+				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
 			}
-			request.setAttribute("products", products);
-
-			request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
 		} else if (operation.equals("update")) {
 			if (null == result.getMessage()) {
 				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
 			} else {
-				request.setAttribute("invalidProduct", getEntity(request));
+				request.setAttribute("previousProduct", getEntity(request));
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("remove")) {
