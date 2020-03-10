@@ -39,7 +39,7 @@ create table if not exists brands(
 create table if not exists products(
 	prd_id int auto_increment not null,
     prd_title varchar(255),
-    prd_image_url varchar(255),
+    prd_image_url mediumtext,
     prd_price double,
     prd_description text,
     prd_brd_id int,
