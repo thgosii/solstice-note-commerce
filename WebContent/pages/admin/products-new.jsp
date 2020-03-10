@@ -175,7 +175,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="dashboard.html">Admin Home</a></li>
-                <li class="breadcrumb-item"><a href="products-list.html">Laptops</a></li>
+                <li class="breadcrumb-item"><a href="/note-commerce/admin/products?operation=consult">Laptops</a></li>
                 <li class="breadcrumb-item active">Novo Laptop</li>
               </ol>
             </div>
@@ -347,10 +347,10 @@
 
             <div class="row">
               <div class="col col-6">
-                <a href="products-list.html" class="btn btn-block btn-danger" role="button">Cancelar</a>
+                <a href="/note-commerce/admin/products?operation=consult" class="btn btn-block btn-danger" role="button">Cancelar</a>
               </div>
               <div class="col col-6">
-                <!-- <a href="products-list.html" class="btn btn-block btn-primary" role="button">Cadastrar</a> -->
+                <!-- <a href="/note-commerce/admin/products?operation=consult" class="btn btn-block btn-primary" role="button">Cadastrar</a> -->
                 <button type="submit" class="btn btn-block btn-primary">Cadastrar</button>
               </div>
             </div>
