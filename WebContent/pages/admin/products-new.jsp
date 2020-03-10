@@ -213,7 +213,7 @@
                         <div class="form-group">
                           <label for="title">Título<span class="text-danger text-bold"> *</span></label>
                           <input type="text" maxlength="200" class="form-control" name="title" id="title"
-                            placeholder="Título completo do laptop" required>
+                            placeholder="Título completo do laptop">
                         </div>
                       </div>
                       <div class="col col-3">
