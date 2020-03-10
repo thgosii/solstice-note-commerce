@@ -195,8 +195,9 @@
             <c:if test="${empty param.operation}">
               <input type="hidden" name="operation" value="save">
             </c:if>
-            <c:if test="${not empty param.operation}">
-              <input type="hidden" name="operation" value="<c:out value="${param.operation}"/>">
+            <c:if test="${param.operation == 'consult'}">
+              <input type="hidden" name="operation" value="update">
+              <input type="hidden" name="id" value="${previousProduct.id}">
             </c:if>
             <div class="row">
               <div class="col col-12">
@@ -216,13 +217,13 @@
                         <div class="form-group">
                           <label for="title">Título<span class="text-danger text-bold"> *</span></label>
                           <input type="text" maxlength="200" class="form-control" name="title" id="title"
-                            placeholder="Título completo do laptop">
+                            placeholder="Título completo do laptop" value="<c:out value="${previousProduct.title}"/>">
                         </div>
                       </div>
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="price" id="price">
+                          <input type="text" class="form-control" name="price" id="price" value="<c:out value="${previousProduct.price}"/>">
                         </div>
                       </div>
                     </div>
@@ -231,15 +232,18 @@
                         <div class="form-group h-100">
                           <label for="title">Imagem</label>
                           <div class="product-img-display">
+                            <c:if test="${not empty previousProduct.image.url}">
+				              <img src="<c:out value="${previousProduct.image.url}"/>">
+				            </c:if>
                           </div>
                           <input id="image" name="image" type="file" class="custom-file-input" accept="image/*">
-                          <input id="imageBase64" name="imageBase64" type="hidden">
+                          <input id="imageBase64" name="imageBase64" type="hidden" value="<c:out value="${previousProduct.image.url}"/>">
                         </div>
                       </div>
                       <div class="col col-8">
                         <div class="form-group">
                           <label for="price">Descrição</label>
-                          <textarea class="form-control" maxlength="4000" name="description" id="description"></textarea>
+                          <textarea class="form-control" maxlength="4000" name="description" id="description"><c:out value="${previousProduct.description}"/></textarea>
                         </div>
                       </div>
                     </div>
@@ -266,13 +270,13 @@
                         <div class="form-group">
                           <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
                           <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand">
-                            <option value="1" selected="selected">Acer</option>
-                            <option value="2" >Asus</option>
-                            <option value="3" >Dell</option>
-                            <option value="4" >Hp</option>
-                            <option value="5" >Lenovo</option>
-                            <option value="6" >Positivo</option>
-                            <option value="7" >Samsung</option>
+                            <option value="1" <c:if test="${previousProduct.brand.id == 1}">selected</c:if>>Acer</option>
+                            <option value="2" <c:if test="${previousProduct.brand.id == 2}">selected</c:if>>Asus</option>
+                            <option value="3" <c:if test="${previousProduct.brand.id == 3}">selected</c:if>>Dell</option>
+                            <option value="4" <c:if test="${previousProduct.brand.id == 4}">selected</c:if>>Hp</option>
+                            <option value="5" <c:if test="${previousProduct.brand.id == 5}">selected</c:if>>Lenovo</option>
+                            <option value="6" <c:if test="${previousProduct.brand.id == 6}">selected</c:if>>Positivo</option>
+                            <option value="7" <c:if test="${previousProduct.brand.id == 7}">selected</c:if>>Samsung</option>
                           </select>
                         </div>
                       </div>
@@ -280,20 +284,20 @@
                         <div class="form-group">
                           <label for="processor">Processador<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="processor" id="processor"
-                            placeholder="i5-2900, Pentium...">
+                            placeholder="i5-2900, Pentium..." value="<c:out value="${previousProduct.processor}"/>">
                         </div>
                       </div>
                       <div class="col col-4">
                         <div class="form-group">
                           <label for="processor">Placa de Vídeo<span class="text-danger text-bold"> *</span></label>
                           <input type="text" class="form-control" name="graphics_card" id="graphics_card"
-                            placeholder="Intel Graphics Card 20, NVDIA...">
+                            placeholder="Intel Graphics Card 20, NVDIA..." value="<c:out value="${previousProduct.graphicsCard}"/>">
                         </div>
                       </div>
                       <div class="col col-2">
                         <div class="form-group">
                           <label for="ram">Memória RAM<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="ram" id="ram" value="4">
+                          <input type="text" class="form-control" name="ram" id="ram" value="<c:out value="${previousProduct.ram}"/>">
                         </div>
                       </div>
                     </div>
@@ -301,7 +305,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="monitor">Monitor<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="monitor" id="monitor">
+                          <input type="text" class="form-control" name="monitor" id="monitor" value="<c:out value="${previousProduct.monitor}"/>">
                         </div>
                       </div>
                       <div class="col col-1">
@@ -312,7 +316,7 @@
                             <input type="checkbox" id="has-hd" name="has-hd" checked>
                             <label for="has-hd">HD</label>
                           </div>
-                          <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline">
+                          <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline" value="<c:out value="${previousProduct.hd}"/>">
                         </div>
                       </div>
                       <div class="col col-2">
@@ -321,7 +325,7 @@
                             <input type="checkbox" id="has-ssd" name="has-ssd" checked>
                             <label for="has-ssd">SSD</label>
                           </div>
-                          <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline">
+                          <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline" value="<c:out value="${previousProduct.ssd}"/>">
                         </div>
                       </div>
                       <div class="col col-1">
@@ -330,8 +334,8 @@
                         <div class="form-group">
                           <label for="monitor">Sistema Operacional<span class="text-danger text-bold"> *</span></label>
                           <select class="form-control select2bs4" style="width: 100%;" name="os" id="os">
-                            <option selected>Windows</option>
-                            <option>Linux</option>
+                            <option <c:if test="${previousProduct.os == 'Windows'}">selected</c:if>>Windows</option>
+                            <option <c:if test="${previousProduct.os == 'Linux'}">selected</c:if>>Linux</option>
                           </select>
                         </div>
                       </div>
