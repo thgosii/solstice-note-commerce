@@ -1,5 +1,11 @@
 package br.com.solstice.notecommerce.dao.impl;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
@@ -52,6 +60,8 @@ public class ProductDAO extends AbstractDAO {
 			pstm.setInt(10, product.getHd());
 			pstm.setInt(11, product.getSsd());
 			pstm.setString(12, product.getOs());
+			
+			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
 
@@ -81,8 +91,8 @@ public class ProductDAO extends AbstractDAO {
 				}
 			}
 		}
-		
-		// TODO: Save file
+	
+		saveOrOverwriteFile(product.getImage());
 		
 		return 0;
 	}
@@ -125,6 +135,8 @@ public class ProductDAO extends AbstractDAO {
 			} else if (operation.equals("findById")) {
 				pstm.setLong(1, product.getId());
 			}
+			
+			System.out.println("pstm: " + pstm.toString());
 			
 			rs = pstm.executeQuery();
 
@@ -178,6 +190,30 @@ public class ProductDAO extends AbstractDAO {
 		}
 		
 		return null;
+	}
+	
+	private void saveOrOverwriteFile(ProductFile productFile) {
+		if (null == productFile.getFilePathInProject()) {
+			System.out.println("no file path to save product file");
+			return;
+		}
+		
+		try {
+    	    File targetFile = new File(productFile.getFilePathInProject());
+    	    OutputStream outStream = new FileOutputStream(targetFile);
+    	 
+    	    byte[] buffer = new byte[8 * 1024];
+    	    int bytesRead;
+    	    while ((bytesRead = productFile.getFileContent().read(buffer)) != -1) {
+    	        outStream.write(buffer, 0, bytesRead);
+    	    }
+    	    IOUtils.closeQuietly(productFile.getFileContent());
+    	    IOUtils.closeQuietly(outStream);
+    	    
+    	    System.out.println("file " + productFile.getFilePathInProject() + " saved");
+		} catch (Exception e)  {
+			e.printStackTrace();
+		}
 	}
 
 }

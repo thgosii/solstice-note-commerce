@@ -18,8 +18,15 @@ public class ProductFile {
 		} else {
 			url += uuid + ".unknown";
 		}
-		System.out.println("file url: " + url);
 		return url;
+	}
+	
+	public String getFilePathInProject() {
+		if (url == null)
+			return null;
+		// from: /note-commerce/static/images/...
+		// to:   WebContent/static/images/...
+		return url.replaceAll("/note-commerce", "WebContent");
 	}
 	
 	public InputStream getFileContent() {
