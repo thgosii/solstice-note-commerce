@@ -25,8 +25,8 @@ public class ProductFile {
 		if (url == null)
 			return null;
 		
+		// TODO: fix path syntax
 		final String serverDeployPath = "C:\\Users\\User\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps";
-		
 		return serverDeployPath + url.replaceAll("\\/", "\\\\");
 	}
 	
@@ -48,7 +48,7 @@ public class ProductFile {
 
 	@Override
 	public String toString() {
-		return "ProductFile [fileContent=" + fileContent + ", url=" + url + "]";
+		return "ProductFile [fileContent=" + fileContent + ", url=" + (url != null ? (url.length() > 100 ? url.substring(0, 30) + "..." : url) : url) + "]";
 	}
 
 }
