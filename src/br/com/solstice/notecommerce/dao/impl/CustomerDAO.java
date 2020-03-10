@@ -48,6 +48,8 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setString(5, customer.getGender().toString().toLowerCase());
 			pstm.setInt(6, idUser);
 			pstm.setBoolean(7, customer.isDeleted());
+			
+			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
 
@@ -104,6 +106,8 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setString(3, customer.getGender().toString().toLowerCase());
 			pstm.setString(4, customer.getPhone());
 			pstm.setLong(5, customer.getId());
+			
+			System.out.println("pstm: " + pstm.toString());
 
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -149,6 +153,8 @@ public class CustomerDAO extends AbstractDAO {
 				pstm.setLong(1, customer.getUser().getId());
 			}
 			
+			System.out.println("pstm: " + pstm.toString());
+
 			rs = pstm.executeQuery();
 
 			UserDAO userDAO = new UserDAO();

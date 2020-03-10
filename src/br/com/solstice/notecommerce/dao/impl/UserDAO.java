@@ -34,6 +34,8 @@ public class UserDAO extends AbstractDAO {
 			pstm.setString(2, user.getPassword());
 			pstm.setString(3, user.getRole().toString().toLowerCase());
 			pstm.setBoolean(4, user.isDeleted());
+			
+			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
 
@@ -103,6 +105,8 @@ public class UserDAO extends AbstractDAO {
 			}  else if (operation.equals("findById")) {
 				pstm.setLong(1, user.getId());
 			}
+			
+			System.out.println("pstm: " + pstm.toString());
 
 			rs = pstm.executeQuery();
 
