@@ -51,7 +51,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">admin@email.com</a>
+          <a href="#" class="nav-link"><c:out value="${loggedUser.email}"/></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/note-commerce/logout">
