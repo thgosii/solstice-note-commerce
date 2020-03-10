@@ -59,6 +59,7 @@ public class Controller extends HttpServlet {
 		// customer
 		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/update", new CustomerViewHelper());
+		viewHelpersMap.put("/note-commerce/customer/consultAccountData", new CustomerViewHelper());
 		
 		// shop
 	}
@@ -66,12 +67,44 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 		if (request.getRequestURI().equals("/note-commerce/logout")) {
 			if (null != request.getSession().getAttribute("loggedUser")) {
 				request.getSession().removeAttribute("loggedUser");
 			}
+			response.sendRedirect("/note-commerce/pages/login.jsp");
+			return ;
 		}
-		response.sendRedirect("/note-commerce/pages/login.jsp");
+		
+		String operation = request.getParameter("operation");
+
+		System.out.println("\n--------------------------------");
+		System.out.println("New GET request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
+		
+		ICommand command = commandsMap.get(operation);
+		System.out.println("command: " + (command != null ? command.getClass().getSimpleName() : command));
+
+		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
+		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
+
+		DomainEntity entity = viewHelper.getEntity(request);
+		System.out.println("entity: " + entity + "\n");
+		
+		if (null == entity) {
+			return;
+		}
+		
+		Result result = command.execute(entity, operation);
+		System.out.println("\nResult entities list:"); if (result.getEntities() != null) for (DomainEntity resultEntity : result.getEntities()) { System.out.println(resultEntity); } else System.out.println("null entity list");
+		
+		viewHelper.setView(result, request, response);
+		
+		System.out.println("\n--------------------------------");
 	}
 	
 	@Override

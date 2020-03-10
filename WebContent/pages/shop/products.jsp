@@ -124,13 +124,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
-              <form action="/note-commerce/customer/consultAccountData" method="POST">
-			      <input type="hidden" name="operation" value="consult">
-			      <input type="hidden" name="userId" value="<c:out value="${loggedUser.id}" />">
-	              <button type="submit" class="dropdown-item">
-	                <i class="fas fa-user mr-2"></i> Meus dados
-	              </button>
-              </form>
+              <a href="/note-commerce/customer/consultAccountData?operation=consult" class="dropdown-item">
+                <i class="fas fa-user mr-2"></i> Meus dados
+              </a>
               <a href="#" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>

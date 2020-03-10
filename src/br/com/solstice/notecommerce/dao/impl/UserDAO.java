@@ -89,9 +89,9 @@ public class UserDAO extends AbstractDAO {
 
 		String sql = "";
 		if (operation.equals("login")) {
-			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_password=?";
+			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_password=? AND usr_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE usr_id=?";
+			sql = "SELECT * from " + table + " WHERE usr_id=? AND usr_deleted = false";
 		}
 
 		List<DomainEntity> users = new ArrayList<DomainEntity>();

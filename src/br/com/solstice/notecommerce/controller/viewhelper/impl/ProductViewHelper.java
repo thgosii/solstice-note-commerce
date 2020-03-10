@@ -1,20 +1,14 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
@@ -23,9 +17,6 @@ import br.com.solstice.notecommerce.domain.product.Product;
 import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.product.file.ProductFile;
 import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.UserRole;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.Gender;
 
 public class ProductViewHelper implements IViewHelper {
 

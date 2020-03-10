@@ -116,13 +116,9 @@ public class CustomerViewHelper implements IViewHelper {
 
 				return customer;
 			} else if (operation.equals("consult")) {
-				Long clientUserId = 0L;
-				if (null != request.getParameter("userId")) {
-					try {
-						clientUserId = Long.valueOf(request.getParameter("userId"));
-					} catch (Exception ex) {
-					}
-				}
+				User loggedUser = (User) request.getSession().getAttribute("loggedUser");
+				
+				Long clientUserId = loggedUser.getId();
 				
 				Customer customer = new Customer();
 				

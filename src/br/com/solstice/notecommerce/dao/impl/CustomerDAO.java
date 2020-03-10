@@ -141,7 +141,7 @@ public class CustomerDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * from " + table + " WHERE cus_usr_id=?";
+			sql = "SELECT * from " + table + " WHERE cus_usr_id=? AND cus_deleted = false";
 		}
 		
 		List<DomainEntity> customers = new ArrayList<DomainEntity>();
