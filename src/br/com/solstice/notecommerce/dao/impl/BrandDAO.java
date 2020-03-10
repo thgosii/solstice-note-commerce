@@ -57,11 +57,10 @@ public class BrandDAO extends AbstractDAO {
 		try {
 			pstm = connection.prepareStatement(sql);
 
-			if (operation.equals("consult")) {
-			} else if (operation.equals("findById")) {
+			if (operation.equals("findById")) {
 				pstm.setLong(1, brand.getId());
 			}
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			rs = pstm.executeQuery();

@@ -274,13 +274,6 @@
                         <div class="form-group">
                           <label for="brand">Marca<span class="text-danger text-bold"> *</span></label>
                           <select class="form-control select2bs4" style="width: 100%;" name="brand" id="brand">
-                            <option value="1" <c:if test="${previousProduct.brand.id == 1}">selected</c:if>>Acer</option>
-                            <option value="2" <c:if test="${previousProduct.brand.id == 2}">selected</c:if>>Asus</option>
-                            <option value="3" <c:if test="${previousProduct.brand.id == 3}">selected</c:if>>Dell</option>
-                            <option value="4" <c:if test="${previousProduct.brand.id == 4}">selected</c:if>>Hp</option>
-                            <option value="5" <c:if test="${previousProduct.brand.id == 5}">selected</c:if>>Lenovo</option>
-                            <option value="6" <c:if test="${previousProduct.brand.id == 6}">selected</c:if>>Positivo</option>
-                            <option value="7" <c:if test="${previousProduct.brand.id == 7}">selected</c:if>>Samsung</option>
                           </select>
                         </div>
                       </div>
@@ -410,6 +403,18 @@
 
   <script>
     $(document).ready(() => {
+	   	$.ajax({
+	   	    url:'/note-commerce/admin/brands?operation=consult',
+	   	    type:'GET',
+	   	    dataType: 'json',
+	   	    success: function( json ) {
+	   	        $.each(json, function(i, value) {
+	   	        	let brandName = value.name;
+	   	            $('#brand').append($('<option>').text(brandName).attr('value', brandName));
+	   	        });
+	   	    }
+	   	});
+    	
       // Initialize Select2 Elements
       $('.select2bs4').select2({
         theme: 'bootstrap4'
