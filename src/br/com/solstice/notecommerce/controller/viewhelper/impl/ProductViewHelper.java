@@ -259,7 +259,7 @@ public class ProductViewHelper implements IViewHelper {
 
 		if (operation.equals("save")) {
 			if (null == result.getMessage()) {
-				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+				response.sendRedirect("/note-commerce/admin/products?operation=consult");
 			} else {
 				request.setAttribute("previousProduct", getEntity(request));
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
