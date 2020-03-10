@@ -59,7 +59,6 @@ public class Controller extends HttpServlet {
 		// customer
 		viewHelpersMap.put("/note-commerce/customer/signup", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/update", new CustomerViewHelper());
-		viewHelpersMap.put("/note-commerce/customer/consultAccountData", new CustomerViewHelper());
 		
 		// shop
 	}
@@ -95,7 +94,7 @@ public class Controller extends HttpServlet {
 		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
 		DomainEntity entity = viewHelper.getEntity(request);
-		System.out.println("entity: " + entity);
+		System.out.println("entity: " + entity + "\n");
 		
 		if (null == entity) {
 			return;
