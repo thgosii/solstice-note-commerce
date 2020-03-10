@@ -38,16 +38,10 @@ public class ProductViewHelper implements IViewHelper {
 		}
 		
 		String operation = request.getParameter("operation");
-		
+
 		if (operation != null) {
 			if (operation.equals("save")) {
-				String title = null;
-				if (null != request.getParameter("title")) {
-					try {
-						title = request.getParameter("title");
-					} catch (Exception ex) {
-					}
-				}
+				String title = request.getParameter("title");
 				
 				double price = -1d;
 				if (null != request.getParameter("price")) {
@@ -59,26 +53,21 @@ public class ProductViewHelper implements IViewHelper {
 				
 				String imageUrl = null;
 				InputStream imageFileContent = null;
-				try {
-					Part imageFilePart = request.getPart("image");
-					System.out.println(imageFilePart);
-					
-					if (imageFilePart != null) {
-						System.out.println("size:" + imageFileContent.available());
-						imageFileContent = imageFilePart.getInputStream();
-						String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
-						imageUrl = ProductFile.generateUrl(fileName);
-					}
-				} catch (Exception ex) {
-				}
+//				try {
+//					Part imageFilePart = request.getPart("image");
+//					System.out.println(imageFilePart);
+//					
+//					if (imageFilePart != null) {
+//						System.out.println("size:" + imageFileContent.available());
+//						imageFileContent = imageFilePart.getInputStream();
+//						String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
+//						imageUrl = ProductFile.generateUrl(fileName);
+//					}
+//				} catch (Exception ex) {
+//				}
+				imageUrl = request.getParameter("imageBase64");
 
-				String description = null;
-				if (null != request.getParameter("description")) {
-					try {
-						description = request.getParameter("description");
-					} catch (Exception ex) {
-					}
-				}
+				String description = request.getParameter("description");
 				
 				long brandId = -1;
 				if (null != request.getParameter("brand")) {
@@ -88,21 +77,9 @@ public class ProductViewHelper implements IViewHelper {
 					}
 				}
 
-				String processor = null;
-				if (null != request.getParameter("processor")) {
-					try {
-						processor = request.getParameter("processor");
-					} catch (Exception ex) {
-					}
-				}
+				String processor = request.getParameter("processor");
 
-				String graphicsCard = null;
-				if (null != request.getParameter("graphics_card")) {
-					try {
-						graphicsCard = request.getParameter("graphics_card");
-					} catch (Exception ex) {
-					}
-				}
+				String graphicsCard = request.getParameter("graphics_card");
 
 				int ram = -1;
 				if (null != request.getParameter("ram")) {
@@ -112,13 +89,7 @@ public class ProductViewHelper implements IViewHelper {
 					}
 				}
 
-				String monitor = null;
-				if (null != request.getParameter("monitor")) {
-					try {
-						monitor = request.getParameter("monitor");
-					} catch (Exception ex) {
-					}
-				}
+				String monitor = request.getParameter("monitor");
 
 				int hd = -1;
 				if (null != request.getParameter("hd-capacity")) {
@@ -136,13 +107,7 @@ public class ProductViewHelper implements IViewHelper {
 					}
 				}
 
-				String os = null;
-				if (null != request.getParameter("os")) {
-					try {
-						os = request.getParameter("os");
-					} catch (Exception ex) {
-					}
-				}
+				String os = request.getParameter("os");
 
 				Brand brand = new Brand();
 				brand.setId(brandId);
@@ -163,15 +128,122 @@ public class ProductViewHelper implements IViewHelper {
 				product.setSsd(ssd);
 				product.setOs(os);
 				
-				System.out.println(product);
+				return product;
+			} else if (operation.equals("update")) {
+				long productId = -1L;
+				if (null != request.getParameter("id")) {
+					try {
+						productId = Long.parseLong(request.getParameter("id"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				String title = request.getParameter("title");
+				
+				double price = -1d;
+				if (null != request.getParameter("price")) {
+					try {
+						price = Double.parseDouble(request.getParameter("price"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				String imageUrl = null;
+				InputStream imageFileContent = null;
+//				try {
+//					Part imageFilePart = request.getPart("image");
+//					System.out.println(imageFilePart);
+//					
+//					if (imageFilePart != null) {
+//						System.out.println("size:" + imageFileContent.available());
+//						imageFileContent = imageFilePart.getInputStream();
+//						String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
+//						imageUrl = ProductFile.generateUrl(fileName);
+//					}
+//				} catch (Exception ex) {
+//				}
+				imageUrl = request.getParameter("imageBase64");
+
+				String description = request.getParameter("description");
+				
+				long brandId = -1;
+				if (null != request.getParameter("brand")) {
+					try {
+						brandId = Long.parseLong(request.getParameter("brand"));
+					} catch (Exception ex) {
+					}
+				}
+
+				String processor = request.getParameter("processor");
+
+				String graphicsCard = request.getParameter("graphics_card");
+
+				int ram = -1;
+				if (null != request.getParameter("ram")) {
+					try {
+						ram = Integer.parseInt(request.getParameter("ram"));
+					} catch (Exception ex) {
+					}
+				}
+
+				String monitor = request.getParameter("monitor");
+
+				int hd = -1;
+				if (null != request.getParameter("hd-capacity")) {
+					try {
+						hd = Integer.parseInt(request.getParameter("hd-capacity"));
+					} catch (Exception ex) {
+					}
+				}
+
+				int ssd = -1;
+				if (null != request.getParameter("ssd-capacity")) {
+					try {
+						hd = Integer.parseInt(request.getParameter("ssd-capacity"));
+					} catch (Exception ex) {
+					}
+				}
+
+				String os = request.getParameter("os");
+
+				Brand brand = new Brand();
+				brand.setId(brandId);
+				ProductFile image = new ProductFile();
+				image.setFileContent(imageFileContent);
+				image.setUrl(imageUrl);
+				Product product = new Product();
+				product.setTitle(title);
+				product.setPrice(price);
+				product.setImage(image);
+				product.setDescription(description);
+				product.setBrand(brand);
+				product.setProcessor(processor);
+				product.setGraphicsCard(graphicsCard);
+				product.setRam(ram);
+				product.setMonitor(monitor);
+				product.setHd(hd);
+				product.setSsd(ssd);
+				product.setOs(os);
 				
 				return product;
-			} else if (operation == "consult") {
-				
-				long productId = -1;
-				if (null != request.getParameter("productId")) {
+			} else if (operation.equals("remove")) {
+				long productId = -1L;
+				if (null != request.getParameter("id")) {
 					try {
-						productId = Long.parseLong(request.getParameter("productId"));
+						productId = Long.parseLong(request.getParameter("id"));
+					} catch (Exception ex) {
+					}
+				}
+				
+				Product product = new Product();
+				product.setId(productId);
+				
+				return product;
+			} else if (operation.equals("consult")) {
+				long productId = -1L;
+				if (null != request.getParameter("id")) {
+					try {
+						productId = Long.parseLong(request.getParameter("id"));
 					} catch (Exception ex) {
 					}
 				}
