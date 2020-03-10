@@ -195,6 +195,10 @@
             <c:if test="${empty param.operation}">
               <input type="hidden" name="operation" value="save">
             </c:if>
+            <c:if test="${param.operation == 'update'}">
+              <input type="hidden" name="operation" value="update">
+              <input type="hidden" name="id" value="${previousProduct.id}">
+            </c:if>
             <c:if test="${param.operation == 'consult'}">
               <input type="hidden" name="operation" value="update">
               <input type="hidden" name="id" value="${previousProduct.id}">
