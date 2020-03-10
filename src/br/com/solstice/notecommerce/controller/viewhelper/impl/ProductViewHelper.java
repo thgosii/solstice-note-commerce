@@ -284,7 +284,7 @@ public class ProductViewHelper implements IViewHelper {
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("remove")) {
-			request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+			response.sendRedirect("/note-commerce/admin/products?operation=consult");
 		}
 	}
 
