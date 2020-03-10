@@ -314,7 +314,7 @@
                       <div class="col col-2">
                         <div class="form-group">
                           <div class="icheck-primary d-inline">
-                            <input type="checkbox" id="has-ssd" name="has-ssd">
+                            <input type="checkbox" id="has-ssd" name="has-ssd" checked>
                             <label for="has-ssd">SSD</label>
                           </div>
                           <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline">
