@@ -89,18 +89,20 @@ public class Controller extends HttpServlet {
 		System.out.println("New POST request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
 		
 		ICommand command = commandsMap.get(operation);
+		System.out.println("command: " + (command != null ? command.getClass().getSimpleName() : command));
 
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
-		System.out.println("viewHelper: " + viewHelper.getClass().getSimpleName());
+		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
 		DomainEntity entity = viewHelper.getEntity(request);
-		System.out.println("entity: " + entity.toString());
+		System.out.println("entity: " + entity);
 		
 		if (null == entity) {
 			return;
 		}
 		
 		Result result = command.execute(entity, operation);
+		System.out.println("\nResult entities list:"); if (result.getEntities() != null) for (DomainEntity resultEntity : result.getEntities()) { System.out.println(resultEntity); } else System.out.println("null entity list");
 		
 		viewHelper.setView(result, request, response);
 		
