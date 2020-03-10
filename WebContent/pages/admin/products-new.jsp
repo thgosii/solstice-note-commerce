@@ -232,7 +232,8 @@
                           <label for="title">Imagem</label>
                           <div class="product-img-display">
                           </div>
-                          <input id="image" name="image" type="file" class="custom-file-input">
+                          <input id="image" name="image" type="file" class="custom-file-input" accept="image/*">
+                          <input id="imageBase64" name="imageBase64" type="hidden">
                         </div>
                       </div>
                       <div class="col col-8">

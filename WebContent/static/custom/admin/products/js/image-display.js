@@ -13,6 +13,7 @@ $(document).ready(() => {
     let imageBase64 = await toBase64($('#image').prop('files')[0])
     imgElement.prop('src', imageBase64)
     $('.product-img-display').html(imgElement)
+    $('#imageBase64').val(imageBase64)
   })
 
 })
