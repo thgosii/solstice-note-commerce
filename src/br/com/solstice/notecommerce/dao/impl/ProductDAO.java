@@ -41,6 +41,8 @@ public class ProductDAO extends AbstractDAO {
 		PreparedStatement pstm = null;
 
 		Product product = (Product) entity;
+	
+		saveOrOverwriteFile(product.getImage());
 
 		String sql = "INSERT INTO `notecommerce_db`.`products` "
 				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_so`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -91,8 +93,6 @@ public class ProductDAO extends AbstractDAO {
 				}
 			}
 		}
-	
-		saveOrOverwriteFile(product.getImage());
 		
 		return 0;
 	}
@@ -193,13 +193,15 @@ public class ProductDAO extends AbstractDAO {
 	}
 	
 	private void saveOrOverwriteFile(ProductFile productFile) {
-		if (null == productFile.getFilePathInProject()) {
-			System.out.println("no file path to save product file");
+		System.out.println("Trying to save file...");
+		if (null == productFile || null == productFile.getAbsoluteFilePath()) {
+			System.out.println("no file path to save product file: " + productFile);
 			return;
 		}
 		
 		try {
-    	    File targetFile = new File(productFile.getFilePathInProject());
+    	    File targetFile = new File(productFile.getAbsoluteFilePath());
+    	    targetFile.createNewFile(); // Overwrites
     	    OutputStream outStream = new FileOutputStream(targetFile);
     	 
     	    byte[] buffer = new byte[8 * 1024];
@@ -210,7 +212,7 @@ public class ProductDAO extends AbstractDAO {
     	    IOUtils.closeQuietly(productFile.getFileContent());
     	    IOUtils.closeQuietly(outStream);
     	    
-    	    System.out.println("file " + productFile.getFilePathInProject() + " saved");
+    	    System.out.println("file " + productFile.getAbsoluteFilePath() + " saved");
 		} catch (Exception e)  {
 			e.printStackTrace();
 		}

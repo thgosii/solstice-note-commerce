@@ -61,9 +61,14 @@ public class ProductViewHelper implements IViewHelper {
 				InputStream imageFileContent = null;
 				try {
 					Part imageFilePart = request.getPart("image");
-					imageFileContent = imageFilePart.getInputStream();
-					String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
-					imageUrl = ProductFile.generateUrl(fileName);
+					System.out.println(imageFilePart);
+					
+					if (imageFilePart != null) {
+						System.out.println("size:" + imageFileContent.available());
+						imageFileContent = imageFilePart.getInputStream();
+						String fileName = Paths.get(imageFilePart.getSubmittedFileName()).getFileName().toString();
+						imageUrl = ProductFile.generateUrl(fileName);
+					}
 				} catch (Exception ex) {
 				}
 
@@ -173,8 +178,6 @@ public class ProductViewHelper implements IViewHelper {
 				
 				Product product = new Product();
 				product.setId(productId);
-				
-				System.out.println(product);
 				
 				return product;
 			}

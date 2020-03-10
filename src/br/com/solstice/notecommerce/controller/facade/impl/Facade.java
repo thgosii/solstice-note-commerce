@@ -112,7 +112,7 @@ public class Facade implements IFacade {
 			String message = businessRule.process(entity);
 
 			if (message != null && !message.trim().isEmpty()) {
-				System.out.println("\tmessage:" + message.replaceAll("\r", " ").replaceAll("\n", " "));
+				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			}
 			System.out.println(stringBuilder.toString());

@@ -17,10 +17,10 @@ public class ValidateProductUpdate implements IStrategy {
 		if (-1d == product.getPrice()) {
 			sb.append("price: O preço é obrigatório\n");
 		}
-		if (null == product.getProcessor()) {
+		if (null == product.getProcessor() || product.getProcessor().trim().isEmpty()) {
 			sb.append("processor: O processador é obrigatório\n");
 		}
-		if (null == product.getGraphicsCard()) {
+		if (null == product.getGraphicsCard() || product.getGraphicsCard().trim().isEmpty()) {
 			sb.append("graphics_card: A placa de vídeo é obrigatória\n");
 		}
 		if (-1 == product.getRam()) {

@@ -21,12 +21,13 @@ public class ProductFile {
 		return url;
 	}
 	
-	public String getFilePathInProject() {
+	public String getAbsoluteFilePath() {
 		if (url == null)
 			return null;
-		// from: /note-commerce/static/images/...
-		// to:   WebContent/static/images/...
-		return url.replaceAll("/note-commerce", "WebContent");
+		
+		final String serverDeployPath = "C:\\Users\\User\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps";
+		
+		return serverDeployPath + url.replaceAll("\\/", "\\\\");
 	}
 	
 	public InputStream getFileContent() {
