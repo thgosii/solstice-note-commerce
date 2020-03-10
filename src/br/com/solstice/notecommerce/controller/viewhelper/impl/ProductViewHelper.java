@@ -280,10 +280,10 @@ public class ProductViewHelper implements IViewHelper {
 			}
 		} else if (operation.equals("update")) {
 			if (null == result.getMessage()) {
-				request.getRequestDispatcher("/pages/admin/products-list.jsp").forward(request, response);
+				response.sendRedirect("/note-commerce/admin/products?operation=consult");
 			} else {
 				request.setAttribute("previousProduct", getEntity(request));
-				response.sendRedirect("/note-commerce/admin/products?operation=consult");
+				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("remove")) {
 			response.sendRedirect("/note-commerce/admin/products?operation=consult");
