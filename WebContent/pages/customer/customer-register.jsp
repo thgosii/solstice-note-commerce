@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition register-page">
-<div class="register-box">
+<div class="register-box" style="width: 600px">
   <div class="register-logo">
     <a href="#">LapTop <b>Computadores</b></a>
   </div>
@@ -36,75 +36,50 @@
 		</ul>
 	</div>
   </c:if>
-  <!-- /.login-logo -->
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Crie sua conta</p>
 
       <form action="/note-commerce/customer/signup" method="POST">
       	<input type="hidden" name="operation" value="save">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Nome" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="name">Nome<span class="text-danger text-bold"> *</span></label>
+          <input type="text" class="form-control" name="name" placeholder="Nome" id="name" value="<c:out value="${previousCustomer.name}"/>" required>
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
-          <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-address-card"></span>
-              </div>
-          </div>
+        <div class="form-group">
+          <label for="cpf">CPF<span class="text-danger text-bold"> *</span></label>
+          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value="<c:out value="${previousCustomer.getDecoratedCpf()}"/>" required>
         </div>
-        <div class="input-group mb-3">
+        <div class="form-group">
+          <label for="gender">Gênero<span class="text-danger text-bold"> *</span></label>
           <select class="form-control" name="gender">
             <option disabled>Gênero...</option>
-            <option value="f">Feminino</option>
-            <option value="m">Masculino</option>
+            <option value="f" ${previousCustomer.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
+            <option value="m" ${previousCustomer.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
           </select>
         </div>
-        <div class="input-group mb-3">
-          <input type="date" class="form-control" name="dateOfBirth" placeholder="Data de nascimento" required>
-          <div class="input-group-append">
-              <div class="input-group-text">
-              <span class="fas fa-calendar-alt"></span>
-              </div>
-          </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Data de nascimento<span class="text-danger text-bold"> *</span></label>
+          <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" value="<c:out value="${previousCustomer.dateOfBirth}"/>" required>
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-phone"></span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="phone">Telefone<span class="text-danger text-bold"> *</span></label>
+          <input type="text" class="form-control" id="phone" name="phone" value="<c:out value="${previousCustomer.phone}"/>" required>
         </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="E-mail" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="email">E-mail<span class="text-danger text-bold"> *</span></label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Senha" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="password">Senha<span class="text-danger text-bold"> *</span></label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Senha" required>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="confirmPassword" placeholder="Insira a senha novamente" required>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar senha<span class="text-danger text-bold"> *</span></label>
+          <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Insira a senha novamente" required>
+        </div>
+        <div class="mb-3">
+        	<span>A senha deve conter: 8 caracteres, uma letra minúscula e uma maiúscula, um caractere especial ou um número</span>
         </div>
         <div class="row">
           <div class="col-8">
@@ -116,11 +91,8 @@
         </div>
       </form>
     </div>
-    <!-- /.form-box -->
   </div>
-  <!-- /.card -->
 </div>
-<!-- /.register-box -->
 
 <!-- jQuery -->
 <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>

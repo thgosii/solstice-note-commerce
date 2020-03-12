@@ -26,7 +26,7 @@ public class CustomerViewHelper implements IViewHelper {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+
 		String operation = request.getParameter("operation");
 
 		if (operation != null) {
@@ -50,11 +50,12 @@ public class CustomerViewHelper implements IViewHelper {
 				LocalDate dateOfBirth = null;
 				if (null != request.getParameter("dateOfBirth")) {
 					try {
-						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"),
+								DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				String phone = null;
 				if (null != request.getParameter("phone")) {
 					try {
@@ -117,16 +118,16 @@ public class CustomerViewHelper implements IViewHelper {
 				return customer;
 			} else if (operation.equals("consult")) {
 				User loggedUser = (User) request.getSession().getAttribute("loggedUser");
-				
+
 				Long clientUserId = loggedUser.getId();
-				
+
 				Customer customer = new Customer();
-				
+
 				User user = new User();
 				user.setId(clientUserId);
-				
+
 				customer.setUser(user);
-				
+
 				return customer;
 			} else if (operation.equals("update")) {
 				String name = null;
@@ -148,11 +149,12 @@ public class CustomerViewHelper implements IViewHelper {
 				LocalDate dateOfBirth = null;
 				if (null != request.getParameter("dateOfBirth")) {
 					try {
-						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+						dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"),
+								DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				String phone = null;
 				if (null != request.getParameter("phone")) {
 					try {
@@ -196,7 +198,7 @@ public class CustomerViewHelper implements IViewHelper {
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				Long customerUserId = 0L;
 				if (null != request.getParameter("customerUserId")) {
 					try {
@@ -204,7 +206,7 @@ public class CustomerViewHelper implements IViewHelper {
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				Long customerId = 0L;
 				if (null != request.getParameter("customerId")) {
 					try {
@@ -212,7 +214,7 @@ public class CustomerViewHelper implements IViewHelper {
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				Customer customer = new Customer();
 				customer.setId(customerId);
 				customer.setName(name);
@@ -229,11 +231,11 @@ public class CustomerViewHelper implements IViewHelper {
 
 				customer.setUser(user);
 				customer.setGender(gender);
-				
+
 				return customer;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -244,7 +246,7 @@ public class CustomerViewHelper implements IViewHelper {
 
 		if (operation.equals("save")) {
 			Customer customer = (Customer) result.getEntities().get(0);
-			request.setAttribute("customer", customer);
+			request.setAttribute("previousCustomer", customer);
 
 			if (null == customer) {
 				return;
@@ -254,7 +256,7 @@ public class CustomerViewHelper implements IViewHelper {
 			} else {
 				String[] messages = result.getMessage().trim().split("\n");
 				request.setAttribute("messages", messages);
-				
+
 				request.getRequestDispatcher("/pages/customer/customer-register.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
@@ -263,7 +265,7 @@ public class CustomerViewHelper implements IViewHelper {
 			if (null == customer) {
 				return;
 			}
-			
+
 			request.getRequestDispatcher("/pages/customer/customer-profile.jsp").forward(request, response);
 		} else if (operation.equals("update")) {
 			Customer customer = (Customer) result.getEntities().get(0);

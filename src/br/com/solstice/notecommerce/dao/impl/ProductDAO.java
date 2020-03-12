@@ -3,10 +3,6 @@ package br.com.solstice.notecommerce.dao.impl;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,9 +17,6 @@ import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.product.Product;
 import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.product.file.ProductFile;
-import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.Gender;
 
 public class ProductDAO extends AbstractDAO {
 	

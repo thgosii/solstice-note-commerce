@@ -13,6 +13,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCu
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerDataUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDateOfBirth;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidatePasswordStrength;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateBrand;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductUpdate;
@@ -87,11 +88,13 @@ public class Facade implements IFacade {
 		customerBusinessRulesSave.add(new ValidateCPF());
 		customerBusinessRulesSave.add(new ValidateDateOfBirth());
 		customerBusinessRulesSave.add(new ValidateEmail());
+		customerBusinessRulesSave.add(new ValidatePasswordStrength());
 
 		List<IStrategy> customerBusinessRulesUpdate = new ArrayList<IStrategy>();
 		customerBusinessRulesUpdate.add(new ValidateCustomerDataUpdate());
 		customerBusinessRulesUpdate.add(new ValidateDateOfBirth());
 		customerBusinessRulesUpdate.add(new ValidateConfirmPassword());
+		customerBusinessRulesUpdate.add(new ValidatePasswordStrength());
 
 		customerBusinessRulesMap.put("save", customerBusinessRulesSave);
 		customerBusinessRulesMap.put("update", customerBusinessRulesUpdate);
@@ -120,7 +123,6 @@ public class Facade implements IFacade {
 				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			}
-//			System.out.println(stringBuilder.toString());
 		}
 	}
 

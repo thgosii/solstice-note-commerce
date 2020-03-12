@@ -83,13 +83,6 @@ public class Customer extends DomainEntity {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [name=" + name + ", cpf=" + cpf + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
-				+ ", adresses=" + adresses + ", creditCards=" + creditCards + ", phone=" + phone + ", user=" + user
-				+ ", getId()=" + getId() + "]";
-	}
-
 	public String getDecoratedCpf() {
 		String decoratedCpf = "";
 
@@ -108,6 +101,13 @@ public class Customer extends DomainEntity {
 		}
 
 		return decoratedCpf;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", cpf=" + cpf + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
+				+ ", adresses=" + adresses + ", creditCards=" + creditCards + ", phone=" + phone + ", user=" + user
+				+ ", getId()=" + getId() + "]";
 	}
 
 }
