@@ -180,70 +180,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<input type="hidden" name="customerUserId" value="${customer.user.id}">
 				<input type="hidden" name="cpf" value="${customer.getDecoratedCpf()}">
 				<input type="hidden" name="email" value="${customer.user.email}">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="name" placeholder="Nome" value="${customer.name}">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-user"></span>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="name">Nome<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Nome" value="${customer.name}">
                 </div>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="cpf">CPF<span class="text-danger text-bold"> *</span></label>
                   <input type="text" class="form-control" id="cpf" placeholder="CPF" value="${customer.cpf}" disabled>
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-address-card"></span>
-                    </div>
-                  </div>
                 </div>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="gender">Gênero<span class="text-danger text-bold"> *</span></label>
                   <select class="form-control" name="gender">
                     <option disabled>Gênero...</option>
                     <option value="f" ${customer.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
                     <option value="m" ${customer.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
                   </select>
                 </div>
-                <div class="input-group mb-3">
-                  <input type="date" class="form-control" name="dateOfBirth" placeholder="Data de nascimento" value="${customer.dateOfBirth}">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-calendar-alt"></span>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="dateOfBirth">Data de nascimento<span class="text-danger text-bold"> *</span></label>
+                  <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" placeholder="Data de nascimento" value="${customer.dateOfBirth}">
                 </div>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="phone">Telefone<span class="text-danger text-bold"> *</span></label>
                   <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" value="${customer.phone}">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-phone"></span>
-                    </div>
-                  </div>
                 </div>
-                <div class="input-group mb-3">
-                  <input type="email" class="form-control" placeholder="E-mail" value="${customer.user.email}" disabled>
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-envelope"></span>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="email">E-mail<span class="text-danger text-bold"> *</span></label>
+                  <input type="email" class="form-control" placeholder="E-mail" id="email" value="${customer.user.email}" disabled>
                 </div>
-                <div class="input-group mb-3">
-                  <input type="password" class="form-control" name="password" placeholder="Senha">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-lock"></span>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="password">Senha<span class="text-danger text-bold"> *</span></label>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
                 </div>
-                <div class="input-group mb-3">
-                  <input type="password" class="form-control" name="confirmPassword"
-                    placeholder="Insira a senha novamente">
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fas fa-lock"></span>
-                    </div>
-                  </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirmar senha<span class="text-danger text-bold"> *</span></label>
+                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Insira a senha novamente">
                 </div>
+                <div class="mb-3">
+		          <span>A senha deve conter: 8 caracteres, uma letra minúscula e uma maiúscula, um caractere especial ou um número</span>
+		        </div>
                 <div class="row">
                   <div class="col-1">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>

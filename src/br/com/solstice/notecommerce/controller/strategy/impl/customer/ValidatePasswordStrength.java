@@ -13,12 +13,10 @@ public class ValidatePasswordStrength implements IStrategy {
 
 		String password = customer.getUser().getPassword();
 
-		if (null == password || password.trim().isEmpty()) {
-			return "A senha não está dentro dos requisitos";
-		}
-
-		if (!password.matches(passwordRegex)) {
-			return "A senha não está dentro dos requisitos";
+		if (null != password && !password.trim().isEmpty()) {
+			if (!password.matches(passwordRegex)) {
+				return "A senha não está dentro dos requisitos";
+			}
 		}
 
 		return null;
