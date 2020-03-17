@@ -14,10 +14,14 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
   - Product managment
   - Control options for simulated features
 
-## Running
-Requirements: IDE that opens Java Web Applications and MySQL
+## Installing and Running
+Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2019-12/R/eclipse-jee-2019-12-R-linux-gtk-x86_64.tar.gz), [Apache Tomcat](https://tomcat.apache.org/download-80.cgi) and MySQL
 1. Clone the project: `git clone https://github.com/thiago-bezerra/solstice-note-commerce.git`
-2. Run the scripts at `sql/` to create the database, user and to fill table data
+2. Run the scripts at `sql/` as root user to create the database, user and to fill table data
+   - Recommended to use [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) to easily connect and paste/run the scripts
+3. Fix your build path (Eclipse IDE) to use your installed JRE:
+   - Right click on project -> Build Path -> Configure Build Path -> JRE System Library -> Edit -> Alternative JRE
+   - You may need to do the same with the Apache Tomcat library
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
