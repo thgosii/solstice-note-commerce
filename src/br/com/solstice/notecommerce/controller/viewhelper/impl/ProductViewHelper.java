@@ -140,7 +140,7 @@ public class ProductViewHelper implements IViewHelper {
 				}
 				
 				String imageUrl = null;
-				InputStream imageFileContent = null;
+//				InputStream imageFileContent = null;
 //				try {
 //					Part imageFilePart = request.getPart("image");
 //					System.out.println(imageFilePart);
@@ -200,7 +200,7 @@ public class ProductViewHelper implements IViewHelper {
 				Brand brand = new Brand();
 				brand.setId(brandId);
 				ProductFile image = new ProductFile();
-				image.setFileContent(imageFileContent);
+//				image.setFileContent(imageFileContent);
 				image.setUrl(imageUrl);
 				Product product = new Product();
 				product.setTitle(title);

@@ -35,7 +35,7 @@ public class ProductDAO extends AbstractDAO {
 
 		Product product = (Product) entity;
 	
-		saveOrOverwriteFile(product.getImage());
+//		saveOrOverwriteFile(product.getImage());
 
 		String sql = "INSERT INTO `notecommerce_db`.`products` "
 				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_os`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -133,7 +133,7 @@ public class ProductDAO extends AbstractDAO {
 
 		Product product = (Product) entity;
 	
-		saveOrOverwriteFile(product.getImage());
+//		saveOrOverwriteFile(product.getImage());
 
 		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? WHERE `prd_id`=?";
 		try {
@@ -263,30 +263,30 @@ public class ProductDAO extends AbstractDAO {
 		return null;
 	}
 	
-	private void saveOrOverwriteFile(ProductFile productFile) {
-		System.out.println("Trying to save file...");
-		if (null == productFile || null == productFile.getFileContent() || null == productFile.getAbsoluteFilePath()) {
-			System.out.println("no file path to save product file: " + productFile);
-			return;
-		}
-		
-		try {
-    	    File targetFile = new File(productFile.getAbsoluteFilePath());
-    	    targetFile.createNewFile(); // Overwrites
-    	    OutputStream outStream = new FileOutputStream(targetFile);
-    	 
-    	    byte[] buffer = new byte[8 * 1024];
-    	    int bytesRead;
-    	    while ((bytesRead = productFile.getFileContent().read(buffer)) != -1) {
-    	        outStream.write(buffer, 0, bytesRead);
-    	    }
-    	    IOUtils.closeQuietly(productFile.getFileContent());
-    	    IOUtils.closeQuietly(outStream);
-    	    
-    	    System.out.println("file " + productFile.getAbsoluteFilePath() + " saved");
-		} catch (Exception e)  {
-			e.printStackTrace();
-		}
-	}
+//	private void saveOrOverwriteFile(ProductFile productFile) {
+//		System.out.println("Trying to save file...");
+//		if (null == productFile || null == productFile.getFileContent() || null == productFile.getAbsoluteFilePath()) {
+//			System.out.println("no file path to save product file: " + productFile);
+//			return;
+//		}
+//		
+//		try {
+//    	    File targetFile = new File(productFile.getAbsoluteFilePath());
+//    	    targetFile.createNewFile(); // Overwrites
+//    	    OutputStream outStream = new FileOutputStream(targetFile);
+//    	 
+//    	    byte[] buffer = new byte[8 * 1024];
+//    	    int bytesRead;
+//    	    while ((bytesRead = productFile.getFileContent().read(buffer)) != -1) {
+//    	        outStream.write(buffer, 0, bytesRead);
+//    	    }
+//    	    IOUtils.closeQuietly(productFile.getFileContent());
+//    	    IOUtils.closeQuietly(outStream);
+//    	    
+//    	    System.out.println("file " + productFile.getAbsoluteFilePath() + " saved");
+//		} catch (Exception e)  {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
