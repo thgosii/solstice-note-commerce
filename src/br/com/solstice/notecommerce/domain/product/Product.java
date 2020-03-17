@@ -117,7 +117,7 @@ public class Product extends DomainEntity {
 
 	@Override
 	public String toString() {
-		return "Product [title=" + title + ", image=" + image + ", price=" + price + ", description=" + description
+		return "Product [title=" + (title != null ? (title.length() > 20 ? title.substring(0, 20) + "..." : title) : title) + ", image=" + image + ", price=" + price + ", description=" + (description != null ? (description.length() > 20 ? description.substring(0, 20) + "..." : description) : description)
 				+ ", brand=" + brand + ", processor=" + processor + ", graphicsCard=" + graphicsCard + ", ram=" + ram
 				+ ", monitor=" + monitor + ", hd=" + hd + ", ssd=" + ssd + ", os=" + os + ", getId()=" + getId() + "]";
 	}
