@@ -188,17 +188,15 @@
         <div class="container-fluid">
 
           <form action="/note-commerce/admin/products" method="POST" enctype="multipart/form-data">
-            <c:if test="${empty param.operation}">
-              <input type="hidden" name="operation" value="save">
-            </c:if>
-            <c:if test="${param.operation == 'update'}">
-              <input type="hidden" name="operation" value="update">
-              <input type="hidden" name="id" value="${previousProduct.id}">
-            </c:if>
-            <c:if test="${param.operation == 'consult'}">
-              <input type="hidden" name="operation" value="update">
-              <input type="hidden" name="id" value="${previousProduct.id}">
-            </c:if>
+          	<c:choose>
+          		<c:when test="${(param.operation == 'update') or (param.operation == 'consult')}">
+	              <input type="hidden" name="operation" value="update">
+	              <input type="hidden" name="id" value="${previousProduct.id}">
+          		</c:when>
+	          	<c:otherwise>
+	              <input type="hidden" name="operation" value="save">
+	          	</c:otherwise>
+          	</c:choose>
             <div class="row">
               <div class="col col-12">
                 <div class="card card-default">
