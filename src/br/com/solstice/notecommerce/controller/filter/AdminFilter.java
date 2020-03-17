@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.UserRole;
 
-@WebFilter({ "/pages/login.jsp" })
-public class LoginFilter implements Filter {
+@WebFilter({ "/admin/*", "/pages/admin/*" })
+public class AdminFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
@@ -25,20 +25,15 @@ public class LoginFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		User loggedUser = (User) request.getSession().getAttribute("loggedUser");
 
-		// Redirects to main page if already logged in
-		if (null != loggedUser) {
-			System.out.println("LoginFilter: Already logged in as " + loggedUser.getRole() + ", redirecting...");
-			if (loggedUser.getRole() == UserRole.CLIENT) {
-				response.sendRedirect("/note-commerce/pages/shop/products.jsp");
-			} else if (loggedUser.getRole() == UserRole.ADMIN) {
-				response.sendRedirect("/note-commerce/pages/admin/dashboard.jsp");
-			}
-			return;
+		// Redirects to login if client or not logged-in user tries to access admin pages
+		if (null == loggedUser || loggedUser.getRole() == UserRole.CLIENT) {
+			System.out.println("AdminFilter: " + (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")" : "not logged-in user") + " tried to access admin page \"" + request.getRequestURI() + "\", redirecting...");
+			response.sendRedirect("/note-commerce/pages/login.jsp");
 		}
 		
 		chain.doFilter(request, response);
 	}
-	
+
 	public void destroy() {
 	}
 
