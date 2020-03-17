@@ -14,20 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.UserRole;
 
-@WebFilter({ "/admin/*", "/pages/admin/*" })
-public class AdminFilter implements Filter {
-
+@WebFilter({ "/customer/*", "/pages/customer/*" })
+public class CustomerFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
-	
+
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		User loggedUser = (User) request.getSession().getAttribute("loggedUser");
 
-		// Redirects to login if client or not logged-in user tries to access admin pages
-		if (null == loggedUser || loggedUser.getRole() == UserRole.CLIENT) {
-			System.out.println("AdminFilter: " + (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")" : "not logged-in user") + " tried to access admin page \"" + request.getRequestURI() + "\", redirecting...");
+		// Redirects to login if admin or not logged-in user tries to access customer pages
+		if (null == loggedUser || loggedUser.getRole() == UserRole.ADMIN) {
+			System.out.println("CustomerFilter: " + (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")" : "not logged-in user") + " tried to access customer page \"" + request.getRequestURI() + "\", redirecting...");
 			response.sendRedirect("/note-commerce/pages/login.jsp");
 			return;
 		}
@@ -37,5 +36,4 @@ public class AdminFilter implements Filter {
 
 	public void destroy() {
 	}
-
 }
