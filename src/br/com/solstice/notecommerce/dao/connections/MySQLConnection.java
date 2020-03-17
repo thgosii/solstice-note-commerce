@@ -14,7 +14,7 @@ public class MySQLConnection {
 
 	public static Connection getConecction() throws ClassNotFoundException, SQLException {
 		driver = "com.mysql.jdbc.Driver";
-		url = "jdbc:mysql://localhost:3306/notecommerce_db?allowPublicKeyRetrieval=true&;useSSL=false";
+		url = "jdbc:mysql://localhost:3306/notecommerce_db?allowPublicKeyRetrieval=true&useSSL=false";
 		user = "notecommerce_user";
 		password = "notecommerce_password";
 
