@@ -103,7 +103,7 @@ public class ProductViewHelper implements IViewHelper {
 				Brand brand = new Brand();
 				brand.setId(brandId);
 				ProductFile image = new ProductFile();
-				image.setFileContent(imageFileContent);
+//				image.setFileContent(imageFileContent);
 				image.setUrl(imageUrl);
 				Product product = new Product();
 				product.setTitle(title);
