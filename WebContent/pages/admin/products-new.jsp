@@ -8,7 +8,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Novo Laptop | LapTop Computadores</title>
+  <c:choose>
+	<c:when test="${(param.operation == 'update') or (param.operation == 'consult')}">
+      <title>Editar Laptop | LapTop Computadores</title>
+	</c:when>
+	<c:otherwise>
+      <title>Novo Laptop | LapTop Computadores</title>
+	</c:otherwise>
+  </c:choose>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -170,13 +177,31 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Novo Laptop</h1>
+              <h1>
+<c:choose>
+  <c:when test="${(param.operation == 'update') or (param.operation == 'consult')}">
+    Editar Laptop
+  </c:when>
+  <c:otherwise>
+    Novo Laptop
+  </c:otherwise>
+</c:choose>
+              </h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="dashboard.html">Admin Home</a></li>
                 <li class="breadcrumb-item"><a href="/note-commerce/admin/products?operation=consult">Laptops</a></li>
-                <li class="breadcrumb-item active">Novo Laptop</li>
+                <li class="breadcrumb-item active">
+<c:choose>
+  <c:when test="${(param.operation == 'update') or (param.operation == 'consult')}">
+    Editar Laptop
+  </c:when>
+  <c:otherwise>
+    Novo Laptop
+  </c:otherwise>
+</c:choose>
+                </li>
               </ol>
             </div>
           </div>
@@ -342,7 +367,16 @@
               </div>
               <div class="col col-6">
                 <!-- <a href="/note-commerce/admin/products?operation=consult" class="btn btn-block btn-primary" role="button">Cadastrar</a> -->
-                <button type="submit" class="btn btn-block btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-block btn-primary">
+<c:choose>
+  <c:when test="${(param.operation == 'update') or (param.operation == 'consult')}">
+    Atualizar
+  </c:when>
+  <c:otherwise>
+    Cadastrar
+  </c:otherwise>
+</c:choose>
+                </button>
               </div>
             </div>
           </form>
