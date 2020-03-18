@@ -113,7 +113,7 @@
       "id": "008d074b-198d-428c-94f1-e64563048ac1",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1104x979",
+      "target": "1146x1023",
       "targets": [],
       "value": ""
     }, {
