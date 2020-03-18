@@ -76,12 +76,13 @@ public class Controller extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		// User logout
 		if (request.getRequestURI().equals("/note-commerce/logout")) {
 			if (null != request.getSession().getAttribute("loggedUser")) {
-				request.getSession().removeAttribute("loggedUser");
+				request.getSession().invalidate();
 			}
 			response.sendRedirect("/note-commerce/pages/login.jsp");
-			return ;
+			return;
 		}
 		
 		String operation = request.getParameter("operation");
