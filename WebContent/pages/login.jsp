@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>LapTop Computadores</title>
+  <title>Login | LapTop Computadores</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
