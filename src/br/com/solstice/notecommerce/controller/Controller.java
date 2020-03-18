@@ -70,11 +70,6 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 		
 		// User logout
 		if (request.getRequestURI().equals("/note-commerce/logout")) {
@@ -85,44 +80,19 @@ public class Controller extends HttpServlet {
 			return;
 		}
 		
-		String operation = request.getParameter("operation");
-
-		System.out.println("\n--------------------------------");
-		System.out.println("New GET request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
-		
-		ICommand command = commandsMap.get(operation);
-		System.out.println("command: " + (command != null ? command.getClass().getSimpleName() : command));
-
-		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
-		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
-
-		DomainEntity entity = viewHelper.getEntity(request);
-		System.out.println("entity: " + entity + "\n");
-		
-		if (null == entity) {
-			return;
-		}
-		
-		Result result = command.execute(entity, operation);
-		System.out.println("\nResult entities list:"); if (result.getEntities() != null) for (DomainEntity resultEntity : result.getEntities()) { System.out.println(resultEntity); } else System.out.println("null entity list");
-		
-		viewHelper.setView(result, request, response);
-		
-		System.out.println("\n--------------------------------");
+		processRequest(request, response);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
+		processRequest(request, response);		
+	}
+	
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String operation = request.getParameter("operation");
 
 		System.out.println("\n--------------------------------");
-		System.out.println("New POST request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
+		System.out.println("New " + request.getMethod() + " request to " + request.getServletPath().toString() + " with operation \"" + operation + "\"");
 		
 		ICommand command = commandsMap.get(operation);
 		System.out.println("command: " + (command != null ? command.getClass().getSimpleName() : command));
