@@ -1,0 +1,141 @@
+{
+  "id": "9d32aa12-f72e-4ac0-a520-9040c594960f",
+  "version": "2.0",
+  "name": "Note Commerce",
+  "url": "http://localhost:8085/note-commerce/",
+  "tests": [{
+    "id": "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e",
+    "name": "Login como admin",
+    "commands": [{
+      "id": "e6ca1385-5cb2-4c28-8d8f-9c1281761812",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/login.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "128a97f1-3eaf-4641-9862-f8f28f6b699a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9484e84-4aec-457b-b025-98ceb9d071f9",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b17d2e8a-f3d0-41a8-98ec-5c9d0c3565a9",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "54849146-3128-4ddb-8d56-5f8113179900",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "786666f8-b24c-45da-9b13-c5194e7b03d5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6fc3e1b3-bdbe-43ec-ae75-35d0068301f7",
+      "comment": "",
+      "command": "verifyTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8dd1e593-7971-45a9-bac7-347f67075c18",
+    "name": "02-Cadastro de produto com form inválido",
+    "commands": []
+  }, {
+    "id": "91741aa8-1a9f-44d9-8768-d94b6f237f8c",
+    "name": "02-Cadastro de produto simples",
+    "commands": []
+  }, {
+    "id": "89e63190-a61a-4726-8772-b79bbe3ff99c",
+    "name": "02-Edição de produto com form inválido",
+    "commands": []
+  }, {
+    "id": "61fedc3c-d524-474d-8c16-f2668e206013",
+    "name": "02-Edição de produto simples",
+    "commands": []
+  }, {
+    "id": "a0083d5d-58b7-41f3-bf97-2d633fb3ff64",
+    "name": "01-Cadastro de cliente com form inválido",
+    "commands": []
+  }, {
+    "id": "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc",
+    "name": "01-Cadastro de cliente após form inválido",
+    "commands": []
+  }, {
+    "id": "ff55318b-fbd6-4f7a-9764-05d292cb9ae3",
+    "name": "01-Cadastro de cliente simples",
+    "commands": []
+  }, {
+    "id": "d44af49f-6d00-4c29-bba7-837d94f4c0d3",
+    "name": "01-Cadastro de cliente com mesmo email",
+    "commands": []
+  }, {
+    "id": "788d9e6c-b570-4649-aec3-211597024bda",
+    "name": "Login incorreto cliente",
+    "commands": []
+  }, {
+    "id": "a65daab4-2ac6-4e91-b056-32839b51b16a",
+    "name": "Login cliente",
+    "commands": []
+  }, {
+    "id": "b9cbefbd-47c2-41a8-8b1a-b5ed2344e285",
+    "name": "02-Cadastro de produto após form inválido",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "d1baa331-644e-4705-9deb-910ded221603",
+    "name": "02 - CRUD de Produtos",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "8dd1e593-7971-45a9-bac7-347f67075c18", "b9cbefbd-47c2-41a8-8b1a-b5ed2344e285", "61fedc3c-d524-474d-8c16-f2668e206013", "89e63190-a61a-4726-8772-b79bbe3ff99c"]
+  }, {
+    "id": "f139bb97-a342-4e13-a011-97ab8291a66f",
+    "name": "01 - CRUD de Cliente",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a0083d5d-58b7-41f3-bf97-2d633fb3ff64", "d44af49f-6d00-4c29-bba7-837d94f4c0d3", "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc", "ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+  }],
+  "urls": ["http://localhost:8085/note-commerce/"],
+  "plugins": []
+}
