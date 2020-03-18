@@ -26,7 +26,7 @@ public class AdminFilter implements Filter {
 		User loggedUser = (User) request.getSession().getAttribute("loggedUser");
 
 		// Redirects to login if client or not logged-in user tries to access admin pages
-		if (null == loggedUser || loggedUser.getRole() == UserRole.CLIENT) {
+		if (null == loggedUser || loggedUser.getRole() != UserRole.ADMIN) {
 			System.out.println("AdminFilter: " + (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")" : "not logged-in user") + " tried to access admin page \"" + request.getRequestURI() + "\", redirecting...");
 			response.sendRedirect("/note-commerce/pages/login.jsp");
 			return;
