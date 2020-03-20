@@ -19,7 +19,8 @@ Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/p
 1. Clone the project: `git clone https://github.com/thiago-bezerra/solstice-note-commerce.git`
 2. Run the scripts at `sql/` as root user to create the database, user and to fill table data
    - Recommended to use [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) to easily connect and paste/run the scripts
-3. Fix your build path (Eclipse IDE) to use your installed JRE:
+3. Make sure your Apache Tomcat is ready to be used by Eclipse ([guide](https://crunchify.com/step-by-step-guide-to-setup-and-install-apache-tomcat-server-in-eclipse-development-environment-ide/))
+4. Fix your build path (if needed) to use your installed JRE:
    - Right click on project -> Build Path -> Configure Build Path -> JRE System Library -> Edit -> Alternative JRE
    - You may need to do the same with the Apache Tomcat library
 
