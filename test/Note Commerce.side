@@ -348,6 +348,42 @@
       "target": "Laptops | LapTop Computadores",
       "targets": [],
       "value": ""
+    }, {
+      "id": "2f55cffe-5e04-4e91-bfb1-926860a7796e",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2468c44b-e8ed-42d3-8c88-c03d26a1750f",
+      "comment": "Pesquisar produto recém cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples"
+    }, {
+      "id": "656646dc-eb59-4f3a-bd6d-2b4fa7ece3a0",
+      "comment": "Confirmar cadastro de produto",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
     }]
   }, {
     "id": "89e63190-a61a-4726-8772-b79bbe3ff99c",
