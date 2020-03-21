@@ -3,4 +3,4 @@ WebContent/static/plugins/* linguist-vendored
 WebContent/static/dist/* linguist-vendored
 
 # Base64 images in sql insert statements
-sql/populate-tables.sql linguist-generated
+#sql/populate-tables.sql linguist-generated
