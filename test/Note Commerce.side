@@ -96,10 +96,6 @@
       "value": ""
     }]
   }, {
-    "id": "8dd1e593-7971-45a9-bac7-347f67075c18",
-    "name": "02-Cadastro de produto com form inválido",
-    "commands": []
-  }, {
     "id": "91741aa8-1a9f-44d9-8768-d94b6f237f8c",
     "name": "02-Cadastro de produto simples",
     "commands": [{
@@ -144,6 +140,13 @@
         ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
         ["xpath=//li[2]/ul/li/a", "xpath:position"]
       ],
+      "value": ""
+    }, {
+      "id": "68aac3be-641e-4fc2-a1e8-a2d7ee4110bf",
+      "comment": "Verificar se foi redirecionado ao form de produtos",
+      "command": "assertTitle",
+      "target": "Novo Laptop | LapTop Computadores",
+      "targets": [],
       "value": ""
     }, {
       "id": "1d0f2ea8-35eb-467f-83e1-69ee8505bd1d",
@@ -386,17 +389,220 @@
       "value": ""
     }]
   }, {
-    "id": "89e63190-a61a-4726-8772-b79bbe3ff99c",
-    "name": "02-Edição de produto com form inválido",
-    "commands": []
-  }, {
     "id": "61fedc3c-d524-474d-8c16-f2668e206013",
     "name": "02-Edição de produto simples",
-    "commands": []
-  }, {
-    "id": "a0083d5d-58b7-41f3-bf97-2d633fb3ff64",
-    "name": "01-Cadastro de cliente com form inválido",
-    "commands": []
+    "commands": [{
+      "id": "30a41b3d-614d-4d73-b2c8-0e6c16cd5a80",
+      "comment": "Entrar diretamente na parte administrativa",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "948e4fc6-55f0-432b-b016-99de3d135dc1",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c07776f2-2289-445e-a398-d7663f3dcb90",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bf2ba857-4c5c-4587-88ec-d9a04c3c3839",
+      "comment": "Abrir dropdown de produtos no menu lateral principal",
+      "command": "click",
+      "target": "css=.nav-item:nth-child(2) .right",
+      "targets": [
+        ["css=.nav-item:nth-child(2) .right", "css:finder"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bb4ce3d-dbf2-47ae-a577-9e13d5e6624f",
+      "comment": "Clicar no botão \"Todos Produtos\" para navegar ao form",
+      "command": "click",
+      "target": "linkText=Todos Laptops",
+      "targets": [
+        ["linkText=Novo Laptop", "linkText"],
+        ["css=.menu-open .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3c4b74a-2eb9-4521-8789-ae76593cd3fc",
+      "comment": "Verificar se foi redirecionado a listagem de produtos",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1833c9a5-395d-4b77-b353-0dc170cb1117",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a78a309-e835-4227-9a2c-4d43fee83254",
+      "comment": "Pesquisar produto cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples"
+    }, {
+      "id": "d11c93f7-f4c8-4cdb-aec4-c8b9418f0cac",
+      "comment": "Confirmar que o produto existe",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa308367-9e0e-46bc-883e-43c6142fc922",
+      "comment": "Clicar no botão/icone de editar",
+      "command": "click",
+      "target": "css=.fa-edit",
+      "targets": [
+        ["css=.fa-edit", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/form/button/i", "xpath:idRelative"],
+        ["xpath=//form/button/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c1d47fc-ed32-4365-aa25-3f7f7d26d43a",
+      "comment": "Verificar se foi redirecionado a edição de laptop",
+      "command": "assertTitle",
+      "target": "Editar Laptop | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c3361ba4-e288-4136-bb68-8d80db467570",
+      "comment": "Selecionar input do título",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a12f7d58-76c1-4a30-8130-dfe0b0f01322",
+      "comment": "Inserir novo título",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "68ed6063-3b7b-474f-84a2-2e5f4ca60bba",
+      "comment": "Selecionar textarea de descrição",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88d098b4-595b-4cb9-a38a-d53c0c73f235",
+      "comment": "Inserir descrição",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Isso é uma descrição adicionada na edição"
+    }, {
+      "id": "16e0a24b-799b-4fd8-a624-757d75a0d900",
+      "comment": "Clicar no botão \"Atualizar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Atualizar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "40777011-33c0-4744-980d-3607fbb2631b",
+      "comment": "Verificar se foi redirecionado a listagem de laptops",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "14e55590-947d-4dac-86fc-7f7c72f2da42",
+      "comment": "Selecionar filtro de listagem",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c730752-2ffe-47a7-bfff-c4b5831ba27f",
+      "comment": "Pesquisar laptop recém editado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "3968f568-9f67-44dd-880a-c6f4de094a49",
+      "comment": "Confirmar que o produto existe com o título editado",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
   }, {
     "id": "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc",
     "name": "01-Cadastro de cliente após form inválido",
@@ -418,9 +624,799 @@
     "name": "Login cliente",
     "commands": []
   }, {
-    "id": "b9cbefbd-47c2-41a8-8b1a-b5ed2344e285",
+    "id": "2a38b781-91b6-47f6-9722-c988445e104a",
     "name": "02-Cadastro de produto após form inválido",
-    "commands": []
+    "commands": [{
+      "id": "67d80a29-0c15-4bef-a968-5439616f5af1",
+      "comment": "Entrar diretamente na parte administrativa",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed020e06-c6d5-44f3-8da4-23f0c2beadb8",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d686af07-ca6a-4589-9c19-b483609b0b8f",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "14d3ae4c-4efd-4db8-8f3d-a6492f685a7c",
+      "comment": "Abrir dropdown de produtos no menu lateral principal",
+      "command": "click",
+      "target": "css=.nav-item:nth-child(2) .right",
+      "targets": [
+        ["css=.nav-item:nth-child(2) .right", "css:finder"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42a6e61b-3b81-46f5-a95d-4e4e036b623f",
+      "comment": "Clicar no botão \"Novo Produto\" para navegar ao form",
+      "command": "click",
+      "target": "linkText=Novo Laptop",
+      "targets": [
+        ["linkText=Novo Laptop", "linkText"],
+        ["css=.menu-open .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "111d0dbb-2dee-4e86-b58d-5b79a21d0516",
+      "comment": "Verificar se foi redirecionado ao form de produtos",
+      "command": "assertTitle",
+      "target": "Novo Laptop | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cd38d0bf-3206-44be-b5cd-7444546c08dd",
+      "comment": "Selecionar input de título",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9a50081-8be0-406c-99d8-ad4ebbfc8a5e",
+      "comment": "Inserir título",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste após form inválido"
+    }, {
+      "id": "d77c3200-9822-4ab5-a34a-c4954582c945",
+      "comment": "Clicar no botão de cadastrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d03926d-5797-4962-8006-8d19b117f530",
+      "comment": "Verificar se foi redirecionado de volta ao form de cadastro",
+      "command": "assertTitle",
+      "target": "Novo Laptop | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9e33ff11-7cc8-4e32-a9fe-1ae373ffdbf2",
+      "comment": "Verificar se erros foram exibidos no campos",
+      "command": "assertElementPresent",
+      "target": "css=.is-invalid",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "455fb61a-076b-40e5-958c-dd5ed7bde5b5",
+      "comment": "Verificar se título inserido foi reinserido automaticamente",
+      "command": "assertValue",
+      "target": "id=title",
+      "targets": [],
+      "value": "Laptop de Teste após form inválido"
+    }, {
+      "id": "52ea0a34-aca0-4914-9fe3-1025cc2dc5d4",
+      "comment": "Inserir preço",
+      "command": "type",
+      "target": "id=price",
+      "targets": [],
+      "value": "12345.67"
+    }, {
+      "id": "ba8812db-f3ea-4e18-a7bb-206e4f38c3b2",
+      "comment": "Abrir select de marcas",
+      "command": "click",
+      "target": "id=select2-brand-container",
+      "targets": [
+        ["id=select2-brand-container", "id"],
+        ["css=#select2-brand-container", "css:finder"],
+        ["xpath=//span[@id='select2-brand-container']", "xpath:attributes"],
+        ["xpath=//span/span/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "430c3233-10fe-4021-ad25-5cc9bc687f24",
+      "comment": "Selecionar marca Hp",
+      "command": "click",
+      "target": "css=#select2-brand-results li:nth-child(4)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "31db6127-82f9-4720-964f-49252bd13672",
+      "comment": "Selecionar input de processador",
+      "command": "click",
+      "target": "id=processor",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2b01267d-5fac-46e9-a68e-b7d04126d3af",
+      "comment": "Inserir processador",
+      "command": "type",
+      "target": "id=processor",
+      "targets": [],
+      "value": "i9-9000k"
+    }, {
+      "id": "47fae88c-c55f-4e3a-a86b-fc76ff1a4caf",
+      "comment": "Selecionar input de memória RAM",
+      "command": "click",
+      "target": "id=ram",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7eaa111a-8429-44e2-b2ae-f34832ff834a",
+      "comment": "Inserir memória RAM",
+      "command": "type",
+      "target": "id=ram",
+      "targets": [],
+      "value": "4"
+    }, {
+      "id": "6db737ad-c1c2-4a2d-ba7a-d457a1618358",
+      "comment": "Selecionar input de placa de vídeo",
+      "command": "click",
+      "target": "id=graphics_card",
+      "targets": [
+        ["id=graphics_card", "id"],
+        ["name=graphics_card", "name"],
+        ["css=#graphics_card", "css:finder"],
+        ["xpath=//input[@id='graphics_card']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b5d9845-4dca-4b50-ba3f-295062f0fe5a",
+      "comment": "Inserir placa de vídeo",
+      "command": "type",
+      "target": "id=graphics_card",
+      "targets": [
+        ["id=graphics_card", "id"],
+        ["name=graphics_card", "name"],
+        ["css=#graphics_card", "css:finder"],
+        ["xpath=//input[@id='graphics_card']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "NVDIA GTX 9080TI"
+    }, {
+      "id": "44034c5e-ae9f-42ad-a739-4e05e70915dd",
+      "comment": "Selecionar input de monitor",
+      "command": "click",
+      "target": "id=monitor",
+      "targets": [
+        ["id=monitor", "id"],
+        ["name=monitor", "name"],
+        ["css=#monitor", "css:finder"],
+        ["xpath=//input[@id='monitor']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/div[2]/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b4d7058-321b-41c0-9eb5-38db4711813b",
+      "comment": "Inserir tamanho do monitor",
+      "command": "type",
+      "target": "id=monitor",
+      "targets": [],
+      "value": "13.6"
+    }, {
+      "id": "bddd337c-6ae1-405d-b12a-4464c77262b1",
+      "comment": "Selecionar input de capacidade do HD",
+      "command": "click",
+      "target": "id=hd-capacity",
+      "targets": [
+        ["id=hd-capacity", "id"],
+        ["name=hd-capacity", "name"],
+        ["css=#hd-capacity", "css:finder"],
+        ["xpath=//input[@id='hd-capacity']", "xpath:attributes"],
+        ["xpath=//div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef39bbfd-113a-406d-b16e-88780a623909",
+      "comment": "Inserir capacidade do HD",
+      "command": "type",
+      "target": "id=hd-capacity",
+      "targets": [],
+      "value": "1000"
+    }, {
+      "id": "ebbdc83c-8623-49fc-bbe0-2cb8335279a5",
+      "comment": "Marcar que o laptop não possui SSD",
+      "command": "click",
+      "target": "css=.col:nth-child(4) .icheck-primary > label",
+      "targets": [
+        ["css=.col:nth-child(4) .icheck-primary > label", "css:finder"],
+        ["xpath=//div[4]/div/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'SSD')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0eb0d823-e277-42b8-8854-56d07e8dd47b",
+      "comment": "Abrir select de sistema operacional",
+      "command": "click",
+      "target": "id=select2-os-container",
+      "targets": [
+        ["id=select2-os-container", "id"],
+        ["css=#select2-os-container", "css:finder"],
+        ["xpath=//span[@id='select2-os-container']", "xpath:attributes"],
+        ["xpath=//div[6]/div/span/span/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b3def71-2330-4ac6-ba81-3b063dd6c416",
+      "comment": "Selecionar sistema operacional Linux",
+      "command": "click",
+      "target": "css=#select2-os-results li:nth-child(2)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c0fb858-d287-48b0-bab8-fbfb6e4a5cbd",
+      "comment": "Clicar no botão de cadastrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d448988a-8b21-4451-a9ec-18fec4aa32b1",
+      "comment": "Verificar se foi redirecionado a listagem de produtos",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1386b3b6-7da2-4594-939d-ca5e676973a8",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5e60525-cced-4295-9baa-5186749a9d2c",
+      "comment": "Pesquisar produto recém cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste após form inválido"
+    }, {
+      "id": "c7fddcc0-d605-4b4f-a4c7-f563b81fd7f7",
+      "comment": "Confirmar cadastro de produto",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e9cfc361-4608-4931-9aa0-e6d898f9f977",
+    "name": "Logout",
+    "commands": [{
+      "id": "ee50f566-277a-4c6d-ba2c-52c5b9c80eab",
+      "comment": "Acessar diretamente página de logout",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e383303e-dffc-4ac1-9b1b-a69a6a2dab4d",
+      "comment": "Verificar se foi redirecionado ao login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "82a12455-f0fb-45cc-8e5d-4fca051c1ce6",
+      "comment": "Tentar acessar dashboard de admin",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4741a870-6fc6-4a6f-a0d0-cf1c22aecb31",
+      "comment": "Verificar se foi redirecionado ao login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b11db23b-c9b6-4ed2-bd25-6e189dd33313",
+      "comment": "Tentar acessar dados do usuário de cliente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/customer/consultAccountData?operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56e0fb66-4e2d-4d34-840d-abc782183d38",
+      "comment": "Verificar se foi redirecionado ao login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "40cc4469-034b-48a6-bc47-6dfd59548a35",
+    "name": "02-Edição de produto após form inválido",
+    "commands": [{
+      "id": "acb606ba-b4ca-4b89-9426-08b45bca8950",
+      "comment": "Entrar diretamente na parte administrativa",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "111c18b0-6fe0-4321-a43b-efb595b4def8",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fac9ccc9-0dcf-41b2-a948-d509b9b51999",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddf0505e-3140-4375-aaf3-1ce2d7a8e16e",
+      "comment": "Abrir dropdown de produtos no menu lateral principal",
+      "command": "click",
+      "target": "css=.nav-item:nth-child(2) .right",
+      "targets": [
+        ["css=.nav-item:nth-child(2) .right", "css:finder"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1b7c8cb-89db-4de4-8330-fceb80eb1c2a",
+      "comment": "Clicar no botão \"Todos Produtos\" para navegar ao form",
+      "command": "click",
+      "target": "linkText=Todos Laptops",
+      "targets": [
+        ["linkText=Novo Laptop", "linkText"],
+        ["css=.menu-open .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "665a70bd-468d-41b0-96fa-b707f2b4e9bf",
+      "comment": "Verificar se foi redirecionado a listagem de produtos",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4a101b5d-9e27-4c77-a4a2-f6232b4bcf68",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86b0e57a-f66c-42c7-a813-1253f5ad75a3",
+      "comment": "Pesquisar produto cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples"
+    }, {
+      "id": "2b87c2c8-71f0-473b-9c4a-9ec72b2151a5",
+      "comment": "Confirmar que o produto existe",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d404a9f-0fd8-416a-8b2e-ebd1ace2dee7",
+      "comment": "Clicar no botão/icone de editar",
+      "command": "click",
+      "target": "css=.fa-edit",
+      "targets": [
+        ["css=.fa-edit", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/form/button/i", "xpath:idRelative"],
+        ["xpath=//form/button/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cb12e394-8b2a-41be-a9bf-ecba89009dd2",
+      "comment": "Verificar se foi redirecionado a edição de laptop",
+      "command": "assertTitle",
+      "target": "Editar Laptop | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "69e78ee5-1ef8-4317-93c2-3ad0b36911ee",
+      "comment": "Selecionar input do título",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d854da7b-5a90-4c2c-8207-2edaf0686d64",
+      "comment": "Remover título",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "219d5c13-6ca2-4d8f-bf70-3c80130df5bd",
+      "comment": "Clicar no botão \"Atualizar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Atualizar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "56981ec3-fcbb-4461-a099-771463004c0b",
+      "comment": "Verificar se foi redirecionado de volta ao form de edição",
+      "command": "assertTitle",
+      "target": "Editar Laptop | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7b4c1e48-37a9-4cc7-87f7-5dc5c18c108d",
+      "comment": "Verificar se erros foram exibidos no campos",
+      "command": "assertElementPresent",
+      "target": "css=.is-invalid",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1c531fe-94f1-4b46-b754-552c3f9c2a59",
+      "comment": "Selecionar input do título",
+      "command": "click",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e7bfb4ce-fdd0-42f0-b628-fc4787142640",
+      "comment": "Inserir novo título",
+      "command": "type",
+      "target": "id=title",
+      "targets": [
+        ["id=title", "id"],
+        ["name=title", "name"],
+        ["css=#title", "css:finder"],
+        ["xpath=//input[@id='title']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "ec077acd-4527-4596-89d6-f62214eb3b72",
+      "comment": "Selecionar textarea de descrição",
+      "command": "click",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "96fbf072-d758-4dc9-aafd-ae9c81e41648",
+      "comment": "Inserir descrição",
+      "command": "type",
+      "target": "id=description",
+      "targets": [
+        ["id=description", "id"],
+        ["name=description", "name"],
+        ["css=#description", "css:finder"],
+        ["xpath=//textarea[@id='description']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Isso é uma descrição adicionada na edição"
+    }, {
+      "id": "6a0aafe0-65f5-4a4c-aacf-0f7d060c8f4c",
+      "comment": "Clicar no botão \"Atualizar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Atualizar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7598e6e4-9bcd-4094-8908-01ddb9bc18b6",
+      "comment": "Verificar se foi redirecionado a listagem de laptops",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "89a034b0-f367-4095-b57e-ae8c90fa921c",
+      "comment": "Selecionar filtro de listagem",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3a0dda5-80bc-4fbb-9ec6-2a160f78d91a",
+      "comment": "Pesquisar laptop recém editado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "5b5b5984-969e-4e5c-960f-169d4af9445a",
+      "comment": "Confirmar que o produto com o título editado existe",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "16b95fac-3bc6-45dc-b195-0fa70fb34eee",
+    "name": "02-Exclusão de produto",
+    "commands": [{
+      "id": "749014ae-de00-4063-9c61-6a37f5fb09ef",
+      "comment": "Entrar diretamente na parte administrativa",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a9a73f4-45d6-415d-be54-647407f3a17b",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4abdbba4-b190-4bbd-b56c-5e8b64adba1b",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b12e5e0-1dae-414e-bb22-b71e5dabb474",
+      "comment": "Abrir dropdown de produtos no menu lateral principal",
+      "command": "click",
+      "target": "css=.nav-item:nth-child(2) .right",
+      "targets": [
+        ["css=.nav-item:nth-child(2) .right", "css:finder"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dff7cf54-e48b-4a82-845a-5ce84b1c0803",
+      "comment": "Clicar no botão \"Todos Produtos\" para navegar ao form",
+      "command": "click",
+      "target": "linkText=Todos Laptops",
+      "targets": [
+        ["linkText=Novo Laptop", "linkText"],
+        ["css=.menu-open .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "79feee2f-e3b3-43c5-827d-fea5a1d72675",
+      "comment": "Verificar se foi redirecionado a listagem de produtos",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "673cbc83-c74d-4225-8aff-7e59cc5b5a76",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fd332d3-c2fb-4c7e-9c7e-df5e2abd6f5c",
+      "comment": "Pesquisar produto cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "1ba3095f-33b5-46fb-81a6-a95d39d786f3",
+      "comment": "Verificar que o produto está cadastrado",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b64a267e-ed0d-4ca3-9a46-8de8cfa98817",
+      "comment": "Clicar no botão de exclusão",
+      "command": "click",
+      "target": "css=.fa-trash",
+      "targets": [
+        ["css=.fa-trash", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td/a/i", "xpath:idRelative"],
+        ["xpath=//td/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "175cc377-4381-4831-b3bc-716644607fef",
+      "comment": "Verificar se a exclusão a ser feita é do produto correto",
+      "command": "assertText",
+      "target": "id=delete-modal-text",
+      "targets": [
+        ["id=delete-modal-text", "id"],
+        ["css=#delete-modal-text", "css:finder"],
+        ["xpath=//span[@id='delete-modal-text']", "xpath:attributes"],
+        ["xpath=//div[@id='delete-modal']/div/div/div[2]/span", "xpath:idRelative"],
+        ["xpath=//div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Laptop de Teste simples editado')]", "xpath:innerText"]
+      ],
+      "value": "Laptop de Teste simples editado"
+    }, {
+      "id": "841489a2-879d-4486-afc2-6c7a0bc08fdb",
+      "comment": "Clicar no botão de confirmar exclusão",
+      "command": "click",
+      "target": "id=delete-modal-btn",
+      "targets": [
+        ["id=delete-modal-btn", "id"],
+        ["name=delete-modal-btn", "name"],
+        ["css=#delete-modal-btn", "css:finder"],
+        ["xpath=//button[@id='delete-modal-btn']", "xpath:attributes"],
+        ["xpath=//div[@id='delete-modal']/div/div/div[3]/form/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Excluir')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3482f269-ead3-42f5-afe7-8bdc0e143797",
+      "comment": "Verificar se foi redirecionado a listagem de produtos",
+      "command": "assertTitle",
+      "target": "Laptops | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "736a2e0f-3afc-4fe9-b30a-17d56c47e509",
+      "comment": "Selecionar filtro de produtos",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d82fe3f0-ef79-4f63-9499-5ec7575523cb",
+      "comment": "Pesquisar produto cadastrado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Laptop de Teste simples"
+    }, {
+      "id": "5dbf115c-b07b-41da-a651-22f051118cf1",
+      "comment": "Verificar se produto foi realmente excluído",
+      "command": "assertElementPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -428,14 +1424,14 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "8dd1e593-7971-45a9-bac7-347f67075c18", "b9cbefbd-47c2-41a8-8b1a-b5ed2344e285", "61fedc3c-d524-474d-8c16-f2668e206013", "89e63190-a61a-4726-8772-b79bbe3ff99c"]
+    "tests": ["017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
   }, {
     "id": "f139bb97-a342-4e13-a011-97ab8291a66f",
     "name": "01 - CRUD de Cliente",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["a0083d5d-58b7-41f3-bf97-2d633fb3ff64", "d44af49f-6d00-4c29-bba7-837d94f4c0d3", "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc", "ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["d44af49f-6d00-4c29-bba7-837d94f4c0d3", "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc", "ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
