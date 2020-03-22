@@ -246,7 +246,7 @@
                       <div class="col col-3">
                         <div class="form-group">
                           <label for="price">Preço<span class="text-danger text-bold"> *</span></label>
-                          <input type="text" class="form-control" name="price" id="price" value="<c:out value="${previousProduct.price}"/>">
+                          <input type="text" class="form-control" name="price" id="price"<c:if test="${previousProduct.price != -1}"> value="${previousProduct.price}"</c:if>>
                         </div>
                       </div>
                     </div>
@@ -332,7 +332,7 @@
                             <input type="checkbox" id="has-hd" name="has-hd" checked>
                             <label for="has-hd">HD</label>
                           </div>
-                          <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline" value="<c:out value="${previousProduct.hd}"/>">
+                          <input id="hd-capacity" name="hd-capacity" type="text" class="form-control d-inline"<c:if test="${previousProduct.hd != -1}"> value="${previousProduct.hd}"</c:if>>
                         </div>
                       </div>
                       <div class="col col-2">
@@ -341,7 +341,7 @@
                             <input type="checkbox" id="has-ssd" name="has-ssd" checked>
                             <label for="has-ssd">SSD</label>
                           </div>
-                          <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline" value="<c:out value="${previousProduct.ssd}"/>">
+                          <input id="ssd-capacity" name="ssd-capacity" type="text" class="form-control d-inline"<c:if test="${previousProduct.ssd != -1}"> value="${previousProduct.ssd}"</c:if>>
                         </div>
                       </div>
                       <div class="col col-1">
