@@ -155,7 +155,7 @@ public class CreditCardDAO extends AbstractDAO {
 			sql = "SELECT * from " + table + " WHERE " + idTable + "=?";
 		} else if (operation.equals("consult")) {
 			sql = "SELECT * from " + table
-					+ " INNER JOIN customers ON credit_cards.crd_cus_id=customers.cus_id WHERE customers.cus_usr_id=?";
+					+ " INNER JOIN customers ON credit_cards.crd_cus_id=customers.cus_id WHERE customers.cus_usr_id=? AND crd_deleted=false";
 		}
 
 		List<DomainEntity> creditCards = new ArrayList<DomainEntity>();

@@ -205,27 +205,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					  </div>
 					</div>
 					
-					<c:if test="${creditCard.deleted == false}">
-						<tr>
-						  <td>${creditCard.number}</td>
-						  <td>${creditCard.securityCode}</td>
-						  <td>${creditCard.printedName}</td>
-						  <td>
-						  	<form id="updateCreditCard_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
-						  		<input type="hidden" name="operation" value="prepareUpdate">
-						  		<input type="hidden" name="id" value="${creditCard.id}">
-						  		<button type="submit" class="btn-sm btn-primary">Alterar</button>
-						  	</form>
-						  </td>
-						  <td>
-						  	<form id="removeForm_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
-						  		<input type="hidden" name="operation" value="remove">
-						  		<input type="hidden" name="id" value="${creditCard.id}">
-						  		<button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#removeModal_${creditCard.id}">Remover</button>
-						  	</form>
-						  </td>
-						</tr>
-					</c:if>
+					<tr>
+					  <td>${creditCard.number}</td>
+					  <td>${creditCard.securityCode}</td>
+					  <td>${creditCard.printedName}</td>
+					  <td>
+					  	<form id="updateCreditCard_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
+					  		<input type="hidden" name="operation" value="prepareUpdate">
+					  		<input type="hidden" name="id" value="${creditCard.id}">
+					  		<button type="submit" class="btn-sm btn-primary">Alterar</button>
+					  	</form>
+					  </td>
+					  <td>
+					  	<form id="removeForm_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
+					  		<input type="hidden" name="operation" value="remove">
+					  		<input type="hidden" name="id" value="${creditCard.id}">
+					  		<button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#removeModal_${creditCard.id}">Remover</button>
+					  	</form>
+					  </td>
+					</tr>
 				</c:forEach>
             </tbody>
           </table>

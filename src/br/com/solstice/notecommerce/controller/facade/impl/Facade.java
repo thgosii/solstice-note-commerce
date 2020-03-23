@@ -13,6 +13,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCu
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCustomerDataUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDateOfBirth;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateExistsEmail;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidatePasswordStrength;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.credit_card.ValidateCreditCardData;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateBrand;
@@ -92,6 +93,7 @@ public class Facade implements IFacade {
 		customerBusinessRulesSave.add(new ValidateDateOfBirth());
 		customerBusinessRulesSave.add(new ValidateEmail());
 		customerBusinessRulesSave.add(new ValidatePasswordStrength());
+		customerBusinessRulesSave.add(new ValidateExistsEmail());
 
 		List<IStrategy> customerBusinessRulesUpdate = new ArrayList<IStrategy>();
 		customerBusinessRulesUpdate.add(new ValidateCustomerDataUpdate());
