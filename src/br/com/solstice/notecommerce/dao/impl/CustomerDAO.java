@@ -110,6 +110,8 @@ public class CustomerDAO extends AbstractDAO {
 			System.out.println("pstm: " + pstm.toString());
 
 			pstm.executeUpdate();
+			
+			new UserDAO().update(customer.getUser(), "update");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

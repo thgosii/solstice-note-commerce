@@ -1,16 +1,11 @@
 package br.com.solstice.notecommerce.dao.impl;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
@@ -19,7 +14,7 @@ import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.product.file.ProductFile;
 
 public class ProductDAO extends AbstractDAO {
-	
+
 	public ProductDAO() {
 		super("products", "prd_id");
 	}
@@ -34,7 +29,7 @@ public class ProductDAO extends AbstractDAO {
 		PreparedStatement pstm = null;
 
 		Product product = (Product) entity;
-	
+
 //		saveOrOverwriteFile(product.getImage());
 
 		String sql = "INSERT INTO `notecommerce_db`.`products` "
@@ -55,7 +50,7 @@ public class ProductDAO extends AbstractDAO {
 			pstm.setInt(10, product.getHd());
 			pstm.setInt(11, product.getSsd());
 			pstm.setString(12, product.getOs());
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
@@ -86,7 +81,7 @@ public class ProductDAO extends AbstractDAO {
 				}
 			}
 		}
-		
+
 		return 0;
 	}
 
@@ -103,7 +98,7 @@ public class ProductDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			pstm.setLong(1, product.getId());
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
@@ -132,7 +127,7 @@ public class ProductDAO extends AbstractDAO {
 		PreparedStatement pstm = null;
 
 		Product product = (Product) entity;
-	
+
 //		saveOrOverwriteFile(product.getImage());
 
 		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? WHERE `prd_id`=?";
@@ -153,7 +148,7 @@ public class ProductDAO extends AbstractDAO {
 			pstm.setString(12, product.getOs());
 
 			pstm.setLong(13, product.getId());
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
@@ -186,7 +181,7 @@ public class ProductDAO extends AbstractDAO {
 		Product product = (Product) entity;
 
 		String sql = "";
-		
+
 		if (product.getId() != -1L) {
 			operation = "findById";
 		}
@@ -196,7 +191,7 @@ public class ProductDAO extends AbstractDAO {
 		} else if (operation.equals("findById")) {
 			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND prd_deleted = false";
 		}
-		
+
 		List<DomainEntity> products = new ArrayList<DomainEntity>();
 
 		try {
@@ -206,9 +201,9 @@ public class ProductDAO extends AbstractDAO {
 			} else if (operation.equals("findById")) {
 				pstm.setLong(1, product.getId());
 			}
-			
+
 			System.out.println("pstm: " + pstm.toString());
-			
+
 			rs = pstm.executeQuery();
 
 			BrandDAO brandDAO = new BrandDAO();
@@ -217,19 +212,19 @@ public class ProductDAO extends AbstractDAO {
 				Product currentProduct = new Product();
 				currentProduct.setId(rs.getLong(idTable));
 				currentProduct.setTitle(rs.getString("prd_title"));
-				
+
 				ProductFile productFile = new ProductFile();
 				productFile.setUrl(rs.getString("prd_image_url"));
 				currentProduct.setImage(productFile);
-				
+
 				currentProduct.setPrice(rs.getDouble("prd_price"));
 				currentProduct.setDescription(rs.getString("prd_description"));
-				
+
 				Brand brand = new Brand();
 				brand.setId(rs.getLong("prd_brd_id"));
 				brand = (Brand) brandDAO.consult(brand, "findById").get(0);
 				currentProduct.setBrand(brand);
-				
+
 				currentProduct.setProcessor(rs.getString("prd_processor"));
 				currentProduct.setGraphicsCard(rs.getString("prd_graphics_card"));
 				currentProduct.setRam(rs.getInt("prd_ram"));
@@ -259,10 +254,10 @@ public class ProductDAO extends AbstractDAO {
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 //	private void saveOrOverwriteFile(ProductFile productFile) {
 //		System.out.println("Trying to save file...");
 //		if (null == productFile || null == productFile.getFileContent() || null == productFile.getAbsoluteFilePath()) {

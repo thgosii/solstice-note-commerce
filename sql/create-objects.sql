@@ -29,6 +29,17 @@ create table if not exists customers(
     foreign key (cus_usr_id) references users(usr_id)
 );
 
+create table if not exists credit_cards(
+	crd_id int auto_increment not null,
+	crd_number varchar(255),
+	crd_printed_name varchar(255),
+	crd_security_code varchar(255),
+	crd_cus_id int,
+	crd_deleted boolean default false,
+	primary key (crd_id),
+	foreign key (crd_cus_id) references customers(cus_id)
+);
+
 create table if not exists brands(
 	brd_id int auto_increment not null,
     brd_name varchar(255),

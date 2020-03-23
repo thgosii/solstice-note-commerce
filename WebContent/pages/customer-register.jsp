@@ -40,7 +40,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Crie sua conta</p>
 
-      <form action="/note-commerce/customer/signup" method="POST">
+      <form action="/note-commerce/signup" method="POST">
       	<input type="hidden" name="operation" value="save">
         <div class="form-group">
           <label for="name">Nome<span class="text-danger text-bold"> *</span></label>

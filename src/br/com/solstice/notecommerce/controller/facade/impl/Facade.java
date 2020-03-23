@@ -14,12 +14,14 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateCu
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDateOfBirth;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidatePasswordStrength;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.credit_card.ValidateCreditCardData;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateBrand;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateStorage;
 import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.BrandDAO;
+import br.com.solstice.notecommerce.dao.impl.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
 import br.com.solstice.notecommerce.dao.impl.ProductDAO;
 import br.com.solstice.notecommerce.dao.impl.UserDAO;
@@ -29,6 +31,7 @@ import br.com.solstice.notecommerce.domain.product.Product;
 import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.domain.user.customer.credit_card.CreditCard;
 
 public class Facade implements IFacade {
 
@@ -104,7 +107,21 @@ public class Facade implements IFacade {
 		// Address
 
 		// Credit Card
-
+		
+		daosMap.put(CreditCard.class.getName(), new CreditCardDAO());
+		Map<String, List<IStrategy>> creditCardBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+		
+		List<IStrategy> creditCardBusinessRulesSave = new ArrayList<IStrategy>();
+		creditCardBusinessRulesSave.add(new ValidateCreditCardData());
+		
+		List<IStrategy> creditCardBusinessRulesUpdate = new ArrayList<IStrategy>();
+		creditCardBusinessRulesUpdate.add(new ValidateCreditCardData());
+		
+		creditCardBusinessRulesMap.put("save", creditCardBusinessRulesSave);
+		creditCardBusinessRulesMap.put("update", creditCardBusinessRulesUpdate);
+		
+		businessRulesMap.put(CreditCard.class.getName(), creditCardBusinessRulesMap);
+		
 		/*
 		 * Shop
 		 */

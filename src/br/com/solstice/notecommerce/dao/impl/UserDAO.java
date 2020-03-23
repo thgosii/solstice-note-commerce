@@ -34,7 +34,7 @@ public class UserDAO extends AbstractDAO {
 			pstm.setString(2, user.getPassword());
 			pstm.setString(3, user.getRole().toString().toLowerCase());
 			pstm.setBoolean(4, user.isDeleted());
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			pstm.execute();
@@ -75,7 +75,40 @@ public class UserDAO extends AbstractDAO {
 
 	@Override
 	public void update(DomainEntity entity, String operation) {
+		openConnection();
 
+		PreparedStatement pstm = null;
+
+		User user = (User) entity;
+
+		String sql = "UPDATE " + table + " SET usr_password=? WHERE " + idTable + "=?";
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			pstm.setString(1, user.getPassword());
+			pstm.setLong(2, user.getId());
+
+			System.out.println("pstm: " + pstm.toString());
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (connection != null) {
+				try {
+					System.out.println("Closing connection from " + this.getClass().getSimpleName());
+					connection.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 	@Override
@@ -102,10 +135,10 @@ public class UserDAO extends AbstractDAO {
 			if (operation.equals("login")) {
 				pstm.setString(1, user.getEmail());
 				pstm.setString(2, user.getPassword());
-			}  else if (operation.equals("findById")) {
+			} else if (operation.equals("findById")) {
 				pstm.setLong(1, user.getId());
 			}
-			
+
 			System.out.println("pstm: " + pstm.toString());
 
 			rs = pstm.executeQuery();

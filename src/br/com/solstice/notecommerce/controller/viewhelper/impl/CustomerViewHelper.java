@@ -119,12 +119,12 @@ public class CustomerViewHelper implements IViewHelper {
 			} else if (operation.equals("consult")) {
 				User loggedUser = (User) request.getSession().getAttribute("loggedUser");
 
-				Long clientUserId = loggedUser.getId();
+				Long customerUserId = loggedUser.getId();
 
 				Customer customer = new Customer();
 
 				User user = new User();
-				user.setId(clientUserId);
+				user.setId(customerUserId);
 
 				customer.setUser(user);
 
@@ -257,7 +257,7 @@ public class CustomerViewHelper implements IViewHelper {
 				String[] messages = result.getMessage().trim().split("\n");
 				request.setAttribute("messages", messages);
 
-				request.getRequestDispatcher("/pages/customer/customer-register.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/customer-register.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
 			Customer customer = (Customer) result.getEntities().get(0);
