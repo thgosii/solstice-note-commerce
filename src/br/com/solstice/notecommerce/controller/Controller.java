@@ -17,11 +17,12 @@ import br.com.solstice.notecommerce.controller.command.impl.RemoveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.SaveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.UpdateCommand;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.BrandViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.CreditCardViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.CustomerViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.LoginViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.ProductViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.product.BrandViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.product.ProductViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.user.LoginViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.AddressViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CreditCardViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CustomerViewHelper;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 
@@ -32,6 +33,7 @@ import br.com.solstice.notecommerce.domain.Result;
 		"/admin/products",
 		"/customer",
 		"/customer/creditCards",
+		"/customer/adresses",
 		"/admin/brands" 
 		})
 @MultipartConfig
@@ -64,6 +66,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/signup", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer", new CustomerViewHelper());
 		viewHelpersMap.put("/note-commerce/customer/creditCards", new CreditCardViewHelper());
+		viewHelpersMap.put("/note-commerce/customer/adresses", new AddressViewHelper());
 
 		// shop
 	}

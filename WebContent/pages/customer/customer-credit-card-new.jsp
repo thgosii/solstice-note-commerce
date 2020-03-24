@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Meus dados
               </a>
-              <a href="#" class="dropdown-item">
+              <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
               <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
@@ -184,22 +184,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               	<c:if test="${not empty creditCard}">
               		<input type="hidden" name="id" value="${creditCard.id}">
               	</c:if>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="number">Número do cartão<span class="text-danger text-bold"> *</span></label>
                   <input type="text" class="form-control" name="number" placeholder="Número do cartão" value="${creditCard.number}" required>
                 </div>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="printedName">Nome<span class="text-danger text-bold"> *</span></label>
                   <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão" value="${creditCard.printedName}" required>
                 </div>
-                <div class="input-group mb-3">
+                <div class="form-group">
+                  <label for="securityCode">Código de segurança<span class="text-danger text-bold"> *</span></label>
                   <input type="text" class="form-control" name="securityCode" placeholder="Código de segurança" value="${creditCard.securityCode}" required>
                 </div>
-                <!--<div class="form-group">
-                  <label for="flag">Bandeira do cartÃ£o</label>
-                  <select class="form-control" id="flag" name="flag">
-                    <option value="visa">Visa</option>
-                    <option value="master card">Master Card</option>
-                  </select>
-                </div>-->
                 <div class="row">
                   <div class="col-1">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>

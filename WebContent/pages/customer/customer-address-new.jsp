@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -25,15 +26,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition layout-top-nav">
-  <c:if test="${not empty requestScope.client}">
-    <c:set var="customer" value="${requestScope.client}"/>
-  </c:if>
   <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="/note-commerce/pages/shop/products.jsp" class="navbar-brand">
+        <a href="#" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
           <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
@@ -47,7 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="/note-commerce/pages/shop/products.jsp" class="nav-link">Home</a>
+              <a href="#" class="nav-link">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -83,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="#" method="GET" class="form-inline ml-0 ml-md-3">
+          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
@@ -105,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="../shop/cart.html">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -145,7 +143,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </nav>
     <!-- /.navbar -->
 
+
+
+
     <!-- *********************************************************************************** -->
+
+
+
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -153,7 +158,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content-header">
         <div class="container">
           <div class="col-sm-6">
-            <h1>Meus dados</h1>
+            <div class="col-sm-6">
+            <h1><c:if test="${empty address}">Novo endereço</c:if><c:if test="${not empty address}">Editar endereço</c:if></h1>
+          </div>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -162,63 +169,67 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-		  <c:if test="${not empty requestScope.messages}">
-		  <div class="alert alert-danger" role="alert" style="font-size: 16px;">
-		  Erros encontrados no preenchimento do formulário:
-		  <ul>
-			<c:forEach var="message" items="${messages}">
-		      <li><c:out value="${message}"/></li>
-		    </c:forEach>
-		  </ul>
-		</div>
-		</c:if>
+          <c:if test="${not empty requestScope.messages}">
+			  <div class="alert alert-danger" role="alert" style="font-size: 16px;">
+				  Erros encontrados no preenchimento do formulário:
+				  <ul>
+					  <c:forEach var="message" items="${messages}">
+					  	<li><c:out value="${message}"/></li>
+					  </c:forEach>
+				  </ul>
+			  </div>
+	  	  </c:if>
           <div class="card">
             <div class="card-body register-card-body">
-              <form action="/note-commerce/customer" method="POST">
-              	<input type="hidden" name="operation" value="update">
-				<input type="hidden" name="customerId" value="${customer.id}">
-				<input type="hidden" name="customerUserId" value="${customer.user.id}">
-				<input type="hidden" name="cpf" value="${customer.getDecoratedCpf()}">
-				<input type="hidden" name="email" value="${customer.user.email}">
+              <form action="/note-commerce/customer/adresses" method="POST">
+              	<c:if test="${empty address}">
+              		<input type="hidden" name="operation" value="save">
+              	</c:if>
+              	<c:if test="${not empty address}">
+              		<input type="hidden" name="operation" value="update">
+              	</c:if>
+              	<c:if test="${not empty address}">
+              		<input type="hidden" name="id" value="${address.id}">
+              	</c:if>
+              	<input type="hidden" name="operation" value="save">
                 <div class="form-group">
-                  <label for="name">Nome<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Nome" value="${customer.name}">
+                  <label for="cep">CEP<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="${address.cep}" required>
                 </div>
                 <div class="form-group">
-                  <label for="cpf">CPF<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" id="cpf" placeholder="CPF" value="${customer.cpf}" disabled>
+                  <label for="publicPlace">Logradouro<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="publicPlace" name="publicPlace" placeholder="Logradouro" value="${address.publicPlace}" required>
                 </div>
                 <div class="form-group">
-                  <label for="gender">Gênero<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" name="gender">
-                    <option disabled>Gênero...</option>
-                    <option value="f" ${customer.gender.toString().toLowerCase() == 'female' ? 'selected' : ''}>Feminino</option>
-                    <option value="m" ${customer.gender.toString().toLowerCase() == 'male' ? 'selected' : ''}>Masculino</option>
+                  <label for="state">Estado<span class="text-danger text-bold"> *</span></label>
+                  <select class="form-control" id="state" name="state" data-target='#city' disabled>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="dateOfBirth">Data de nascimento<span class="text-danger text-bold"> *</span></label>
-                  <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" placeholder="Data de nascimento" value="${customer.dateOfBirth}">
+                  <label for="city">Cidade<span class="text-danger text-bold"> *</span></label>
+                  <select class="form-control" id="city" name="city" disabled>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="phone">Telefone<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" value="${customer.phone}">
+                  <label for="neighbourhood">Bairro<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" placeholder="Bairro" value="${address.neighbourhood}" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">E-mail<span class="text-danger text-bold"> *</span></label>
-                  <input type="email" class="form-control" placeholder="E-mail" id="email" value="${customer.user.email}" disabled>
+                  <label for="number">Número<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="number" name="number" placeholder="Número" value="${address.number}" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Senha<span class="text-danger text-bold"> *</span></label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
+                  <label for="complement">Complemento</label>
+                  <input type="text" class="form-control" id="complement" name="complement" value="${address.complement}" placeholder="Complemento">
                 </div>
                 <div class="form-group">
-                  <label for="confirmPassword">Confirmar senha<span class="text-danger text-bold"> *</span></label>
-                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Insira a senha novamente">
-                </div>
-                <div class="mb-3">
-		          <span>A senha deve conter: 8 caracteres, uma letra minúscula e uma maiúscula, um caractere especial ou um número</span>
-		        </div>
+	                <label for="addressType">Tipo de endereço<span class="text-danger text-bold"> *</span></label>
+	                <select class="form-control" id="type" name="type">
+	                  <option value="shipping" ${address.type.toString().toLowerCase() == 'shipping' ? 'selected' : ''}>Entrega</option>
+	                  <option value="billing" ${address.type.toString().toLowerCase() == 'billing' ? 'selected' : ''}>Cobrança</option>
+	                  <option value="shipping_and_billing" ${address.type.toString().toLowerCase() == 'shipping_and_billing' ? 'selected' : ''}>Entrega e cobrança</option>
+	                </select>
+              	</div>
                 <div class="row">
                   <div class="col-1">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
@@ -233,7 +244,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- /.content-wrapper -->
 
+
+
+
     <!-- *********************************************************************************** -->
+
+
+
 
     <!-- Main Footer -->
     <footer class="main-footer">
@@ -256,13 +273,113 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
   <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript">  
     $(document).ready(function () {
-      $("#cpf").inputmask("999.999.999-99");
-      $("#phone").inputmask({
-        mask: ["(99) 9999-9999", "(99) 99999-9999"]
-      });
+      $("#cep").inputmask("99999-999");
     });	
+    
+	let states = [];
+	let flagFocusout = false;
+	
+	function loadStates(element) {
+	  if (states.length > 0) {
+	    putStates(element);
+	    $(element).removeAttr('disabled');
+	  } else {
+	    $.ajax({
+	      url: 'https://api.myjson.com/bins/enzld',
+	      method: 'get',
+	      dataType: 'json',
+	      beforeSend: function() {
+	        $(element).html('<option>Carregando...</option>');
+	      }
+	    }).done(function(response) {
+	      states = response.estados;
+	      putStates(element);
+	      $(element).removeAttr('disabled');
+	      let target = $("#state").data('target');
+		  if (target) {
+		    loadCities(target, $("#state").children(":selected").attr("id"));
+		  }
+	    });
+	  }
+	}
+	
+	function putStates(element) {
+	  let options;
+	  for (let i in states) {
+	    let state = states[i];
+	    options += '<option value="' + state.nome + '" id="' + state.sigla + '">' + state.nome + '</option>';
+	  }
+	  $(element).html(options);
+	}
+	
+	function loadCities(element, state_initials) {
+	  if (states.length > 0) {
+	    putCities(element, state_initials);
+	    $(element).removeAttr('disabled');
+	  } else {
+	    $.ajax({
+	      url: theme_url + '/assets/json/estados.json',
+	      method: 'get',
+	      dataType: 'json',
+	      beforeSend: function() {
+	        $(element).html('<option>Carregando...</option>');
+	      }
+	    }).done(function(response) {
+	      states = response.estados;
+	      putCities(element, state_initials);
+	      $(element).removeAttr('disabled');
+	    });
+	  }
+	}
+	
+	function putCities(element, state_initials) {
+	  let options;
+	  for (let i in states) {
+	    let state = states[i];
+	    if (state.sigla != state_initials)
+	      continue;
+	    for (let j in state.cidades) {
+	      let city = state.cidades[j];
+	      options += '<option value="' + city + '" id="' + city + '">' + city + '</option>';
+	    }
+	  }
+	  $(element).html(options);
+	  if (!flagFocusout) {
+  	  	$('#cep').trigger('focusout');
+  	  	flagFocusout = true;
+	  }
+	}
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	  loadStates('#state');
+	  $(document).on('change', '#state', function(e) {
+	    let target = $(this).data('target');
+	    if (target) {
+	      loadCities(target, $(this).children(":selected").attr("id"));
+	    }
+	  });
+	}, false);
+	
+	$("#cep").focusout(function(){
+		$.ajax({
+			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+			dataType: 'json',
+			success: function(response){
+				$("#publicPlace").val(response.logradouro);
+				$("#neighbourhood").val(response.bairro);		
+				$("#state option[id='" + response.uf + "']").attr("selected", "selected");
+				$("#number").focus();
+			}
+		}).done(function(response) {
+			let target = $("#state").data('target');
+			if (target) {
+			  loadCities(target, $("#state").children(":selected").attr("id"));
+			}
+			$("#city option[id='" + response.localidade + "']").attr("selected", "selected");
+		});
+	});	
   </script>
 </body>
 

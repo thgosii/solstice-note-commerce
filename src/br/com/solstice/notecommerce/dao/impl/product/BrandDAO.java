@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.dao.impl;
+package br.com.solstice.notecommerce.dao.impl.product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

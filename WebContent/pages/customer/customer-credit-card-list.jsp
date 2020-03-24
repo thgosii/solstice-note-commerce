@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Meus dados
               </a>
-              <a href="#" class="dropdown-item">
+              <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
               <a href="#" class="dropdown-item">

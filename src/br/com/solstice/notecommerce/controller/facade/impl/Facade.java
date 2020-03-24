@@ -15,23 +15,26 @@ import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateDa
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateEmail;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidateExistsEmail;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.ValidatePasswordStrength;
+import br.com.solstice.notecommerce.controller.strategy.impl.customer.address.ValidateAddressData;
 import br.com.solstice.notecommerce.controller.strategy.impl.customer.credit_card.ValidateCreditCardData;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateBrand;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.product.ValidateStorage;
 import br.com.solstice.notecommerce.dao.IDAO;
-import br.com.solstice.notecommerce.dao.impl.BrandDAO;
-import br.com.solstice.notecommerce.dao.impl.CreditCardDAO;
-import br.com.solstice.notecommerce.dao.impl.CustomerDAO;
-import br.com.solstice.notecommerce.dao.impl.ProductDAO;
-import br.com.solstice.notecommerce.dao.impl.UserDAO;
+import br.com.solstice.notecommerce.dao.impl.product.BrandDAO;
+import br.com.solstice.notecommerce.dao.impl.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.user.UserDAO;
+import br.com.solstice.notecommerce.dao.impl.user.customer.AddressDAO;
+import br.com.solstice.notecommerce.dao.impl.user.customer.CreditCardDAO;
+import br.com.solstice.notecommerce.dao.impl.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.domain.DomainEntity;
 import br.com.solstice.notecommerce.domain.Result;
 import br.com.solstice.notecommerce.domain.product.Product;
 import br.com.solstice.notecommerce.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.domain.user.User;
 import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.domain.user.customer.address.Address;
 import br.com.solstice.notecommerce.domain.user.customer.credit_card.CreditCard;
 
 public class Facade implements IFacade {
@@ -107,7 +110,21 @@ public class Facade implements IFacade {
 		businessRulesMap.put(Customer.class.getName(), customerBusinessRulesMap);
 
 		// Address
-
+		daosMap.put(Address.class.getName(), new AddressDAO());
+		Map<String, List<IStrategy>> addressBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+		
+		List<IStrategy> addressBusinessRulesSave = new ArrayList<IStrategy>();
+		addressBusinessRulesSave.add(new ValidateAddressData());
+		
+		List<IStrategy> addressBusinessRulesUpdate = new ArrayList<IStrategy>();
+		addressBusinessRulesUpdate.add(new ValidateAddressData());
+		
+		addressBusinessRulesMap.put("save", addressBusinessRulesSave);
+		addressBusinessRulesMap.put("update", addressBusinessRulesUpdate);
+		
+		businessRulesMap.put(Address.class.getName(), addressBusinessRulesMap);
+		
+		
 		// Credit Card
 		
 		daosMap.put(CreditCard.class.getName(), new CreditCardDAO());

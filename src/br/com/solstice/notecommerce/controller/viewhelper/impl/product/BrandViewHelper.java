@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.viewhelper.impl;
+package br.com.solstice.notecommerce.controller.viewhelper.impl.product;
 
 import java.io.IOException;
 import java.io.PrintWriter;
