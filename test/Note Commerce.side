@@ -610,7 +610,256 @@
   }, {
     "id": "ff55318b-fbd6-4f7a-9764-05d292cb9ae3",
     "name": "01-Cadastro de cliente simples",
-    "commands": []
+    "commands": [{
+      "id": "cd1f8b0a-5425-47aa-a2fd-a96b5ba36168",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0e3f5313-923e-4d1b-ab28-010b6ea90eaa",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e9772100-6e0a-4850-af9d-c82579986c6e",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5928c2b-b156-4e24-814e-8abf04549a76",
+      "comment": "Clicar no botão \"Não possuo uma conta\"",
+      "command": "click",
+      "target": "linkText=Não possuo uma conta",
+      "targets": [
+        ["linkText=Não possuo uma conta", "linkText"],
+        ["css=.col-8 > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Não possuo uma conta')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/customer-register.jsp')]", "xpath:href"],
+        ["xpath=//div[3]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Não possuo uma conta')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "842c6201-72c7-44c2-9326-2863c155f1df",
+      "comment": "Verificar se foi redirecionado para tela de cadastro",
+      "command": "assertTitle",
+      "target": "Crie sua conta | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3c08be5e-77f4-445a-b48d-57de8bd74fad",
+      "comment": "Selecionar input de nome",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "90b104af-8841-4ae5-8302-c7711ecb533a",
+      "comment": "Inserir nome",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Cliente de Teste"
+    }, {
+      "id": "8e06f00b-9767-4761-84c6-aab043a327f9",
+      "comment": "Selecionar input de cpf",
+      "command": "click",
+      "target": "id=cpf",
+      "targets": [
+        ["name=gender", "name"],
+        ["css=.form-group:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//select[@name='gender']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1f294930-733c-4e97-b885-9ff57b79d8b1",
+      "comment": "Inserir cpf",
+      "command": "type",
+      "target": "id=cpf",
+      "targets": [],
+      "value": "60409456055"
+    }, {
+      "id": "822da1fe-fa8a-4b96-9532-9fd1225d4130",
+      "comment": "Selecionar select de gênero",
+      "command": "click",
+      "target": "name=gender",
+      "targets": [
+        ["name=gender", "name"],
+        ["css=.form-group:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//select[@name='gender']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f431e354-e531-478a-b500-68f3e55ef5d9",
+      "comment": "Escolher gênero masculino",
+      "command": "select",
+      "target": "name=gender",
+      "targets": [],
+      "value": "label=Masculino"
+    }, {
+      "id": "2a7646e5-6b1e-4a64-b12a-edb7c1609721",
+      "comment": "Selecionar input de data de aniversário",
+      "command": "click",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45c6d64a-b4ef-493a-862e-55ac2e96031a",
+      "comment": "Inserir data de aniversário",
+      "command": "type",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "2000-03-09"
+    }, {
+      "id": "98e0b8cf-801e-4da3-8a33-ee2edae1ae7a",
+      "comment": "Selecionar input de telefone",
+      "command": "click",
+      "target": "id=phone",
+      "targets": [
+        ["id=phone", "id"],
+        ["name=phone", "name"],
+        ["css=#phone", "css:finder"],
+        ["xpath=//input[@id='phone']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd531eb0-a036-4596-b7e3-78ebf8421f88",
+      "comment": "Inserir telefone",
+      "command": "type",
+      "target": "id=phone",
+      "targets": [],
+      "value": "11987654321"
+    }, {
+      "id": "82d52aad-3be0-4ad1-8a1b-daaece249e45",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9066ec58-19e5-4730-b364-7ddfb707cc19",
+      "comment": "Inserir email",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "cliente@teste.com"
+    }, {
+      "id": "56a69738-3744-4e63-b6f3-fcab6178d7e6",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59b0052c-9a8f-44c0-9b13-4fac38597253",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "Cliente123"
+    }, {
+      "id": "f7cbbc65-76fe-4b68-8886-7ef4973e9df3",
+      "comment": "Selecionar input de confirmar senha",
+      "command": "click",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e1cd7adc-3b3c-400a-9dac-b0a3f66a78ad",
+      "comment": "Inserir senha novamente",
+      "command": "type",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "Cliente123"
+    }, {
+      "id": "41fbfa8f-cf14-4ec7-8220-f764d8604a04",
+      "comment": "Clicar no botão de \"Cadastrar\"",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Cadastrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "abdee32c-ce45-4f95-90f3-8fc76e7917a6",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
   }, {
     "id": "d44af49f-6d00-4c29-bba7-837d94f4c0d3",
     "name": "01-Cadastro de cliente com mesmo email",
@@ -1431,7 +1680,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["d44af49f-6d00-4c29-bba7-837d94f4c0d3", "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc", "ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "d44af49f-6d00-4c29-bba7-837d94f4c0d3", "b776a9e1-dda3-48e2-9f8c-8ab4eabbcfdc", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
