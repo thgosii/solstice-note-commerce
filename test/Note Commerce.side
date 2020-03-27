@@ -2014,6 +2014,13 @@
       ],
       "value": ""
     }, {
+      "id": "60808767-a4c1-4abe-90fe-c0625ca5508f",
+      "comment": "Apagar cpf inválido",
+      "command": "type",
+      "target": "id=cpf",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "2208706b-c55d-4235-87a2-0bdb99c8810a",
       "comment": "Inserir cpf válido",
       "command": "type",
