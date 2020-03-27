@@ -220,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		          <span>A senha deve conter: 8 caracteres, uma letra minúscula e uma maiúscula, um caractere especial ou um número</span>
 		        </div>
                 <div class="row">
-                  <div class="col-1">
+                  <div class="col col-6">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                   </div>
                 </div>
