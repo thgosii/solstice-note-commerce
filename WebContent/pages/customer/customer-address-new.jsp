@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                </select>
               	</div>
                 <div class="row">
-                  <div class="col-1">
+                  <div class="col col-6">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                   </div>
                 </div>

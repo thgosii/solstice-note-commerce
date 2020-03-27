@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <input type="text" class="form-control" name="securityCode" placeholder="Código de segurança" value="${creditCard.securityCode}" required>
                 </div>
                 <div class="row">
-                  <div class="col-1">
+                  <div class="col col-6">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                   </div>
                 </div>
