@@ -49,37 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item">
               <a href="/note-commerce/pages/shop/products.jsp" class="nav-link">Home</a>
             </li>
-            <li class="nav-item dropdown">
-              <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                class="nav-link dropdown-toggle">Laptops</a>
-              <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                <li><a href="#" class="dropdown-item">Mais vendidos</a></li>
-                <li><a href="#" class="dropdown-item">Mais recentes</a></li>
 
-                <li class="dropdown-divider"></li>
-
-                <!-- Level two dropdown-->
-                <li class="dropdown-submenu dropdown-hover">
-                  <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false" class="dropdown-item dropdown-toggle">Por Marca</a>
-                  <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                    <li>
-                      <a href="#" class="dropdown-item">Acer</a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-item">Samsung</a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-item">HP</a>
-                    </li>
-                    <li>
-                      <a href="#" class="dropdown-item">Dell</a>
-                    </li>
-                  </ul>
-                </li>
-                <!-- End Level two -->
-              </ul>
-            </li>
           </ul>
 
           <!-- SEARCH FORM -->
