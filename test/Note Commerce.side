@@ -857,10 +857,6 @@
       "value": ""
     }]
   }, {
-    "id": "788d9e6c-b570-4649-aec3-211597024bda",
-    "name": "Login incorreto cliente",
-    "commands": []
-  }, {
     "id": "a65daab4-2ac6-4e91-b056-32839b51b16a",
     "name": "Login cliente",
     "commands": [{
@@ -2130,6 +2126,105 @@
     "id": "137419b2-0118-484c-963b-e892d13c2128",
     "name": "01-Edição de cliente após form inválido",
     "commands": []
+  }, {
+    "id": "1e16ee84-f40d-46ed-812c-5890ab9b529c",
+    "name": "Login incorreto cliente",
+    "commands": [{
+      "id": "a1f8636a-428d-4f5c-a1df-bddaa035614b",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e5d1e3b-7402-403d-bc02-2b1b589e13e8",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0bcad873-a3a0-46ac-971b-c56c338a9233",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efe5beaa-3f77-4366-8d10-4229c6a72f23",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "715a21c8-6e66-42b5-8521-252a833433aa",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente@teste.com"
+    }, {
+      "id": "817962e2-5276-4c02-a90d-6892410090e2",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d22e776f-d948-4c45-a183-d33b10432b03",
+      "comment": "Inserir senha incorreta",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "senhaincorreta"
+    }, {
+      "id": "33c69310-f93c-41ce-a5e8-5f3693cb0c38",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8f6e9677-bafc-49d9-91d0-64989005bae9",
+      "comment": "Verificar se foi redirecionado ao login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e89c398a-4ca4-4e07-8848-c673a29f4bac",
+      "comment": "Verificar se erro de login é exibido",
+      "command": "assertElementPresent",
+      "target": "css=.alert",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -2144,7 +2239,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "a65daab4-2ac6-4e91-b056-32839b51b16a", "788d9e6c-b570-4649-aec3-211597024bda"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
