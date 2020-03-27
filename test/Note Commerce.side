@@ -74,7 +74,7 @@
         ["xpath=//input[@name='password']", "xpath:attributes"],
         ["xpath=//div[2]/input", "xpath:position"]
       ],
-      "value": "admin"
+      "value": "Admin@123"
     }, {
       "id": "786666f8-b24c-45da-9b13-c5194e7b03d5",
       "comment": "Clicar no botão de entrar",
@@ -856,10 +856,6 @@
       "targets": [],
       "value": ""
     }]
-  }, {
-    "id": "d44af49f-6d00-4c29-bba7-837d94f4c0d3",
-    "name": "01-Cadastro de cliente com mesmo email",
-    "commands": []
   }, {
     "id": "788d9e6c-b570-4649-aec3-211597024bda",
     "name": "Login incorreto cliente",
@@ -1965,7 +1961,7 @@
         ["xpath=//input[@id='email']", "xpath:attributes"],
         ["xpath=//div[6]/input", "xpath:position"]
       ],
-      "value": "cliente@teste.com"
+      "value": "cliente2@teste.com"
     }, {
       "id": "a07b684d-0774-47c0-8ae4-eb1f0fee4469",
       "comment": "Selecionar input de senha",
@@ -2038,6 +2034,14 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "60835918-fca2-4694-a44b-a6aff8a29134",
+    "name": "01-Edição de cliente simples",
+    "commands": []
+  }, {
+    "id": "137419b2-0118-484c-963b-e892d13c2128",
+    "name": "01-Edição de cliente após form inválido",
+    "commands": []
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -2052,7 +2056,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "d44af49f-6d00-4c29-bba7-837d94f4c0d3", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
