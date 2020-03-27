@@ -2128,7 +2128,209 @@
   }, {
     "id": "60835918-fca2-4694-a44b-a6aff8a29134",
     "name": "01-Edição de cliente simples",
-    "commands": []
+    "commands": [{
+      "id": "04616761-8be0-46dd-a1a1-43ef8b2adbe3",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "400ae889-7e92-4bdb-8a9b-7d4b476541d9",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a0dc8511-a4f5-4257-8db6-9f2f614feb82",
+      "comment": "Verificar se foi redirecionado para principal (produtos)",
+      "command": "assertTitle",
+      "target": "Produtos | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b5826f8-1d91-4f67-b48b-22cd0d8bc2b5",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "linkText=usuário",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e0b49c6-fd83-49f7-86ae-8ba7e19a344e",
+      "comment": "Clicar no botão para ir aos dados do cliente",
+      "command": "click",
+      "target": "linkText=Meus dados",
+      "targets": [
+        ["linkText=Meus dados", "linkText"],
+        ["css=.dropdown-item:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer?operation=consult')]", "xpath:href"],
+        ["xpath=//li[3]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus dados')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d493cb2a-c0b0-4254-a48f-78d31f2499d2",
+      "comment": "Verificar se foi redirecionado para dados do cliente",
+      "command": "assertTitle",
+      "target": "Meus Dados | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "480a77cf-1218-4ed2-8e84-2f0ae43da9bd",
+      "comment": "Selecionar input de nome",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef3640db-1f9f-445c-b1d9-9d70eb6b01e7",
+      "comment": "Inserir novo nome",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": "Cliente de Teste Editado"
+    }, {
+      "id": "feaa5cff-1055-472e-9868-f8690c1cf07f",
+      "comment": "Selecionar select de gênero",
+      "command": "click",
+      "target": "name=gender",
+      "targets": [
+        ["name=gender", "name"],
+        ["css=.form-group:nth-child(8) > .form-control", "css:finder"],
+        ["xpath=//select[@name='gender']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "81a00dcf-8a96-452d-8efd-43cb47bd5cda",
+      "comment": "Selecionar novo gênero",
+      "command": "select",
+      "target": "name=gender",
+      "targets": [],
+      "value": "label=Feminino"
+    }, {
+      "id": "da5b493d-7be5-4e25-b393-7a04d09026d4",
+      "comment": "Selecionar input de data de nascimento",
+      "command": "click",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8d4bb523-f786-402d-a7a1-9f4b8be2111f",
+      "comment": "Inserir nova data de nascimento",
+      "command": "type",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "2000-05-13"
+    }, {
+      "id": "850b5a9b-9d86-4ec3-b663-ac3d0685fc13",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f73dbca-96d5-4dbf-bd2d-2d1efddeac01",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "Client123"
+    }, {
+      "id": "54cfc4fa-39db-423d-982f-7cf29467d64a",
+      "comment": "Selecionar input de confirmar senha",
+      "command": "click",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3dd1d537-9942-4f8a-8005-1c0914147974",
+      "comment": "Inserir confirmação de senha",
+      "command": "type",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "Client123"
+    }, {
+      "id": "7bf059d2-c0c7-453d-93d2-ae1ac16ad2f1",
+      "comment": "Clicar no botão \"Salvar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[10]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salvar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "119ccbfa-5c3c-4404-9f2a-931712fc3f0d",
+      "comment": "Verificar se foi redirecionado para dados do cliente",
+      "command": "assertTitle",
+      "target": "Meus Dados | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "95d01502-047c-444b-83f2-d41f92b86b6d",
+      "comment": "Verificar se página não apontou erros no formulário",
+      "command": "assertElementNotPresent",
+      "target": "css=.alert-danger",
+      "targets": [],
+      "value": ""
+    }]
   }, {
     "id": "137419b2-0118-484c-963b-e892d13c2128",
     "name": "01-Edição de cliente após form inválido",
