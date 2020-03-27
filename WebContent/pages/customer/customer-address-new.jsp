@@ -229,7 +229,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a target="_blank" href="https://github.com/thiago-bezerra/solstice-note-commerce">GitHub</a>
       </div>
       <!-- Default to the left -->
-      <strong>Desenvolvido por Solstice</strong>
+      <strong>Desenvolvido por</strong>
+<img src="/note-commerce/static/custom/general/img/solstice_logo.png" style="height: 25px;">
     </footer>
   </div>
   <!-- ./wrapper -->
