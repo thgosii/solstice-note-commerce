@@ -863,7 +863,95 @@
   }, {
     "id": "a65daab4-2ac6-4e91-b056-32839b51b16a",
     "name": "Login cliente",
-    "commands": []
+    "commands": [{
+      "id": "84f0ae3e-3860-4637-8551-e63d5a98df97",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "57ff0d9c-af45-49a5-9fee-4abb65c780c3",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efc1fae5-1320-4a5a-a606-663818d8f8a0",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52a84d1b-9154-4770-9aea-ea60a0451b3e",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f148cd5b-476a-4d7c-a116-ae069c1748ec",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente@teste.com"
+    }, {
+      "id": "b74c2291-4277-4afc-9b34-e7e7bec59e61",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "262153c4-521d-4cb0-86ea-17ab4a87a001",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Cliente123"
+    }, {
+      "id": "0dfffd09-1b8c-4b61-8c15-7faa51ccc4f9",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "905270d3-0136-4aa2-95bd-37e76ee6d3fe",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }]
   }, {
     "id": "2a38b781-91b6-47f6-9722-c988445e104a",
     "name": "02-Cadastro de produto após form inválido",
@@ -2056,7 +2144,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "788d9e6c-b570-4649-aec3-211597024bda", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "a65daab4-2ac6-4e91-b056-32839b51b16a", "788d9e6c-b570-4649-aec3-211597024bda"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
