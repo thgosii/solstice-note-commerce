@@ -2334,7 +2334,332 @@
   }, {
     "id": "137419b2-0118-484c-963b-e892d13c2128",
     "name": "01-Edição de cliente após form inválido",
-    "commands": []
+    "commands": [{
+      "id": "7a7707e3-07bb-4375-b71a-f017a002fa5d",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cbc19009-ea90-4f16-82f8-30f5981f3c40",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e011bf18-e4d9-46c9-a663-8773eb63ada5",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "linkText=usuário",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "04cbe8a7-b964-47a0-8719-facc6a58e3cb",
+      "comment": "Clicar no botão para ir aos dados do cliente",
+      "command": "click",
+      "target": "linkText=Meus dados",
+      "targets": [
+        ["linkText=Meus dados", "linkText"],
+        ["css=.dropdown-item:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer?operation=consult')]", "xpath:href"],
+        ["xpath=//li[3]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus dados')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7153879-cc3a-4e8e-ae4e-f7b447c05555",
+      "comment": "Verificar se foi redirecionado para dados do cliente",
+      "command": "assertTitle",
+      "target": "Meus Dados | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6380c40c-acf8-443d-9d4f-ee1b9d9255b2",
+      "comment": "Selecionar input de nome",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9b273fc-ae58-4a99-83c8-3c1fc616c409",
+      "comment": "Deixar input de nome em branco",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a13fd65f-4cb9-4317-ad96-bd7d3847f8a5",
+      "comment": "Selecionar input de data de nascimento",
+      "command": "click",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09764b7c-e8ec-40b8-b3b4-b95a7366e060",
+      "comment": "Inserir data de nascimento inválida",
+      "command": "type",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "2999-05-13"
+    }, {
+      "id": "7d9a07c2-c2df-43da-9c9a-cd389fb00bf6",
+      "comment": "Selecionar input de telefone",
+      "command": "click",
+      "target": "id=phone",
+      "targets": [
+        ["id=phone", "id"],
+        ["name=phone", "name"],
+        ["css=#phone", "css:finder"],
+        ["xpath=//input[@id='phone']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc878b4f-8e6b-4ae2-8607-dc42148279f8",
+      "comment": "Inserir telefone",
+      "command": "click",
+      "target": "id=phone",
+      "targets": [
+        ["id=phone", "id"],
+        ["name=phone", "name"],
+        ["css=#phone", "css:finder"],
+        ["xpath=//input[@id='phone']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4141f739-c304-46e1-8431-69fcadf0f0e3",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cba4595d-b753-4828-ac84-09c102026c25",
+      "comment": "Inserir senha incorreta",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "123456789"
+    }, {
+      "id": "b530b11c-0c77-4200-a676-b798c3ea4839",
+      "comment": "Selecionar input de confirmar senha",
+      "command": "click",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f964e34-4268-465b-ae1d-749f89f8b5cc",
+      "comment": "Inserir confirmação de senha diferente",
+      "command": "type",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "8d27b8ba-6b23-4a9c-acf9-4a647b4a7304",
+      "comment": "Clicar no botão de \"Salvar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[10]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salvar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f66a0093-89fd-41ef-bfc8-82d0c690ae39",
+      "comment": "Verificar se página avisa sobre erros no formulário",
+      "command": "assertElementPresent",
+      "target": "css=.alert-danger",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "94c8ecee-ab91-4f6d-8f21-78ab4675a24a",
+      "comment": "Selecionar input de nome",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4d24343-9322-405b-bb79-b1e2291ea510",
+      "comment": "Inserir novo nome",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=name", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": "Cliente de Teste Editado"
+    }, {
+      "id": "7cb120f3-1be6-40d5-a61d-e55595a7d438",
+      "comment": "Selecionar input de data de nascimento",
+      "command": "click",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d5d09853-6605-4397-984a-bb5b81256180",
+      "comment": "Inserir data de nascimento inválida",
+      "command": "type",
+      "target": "id=dateOfBirth",
+      "targets": [
+        ["id=dateOfBirth", "id"],
+        ["name=dateOfBirth", "name"],
+        ["css=#dateOfBirth", "css:finder"],
+        ["xpath=//input[@id='dateOfBirth']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "1999-01-01"
+    }, {
+      "id": "99a8a45b-7dfb-4347-b205-e6815dd201ca",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b77e752-94f4-4321-885b-a6b5d7b07625",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "Client123"
+    }, {
+      "id": "91dcd7fc-6c48-4cd2-bcf0-04b42b19d203",
+      "comment": "Selecionar input de confirmar senha",
+      "command": "click",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53b27ffc-aa83-4aa6-af83-a91acd892ba2",
+      "comment": "Inserir confirmação de senha",
+      "command": "type",
+      "target": "id=confirmPassword",
+      "targets": [
+        ["id=confirmPassword", "id"],
+        ["name=confirmPassword", "name"],
+        ["css=#confirmPassword", "css:finder"],
+        ["xpath=//input[@id='confirmPassword']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "Client123"
+    }, {
+      "id": "6dc9c8aa-e721-4394-aa46-545069c75b9d",
+      "comment": "Clicar no botão \"Salvar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[10]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salvar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c86f7216-fb11-49b2-a16e-c2bc33e9fb07",
+      "comment": "Verificar se foi redirecionado para dados do cliente",
+      "command": "assertTitle",
+      "target": "Meus Dados | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fafb3b09-98e6-42a4-9134-ef70abd69ea1",
+      "comment": "Verificar se página não apontou erros no formulário",
+      "command": "assertElementNotPresent",
+      "target": "css=.alert-danger",
+      "targets": [],
+      "value": ""
+    }]
   }, {
     "id": "1e16ee84-f40d-46ed-812c-5890ab9b529c",
     "name": "Login incorreto cliente",
@@ -2448,7 +2773,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "60835918-fca2-4694-a44b-a6aff8a29134", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
