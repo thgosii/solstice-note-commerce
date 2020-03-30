@@ -11,5 +11,8 @@ The `Note Commerce.side` file contains a Selenium IDE (browser extension ver.) f
 5. Choose the first test of the test suit you want to run, and click on the "Run all tests" (`Ctrl+Shift+R`) button,
 in the top-middle of the window
 
+Make sure the project is running at localhost on port 8080 and the context is `note-commerce`, 
+as the URLs opened by the tests are hardcoded to http://localhost:8080/note-commerce/...
+
 If you want to run tests individually (not following the test suit sequence), 
 make sure that you're already in a state that tests requires (already logged in, for example).
