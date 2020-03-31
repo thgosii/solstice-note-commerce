@@ -97,7 +97,7 @@
     }]
   }, {
     "id": "91741aa8-1a9f-44d9-8768-d94b6f237f8c",
-    "name": "02-Cadastro de produto simples",
+    "name": "4 Cadastro de produto simples",
     "commands": [{
       "id": "0c1964ed-6e63-449c-9823-2078d62a6df8",
       "comment": "Entrar diretamente na parte administrativa",
@@ -390,7 +390,7 @@
     }]
   }, {
     "id": "61fedc3c-d524-474d-8c16-f2668e206013",
-    "name": "02-Edição de produto simples",
+    "name": "4 Edição de produto simples",
     "commands": [{
       "id": "30a41b3d-614d-4d73-b2c8-0e6c16cd5a80",
       "comment": "Entrar diretamente na parte administrativa",
@@ -605,7 +605,7 @@
     }]
   }, {
     "id": "ff55318b-fbd6-4f7a-9764-05d292cb9ae3",
-    "name": "01-Cadastro de cliente simples",
+    "name": "1 Cadastro de cliente simples",
     "commands": [{
       "id": "cd1f8b0a-5425-47aa-a2fd-a96b5ba36168",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -950,7 +950,7 @@
     }]
   }, {
     "id": "2a38b781-91b6-47f6-9722-c988445e104a",
-    "name": "02-Cadastro de produto após form inválido",
+    "name": "4 Cadastro de produto após form inválido",
     "commands": [{
       "id": "67d80a29-0c15-4bef-a968-5439616f5af1",
       "comment": "Entrar diretamente na parte administrativa",
@@ -1309,7 +1309,7 @@
     }]
   }, {
     "id": "40cc4469-034b-48a6-bc47-6dfd59548a35",
-    "name": "02-Edição de produto após form inválido",
+    "name": "4 Edição de produto após form inválido",
     "commands": [{
       "id": "acb606ba-b4ca-4b89-9426-08b45bca8950",
       "comment": "Entrar diretamente na parte administrativa",
@@ -1581,7 +1581,7 @@
     }]
   }, {
     "id": "16b95fac-3bc6-45dc-b195-0fa70fb34eee",
-    "name": "02-Exclusão de produto",
+    "name": "4 Exclusão de produto",
     "commands": [{
       "id": "749014ae-de00-4063-9c61-6a37f5fb09ef",
       "comment": "Entrar diretamente na parte administrativa",
@@ -1744,7 +1744,7 @@
     }]
   }, {
     "id": "73c6f640-0e98-4b9e-a908-1466040103e9",
-    "name": "01-Cadastro de cliente simples após form inválido",
+    "name": "1 Cadastro de cliente simples após form inválido",
     "commands": [{
       "id": "40d2ac14-f88f-4bbf-a7f5-6c84405e2345",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -2127,7 +2127,7 @@
     }]
   }, {
     "id": "60835918-fca2-4694-a44b-a6aff8a29134",
-    "name": "01-Edição de cliente simples",
+    "name": "1 Edição de cliente simples",
     "commands": [{
       "id": "04616761-8be0-46dd-a1a1-43ef8b2adbe3",
       "comment": "Acessar página principal da loja",
@@ -2333,7 +2333,7 @@
     }]
   }, {
     "id": "137419b2-0118-484c-963b-e892d13c2128",
-    "name": "01-Edição de cliente após form inválido",
+    "name": "1 Edição de cliente após form inválido",
     "commands": [{
       "id": "7a7707e3-07bb-4375-b71a-f017a002fa5d",
       "comment": "Acessar página principal da loja",
@@ -2759,21 +2759,43 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "4b552ac5-fc17-41fb-9e00-c73b973ae8b1",
+    "name": "2 Cadastro de cartão",
+    "commands": []
+  }, {
+    "id": "cb1bd460-acd6-4f6d-8dc5-2a7f5f8897f6",
+    "name": "2 Edição de cartão",
+    "commands": []
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
-    "name": "02 - CRUD de Produtos",
+    "name": "4 - CRUD de Produto",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
     "tests": ["017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
   }, {
     "id": "f139bb97-a342-4e13-a011-97ab8291a66f",
-    "name": "01 - CRUD de Cliente",
+    "name": "1 - CRUD de Cliente",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "60835918-fca2-4694-a44b-a6aff8a29134", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128"]
+  }, {
+    "id": "287c9be9-7224-40eb-a3ed-b4649e5b5aa8",
+    "name": "2 - CRUD de Cartão",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a"]
+  }, {
+    "id": "520c11d0-8c06-448d-9959-87e2667f740a",
+    "name": "3 - CRUD de Endereço",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
