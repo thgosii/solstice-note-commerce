@@ -346,36 +346,8 @@
             <!-- /.col -->
 
             <div class="col-md-9">
-              <div class="row">
-
-                <!-- <div class="col col-4">
-                  <div class="card card-primary product-card">
-                    <div class="card-body text-center">
-                      <a href="#">
-                        <img src="../../static/custom/general/img/laptop-sample2.png" class="img-fluid">
-                      </a>
-                    </div>
-                    <div class="card-footer">
-                      <div class="row mb-3">
-                        <a href="#" class="product-desc text-sm">
-                          Notebook Acer Aspire 5 AMD 12 971240 dsiofsd anf oageaes ogve
-                          ARADEON RTX ON asd asdas dasd sa asda sd d asd sa
-                        </a>
-                      </div>
-                      <div class="row">
-                        <div class="col-10">
-                          <span class="font-weight-bold">R$ 2.444,21</span>
-                        </div>
-                        <div class="col-2">
-                          <button class="btn btn-sm btn-success" type="button" value="2">
-                            <i class="fas fa-cart-plus"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                
+              <div class="row" id="products-row">
+            
               </div>
             </div>
             <!-- /.col -->
@@ -410,6 +382,34 @@
     </footer>
   </div>
   <!-- ./wrapper -->
+  
+  <template id="product-card">
+	  <div class="col col-4">
+	     <div class="card card-primary product-card">
+	       <div class="card-body text-center">
+	         <a href="#" id="product-image-link">
+	           <img id="product-image" class="img-fluid">
+	         </a>
+	       </div>
+	       <div class="card-footer">
+	         <div class="row mb-3">
+	           <a href="#" id="product-name-link" class="product-desc text-sm">
+	           </a>
+	         </div>
+	         <div class="row">
+	           <div class="col-10">
+	             <span class="font-weight-bold" id="product-price"></span>
+	           </div>
+	           <div class="col-2">
+	             <button class="btn btn-sm btn-success" type="button" value="2">
+	               <i class="fas fa-cart-plus"></i>
+	             </button>
+	           </div>
+	         </div>
+	       </div>
+	     </div>
+	   </div>
+   </template>
 
   <!-- REQUIRED SCRIPTS -->
 
@@ -422,6 +422,32 @@
 
   <!-- Bootstrap slider -->
   <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+  <script>
+	  function moneyMask(value) {
+	    value = value.toString().replace(/\D/g,"");
+	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
+	    value = value.toString().replace(/(\d)(\d{5})$/,"$1.$2");
+	    value = value.toString().replace(/(\d)(\d{2})$/,"$1,$2");
+	    return value;                
+	  }
+	  
+	  $(document).ready(() => {
+		   	$.ajax({
+		   	    url:'/note-commerce/shop/products?operation=consult',
+		   	    type:'GET',
+		   	    dataType: 'json',
+		   	    success: function( json ) {
+		   	        $.each(json, function(i, value) {
+		   	           let card=$($('#product-card').html());
+		   	           card.find("#product-name-link").text(value.title);
+		   	           card.find("#product-image").attr('src', value.imageURL);
+		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
+		   	           $('#products-row').append(card);
+		   	        });
+		   	    }
+		   	});
+	  })
+  </script>
 </body>
 
 </html>
