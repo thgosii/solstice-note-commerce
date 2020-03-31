@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 </head>
 
-<body class="hold-transition layout-top-nav">
+<body class="hold-transition layout-top-nav">  
   <c:if test="${not empty requestScope.client}">
     <c:set var="customer" value="${requestScope.client}"/>
   </c:if>
@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       $("#phone").inputmask({
         mask: ["(99) 9999-9999", "(99) 99999-9999"]
       });
-    });	
+    });
   </script>
 </body>
 

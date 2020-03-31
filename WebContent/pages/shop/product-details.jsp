@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+
 <!DOCTYPE html>
-<!--
-	This is a starter template page. Use this page to start your new project from
-	scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="pt-br">
 
 <head>
@@ -13,21 +14,24 @@
   <title>LapTop Computadores</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
 </head>
 
 <body class="hold-transition layout-top-nav">
+  <c:if test="${not empty requestScope.product}">
+    <c:set var="product" value="${requestScope.product}"/>
+  </c:if>
   <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="products.html" class="navbar-brand">
+        <a href="/note-commerce/pages/products.jsp" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
           <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
@@ -41,7 +45,7 @@
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="products.html" class="nav-link">Home</a>
+              <a href="/note-commerce/pages/products.jsp" class="nav-link">Home</a>
             </li>
 
           </ul>
@@ -69,7 +73,7 @@
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="cart.html">
+            <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge">4</span>
             </a>
@@ -83,13 +87,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
-              <a href="../customer/customer-profile.html" class="dropdown-item">
+              <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Meus dados
               </a>
-              <a href="../customer/customer-address-list.html" class="dropdown-item">
+              <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
-              <a href="../customer/customer-credit-card-list.html" class="dropdown-item">
+              <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
               <a href="sales.html" class="dropdown-item">
@@ -118,43 +122,55 @@
               <div class="col-12 col-sm-6">
                 <h3 class="d-inline-block d-sm-none">Notebook Acer Aspire 5</h3>
                 <div class="col-12">
-                  <img src="../../static/custom/general/img/laptop-sample3.png" class="product-image"
+                  <img src="${product.image.url}" class="product-image"
                     alt="Product Image">
                 </div>
               </div>
               <div class="col-12 col-sm-6">
-                <h3 class="my-3">Notebook Acer Aspire 5</h3>
+                <h3 class="my-3">${product.title}</h3>
                 <hr>
                 <h5>Especificações</h5>
                 <table class="table">
                   <tr>
                     <td><strong>Marca</strong></td>
-                    <td>Acer</td>
+                    <td>${product.brand.name}</td>
                   </tr>
                   <tr>
                     <td><strong>Processador</strong></td>
-                    <td>I5</td>
+                    <td>${product.processor}</td>
                   </tr>
                   <tr>
                     <td><strong>Placa de vídeo</strong></td>
-                    <td>Intel graphics 1540</td>
+                    <td>${product.graphicsCard}</td>
                   </tr>
                   <tr>
                     <td><strong>Memória RAM</strong></td>
-                    <td>8GB</td>
+                    <td>${product.ram}</td>
                   </tr>
                   <tr>
                     <td><strong>Tamanho do monitor</strong></td>
-                    <td>13.5</td>
+                    <td>${product.monitor}</td>
                   </tr>
                   <tr>
                     <td><strong>Armazenamento</strong></td>
-                    <td>SSD</td>
+                    <td>
+                    	<c:if test="${product.hd ne -1}">
+							<c:out value="${product.hd}GB HD"/>
+						</c:if>
+						<c:if test="${product.ssd ne -1}">
+							<c:out value=" ${product.ssd}GB SSD"/>
+						</c:if>
+					</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sistema operacional</strong></td>
+                    <td>${product.os}</td>
                   </tr>
                 </table>
                 <hr>
                 <h2>
-                  R$ 2.444,21
+                  <fmt:setLocale value="pt_BR"/>
+                  <fmt:formatNumber value="${product.price}" type="currency"/>
                 </h2>
                 <hr>
                 <div class="row">
@@ -169,18 +185,9 @@
                 </div>
               </div>
             </div>
-            <div class="row mt-5">
+            <div class="col mt-5">
               <h4>Descrição</h4>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae condimentum erat. Vestibulum ante
-                ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed posuere, purus at efficitur
-                hendrerit, augue elit lacinia arcu, a eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet
-                cursus dolor fermentum vel. Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius
-                finibus purus sed venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper
-                risus. Vestibulum erat erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit
-                mauris, in pellentesque urna pellentesque viverra. Nullam non pellentesque justo, et ultricies neque.
-                Praesent vel metus rutrum, tempus erat a, rutrum ante. Quisque interdum efficitur nunc vitae
-                consectetur. Suspendisse venenatis, tortor non convallis interdum, urna mi molestie eros, vel tempor
-                justo lacus ac justo. Fusce id enim a erat fringilla sollicitudin ultrices vel metus.</p>
+              <p>${product.description}</p>
             </div>
           </div>
         </div>
@@ -204,11 +211,11 @@
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>

@@ -409,7 +409,7 @@
 	       </div>
 	     </div>
 	   </div>
-   </template>
+  </template>
 
   <!-- REQUIRED SCRIPTS -->
 
@@ -423,6 +423,7 @@
   <!-- Bootstrap slider -->
   <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
   <script>
+  	  // https://pt.stackoverflow.com/a/102549
 	  function moneyMask(value) {
 	    value = value.toString().replace(/\D/g,"");
 	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
@@ -440,6 +441,7 @@
 		   	        $.each(json, function(i, value) {
 		   	           let card=$($('#product-card').html());
 		   	           card.find("#product-name-link").text(value.title);
+		   	           card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
 		   	           card.find("#product-image").attr('src', value.imageURL);
 		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
 		   	           $('#products-row').append(card);
