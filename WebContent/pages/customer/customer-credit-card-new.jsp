@@ -160,11 +160,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="form-group">
                   <label for="printedName">Nome<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão" value="${creditCard.printedName}" required>
+                  <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão" pattern="\d{4} \d{4} \d{4} \d{4}" value="${creditCard.printedName}" maxlength="100" required>
                 </div>
                 <div class="form-group">
                   <label for="securityCode">Código de segurança<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" name="securityCode" placeholder="Código de segurança" value="${creditCard.securityCode}" required>
+                  <input type="password" class="form-control" name="securityCode" placeholder="Código de segurança" pattern="\d{3}" maxlength="3" value="${creditCard.securityCode}" required>
                 </div>
                 <div class="row">
                   <div class="col col-6">
@@ -209,6 +209,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+  <!-- jQuery InputMask -->
+  <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+  
+  <script>
+  	$(document).ready(() => {
+
+ 	  $("input[name=number]").inputmask("9999 9999 9999 9999");
+ 	   	  
+  	});
+  </script>
 </body>
 
 </html>
