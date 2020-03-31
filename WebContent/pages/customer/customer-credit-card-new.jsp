@@ -156,11 +156,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               	</c:if>
                 <div class="form-group">
                   <label for="number">Número do cartão<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" name="number" placeholder="Número do cartão" value="${creditCard.number}" required>
+                  <input type="text" class="form-control" name="number" placeholder="Número do cartão" pattern="\d{4} \d{4} \d{4} \d{4}" value="${creditCard.number}" required>
                 </div>
                 <div class="form-group">
                   <label for="printedName">Nome<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão" pattern="\d{4} \d{4} \d{4} \d{4}" value="${creditCard.printedName}" maxlength="100" required>
+                  <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão" value="${creditCard.printedName}" maxlength="100" required>
                 </div>
                 <div class="form-group">
                   <label for="securityCode">Código de segurança<span class="text-danger text-bold"> *</span></label>
