@@ -3072,6 +3072,398 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "7e3bbe58-f249-41a5-b045-ead8ab719dfc",
+    "name": "3 Cadastro de endereço",
+    "commands": [{
+      "id": "eb9031c9-d649-4240-a8de-094aaf03468a",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d87689f-ce1b-4e20-bef2-55c75382ac1d",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cb19549b-9452-43ea-a613-1ced311bae63",
+      "comment": "Verificar se foi redirecionado para principal (produtos)",
+      "command": "assertTitle",
+      "target": "Produtos | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2194af07-b11e-4f66-b579-4c77f17b8de0",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "linkText=usuário",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef8a545c-aec8-4514-ae80-a0a2742d8f89",
+      "comment": "Clicar no botão \"Meus endereços\"",
+      "command": "click",
+      "target": "linkText=Meus endereços",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea19c7e0-ac8f-4193-b821-03e4f717febb",
+      "comment": "Verificar se foi redirecionado para listagem de endereços",
+      "command": "assertTitle",
+      "target": "Meus Endereços | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "070982dc-6377-451f-a0ff-fb42760f32cf",
+      "comment": "Clicar no botão \"Novo endereço\"",
+      "command": "click",
+      "target": "linkText=+ Novo endereço",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "df0cb76d-294a-4fe2-9a73-b4327588de4d",
+      "comment": "Selecionar input de CEP",
+      "command": "click",
+      "target": "id=cep",
+      "targets": [
+        ["id=cep", "id"],
+        ["name=cep", "name"],
+        ["css=#cep", "css:finder"],
+        ["xpath=//input[@id='cep']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72cfa676-4e22-43b6-85ab-839947ad5f6b",
+      "comment": "Inserir CEP",
+      "command": "type",
+      "target": "id=cep",
+      "targets": [],
+      "value": "49087-245"
+    }, {
+      "id": "021c1934-b91c-4793-a8db-fcc8188cd1dc",
+      "comment": "Deselecionar input de CEP para ativar evento",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=.content", "css:finder"],
+        ["xpath=//div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "576d6139-a5fd-4e50-b91c-33c9648a2731",
+      "comment": "Esperar o estado ser preenchido automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=state",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "71837e9c-3b8c-497b-b8b5-6c4b15f7bb6f",
+      "comment": "Esperar a cidade ser preenchida automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=city",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "03741a81-e806-4e98-b937-3f1b091d9251",
+      "comment": "Esperar o bairro ser preenchido automaticamente",
+      "command": "assertValue",
+      "target": "id=neighbourhood",
+      "targets": [],
+      "value": "Santos Dumont"
+    }, {
+      "id": "6f655f30-f141-4c0d-a3a2-c8355f3da6b0",
+      "comment": "Selecionar input de número",
+      "command": "click",
+      "target": "id=number",
+      "targets": [
+        ["id=number", "id"],
+        ["name=number", "name"],
+        ["css=#number", "css:finder"],
+        ["xpath=//input[@id='number']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a11d675-cc01-4144-92af-6f8dc5953aef",
+      "comment": "Inserir número",
+      "command": "type",
+      "target": "id=number",
+      "targets": [
+        ["id=number", "id"],
+        ["name=number", "name"],
+        ["css=#number", "css:finder"],
+        ["xpath=//input[@id='number']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "439b802c-1103-48e5-bda7-c81634c20411",
+      "comment": "Selecionar input de complemento",
+      "command": "click",
+      "target": "id=complement",
+      "targets": [
+        ["id=complement", "id"],
+        ["name=complement", "name"],
+        ["css=#complement", "css:finder"],
+        ["xpath=//input[@id='complement']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd791641-833e-4b05-84db-c85a63171851",
+      "comment": "Inserir complemento",
+      "command": "type",
+      "target": "id=complement",
+      "targets": [
+        ["id=complement", "id"],
+        ["name=complement", "name"],
+        ["css=#complement", "css:finder"],
+        ["xpath=//input[@id='complement']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "fundos"
+    }, {
+      "id": "9301e563-9f83-40b5-b2af-11147db43faa",
+      "comment": "Selecionar select de tipo de endereço",
+      "command": "click",
+      "target": "id=type",
+      "targets": [
+        ["id=type", "id"],
+        ["name=type", "name"],
+        ["css=#type", "css:finder"],
+        ["xpath=//select[@id='type']", "xpath:attributes"],
+        ["xpath=//div[8]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9a4d166-f7c4-497b-a4b0-1ed7f9abc350",
+      "comment": "Selecionar tipo \"Entrega e cobrança\"",
+      "command": "select",
+      "target": "id=type",
+      "targets": [],
+      "value": "label=Entrega e cobrança"
+    }, {
+      "id": "85b48302-e1b7-4dc7-99ea-8b9cadfb58c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=#type > option:nth-child(3)",
+      "targets": [
+        ["css=#type > option:nth-child(3)", "css:finder"],
+        ["xpath=//option[@value='shipping_and_billing']", "xpath:attributes"],
+        ["xpath=//select[@id='type']/option[3]", "xpath:idRelative"],
+        ["xpath=//div[8]/select/option[3]", "xpath:position"],
+        ["xpath=//option[contains(.,'Entrega e cobrança')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5c4a666e-80ec-4b7b-9fb7-62b7ee902ad1",
+      "comment": "Selecionar botão de \"Salvar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salvar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a151e34-d8a5-4e4c-809a-d86e1982d022",
+      "comment": "Verificar se foi redirecionado para listagem de endereços",
+      "command": "assertTitle",
+      "target": "Meus Endereços | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "803a49a7-7398-41b7-ba04-2a84549dcc74",
+      "comment": "Verificar se há um endereço na listagem",
+      "command": "assertElementPresent",
+      "target": "css=tbody tr",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "bce62a3c-00c9-4483-9125-d379ac3db4ca",
+    "name": "3 Edição de endereço",
+    "commands": [{
+      "id": "835e224b-91cf-4b2e-b46d-3a41558bbe17",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "111dbca2-bca0-4670-bc84-9e979929a4d2",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1146x1023",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4a8d88b5-07be-46d3-a642-8b809bbd7805",
+      "comment": "Verificar se foi redirecionado para principal (produtos)",
+      "command": "assertTitle",
+      "target": "Produtos | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5b08c9f-226d-4676-8dd5-d392461e506c",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "linkText=usuário",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9bda1d8a-3459-4c2e-a45d-59f5b25bfc09",
+      "comment": "Clicar no botão \"Meus Cartões\"",
+      "command": "click",
+      "target": "linkText=Meus cartões",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b8fd7596-f8bb-4290-a652-ebd16caaca24",
+      "comment": "Verificar se foi redirecionado para listagem de cartões",
+      "command": "assertTitle",
+      "target": "Meus Cartões | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6b4c00e9-a4cd-4848-a576-9681cf31cc40",
+      "comment": "Verificar se há um cartão na listagem",
+      "command": "assertElementPresent",
+      "target": "css=tbody tr",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae027adf-5515-4a6e-b523-65e3ec58a83a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#updateCreditCard_1 > .btn-sm",
+      "targets": [
+        ["css=#updateCreditCard_1 > .btn-sm", "css:finder"],
+        ["xpath=(//button[@type='submit'])[7]", "xpath:attributes"],
+        ["xpath=//form[@id='updateCreditCard_1']/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Alterar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a60c39cc-8902-469f-9a09-2aadc0f5a0b9",
+      "comment": "Selecionar input de cartão",
+      "command": "click",
+      "target": "name=number",
+      "targets": [
+        ["name=number", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='number']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c8124e7-5b22-41fd-a639-bf01fd42d84a",
+      "comment": "Inserir número de cartão",
+      "command": "type",
+      "target": "name=number",
+      "targets": [],
+      "value": "0101 2323 4567 9876"
+    }, {
+      "id": "2e79d8f5-d75f-4874-b79d-71d75f674169",
+      "comment": "Selecionar input de nome no cartão",
+      "command": "click",
+      "target": "name=printedName",
+      "targets": [
+        ["name=printedName", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='printedName']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fd86280-7473-413b-bd5f-d6d51f2de0c6",
+      "comment": "Inserir nome no cartão",
+      "command": "type",
+      "target": "name=printedName",
+      "targets": [],
+      "value": "CLIENTE NOVO NOME"
+    }, {
+      "id": "41a2d17b-5727-4704-b59e-03b136e8ac93",
+      "comment": "Selecionar input de código de segurança",
+      "command": "click",
+      "target": "name=securityCode",
+      "targets": [
+        ["name=securityCode", "name"],
+        ["css=.form-group:nth-child(4) > .form-control", "css:finder"],
+        ["xpath=//input[@name='securityCode']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b8f37a0-9187-4201-9e93-727e25851dec",
+      "comment": "Inserir código de segurança",
+      "command": "type",
+      "target": "name=securityCode",
+      "targets": [],
+      "value": "321"
+    }, {
+      "id": "3c1fefaf-7839-4cf3-a7d7-08487803b2a5",
+      "comment": "Selecionar botão de \"Salvar\"",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Salvar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf24acb0-9974-4ef7-9501-2d97f19e3b8d",
+      "comment": "Verificar se foi redirecionado para listagem de cartões",
+      "command": "assertTitle",
+      "target": "Meus Cartões | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "27c1eac0-e02b-4acc-b0f8-2c1c9ec68a97",
+      "comment": "Verificar se há um cartão na listagem",
+      "command": "assertElementPresent",
+      "target": "css=tbody tr",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -3086,21 +3478,21 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
   }, {
     "id": "287c9be9-7224-40eb-a3ed-b4649e5b5aa8",
     "name": "2 - CRUD de Cartão",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1"]
+    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
   }, {
     "id": "520c11d0-8c06-448d-9959-87e2667f740a",
     "name": "3 - CRUD de Endereço",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a"]
+    "tests": ["a65daab4-2ac6-4e91-b056-32839b51b16a", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
