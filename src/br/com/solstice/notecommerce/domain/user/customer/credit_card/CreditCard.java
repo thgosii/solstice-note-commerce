@@ -42,4 +42,10 @@ public class CreditCard extends DomainEntity {
 		this.customer = customer;
 	}
 
+	@Override
+	public String toString() {
+		return "CreditCard [number=" + number + ", securityCode=" + securityCode + ", printedName=" + printedName
+				+ ", customer=" + customer + ", getId()=" + getId() + "]";
+	}
+
 }

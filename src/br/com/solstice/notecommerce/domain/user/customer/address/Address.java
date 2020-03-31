@@ -87,4 +87,11 @@ public class Address extends DomainEntity {
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [cep=" + cep + ", publicPlace=" + publicPlace + ", number=" + number + ", complement="
+				+ complement + ", neighbourhood=" + neighbourhood + ", city=" + city + ", state=" + state
+				+ ", customer=" + customer + ", type=" + type + ", getId()=" + getId() + "]";
+	}
+
 }
