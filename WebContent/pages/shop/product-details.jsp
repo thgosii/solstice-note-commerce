@@ -31,7 +31,7 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="/note-commerce/pages/products.jsp" class="navbar-brand">
+        <a href="/note-commerce/pages/shop/products.jsp" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
           <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
@@ -45,7 +45,7 @@
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="/note-commerce/pages/products.jsp" class="nav-link">Home</a>
+              <a href="/note-commerce/pages/shop/products.jsp" class="nav-link">Home</a>
             </li>
 
           </ul>
