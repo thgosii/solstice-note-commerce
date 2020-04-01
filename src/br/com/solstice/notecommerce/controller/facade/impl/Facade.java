@@ -163,7 +163,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result save(DomainEntity entity, String operation) {
+	public Result save(DomainEntity entity) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -177,7 +177,7 @@ public class Facade implements IFacade {
 		result.getEntities().add(entity);
 
 		if (stringBuilder.length() == 0) {
-			daosMap.get(entityName).save(entity, operation);
+			daosMap.get(entityName).save(entity);
 		} else {
 			result.setMessage(stringBuilder.toString());
 		}
@@ -186,12 +186,12 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result remove(DomainEntity entity, String operation) {
+	public Result remove(DomainEntity entity) {
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
 
-		daosMap.get(entityName).remove(entity, operation);
+		daosMap.get(entityName).remove(entity);
 
 		result.getEntities().add(entity);
 
@@ -199,7 +199,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result update(DomainEntity entity, String operation) {
+	public Result update(DomainEntity entity) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -213,7 +213,7 @@ public class Facade implements IFacade {
 		result.getEntities().add(entity);
 
 		if (stringBuilder.length() == 0) {
-			daosMap.get(entityName).update(entity, operation);
+			daosMap.get(entityName).update(entity);
 		} else {
 			result.setMessage(stringBuilder.toString());
 		}

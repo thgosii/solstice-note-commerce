@@ -8,7 +8,7 @@ public class RemoveCommand extends AbstractCommand {
 
 	@Override
 	public Result execute(DomainEntity entity, String operation) {
-		return facade.remove(entity, operation);
+		return facade.remove(entity);
 	}
 
 }

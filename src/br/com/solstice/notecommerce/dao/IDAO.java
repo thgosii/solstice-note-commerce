@@ -6,11 +6,11 @@ import br.com.solstice.notecommerce.domain.DomainEntity;
 
 public interface IDAO {
 
-	public int save(DomainEntity entity, String operation);
+	public int save(DomainEntity entity);
 
-	public void remove(DomainEntity entity, String operation);
+	public void remove(DomainEntity entity);
 
-	public void update(DomainEntity entity, String operation);
+	public void update(DomainEntity entity);
 
 	public List<DomainEntity> consult(DomainEntity entity, String operation);
 

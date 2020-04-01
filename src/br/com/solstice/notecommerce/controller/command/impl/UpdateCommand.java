@@ -8,7 +8,7 @@ public class UpdateCommand extends AbstractCommand {
 
 	@Override
 	public Result execute(DomainEntity entity, String operation) {
-		return facade.update(entity, operation);
+		return facade.update(entity);
 	}
 
 }

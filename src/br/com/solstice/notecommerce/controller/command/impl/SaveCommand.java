@@ -8,7 +8,7 @@ public class SaveCommand extends AbstractCommand {
 
 	@Override
 	public Result execute(DomainEntity entity, String operation) {
-		return facade.save(entity, operation);
+		return facade.save(entity);
 	}
 
 }

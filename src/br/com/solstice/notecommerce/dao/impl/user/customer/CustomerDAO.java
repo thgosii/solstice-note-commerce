@@ -22,7 +22,7 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity, String operation) {
+	public int save(DomainEntity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -33,7 +33,7 @@ public class CustomerDAO extends AbstractDAO {
 
 		User user = customer.getUser();
 
-		int idUser = new UserDAO().save(user, operation);
+		int idUser = new UserDAO().save(user);
 
 		if (idUser == 0) {
 			return 0;
@@ -84,12 +84,12 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void remove(DomainEntity entity, String operation) {
+	public void remove(DomainEntity entity) {
 		
 	}
 
 	@Override
-	public void update(DomainEntity entity, String operation) {
+	public void update(DomainEntity entity) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -112,7 +112,7 @@ public class CustomerDAO extends AbstractDAO {
 
 			pstm.executeUpdate();
 			
-			new UserDAO().update(customer.getUser(), "update");
+			new UserDAO().update(customer.getUser());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

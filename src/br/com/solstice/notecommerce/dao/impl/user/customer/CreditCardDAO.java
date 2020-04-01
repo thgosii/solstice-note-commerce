@@ -18,7 +18,7 @@ public class CreditCardDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity, String operation) {
+	public int save(DomainEntity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -63,7 +63,7 @@ public class CreditCardDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void remove(DomainEntity entity, String operation) {
+	public void remove(DomainEntity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -99,7 +99,7 @@ public class CreditCardDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void update(DomainEntity entity, String operation) {
+	public void update(DomainEntity entity) {
 		openConnection();
 
 		PreparedStatement pstm = null;

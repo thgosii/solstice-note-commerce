@@ -21,18 +21,18 @@ public class BrandDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity, String operation) {
+	public int save(DomainEntity entity) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void remove(DomainEntity entity, String operation) {
+	public void remove(DomainEntity entity) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void update(DomainEntity entity, String operation) {
+	public void update(DomainEntity entity) {
 		// TODO Auto-generated method stub
 	}
 
