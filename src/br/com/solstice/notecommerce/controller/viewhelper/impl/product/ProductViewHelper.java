@@ -92,7 +92,7 @@ public class ProductViewHelper implements IViewHelper {
 				int ssd = -1;
 				if (null != request.getParameter("ssd-capacity")) {
 					try {
-						hd = Integer.parseInt(request.getParameter("ssd-capacity"));
+						ssd = Integer.parseInt(request.getParameter("ssd-capacity"));
 					} catch (Exception ex) {
 					}
 				}
@@ -189,7 +189,7 @@ public class ProductViewHelper implements IViewHelper {
 				int ssd = -1;
 				if (null != request.getParameter("ssd-capacity")) {
 					try {
-						hd = Integer.parseInt(request.getParameter("ssd-capacity"));
+						ssd = Integer.parseInt(request.getParameter("ssd-capacity"));
 					} catch (Exception ex) {
 					}
 				}
