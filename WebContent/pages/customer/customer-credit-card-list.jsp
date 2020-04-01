@@ -180,17 +180,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					  <td>${creditCard.securityCode}</td>
 					  <td>${creditCard.printedName}</td>
 					  <td>
-					  	<form id="updateCreditCard_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
-					  		<input type="hidden" name="operation" value="prepareUpdate">
-					  		<input type="hidden" name="id" value="${creditCard.id}">
-					  		<button type="submit" class="btn-sm btn-primary">Alterar</button>
-					  	</form>
+					  	<a href="/note-commerce/customer/creditCards?operation=prepareUpdate&id=${creditCard.id}" class="btn btn-primary">
+					  		Alterar
+					  	</a>
 					  </td>
 					  <td>
 					  	<form id="removeForm_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
 					  		<input type="hidden" name="operation" value="remove">
 					  		<input type="hidden" name="id" value="${creditCard.id}">
-					  		<button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#removeModal_${creditCard.id}">Remover</button>
+					  		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal_${creditCard.id}">Remover</button>
 					  	</form>
 					  </td>
 					</tr>

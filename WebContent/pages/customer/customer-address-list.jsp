@@ -198,17 +198,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</c:otherwise>
 					  </c:choose>
 					  <td>
-					  	<form id="updateAddress_${address.id}" action="adresses" method="POST">
-					  		<input type="hidden" name="operation" value="prepareUpdate">
-					  		<input type="hidden" name="id" value="${address.id}">
-					  		<button type="submit" class="btn-sm btn-primary">Alterar</button>
-					  	</form>
+					  	<a href="/note-commerce/customer/adresses?operation=prepareUpdate&id=${address.id}" class="btn btn-primary">
+					  		Alterar
+					  	</a>
 					  </td>
 					  <td>
 				  	  <form id="removeForm_${address.id}" action="adresses" method="POST">
 				  		  <input type="hidden" name="operation" value="remove">
 				  		  <input type="hidden" name="id" value="${address.id}">
-				  		  <button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#removeModal_${address.id}">Remover</button>
+				  		  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal_${address.id}">Remover</button>
 				  	  </form>
 					  </td>
 					</tr>

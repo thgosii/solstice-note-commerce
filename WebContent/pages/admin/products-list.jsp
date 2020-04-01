@@ -215,11 +215,9 @@
 	                    <td><c:out value="${product.brand.name}"/></td>
 	                    <td>R$ <c:out value="${product.price}"/></td>
 		                <td class="icon_table_item">
-	                  	  <form action="/note-commerce/admin/products" method="POST">
-	                        <input type="hidden" name="operation" value="consult">
-	                        <input type="hidden" name="id" value="<c:out value="${product.id}"/>">
-		                  	<button class="btn p-0" type="submit"><i class="nav-icon fas fa-edit text-info text-lg"></i></button>
-		                </form>
+	                  	  <a href="/note-commerce/admin/products?operation=consult&id=${product.id}">
+		                  	<i class="nav-icon fas fa-edit text-info text-lg"></i>
+		                  </a>
 	                    </td>
 	                  </tr>
                   </c:forEach>
