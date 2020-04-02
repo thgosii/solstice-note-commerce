@@ -1,8 +1,8 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.product;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.product.Product;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class ValidateProductUpdate implements IStrategy {
 

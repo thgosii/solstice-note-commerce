@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.UserRole;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 
 public class UserDAO extends AbstractDAO {
 

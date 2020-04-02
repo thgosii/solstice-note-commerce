@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.domain.user;
+package br.com.solstice.notecommerce.entity.domain.user;
 
 public enum UserRole {
 

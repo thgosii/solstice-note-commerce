@@ -24,8 +24,8 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.user.LoginViewHel
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.AddressViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CreditCardViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CustomerViewHelper;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.Result;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.Result;
 
 @WebServlet(urlPatterns = { 
 		"/login",

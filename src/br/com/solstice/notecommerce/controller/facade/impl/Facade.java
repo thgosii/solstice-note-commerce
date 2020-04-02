@@ -28,14 +28,14 @@ import br.com.solstice.notecommerce.dao.impl.user.UserDAO;
 import br.com.solstice.notecommerce.dao.impl.user.customer.AddressDAO;
 import br.com.solstice.notecommerce.dao.impl.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.user.customer.CustomerDAO;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.Result;
-import br.com.solstice.notecommerce.domain.product.Product;
-import br.com.solstice.notecommerce.domain.product.brand.Brand;
-import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.address.Address;
-import br.com.solstice.notecommerce.domain.user.customer.credit_card.CreditCard;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.domain.product.Product;
+import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
+import br.com.solstice.notecommerce.entity.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class Facade implements IFacade {
 

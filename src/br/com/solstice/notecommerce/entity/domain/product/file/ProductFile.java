@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.domain.product.file;
+package br.com.solstice.notecommerce.entity.domain.product.file;
 
 import java.io.InputStream;
 import java.util.UUID;

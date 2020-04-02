@@ -1,8 +1,8 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.customer;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class ValidateConfirmPassword implements IStrategy {
 

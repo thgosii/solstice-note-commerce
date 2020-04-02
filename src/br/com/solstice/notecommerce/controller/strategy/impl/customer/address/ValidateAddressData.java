@@ -1,8 +1,8 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.customer.address;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
 
 public class ValidateAddressData implements IStrategy {
 

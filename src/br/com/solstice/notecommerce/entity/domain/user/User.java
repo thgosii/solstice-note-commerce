@@ -1,6 +1,6 @@
-package br.com.solstice.notecommerce.domain.user;
+package br.com.solstice.notecommerce.entity.domain.user;
 
-import br.com.solstice.notecommerce.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 
 public class User extends DomainEntity {
 

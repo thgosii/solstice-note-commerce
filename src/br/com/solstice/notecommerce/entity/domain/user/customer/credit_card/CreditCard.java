@@ -1,7 +1,7 @@
-package br.com.solstice.notecommerce.domain.user.customer.credit_card;
+package br.com.solstice.notecommerce.entity.domain.user.customer.credit_card;
 
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class CreditCard extends DomainEntity {
 

@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.domain.user.customer.address;
+package br.com.solstice.notecommerce.entity.domain.user.customer.address;
 
 public enum AddressType {
 	

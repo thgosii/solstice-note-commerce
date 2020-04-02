@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.Result;
-import br.com.solstice.notecommerce.domain.product.Product;
-import br.com.solstice.notecommerce.domain.product.brand.Brand;
-import br.com.solstice.notecommerce.domain.product.file.ProductFile;
-import br.com.solstice.notecommerce.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.domain.product.Product;
+import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
+import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
+import br.com.solstice.notecommerce.entity.domain.user.User;
 
 public class ProductViewHelper implements IViewHelper {
 

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.address.Address;
-import br.com.solstice.notecommerce.domain.user.customer.address.AddressType;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.AddressType;
 
 public class AddressDAO extends AbstractDAO {
 

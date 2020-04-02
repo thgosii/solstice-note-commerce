@@ -11,8 +11,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.UserRole;
+import br.com.solstice.notecommerce.entity.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 
 @WebFilter({ "/pages/login.jsp" })
 public class LoginFilter implements Filter {

@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.domain;
+package br.com.solstice.notecommerce.entity.domain;
 
 public class DomainEntity {
 

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.credit_card.CreditCard;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class CreditCardDAO extends AbstractDAO {
 

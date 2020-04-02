@@ -1,6 +1,6 @@
-package br.com.solstice.notecommerce.domain.product.brand;
+package br.com.solstice.notecommerce.entity.domain.product.brand;
 
-import br.com.solstice.notecommerce.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 
 public class Brand extends DomainEntity {
 	

@@ -10,10 +10,10 @@ import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.dao.impl.user.UserDAO;
-import br.com.solstice.notecommerce.domain.DomainEntity;
-import br.com.solstice.notecommerce.domain.user.User;
-import br.com.solstice.notecommerce.domain.user.customer.Customer;
-import br.com.solstice.notecommerce.domain.user.customer.Gender;
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Gender;
 
 public class CustomerDAO extends AbstractDAO {
 
