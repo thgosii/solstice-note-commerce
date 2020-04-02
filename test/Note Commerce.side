@@ -2829,6 +2829,13 @@
       ],
       "value": ""
     }, {
+      "id": "e7eeb6c7-e27a-4262-98d3-d07a4629839a",
+      "comment": "Verificar se foi redirecionado para listagem de cartões",
+      "command": "assertTitle",
+      "target": "Novo Cartão | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "18b0713c-5a79-40c3-8070-e895bff5575c",
       "comment": "Selecionar input de cartão",
       "command": "click",
@@ -2977,9 +2984,9 @@
       "value": ""
     }, {
       "id": "0992aa80-fd1a-4a93-8654-ec283db188ce",
-      "comment": "",
+      "comment": "Clicar no botão \"Alterar\"",
       "command": "click",
-      "target": "css=#updateCreditCard_1 > .btn-sm",
+      "target": "css=tbody tr:first-child td:nth-child(4) .btn-sm",
       "targets": [
         ["css=#updateCreditCard_1 > .btn-sm", "css:finder"],
         ["xpath=(//button[@type='submit'])[7]", "xpath:attributes"],
@@ -3142,6 +3149,13 @@
       ],
       "value": ""
     }, {
+      "id": "dec32176-f78c-4943-9c24-5c71cade4614",
+      "comment": "Verificar se foi redirecionado para o formulário de endereço",
+      "command": "assertTitle",
+      "target": "Novo Endereço | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "df0cb76d-294a-4fe2-9a73-b4327588de4d",
       "comment": "Selecionar input de CEP",
       "command": "click",
@@ -3265,19 +3279,6 @@
       "targets": [],
       "value": "label=Entrega e cobrança"
     }, {
-      "id": "85b48302-e1b7-4dc7-99ea-8b9cadfb58c2",
-      "comment": "",
-      "command": "click",
-      "target": "css=#type > option:nth-child(3)",
-      "targets": [
-        ["css=#type > option:nth-child(3)", "css:finder"],
-        ["xpath=//option[@value='shipping_and_billing']", "xpath:attributes"],
-        ["xpath=//select[@id='type']/option[3]", "xpath:idRelative"],
-        ["xpath=//div[8]/select/option[3]", "xpath:position"],
-        ["xpath=//option[contains(.,'Entrega e cobrança')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "5c4a666e-80ec-4b7b-9fb7-62b7ee902ad1",
       "comment": "Selecionar botão de \"Salvar\"",
       "command": "click",
@@ -3341,10 +3342,10 @@
       ],
       "value": ""
     }, {
-      "id": "9bda1d8a-3459-4c2e-a45d-59f5b25bfc09",
-      "comment": "Clicar no botão \"Meus Cartões\"",
+      "id": "ca1cc866-6233-438c-b216-ebab0161495e",
+      "comment": "Clicar no botão \"Meus endereços\"",
       "command": "click",
-      "target": "linkText=Meus cartões",
+      "target": "linkText=Meus endereços",
       "targets": [
         ["linkText=Meus cartões", "linkText"],
         ["css=.dropdown-item:nth-child(3)", "css:finder"],
@@ -3354,24 +3355,24 @@
       ],
       "value": ""
     }, {
-      "id": "b8fd7596-f8bb-4290-a652-ebd16caaca24",
-      "comment": "Verificar se foi redirecionado para listagem de cartões",
+      "id": "3516f419-d969-4463-aab0-e379d497e5f1",
+      "comment": "Verificar se foi redirecionado para listagem de endereços",
       "command": "assertTitle",
-      "target": "Meus Cartões | LapTop Computadores",
+      "target": "Meus Endereços | LapTop Computadores",
       "targets": [],
       "value": ""
     }, {
       "id": "6b4c00e9-a4cd-4848-a576-9681cf31cc40",
-      "comment": "Verificar se há um cartão na listagem",
+      "comment": "Verificar se há um endereço na listagem",
       "command": "assertElementPresent",
       "target": "css=tbody tr",
       "targets": [],
       "value": ""
     }, {
       "id": "ae027adf-5515-4a6e-b523-65e3ec58a83a",
-      "comment": "",
+      "comment": "Clicar no botão \"Alterar\"",
       "command": "click",
-      "target": "css=#updateCreditCard_1 > .btn-sm",
+      "target": "css=tbody tr:first-child td:nth-child(9) .btn-sm",
       "targets": [
         ["css=#updateCreditCard_1 > .btn-sm", "css:finder"],
         ["xpath=(//button[@type='submit'])[7]", "xpath:attributes"],
@@ -3381,62 +3382,126 @@
       ],
       "value": ""
     }, {
-      "id": "a60c39cc-8902-469f-9a09-2aadc0f5a0b9",
-      "comment": "Selecionar input de cartão",
+      "id": "4ba0c964-404e-49e0-b753-925194eb7fae",
+      "comment": "Verificar se foi redirecionado para o formulário de endereço",
+      "command": "assertTitle",
+      "target": "Editar Endereço | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "450db540-0a01-4dfc-99cc-82ab06d24376",
+      "comment": "Selecionar input de CEP",
       "command": "click",
-      "target": "name=number",
+      "target": "id=cep",
       "targets": [
-        ["name=number", "name"],
-        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@name='number']", "xpath:attributes"],
+        ["id=cep", "id"],
+        ["name=cep", "name"],
+        ["css=#cep", "css:finder"],
+        ["xpath=//input[@id='cep']", "xpath:attributes"],
         ["xpath=//div/div/div/form/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "7c8124e7-5b22-41fd-a639-bf01fd42d84a",
-      "comment": "Inserir número de cartão",
+      "id": "c04bb7f8-7116-4455-9d97-fa263bbbc59f",
+      "comment": "Inserir CEP",
       "command": "type",
-      "target": "name=number",
+      "target": "id=cep",
       "targets": [],
-      "value": "0101 2323 4567 9876"
+      "value": "71725-203"
     }, {
-      "id": "2e79d8f5-d75f-4874-b79d-71d75f674169",
-      "comment": "Selecionar input de nome no cartão",
-      "command": "click",
-      "target": "name=printedName",
+      "id": "fec2b9f1-e772-49df-ba25-e7b001992b6b",
+      "comment": "Inserir CEP",
+      "command": "type",
+      "target": "id=cep",
+      "targets": [],
+      "value": "71725-203"
+    }, {
+      "id": "adb3dc7c-7dbd-4140-989b-b35e61b8b3cc",
+      "comment": "Inserir número",
+      "command": "type",
+      "target": "id=number",
       "targets": [
-        ["name=printedName", "name"],
-        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
-        ["xpath=//input[@name='printedName']", "xpath:attributes"],
-        ["xpath=//div[2]/input", "xpath:position"]
+        ["id=number", "id"],
+        ["name=number", "name"],
+        ["css=#number", "css:finder"],
+        ["xpath=//input[@id='number']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "4221"
+    }, {
+      "id": "e47a5411-a70b-4882-92d9-4b55a030e04b",
+      "comment": "Selecionar input de complemento",
+      "command": "click",
+      "target": "id=complement",
+      "targets": [
+        ["id=complement", "id"],
+        ["name=complement", "name"],
+        ["css=#complement", "css:finder"],
+        ["xpath=//input[@id='complement']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "5fd86280-7473-413b-bd5f-d6d51f2de0c6",
-      "comment": "Inserir nome no cartão",
+      "id": "30b10656-dd32-4b09-bc53-c720a635f10c",
+      "comment": "Inserir complemento",
       "command": "type",
-      "target": "name=printedName",
-      "targets": [],
-      "value": "CLIENTE NOVO NOME"
-    }, {
-      "id": "41a2d17b-5727-4704-b59e-03b136e8ac93",
-      "comment": "Selecionar input de código de segurança",
-      "command": "click",
-      "target": "name=securityCode",
+      "target": "id=complement",
       "targets": [
-        ["name=securityCode", "name"],
-        ["css=.form-group:nth-child(4) > .form-control", "css:finder"],
-        ["xpath=//input[@name='securityCode']", "xpath:attributes"],
-        ["xpath=//div[3]/input", "xpath:position"]
+        ["id=complement", "id"],
+        ["name=complement", "name"],
+        ["css=#complement", "css:finder"],
+        ["xpath=//input[@id='complement']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "2b8f37a0-9187-4201-9e93-727e25851dec",
-      "comment": "Inserir código de segurança",
+      "id": "7df5f75d-bb44-4d96-bc89-4ac4ef419138",
+      "comment": "Inserir CEP",
       "command": "type",
-      "target": "name=securityCode",
+      "target": "id=cep",
       "targets": [],
-      "value": "321"
+      "value": "71725-203"
+    }, {
+      "id": "afeb274c-0196-4006-b056-260030820d4b",
+      "comment": "Selecionar select de tipo de endereço",
+      "command": "click",
+      "target": "id=type",
+      "targets": [
+        ["id=type", "id"],
+        ["name=type", "name"],
+        ["css=#type", "css:finder"],
+        ["xpath=//select[@id='type']", "xpath:attributes"],
+        ["xpath=//div[8]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d4fc79c-1255-4a36-9358-4a690b07551b",
+      "comment": "Esperar o estado ser preenchido automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=state",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "90a53e54-0660-4ffa-8644-29b85a6b6c69",
+      "comment": "Esperar a cidade ser preenchida automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=city",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "48423f11-4cb8-48be-8b35-c6c9587be44d",
+      "comment": "Esperar o bairro ser preenchido automaticamente",
+      "command": "assertValue",
+      "target": "id=neighbourhood",
+      "targets": [],
+      "value": "Candangolândia"
+    }, {
+      "id": "484a36e2-33ec-4e11-92de-fa8acc6a4d05",
+      "comment": "Selecionar tipo \"Entrega\"",
+      "command": "select",
+      "target": "id=type",
+      "targets": [],
+      "value": "label=Entrega"
     }, {
       "id": "3c1fefaf-7839-4cf3-a7d7-08487803b2a5",
       "comment": "Selecionar botão de \"Salvar\"",
@@ -3450,17 +3515,17 @@
       ],
       "value": ""
     }, {
-      "id": "bf24acb0-9974-4ef7-9501-2d97f19e3b8d",
-      "comment": "Verificar se foi redirecionado para listagem de cartões",
-      "command": "assertTitle",
-      "target": "Meus Cartões | LapTop Computadores",
+      "id": "a21c9014-f85c-4ff7-8e3d-06209a4c9ea7",
+      "comment": "Verificar se há um endereço na listagem",
+      "command": "assertElementPresent",
+      "target": "css=tbody tr",
       "targets": [],
       "value": ""
     }, {
-      "id": "27c1eac0-e02b-4acc-b0f8-2c1c9ec68a97",
-      "comment": "Verificar se há um cartão na listagem",
-      "command": "assertElementPresent",
-      "target": "css=tbody tr",
+      "id": "8155709c-0827-408c-9ab6-9691b44fa5e7",
+      "comment": "Verificar se foi redirecionado para listagem de endereços",
+      "command": "assertTitle",
+      "target": "Meus Endereços | LapTop Computadores",
       "targets": [],
       "value": ""
     }]
