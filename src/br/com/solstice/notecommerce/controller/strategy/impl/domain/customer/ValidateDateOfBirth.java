@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class ValidateDateOfBirth implements IStrategy {
 
 	@Override
-	public String process(DomainEntity entity) {
+	public String process(Entity entity) {
 		Customer customer = (Customer) entity;
 
 		LocalDateTime now = LocalDate.now().atStartOfDay();

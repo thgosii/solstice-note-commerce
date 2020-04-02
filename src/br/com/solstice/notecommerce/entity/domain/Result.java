@@ -3,20 +3,22 @@ package br.com.solstice.notecommerce.entity.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.solstice.notecommerce.entity.Entity;
+
 public class Result {
 
-	private List<DomainEntity> entities;
+	private List<Entity> entities;
 	private String message;
 	
 	public Result() {
-		entities = new ArrayList<DomainEntity>();
+		entities = new ArrayList<Entity>();
 	}
 
-	public List<DomainEntity> getEntities() {
+	public List<Entity> getEntities() {
 		return entities;
 	}
 
-	public void setEntities(List<DomainEntity> entities) {
+	public void setEntities(List<Entity> entities) {
 		this.entities = entities;
 	}
 

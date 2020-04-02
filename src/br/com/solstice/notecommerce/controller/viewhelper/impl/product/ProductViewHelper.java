@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
@@ -20,7 +21,7 @@ import br.com.solstice.notecommerce.entity.domain.user.User;
 public class ProductViewHelper implements IViewHelper {
 
 	@Override
-	public DomainEntity getEntity(HttpServletRequest request) {
+	public Entity getEntity(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -266,12 +267,12 @@ public class ProductViewHelper implements IViewHelper {
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
-			if (getEntity(request).getId() != -1L) {
+			if (((DomainEntity) getEntity(request)).getId() != -1L) {
 				request.setAttribute("previousProduct", result.getEntities().get(0));
 				request.getRequestDispatcher("/pages/admin/products-new.jsp").forward(request, response);
 			} else {
 				List<Product> products = new ArrayList<>();
-				for (DomainEntity entity : result.getEntities()) {
+				for (Entity entity : result.getEntities()) {
 					products.add((Product) entity);
 				}
 				request.setAttribute("products", products);

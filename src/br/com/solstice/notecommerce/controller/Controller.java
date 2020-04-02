@@ -24,7 +24,7 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.user.LoginViewHel
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.AddressViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CreditCardViewHelper;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.user.customer.CustomerViewHelper;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 
 @WebServlet(urlPatterns = { 
@@ -110,7 +110,7 @@ public class Controller extends HttpServlet {
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
 		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
-		DomainEntity entity = viewHelper.getEntity(request);
+		Entity entity = viewHelper.getEntity(request);
 		System.out.println("entity: " + entity + "\n");
 
 		if (null == entity) {
@@ -120,7 +120,7 @@ public class Controller extends HttpServlet {
 		Result result = command.execute(entity, operation);
 		System.out.println("\nResult entities list:");
 		if (result.getEntities() != null) {
-			for (DomainEntity resultEntity : result.getEntities()) {
+			for (Entity resultEntity : result.getEntities()) {
 				System.out.println(resultEntity);
 			}
 		} else {

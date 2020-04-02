@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.UserRole;
@@ -20,7 +20,7 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.Gender;
 public class CustomerViewHelper implements IViewHelper {
 
 	@Override
-	public DomainEntity getEntity(HttpServletRequest request) {
+	public Entity getEntity(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {

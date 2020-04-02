@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 
@@ -19,7 +19,7 @@ public class UserDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity) {
+	public int save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -69,12 +69,12 @@ public class UserDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void remove(DomainEntity entity) {
+	public void remove(Entity entity) {
 
 	}
 
 	@Override
-	public void update(DomainEntity entity) {
+	public void update(Entity entity) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -112,7 +112,7 @@ public class UserDAO extends AbstractDAO {
 	}
 
 	@Override
-	public List<DomainEntity> consult(DomainEntity entity, String operation) {
+	public List<Entity> consult(Entity entity, String operation) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -129,7 +129,7 @@ public class UserDAO extends AbstractDAO {
 			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_deleted = false";
 		}
 
-		List<DomainEntity> users = new ArrayList<DomainEntity>();
+		List<Entity> users = new ArrayList<Entity>();
 
 		try {
 			pstm = connection.prepareStatement(sql);

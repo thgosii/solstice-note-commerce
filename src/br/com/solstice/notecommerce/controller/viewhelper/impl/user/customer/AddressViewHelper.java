@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
@@ -20,7 +20,7 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.Cred
 public class AddressViewHelper implements IViewHelper {
 
 	@Override
-	public DomainEntity getEntity(HttpServletRequest request) {
+	public Entity getEntity(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -298,7 +298,7 @@ public class AddressViewHelper implements IViewHelper {
 				request.getRequestDispatcher("/pages/customer/customer-address-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
-			List<DomainEntity> adresses = (List<DomainEntity>) result.getEntities();
+			List<Entity> adresses = (List<Entity>) result.getEntities();
 			request.setAttribute("adresses", adresses);
 
 			if (null == adresses) {

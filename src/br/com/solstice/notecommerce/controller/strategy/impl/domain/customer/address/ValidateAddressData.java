@@ -1,13 +1,13 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.customer.address;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
 
 public class ValidateAddressData implements IStrategy {
 
 	@Override
-	public String process(DomainEntity entity) {
+	public String process(Entity entity) {
 		Address address = (Address) entity;
 
 		if (null == address.getCep() || address.getCep().trim().isEmpty()) {

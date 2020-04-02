@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 
 public class BrandDAO extends AbstractDAO {
@@ -21,23 +21,23 @@ public class BrandDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity) {
+	public int save(Entity entity) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void remove(DomainEntity entity) {
+	public void remove(Entity entity) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void update(DomainEntity entity) {
+	public void update(Entity entity) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public List<DomainEntity> consult(DomainEntity entity, String operation) {
+	public List<Entity> consult(Entity entity, String operation) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -52,7 +52,7 @@ public class BrandDAO extends AbstractDAO {
 		} else if (operation.equals("findById")) {
 			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND brd_deleted = false";
 		}
-		List<DomainEntity> brands = new ArrayList<DomainEntity>();
+		List<Entity> brands = new ArrayList<Entity>();
 
 		try {
 			pstm = connection.prepareStatement(sql);

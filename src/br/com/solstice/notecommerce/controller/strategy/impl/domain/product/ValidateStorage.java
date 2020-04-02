@@ -1,13 +1,13 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.product;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class ValidateStorage implements IStrategy {
 
 	@Override
-	public String process(DomainEntity entity) {
+	public String process(Entity entity) {
 		double hd = ((Product) entity).getHd();
 		double ssd = ((Product) entity).getSsd();
 		StringBuilder sb = new StringBuilder();

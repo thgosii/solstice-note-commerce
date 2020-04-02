@@ -1,6 +1,8 @@
 package br.com.solstice.notecommerce.entity.domain;
 
-public class DomainEntity {
+import br.com.solstice.notecommerce.entity.Entity;
+
+public class DomainEntity extends Entity {
 
 	private Long id;
 	private boolean deleted;

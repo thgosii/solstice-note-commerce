@@ -10,7 +10,7 @@ import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Gender;
@@ -22,7 +22,7 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity) {
+	public int save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -84,12 +84,12 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void remove(DomainEntity entity) {
+	public void remove(Entity entity) {
 		
 	}
 
 	@Override
-	public void update(DomainEntity entity) {
+	public void update(Entity entity) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -133,7 +133,7 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public List<DomainEntity> consult(DomainEntity entity, String operation) {
+	public List<Entity> consult(Entity entity, String operation) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -147,7 +147,7 @@ public class CustomerDAO extends AbstractDAO {
 			sql = "SELECT * from " + table + " WHERE cus_usr_id=? AND cus_deleted = false";
 		}
 		
-		List<DomainEntity> customers = new ArrayList<DomainEntity>();
+		List<Entity> customers = new ArrayList<Entity>();
 
 		try {
 			pstm = connection.prepareStatement(sql);

@@ -1,13 +1,13 @@
 package br.com.solstice.notecommerce.controller.facade;
 
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 
 public interface IFacade {
 	
-	public Result save(DomainEntity entity);
-	public Result remove(DomainEntity entity);
-	public Result update(DomainEntity entity);
-	public Result consult(DomainEntity entity, String operation);
+	public Result save(Entity entity);
+	public Result remove(Entity entity);
+	public Result update(Entity entity);
+	public Result consult(Entity entity, String operation);
 
 }

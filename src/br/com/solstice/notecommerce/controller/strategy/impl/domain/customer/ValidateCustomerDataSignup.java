@@ -1,13 +1,13 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.customer;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class ValidateCustomerDataSignup implements IStrategy {
 
 	@Override
-	public String process(DomainEntity entity) {
+	public String process(Entity entity) {
 		Customer customer = (Customer) entity;
 		
 		if (null == customer.getName() || customer.getName().trim().isEmpty()) {

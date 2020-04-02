@@ -1,13 +1,13 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.product;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class ValidateProductUpdate implements IStrategy {
 
 	@Override
-	public String process(DomainEntity entity) {
+	public String process(Entity entity) {
 		Product product = (Product) entity;
 		StringBuilder sb = new StringBuilder();
 		

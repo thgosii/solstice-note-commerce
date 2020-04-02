@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
@@ -22,7 +23,7 @@ import br.com.solstice.notecommerce.entity.domain.product.Product;
 public class ProductShopViewHelper implements IViewHelper {
 
 	@Override
-	public DomainEntity getEntity(HttpServletRequest request) {
+	public Entity getEntity(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException ex) {
@@ -55,7 +56,7 @@ public class ProductShopViewHelper implements IViewHelper {
 		String operation = request.getParameter("operation");
 
 		if (operation.equals("consult")) {
-			if (getEntity(request).getId() != -1L) {
+			if (((DomainEntity) getEntity(request)).getId() != -1L) {
 				Product product = (Product) result.getEntities().get(0);
 				
 				if (product == null) {

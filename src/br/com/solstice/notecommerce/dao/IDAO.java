@@ -2,16 +2,16 @@ package br.com.solstice.notecommerce.dao;
 
 import java.util.List;
 
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 
 public interface IDAO {
 
-	public int save(DomainEntity entity);
+	public int save(Entity entity);
 
-	public void remove(DomainEntity entity);
+	public void remove(Entity entity);
 
-	public void update(DomainEntity entity);
+	public void update(Entity entity);
 
-	public List<DomainEntity> consult(DomainEntity entity, String operation);
+	public List<Entity> consult(Entity entity, String operation);
 
 }

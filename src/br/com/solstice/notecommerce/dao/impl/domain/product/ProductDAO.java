@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
@@ -24,7 +24,7 @@ public class ProductDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(DomainEntity entity) {
+	public int save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -86,7 +86,7 @@ public class ProductDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void remove(DomainEntity entity) {
+	public void remove(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -122,7 +122,7 @@ public class ProductDAO extends AbstractDAO {
 	}
 
 	@Override
-	public void update(DomainEntity entity) {
+	public void update(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -172,7 +172,7 @@ public class ProductDAO extends AbstractDAO {
 	}
 
 	@Override
-	public List<DomainEntity> consult(DomainEntity entity, String operation) {
+	public List<Entity> consult(Entity entity, String operation) {
 		openConnection();
 
 		PreparedStatement pstm = null;
@@ -192,7 +192,7 @@ public class ProductDAO extends AbstractDAO {
 			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND prd_deleted = false";
 		}
 
-		List<DomainEntity> products = new ArrayList<DomainEntity>();
+		List<Entity> products = new ArrayList<Entity>();
 
 		try {
 			pstm = connection.prepareStatement(sql);

@@ -28,7 +28,7 @@ import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
-import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
@@ -149,7 +149,7 @@ public class Facade implements IFacade {
 
 	}
 
-	public void processBusinessRules(List<IStrategy> businessRules, DomainEntity entity) {
+	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
 		stringBuilder = new StringBuilder();
 		for (IStrategy businessRule : businessRules) {
 			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
@@ -163,7 +163,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result save(DomainEntity entity) {
+	public Result save(Entity entity) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -186,7 +186,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result remove(DomainEntity entity) {
+	public Result remove(Entity entity) {
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
@@ -199,7 +199,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result update(DomainEntity entity) {
+	public Result update(Entity entity) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -222,12 +222,12 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result consult(DomainEntity entity, String operation) {
+	public Result consult(Entity entity, String operation) {
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
 
-		List<DomainEntity> consultEntities = daosMap.get(entityName).consult(entity, operation);
+		List<Entity> consultEntities = daosMap.get(entityName).consult(entity, operation);
 
 		result.setEntities(consultEntities);
 
