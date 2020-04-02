@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.solstice.notecommerce.controller.facade.IFacade;
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.customer.ValidateCPF;
@@ -32,15 +34,20 @@ import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
+import br.com.solstice.notecommerce.entity.domain.shop.cart.Cart;
+import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
 import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
+import br.com.solstice.notecommerce.service.IService;
+import br.com.solstice.notecommerce.service.impl.CartService;
 
 public class Facade implements IFacade {
 
 	private Map<String, Map<String, List<IStrategy>>> businessRulesMap;
 	private Map<String, IDAO> daosMap;
+	private Map<String, IService> servicesMap;
 
 	private Result result;
 
@@ -50,6 +57,7 @@ public class Facade implements IFacade {
 		stringBuilder = new StringBuilder();
 
 		daosMap = new HashMap<String, IDAO>();
+		servicesMap = new HashMap<String, IService>();
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
@@ -78,7 +86,7 @@ public class Facade implements IFacade {
 
 		// Brands
 		daosMap.put(Brand.class.getName(), new BrandDAO());
-		
+
 		// Stock
 
 		/*
@@ -86,6 +94,8 @@ public class Facade implements IFacade {
 		 */
 
 		// Customer
+		daosMap.put(User.class.getName(), new UserDAO());
+
 		daosMap.put(Customer.class.getName(), new CustomerDAO());
 		Map<String, List<IStrategy>> customerBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
@@ -112,41 +122,49 @@ public class Facade implements IFacade {
 		// Address
 		daosMap.put(Address.class.getName(), new AddressDAO());
 		Map<String, List<IStrategy>> addressBusinessRulesMap = new HashMap<String, List<IStrategy>>();
-		
+
 		List<IStrategy> addressBusinessRulesSave = new ArrayList<IStrategy>();
 		addressBusinessRulesSave.add(new ValidateAddressData());
-		
+
 		List<IStrategy> addressBusinessRulesUpdate = new ArrayList<IStrategy>();
 		addressBusinessRulesUpdate.add(new ValidateAddressData());
-		
+
 		addressBusinessRulesMap.put("save", addressBusinessRulesSave);
 		addressBusinessRulesMap.put("update", addressBusinessRulesUpdate);
-		
+
 		businessRulesMap.put(Address.class.getName(), addressBusinessRulesMap);
-		
-		
+
 		// Credit Card
-		
+
 		daosMap.put(CreditCard.class.getName(), new CreditCardDAO());
 		Map<String, List<IStrategy>> creditCardBusinessRulesMap = new HashMap<String, List<IStrategy>>();
-		
+
 		List<IStrategy> creditCardBusinessRulesSave = new ArrayList<IStrategy>();
 		creditCardBusinessRulesSave.add(new ValidateCreditCardData());
-		
+
 		List<IStrategy> creditCardBusinessRulesUpdate = new ArrayList<IStrategy>();
 		creditCardBusinessRulesUpdate.add(new ValidateCreditCardData());
-		
+
 		creditCardBusinessRulesMap.put("save", creditCardBusinessRulesSave);
 		creditCardBusinessRulesMap.put("update", creditCardBusinessRulesUpdate);
-		
+
 		businessRulesMap.put(CreditCard.class.getName(), creditCardBusinessRulesMap);
-		
+
 		/*
 		 * Shop
 		 */
 
-		daosMap.put(User.class.getName(), new UserDAO());
+		// Cart
+		servicesMap.put(CartItem.class.getName(), new CartService());
+		Map<String, List<IStrategy>> cartBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
+		List<IStrategy> cartBusinessRulesSave = new ArrayList<IStrategy>();
+		
+		// cartBusinessRulesSave.add();
+
+		cartBusinessRulesMap.put("save", cartBusinessRulesSave);
+
+		businessRulesMap.put(Cart.class.getName(), cartBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
@@ -163,7 +181,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result save(Entity entity) {
+	public Result save(Entity entity, HttpServletRequest request) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -177,7 +195,11 @@ public class Facade implements IFacade {
 		result.getEntities().add(entity);
 
 		if (stringBuilder.length() == 0) {
-			daosMap.get(entityName).save(entity);
+			if (daosMap.containsKey(entityName)) {
+				daosMap.get(entityName).save(entity);
+			} else {
+				servicesMap.get(entityName).save(entity, request);
+			}
 		} else {
 			result.setMessage(stringBuilder.toString());
 		}
@@ -186,12 +208,16 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result remove(Entity entity) {
+	public Result remove(Entity entity, HttpServletRequest request) {
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
 
-		daosMap.get(entityName).remove(entity);
+		if (daosMap.containsKey(entityName)) {
+			daosMap.get(entityName).remove(entity);
+		} else {
+			servicesMap.get(entityName).remove(entity, request);
+		}
 
 		result.getEntities().add(entity);
 
@@ -199,7 +225,7 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result update(Entity entity) {
+	public Result update(Entity entity, HttpServletRequest request) {
 		result = new Result();
 		stringBuilder.setLength(0);
 
@@ -213,7 +239,11 @@ public class Facade implements IFacade {
 		result.getEntities().add(entity);
 
 		if (stringBuilder.length() == 0) {
-			daosMap.get(entityName).update(entity);
+			if (daosMap.containsKey(entityName)) {
+				daosMap.get(entityName).update(entity);
+			} else {
+				servicesMap.get(entityName).update(entity, request);
+			}
 		} else {
 			result.setMessage(stringBuilder.toString());
 		}
@@ -222,12 +252,20 @@ public class Facade implements IFacade {
 	}
 
 	@Override
-	public Result consult(Entity entity, String operation) {
+	public Result consult(Entity entity, HttpServletRequest request) {
+		String operation = request.getParameter("operation");
+
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
 
-		List<Entity> consultEntities = daosMap.get(entityName).consult(entity, operation);
+		List<Entity> consultEntities;
+		
+		if (daosMap.containsKey(entityName)) {
+			consultEntities = daosMap.get(entityName).consult(entity, operation);
+		} else {
+			consultEntities = servicesMap.get(entityName).consult(entity, request);
+		}
 
 		result.setEntities(consultEntities);
 
