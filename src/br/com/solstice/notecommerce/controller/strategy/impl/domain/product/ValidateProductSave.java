@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.strategy.impl.product;
+package br.com.solstice.notecommerce.controller.strategy.impl.domain.product;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;

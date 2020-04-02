@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.strategy.impl.customer;
+package br.com.solstice.notecommerce.controller.strategy.impl.domain.customer;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

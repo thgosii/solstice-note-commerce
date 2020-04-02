@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.strategy.impl.customer.credit_card;
+package br.com.solstice.notecommerce.controller.strategy.impl.domain.customer.credit_card;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
