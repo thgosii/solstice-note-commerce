@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.viewhelper.impl.user;
+package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
