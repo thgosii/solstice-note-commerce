@@ -23,6 +23,7 @@ Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/p
 4. Fix your build path (if needed) to use your installed JRE:
    - Right click on project -> Build Path -> Configure Build Path -> JRE System Library -> Edit -> Alternative JRE
    - You may need to do the same with the Apache Tomcat library
+5. Start the server and build/run the project
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
