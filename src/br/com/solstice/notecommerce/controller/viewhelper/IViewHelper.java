@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.solstice.notecommerce.entity.Entity;
-import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.Result;
 
 public interface IViewHelper {
 

@@ -29,7 +29,7 @@ import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
-import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.user.User;

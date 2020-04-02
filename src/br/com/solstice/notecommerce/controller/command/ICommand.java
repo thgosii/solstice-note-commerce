@@ -1,7 +1,7 @@
 package br.com.solstice.notecommerce.controller.command;
 
 import br.com.solstice.notecommerce.entity.Entity;
-import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.Result;
 
 public interface ICommand {
 	

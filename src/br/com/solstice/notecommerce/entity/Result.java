@@ -1,9 +1,7 @@
-package br.com.solstice.notecommerce.entity.domain;
+package br.com.solstice.notecommerce.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.solstice.notecommerce.entity.Entity;
 
 public class Result {
 

@@ -2,7 +2,7 @@ package br.com.solstice.notecommerce.controller.command.impl;
 
 import br.com.solstice.notecommerce.controller.command.AbstractCommand;
 import br.com.solstice.notecommerce.entity.Entity;
-import br.com.solstice.notecommerce.entity.domain.Result;
+import br.com.solstice.notecommerce.entity.Result;
 
 public class ConsultCommand extends AbstractCommand {
 

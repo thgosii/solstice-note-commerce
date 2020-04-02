@@ -16,8 +16,8 @@ import org.json.JSONObject;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
+import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
-import br.com.solstice.notecommerce.entity.domain.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class ProductShopViewHelper implements IViewHelper {
