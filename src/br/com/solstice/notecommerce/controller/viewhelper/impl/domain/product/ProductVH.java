@@ -18,7 +18,7 @@ import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 
-public class ProductViewHelper implements IViewHelper {
+public class ProductVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

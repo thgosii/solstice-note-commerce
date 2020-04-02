@@ -17,7 +17,7 @@ import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Gender;
 
-public class CustomerViewHelper implements IViewHelper {
+public class CustomerVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

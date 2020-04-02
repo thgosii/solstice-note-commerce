@@ -15,7 +15,7 @@ import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
-public class CreditCardViewHelper implements IViewHelper {
+public class CreditCardVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

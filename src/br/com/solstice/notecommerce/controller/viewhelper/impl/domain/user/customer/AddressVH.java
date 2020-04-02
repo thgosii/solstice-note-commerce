@@ -17,7 +17,7 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.AddressType;
 import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
-public class AddressViewHelper implements IViewHelper {
+public class AddressVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

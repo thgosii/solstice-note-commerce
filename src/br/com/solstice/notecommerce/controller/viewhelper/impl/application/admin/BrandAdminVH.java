@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product;
+package br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 
-public class BrandViewHelper implements IViewHelper {
+public class BrandAdminVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

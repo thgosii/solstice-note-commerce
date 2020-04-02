@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product;
+package br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,7 @@ import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 
-public class ProductShopViewHelper implements IViewHelper {
+public class ProductShopVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {

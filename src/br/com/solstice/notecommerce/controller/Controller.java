@@ -17,13 +17,13 @@ import br.com.solstice.notecommerce.controller.command.impl.RemoveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.SaveCommand;
 import br.com.solstice.notecommerce.controller.command.impl.UpdateCommand;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.BrandViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductShopViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.AddressViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.CreditCardViewHelper;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.CustomerViewHelper;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin.BrandAdminVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop.ProductShopVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.AddressVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.CreditCardVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.CustomerVH;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 
@@ -58,20 +58,20 @@ public class Controller extends HttpServlet {
 		viewHelpersMap = new HashMap<String, IViewHelper>();
 
 		// general
-		viewHelpersMap.put("/note-commerce/login", new LoginViewHelper());
+		viewHelpersMap.put("/note-commerce/login", new LoginVH());
 
 		// admin
-		viewHelpersMap.put("/note-commerce/admin/products", new ProductViewHelper());
-		viewHelpersMap.put("/note-commerce/admin/brands", new BrandViewHelper());
+		viewHelpersMap.put("/note-commerce/admin/products", new ProductVH());
+		viewHelpersMap.put("/note-commerce/admin/brands", new BrandAdminVH());
 
 		// customer
-		viewHelpersMap.put("/note-commerce/signup", new CustomerViewHelper());
-		viewHelpersMap.put("/note-commerce/customer", new CustomerViewHelper());
-		viewHelpersMap.put("/note-commerce/customer/creditCards", new CreditCardViewHelper());
-		viewHelpersMap.put("/note-commerce/customer/adresses", new AddressViewHelper());
+		viewHelpersMap.put("/note-commerce/signup", new CustomerVH());
+		viewHelpersMap.put("/note-commerce/customer", new CustomerVH());
+		viewHelpersMap.put("/note-commerce/customer/creditCards", new CreditCardVH());
+		viewHelpersMap.put("/note-commerce/customer/adresses", new AddressVH());
 
 		// shop
-		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopViewHelper());
+		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopVH());
 	}
 
 	@Override
