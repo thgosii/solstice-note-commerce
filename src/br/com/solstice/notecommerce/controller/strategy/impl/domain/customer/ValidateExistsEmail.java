@@ -1,7 +1,7 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.customer;
 
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.dao.impl.user.UserDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;

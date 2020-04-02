@@ -1,4 +1,4 @@
-package br.com.solstice.notecommerce.dao.impl.user.customer;
+package br.com.solstice.notecommerce.dao.impl.domain.user.customer;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.dao.impl.user.UserDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
