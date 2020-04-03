@@ -117,7 +117,7 @@ public class Controller extends HttpServlet {
 			return;
 		}
 
-		Result result = command.execute(entity, request);
+		Result result = command.execute(entity, request.getSession(), operation);
 		System.out.println("\nResult entities list:");
 		if (result.getEntities() != null) {
 			for (Entity resultEntity : result.getEntities()) {
