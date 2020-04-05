@@ -386,11 +386,11 @@
   <template id="product-card">
 	  <div class="col col-4">
 	     <div class="card card-primary product-card">
-	       <div class="card-body text-center">
-	         <a href="#" id="product-image-link">
+	       <a href="#" id="product-image-link">
+	         <div class="card-body text-center">
 	           <img id="product-image" class="img-fluid">
-	         </a>
-	       </div>
+	         </div>
+           </a>
 	       <div class="card-footer">
 	         <div class="row mb-3">
 	           <a href="#" id="product-name-link" class="product-desc text-sm">
@@ -442,6 +442,7 @@
 		   	           let card=$($('#product-card').html());
 		   	           card.find("#product-name-link").text(value.title);
 		   	           card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
+		   	           card.find("#product-image-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
 		   	           card.find("#product-image").attr('src', value.imageURL);
 		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
 		   	           $('#products-row').append(card);
