@@ -61,11 +61,8 @@ public class CartSH implements ISessionHelper {
 		for (CartItem item : cart.getItems()) {
 			if (item.getProduct().getId() == cartItem.getProduct().getId()) {
 				item.setQuantity(cartItem.getQuantity());
+				item.setSubTotal(item.getQuantity() * item.getProduct().getPrice());
 			}
-		}
-		
-		for (CartItem item : cart.getItems()) {
-			System.out.println(item.getQuantity());
 		}
 	}
 
