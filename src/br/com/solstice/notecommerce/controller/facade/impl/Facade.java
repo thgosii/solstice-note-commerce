@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.solstice.notecommerce.controller.facade.IFacade;
 import br.com.solstice.notecommerce.controller.session.ISessionHelper;
-import br.com.solstice.notecommerce.controller.session.impl.CartSessionHelper;
+import br.com.solstice.notecommerce.controller.session.impl.CartSH;
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.customer.ValidateCPF;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.customer.ValidateConfirmPassword;
@@ -36,7 +36,6 @@ import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
-import br.com.solstice.notecommerce.entity.domain.shop.cart.Cart;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
@@ -155,16 +154,16 @@ public class Facade implements IFacade {
 		 */
 
 		// Cart
-		sessionHelpersMap.put(CartItem.class.getName(), new CartSessionHelper());
+		sessionHelpersMap.put(CartItem.class.getName(), new CartSH());
 		Map<String, List<IStrategy>> cartBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
 		List<IStrategy> cartBusinessRulesSave = new ArrayList<IStrategy>();
-		
+
 		// cartBusinessRulesSave.add();
 
 		cartBusinessRulesMap.put("save", cartBusinessRulesSave);
 
-		businessRulesMap.put(Cart.class.getName(), cartBusinessRulesMap);
+		businessRulesMap.put(CartItem.class.getName(), cartBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
@@ -190,7 +189,9 @@ public class Facade implements IFacade {
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
 		List<IStrategy> businessRulesSaveEntity = businessRulesEntityMap.get("save");
 
-		processBusinessRules(businessRulesSaveEntity, entity);
+		if (businessRulesSaveEntity != null) {
+			processBusinessRules(businessRulesSaveEntity, entity);
+		}
 
 		result.getEntities().add(entity);
 
@@ -234,7 +235,9 @@ public class Facade implements IFacade {
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
 		List<IStrategy> businessRulesUpdateEntity = businessRulesEntityMap.get("update");
 
-		processBusinessRules(businessRulesUpdateEntity, entity);
+		if (businessRulesUpdateEntity != null) {
+			processBusinessRules(businessRulesUpdateEntity, entity);
+		}
 
 		result.getEntities().add(entity);
 
@@ -253,13 +256,12 @@ public class Facade implements IFacade {
 
 	@Override
 	public Result consult(Entity entity, HttpSession session, String operation) {
-
 		result = new Result();
 
 		String entityName = entity.getClass().getName();
 
 		List<Entity> consultEntities;
-		
+
 		if (daosMap.containsKey(entityName)) {
 			consultEntities = daosMap.get(entityName).consult(entity, operation);
 		} else {

@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -13,9 +18,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>LapTop Computadores</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../../static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
@@ -27,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="products.html" class="navbar-brand">
+        <a href="/note-commerce/pages/shop/products.jsp" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
           <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
@@ -41,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="products.html" class="nav-link">Home</a>
+              <a href="/note-commerce/pages/shop/products.jsp" class="nav-link">Home</a>
             </li>
 
           </ul>
@@ -64,14 +69,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 250,00</strong>
+              Saldo digital: <strong>R$ 0,00</strong>
             </a>
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
-              <span class="badge badge-danger navbar-badge">4</span>
+              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
             </a>
           </li>
           <!-- Perfil -->
@@ -83,19 +88,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
-              <a href="../customer/customer-profile.html" class="dropdown-item">
+              <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> Meus dados
               </a>
-              <a href="../customer/customer-address-list.html" class="dropdown-item">
+              <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
                 <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
-              <a href="../customer/customer-credit-card-list.html" class="dropdown-item">
+              <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
-              <a href="sales.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
-              <a href="exchanges.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
@@ -133,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <table class="table table-striped">
+          <table class="table table-striped" id="tableItems">
             <thead>
               <tr>
                 <th>
@@ -151,88 +156,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   Subtotal
                 </th>
                 <th>
-                  Ações
+                  Remover
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
-                <td>R$ 2.444,21</td>
-                <td>
-                  <input type="number" style="width: 100px;" value="2">
-                </td>
-                <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
-                <td>R$ 2.444,21</td>
-                <td>
-                  <input type="number" style="width: 100px;" value="2">
-                </td>
-                <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Ideapad  l340 - 16GB RAM - 250GB SSD - I7 </td>
-                <td>R$ 2.444,21</td>
-                <td>
-                  <input type="number" style="width: 100px;" value="2">
-                </td>
-                <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
-                <td>R$ 2.444,21</td>
-                <td>
-                  <input type="number" style="width: 100px;" value="2">
-                </td>
-                <td>R$ 4888,42</td>
-                <td>
-                  <a class="btn btn-danger btn-sm" href="#">
-                    <i class="fas fa-trash">
-                    </i>
-                    Remover
-                  </a>
-                </td>
-              </tr>
+              <c:forEach var="item" items="${items}">
+              	<tr id="row_${item.product.id}">
+	                <td>
+	                  <img src="${item.product.image.url}" style="width: 70px; height: 50px;">
+	                </td>
+	                <td style="max-width:350px;">${item.product.title}</td>
+	                <td>
+                      <span id="price_${item.product.id}">${item.product.price}</span>
+	                </td>
+	                <td>
+	                  <button type="button" class="btn btn-sm btn-secondary" onclick="decreaseItemQty(${item.product.id});" style="font-size:13px;">-</button>
+	                  <span id="qty_${item.product.id}" style="margin-left:5px;margin-right:5px;">${item.quantity}</span>
+	                  <button type="button" class="btn btn-sm btn-secondary" onclick="increaseItemQty(${item.product.id});" style="font-size:13px;">+</button>
+	                </td>
+	                <td>
+                      <span id="subTotal_${item.product.id}">${item.subTotal}</span>
+                    </td>
+	                <td>
+	                  <button class="btn btn-danger btn-sm" onclick="removeCartItem(${item.product.id});">
+	                    <i class="fas fa-trash">
+	                    </i>
+	                  </button>
+	                </td>
+                </tr>
+              </c:forEach>
           </table>
           <hr>
           <div style="display: flex; justify-content: space-between;">
-            <h3>Total: R$ 14665,26</h3>
-            <a href="../login.html" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
+            <h3>Total: R$ <span id="total">R$ 0</h3>
+            <a href="#" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
               <i class="fas fa-credit-card fa-lg mr-2"></i>
               Iniciar compra
             </a>
@@ -267,11 +225,76 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="../../static/plugins/jquery/jquery.min.js"></script>
+  <script src="/note-commerce/static/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="../../static/dist/js/adminlte.min.js"></script>
+  <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+  <script>
+ 	  function moneyMask(value) {
+	    value = value.toString().replace(/\D/g,"");
+	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
+	    value = value.toString().replace(/(\d)(\d{5})$/,"$1.$2");
+	    value = value.toString().replace(/(\d)(\d{2})$/,"$1,$2");
+	    return value;                
+	  }
+  	
+	  function decreaseItemQty(id) {
+		  let qty = $("#qty_" + id).text();
+		  
+		  if (qty > 1) {
+		  	updateCartItem(id, parseInt(qty) - 1);
+		  }
+	  }
+  
+      function increaseItemQty(id) {
+    	  let qty = $("#qty_" + id).text();
+    	  
+    	  updateCartItem(id, parseInt(qty) + 1);
+      }
+     
+  
+  	  function updateCartItem(id, qty) {
+  		$.ajax({
+  		  type: "POST",
+  		  url: '/note-commerce/shop/cart',
+  		  data: {operation : 'update', productId : id, quantity : qty},
+  		  success: function() {
+  			  $("#qty_" + id).text(qty);
+  			  
+  			  $("#subTotal_" + id).text(qty * parseFloat	($("#price_" + id).text()));
+  			  calculateTotal();
+  		  },
+  		  dataType: "text"
+  		});
+  	  }
+  	  
+  	  function removeCartItem(id) {
+		$.ajax({
+		  type: "POST",
+		  url: '/note-commerce/shop/cart',
+		  data: {operation : 'remove', productId : id},
+		  success: function() {
+			  $("#row_" + id).remove();
+			  calculateTotal();
+		  },
+		  dataType: "text"
+		});
+	  }
+  	  
+  	  function calculateTotal() {
+  		let total = 0;  
+  		$("#tableItems tr").not(':first').each(function() {
+  		  total +=  parseFloat($(this).find("td:eq(4)").text());
+  		});
+  		
+		$("#total").text(total);
+  	  }
+  	  
+  	  $(document).ready(() => {
+  		calculateTotal();
+  	  })
+  </script>
 </body>
 
 </html>

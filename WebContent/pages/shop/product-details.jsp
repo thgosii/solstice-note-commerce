@@ -68,14 +68,14 @@
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 250,00</strong>
+              Saldo digital: <strong>R$ 0,00</strong>
             </a>
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
               <i class="fas fa-shopping-cart"></i>
-              <span class="badge badge-danger navbar-badge">4</span>
+              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
             </a>
           </li>
           <!-- Perfil -->
@@ -174,11 +174,11 @@
                 </h2>
                 <hr>
                 <div class="row">
-                  <button type="button" class="btn btn-primary btn-lg btn-flat" style="margin-right: 10px;">
+                  <button type="button" class="btn btn-primary btn-lg btn-flat" onclick="addProductToCart(${product.id});this.classList.remove('btn-primary');this.classList.add('btn-secondary');" style="margin-right: 10px;">
                     <i class="fas fa-cart-plus fa-lg mr-2"></i>
                     Adicionar ao carrinho
                   </button>
-                  <a href="cart.html" class="btn btn-secondary btn-lg btn-flat">
+                  <a href="#" class="btn btn-info btn-lg btn-flat">
                     <i class="fas fa-shopping-bag fa-lg mr-2"></i>
                     Comprar
                   </a>
@@ -216,6 +216,17 @@
   <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+  <script>
+      function addProductToCart(id) {
+		$.ajax({
+		  type: "POST",
+		  url: '/note-commerce/shop/cart?operation=save',
+		  data: {operation : 'save', productId : id},
+		  success: function() {},
+		  dataType: "text"
+		});
+	  }
+  </script>
 </body>
 
 </html>

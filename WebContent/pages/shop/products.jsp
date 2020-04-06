@@ -74,14 +74,14 @@
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 250,00</strong>
+              Saldo digital: <strong>R$ 0,00</strong>
             </a>
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
               <i class="fas fa-shopping-cart"></i>
-              <span class="badge badge-danger navbar-badge">4</span>
+              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
             </a>
           </li>
           <!-- Perfil -->
@@ -401,9 +401,9 @@
 	             <span class="font-weight-bold" id="product-price"></span>
 	           </div>
 	           <div class="col-2">
-	             <button class="btn btn-sm btn-success" type="button" value="2">
-	               <i class="fas fa-cart-plus"></i>
-	             </button>
+                  <button class="btn btn-sm btn-success" name="addProduct" type="submit">
+                    <i class="fas fa-cart-plus"></i>
+                  </button>
 	           </div>
 	         </div>
 	       </div>
@@ -423,7 +423,6 @@
   <!-- Bootstrap slider -->
   <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
   <script>
-  	  // https://pt.stackoverflow.com/a/102549
 	  function moneyMask(value) {
 	    value = value.toString().replace(/\D/g,"");
 	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
@@ -431,6 +430,16 @@
 	    value = value.toString().replace(/(\d)(\d{2})$/,"$1,$2");
 	    return value;                
 	  }
+  
+  	  function addProductToCart(id) {
+  		$.ajax({
+  		  type: "POST",
+  		  url: '/note-commerce/shop/cart',
+  		  data: {operation : 'save', productId : id},
+  		  success: function() {},
+  		  dataType: "text"
+  		});
+  	  }
 	  
 	  $(document).ready(() => {
 		   	$.ajax({
@@ -444,6 +453,7 @@
 		   	           card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
 		   	           card.find("#product-image").attr('src', value.imageURL);
 		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
+		   	           card.find("button[name='addProduct']").attr('onclick', "addProductToCart(" + value.id + ");this.classList.remove('btn-success');this.classList.add('btn-secondary');");
 		   	           $('#products-row').append(card);
 		   	        });
 		   	    }
