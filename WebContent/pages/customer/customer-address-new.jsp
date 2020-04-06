@@ -72,14 +72,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 250,00</strong>
+              Saldo digital: <strong>R$ 0,00</strong>
             </a>
           </li>
           <!-- Carrinho -->
           <li class="nav-item">
-            <a class="nav-link" href="../shop/cart.html">
+            <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
               <i class="fas fa-shopping-cart"></i>
-              <span class="badge badge-danger navbar-badge">4</span>
+              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
             </a>
           </li>
           <!-- Perfil -->
