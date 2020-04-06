@@ -23,6 +23,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -172,12 +176,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="form-group">
                   <label for="state">Estado<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="state" name="state" data-target='#city' disabled>
+                  <select class="form-control select2bs4" id="state" name="state" data-target='#city' disabled>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="city">Cidade<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="city" name="city" disabled>
+                  <select class="form-control select2bs4" id="city" name="city" disabled>
                   </select>
                 </div>
                 <div class="form-group">
@@ -244,113 +248,111 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
   <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+  
+  <!-- Select2 -->
+  <script src="/note-commerce/static/plugins/select2/js/select2.full.min.js"></script>
+  <script src="/note-commerce/static/plugins/select2/js/i18n/pt-BR.js"></script>
+  
   <script type="text/javascript">  
     $(document).ready(function () {
-      $("#cep").inputmask("99999-999");
-    });	
     
-	let states = [];
-	let flagFocusout = false;
-	
-	function loadStates(element) {
-	  if (states.length > 0) {
-	    putStates(element);
-	    $(element).removeAttr('disabled');
-	  } else {
-	    $.ajax({
-	      url: 'https://api.myjson.com/bins/enzld',
-	      method: 'get',
-	      dataType: 'json',
-	      beforeSend: function() {
-	        $(element).html('<option>Carregando...</option>');
-	      }
-	    }).done(function(response) {
-	      states = response.estados;
-	      putStates(element);
-	      $(element).removeAttr('disabled');
-	      let target = $("#state").data('target');
-		  if (target) {
-		    loadCities(target, $("#state").children(":selected").attr("id"));
-		  }
-	    });
-	  }
-	}
-	
-	function putStates(element) {
-	  let options;
-	  for (let i in states) {
-	    let state = states[i];
-	    options += '<option value="' + state.nome + '" id="' + state.sigla + '">' + state.nome + '</option>';
-	  }
-	  $(element).html(options);
-	}
-	
-	function loadCities(element, state_initials) {
-	  if (states.length > 0) {
-	    putCities(element, state_initials);
-	    $(element).removeAttr('disabled');
-	  } else {
-	    $.ajax({
-	      url: theme_url + '/assets/json/estados.json',
-	      method: 'get',
-	      dataType: 'json',
-	      beforeSend: function() {
-	        $(element).html('<option>Carregando...</option>');
-	      }
-	    }).done(function(response) {
-	      states = response.estados;
-	      putCities(element, state_initials);
-	      $(element).removeAttr('disabled');
-	    });
-	  }
-	}
-	
-	function putCities(element, state_initials) {
-	  let options;
-	  for (let i in states) {
-	    let state = states[i];
-	    if (state.sigla != state_initials)
-	      continue;
-	    for (let j in state.cidades) {
-	      let city = state.cidades[j];
-	      options += '<option value="' + city + '" id="' + city + '">' + city + '</option>';
-	    }
-	  }
-	  $(element).html(options);
-	  if (!flagFocusout) {
-  	  	$('#cep').trigger('focusout');
-  	  	flagFocusout = true;
-	  }
-	}
-	
-	document.addEventListener('DOMContentLoaded', function() {
-	  loadStates('#state');
-	  $(document).on('change', '#state', function(e) {
-	    let target = $(this).data('target');
-	    if (target) {
-	      loadCities(target, $(this).children(":selected").attr("id"));
-	    }
-	  });
-	}, false);
-	
-	$("#cep").focusout(function(){
-		$.ajax({
-			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-			dataType: 'json',
-			success: function(response){
-				$("#publicPlace").val(response.logradouro);
-				$("#neighbourhood").val(response.bairro);		
-				$("#state option[id='" + response.uf + "']").attr("selected", "selected");
-				$("#number").focus();
-			}
-		}).done(function(response) {
-			let target = $("#state").data('target');
-			if (target) {
-			  loadCities(target, $("#state").children(":selected").attr("id"));
-			}
-			$("#city option[id='" + response.localidade + "']").attr("selected", "selected");
-		});
-	});	
+      $("#cep").inputmask("99999-999");
+      
+      $(".select2bs4").select2({ // #city and #state
+          theme: 'bootstrap4',
+          language: "pt-BR",
+          disabled: true
+      })
+      
+      async function loadStates() {
+     	  console.log("load states");
+      	  $('#state').prop("disabled", true);
+    	  $('#state').html("")
+          await $.ajax("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+          	.then(data => {
+          		// Sort states
+          		data.sort((a, b) => a.nome > b.nome ? 1 : (a.nome < b.nome ? -1 : 0))
+          		
+          		// Enable state select
+          		$('#state').prop("disabled", false);
+          		
+          		// Fill state select options
+          		data.forEach(s => {
+          			const option = new Option(s.nome, s.sigla, false, false);
+          			$(option).attr('data-ibge-id', s.id) // Necessary for IBGE API city request
+          			$("#state").append(option)
+          		});
+          	});
+      }
+      
+      async function loadCities(ufId) {
+   	    console.log("load cities:", ufId);
+      	$('#city').prop("disabled", true);
+	    $('#city').html("");
+        await $.ajax("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + ufId + "/municipios")
+        	.then(data => {
+        		// Sort cities
+        		data.sort((a, b) => a.nome > b.nome ? 1 : (a.nome < b.nome ? -1 : 0))
+        		    
+        		// Fill city select options
+        		data.forEach(c => {
+            		const option = new Option(c.nome, c.nome, false, false);
+          			$(option).attr('data-ibge-id', c.id) // Necessary for IBGE API city request
+            		$("#city").append(option)
+        		})
+        		    
+            	// Enable state select
+            	$('#city').prop("disabled", false);
+        	});
+      }
+      
+      async function searchCEP(cep) {
+    	console.log("search cep: " + cep);
+		return await $.ajax('https://viacep.com.br/ws/'+ cep +'/json/unicode/');
+      } 
+      
+      
+      // Load cities on state selection
+      $("#state").change(e => {
+    	const selectedState = $("#state").select2("data")[0];
+    	const ufId = $(selectedState.element).attr('data-ibge-id');
+    	console.log('selected state:', selectedState.text);
+    	
+        loadCities(ufId);
+      });
+      
+      // Search CEP and fill fields when CEP is typed and valid
+      $("#cep").on('change', e => {
+    	  const cep = $("#cep").val().replace("-", "");
+    	  if (!cep || !cep.match(/\d{8}/)) return;
+    	  
+    	  searchCEP(cep)
+    	  	.then(async data => {
+				$("#publicPlace").val(data.logradouro);
+				$("#neighbourhood").val(data.bairro);
+				$("#state").val(data.uf);
+				$("#state").trigger("change");
+				
+		    	const selectedState = $("#state").select2("data")[0];
+		    	const ufId = $(selectedState.element).attr('data-ibge-id');
+		    	console.log('selected state2:', selectedState.text);
+		        await loadCities(ufId);
+				
+				//const cepUfId = $("#state option[value=" + data.uf + "]").data("ibge-id");
+				//await loadCities(cepUfId);
+
+				//$("#city").val(data.localidade);
+				//$("#city option:selected").removeAttr("selected");
+				$("#city option[data-ibge-id=" + data.ibge + "]").prop("selected", true);
+			    $("#city").trigger("change");
+    	  	});
+      });
+      
+      loadStates()
+      	.then(() => {
+      		$("#cep").trigger("change");
+      	});
+    });
   </script>
 </body>
 
