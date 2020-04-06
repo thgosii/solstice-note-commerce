@@ -168,7 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               	<input type="hidden" name="operation" value="save">
                 <div class="form-group">
                   <label for="cep">CEP<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" pattern="\d{5}\-\d{2}" value="${address.cep}" required>
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
                 </div>
                 <div class="form-group">
                   <label for="publicPlace">Logradouro<span class="text-danger text-bold"> *</span></label>
@@ -322,7 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       });
       
       // Search CEP and fill fields when CEP is typed and valid
-      $("#cep").on('change', e => {
+      $("#cep").on('input', e => {
     	  const cep = $("#cep").val().replace("-", "");
     	  if (!cep || !cep.match(/\d{8}/)) return;
     	  
@@ -348,8 +348,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     	  	});
       });
       
+      // Ready
       loadStates()
       	.then(() => {
+      		//$("#cep").val("${address.cep}");
       		$("#cep").trigger("change");
       	});
     });
