@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <a href="/note-commerce/pages/shop/products.jsp" class="navbar-brand">
           <!-- <img src="../../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-          <span class="brand-text font-weight-light">Meus Cartões | LapTop Computadores</span>
+          <span class="brand-text font-weight-light">LapTop Computadores</span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
