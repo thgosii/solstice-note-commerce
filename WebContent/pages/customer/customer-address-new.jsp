@@ -264,6 +264,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           disabled: true
       })
       
+      // Selenium IDE inputmask type fix
+      $("#cep").click(e => {
+      	$("#cep").val("");
+      });
+      
       async function loadStates() {
      	  console.log("load states");
       	  $('#state').prop("disabled", true);
@@ -351,7 +356,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       // Ready
       loadStates()
       	.then(() => {
-      		//$("#cep").val("${address.cep}");
+      		$("#cep").val("${address.cep}");
       		$("#cep").trigger("change");
       	});
     });
