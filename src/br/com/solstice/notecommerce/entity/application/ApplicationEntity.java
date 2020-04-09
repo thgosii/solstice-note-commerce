@@ -1,5 +1,7 @@
 package br.com.solstice.notecommerce.entity.application;
 
-public class ApplicationEntity {
+import br.com.solstice.notecommerce.entity.Entity;
+
+public class ApplicationEntity extends Entity {
 
 }
