@@ -26,6 +26,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.Vali
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateStorage;
 import br.com.solstice.notecommerce.dao.IDAO;
+import br.com.solstice.notecommerce.dao.impl.application.admin.DashboardDataDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
@@ -34,6 +35,7 @@ import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
+import br.com.solstice.notecommerce.entity.application.admin.dashboard.DashboardData;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
@@ -83,6 +85,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(Product.class.getName(), productBusinessRulesMap);
 
+		// DashboardData
+		daosMap.put(DashboardData.class.getName(), new DashboardDataDAO());
+		
 		// Brands
 		daosMap.put(Brand.class.getName(), new BrandDAO());
 
