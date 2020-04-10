@@ -57,7 +57,7 @@
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="#" method="GET" class="form-inline ml-0 ml-md-3">
+          <form id="form-header-search" action="/note-commerce/pages/shop/products.jsp" method="GET" class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
