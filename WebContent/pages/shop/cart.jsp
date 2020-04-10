@@ -171,9 +171,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <span id="price_${item.product.id}">${item.product.price}</span>
 	                </td>
 	                <td>
-	                  <button type="button" class="btn btn-sm btn-secondary" onclick="decreaseItemQty(${item.product.id});" style="font-size:13px;">-</button>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="decreaseItemQty(${item.product.id});" style="font-size:13px;">
+                      <i class="fas fa-minus"></i>
+                    </button>
 	                  <span id="qty_${item.product.id}" style="margin-left:5px;margin-right:5px;">${item.quantity}</span>
-	                  <button type="button" class="btn btn-sm btn-secondary" onclick="increaseItemQty(${item.product.id});" style="font-size:13px;">+</button>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="increaseItemQty(${item.product.id});" style="font-size:13px;">
+                      <i class="fas fa-plus"></i>
+                    </button>
 	                </td>
 	                <td>
                       <span id="subTotal_${item.product.id}">${item.subTotal}</span>
