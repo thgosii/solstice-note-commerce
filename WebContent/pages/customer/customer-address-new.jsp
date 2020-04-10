@@ -23,6 +23,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 
 <body class="hold-transition layout-top-nav">
@@ -164,7 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               	<input type="hidden" name="operation" value="save">
                 <div class="form-group">
                   <label for="cep">CEP<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" pattern="\d{5}\-\d{2}" value="${address.cep}" required>
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
                 </div>
                 <div class="form-group">
                   <label for="publicPlace">Logradouro<span class="text-danger text-bold"> *</span></label>
@@ -172,12 +176,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="form-group">
                   <label for="state">Estado<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="state" name="state" data-target='#city'>
+                  <select class="form-control select2bs4" id="state" name="state" data-target='#city' disabled>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="city">Cidade<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="city" name="city">
+                  <select class="form-control select2bs4" id="city" name="city" disabled>
                   </select>
                 </div>
                 <div class="form-group">
@@ -244,57 +248,117 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
   <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+  
+  <!-- Select2 -->
+  <script src="/note-commerce/static/plugins/select2/js/select2.full.min.js"></script>
+  <script src="/note-commerce/static/plugins/select2/js/i18n/pt-BR.js"></script>
+  
   <script type="text/javascript">  
     $(document).ready(function () {
       $("#cep").inputmask("99999-999");
-            
-      $.getJSON('/note-commerce/static/custom/general/json/estados_cidades.json', function (data) {
-			let items = [];
-			let options = '<option value="">Selecione um estado...</option>';	
+           
+      $(".select2bs4").select2({ // #city and #state
+          theme: 'bootstrap4',
+          language: "pt-BR",
+          disabled: true
+      })
+      
+      // Selenium IDE inputmask type fix
+      $("#cep").click(e => {
+      	$("#cep").val("");
+      });
+      
+      async function loadStates() {
+     	  console.log("load states");
+      	  $('#state').prop("disabled", true);
+    	  $('#state').html("")
+          await $.ajax("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+          	.then(data => {
+          		// Sort states
+          		data.sort((a, b) => a.nome > b.nome ? 1 : (a.nome < b.nome ? -1 : 0))
+          		
+          		// Enable state select
+          		$('#state').prop("disabled", false);
+          		
+          		// Fill state select options
+          		data.forEach(s => {
+          			const option = new Option(s.nome, s.sigla, false, false);
+          			$(option).attr('data-ibge-id', s.id) // Necessary for IBGE API city request
+          			$("#state").append(option)
+          		});
+          	});
+      }
+      
+      async function loadCities(ufId) {
+   	    console.log("load cities:", ufId);
+      	$('#city').prop("disabled", true);
+	    $('#city').html("");
+        await $.ajax("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" + ufId + "/municipios")
+        	.then(data => {
+        		// Sort cities
+        		data.sort((a, b) => a.nome > b.nome ? 1 : (a.nome < b.nome ? -1 : 0))
+        		    
+        		// Fill city select options
+        		data.forEach(c => {
+            		const option = new Option(c.nome, c.nome, false, false);
+          			$(option).attr('data-ibge-id', c.id) // Necessary for IBGE API city request
+            		$("#city").append(option)
+        		})
+        		    
+            	// Enable state select
+            	$('#city').prop("disabled", false);
+        	});
+      }
+      
+      async function searchCEP(cep) {
+    	console.log("search cep: " + cep);
+		return await $.ajax('https://viacep.com.br/ws/'+ cep +'/json/unicode/');
+      } 
+      
+      
+      // Load cities on state selection
+      $("#state").change(e => {
+    	const selectedState = $("#state").select2("data")[0];
+    	const ufId = $(selectedState.element).attr('data-ibge-id');
+    	console.log('selected state:', selectedState.text);
+    	
+        loadCities(ufId);
+      });
+      
+      // Search CEP and fill fields when CEP is typed and valid
+      $("#cep").on('input', e => {
+    	  const cep = $("#cep").val().replace("-", "");
+    	  if (!cep || !cep.match(/\d{8}/)) return;
+    	  
+    	  searchCEP(cep)
+    	  	.then(async data => {
+				$("#publicPlace").val(data.logradouro);
+				$("#neighbourhood").val(data.bairro);
+				$("#state").val(data.uf);
+				$("#state").trigger("change");
+				
+		    	const selectedState = $("#state").select2("data")[0];
+		    	const ufId = $(selectedState.element).attr('data-ibge-id');
+		    	console.log('selected state2:', selectedState.text);
+		        await loadCities(ufId);
+				
+				//const cepUfId = $("#state option[value=" + data.uf + "]").data("ibge-id");
+				//await loadCities(cepUfId);
 
-			$.each(data, function (key, val) {
-				if ("${address.state}" != null && "${address.state}" != "") {
-					if (val.nome == "${address.state}") {
-						options += '<option value="' + val.nome + '" selected>' + val.nome + '</option>';
-					} else {
-						options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-					}
-				} else {
-					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-				}
-			});					
-			
-			$("#state").html(options);
-			
-			$("#state").change(function () {
-				let options_cidades = '';
-				let str = "";					
-				
-				$("#state option:selected").each(function () {
-					str += $(this).text();
-				});
-				
-				$.each(data, function (key, val) {
-					if(val.nome == str) {							
-						$.each(val.cidades, function (key_city, val_city) {
-							if ("${address.city}" != null && "${address.city}" != "") {
-								if (val_city == "${address.city}") {
-									options_cidades += '<option value="' + val_city + '" selected>' + val_city + '</option>';
-								} else {
-									options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-								}
-							} else {
-								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-							}
-						});							
-					}
-				});
-				
-				$("#city").html(options_cidades);	
-			}).change();
-		});
-    });	
-    
+				//$("#city").val(data.localidade);
+				//$("#city option:selected").removeAttr("selected");
+				$("#city option[data-ibge-id=" + data.ibge + "]").prop("selected", true);
+			    $("#city").trigger("change");
+    	  	});
+      });
+      
+      // Ready
+      loadStates()
+      	.then(() => {
+      		$("#cep").val("${address.cep}");
+      		$("#cep").trigger("change");
+      	});
+    });
   </script>
 </body>
 

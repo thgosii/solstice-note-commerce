@@ -107,6 +107,11 @@
     $("#phone").inputmask({
       mask: ["(99) 9999-9999", "(99) 99999-9999"]
     });
+    
+    // Selenium IDE inputmask type fix
+    $("#cpf").click(e => {
+    	$("#cpf").val("");
+    });
   });	
 </script>
 

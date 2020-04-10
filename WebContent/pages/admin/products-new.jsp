@@ -423,6 +423,7 @@
 
   <!-- Select2 -->
   <script src="/note-commerce/static/plugins/select2/js/select2.full.min.js"></script>
+  <script src="/note-commerce/static/plugins/select2/js/i18n/pt-BR.js"></script>
   <!-- InputMask -->
   <script src="/note-commerce/static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 
@@ -446,7 +447,8 @@
     	
       // Initialize Select2 Elements
       $('.select2bs4').select2({
-        theme: 'bootstrap4'
+        theme: 'bootstrap4',
+        language: 'pt-BR'
       })
 
       $('#price').inputmask('currency', {

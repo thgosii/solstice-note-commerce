@@ -250,36 +250,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
    	        });
    	    }
    	  });
-      
-      $.getJSON('/note-commerce/static/custom/general/json/estados_cidades.json', function (data) {
-			let items = [];
-			let options = '<option value="">Selecione um estado...</option>';	
-
-			$.each(data, function (key, val) {
-				options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-			});					
-			
-			$("#state").html(options);
-			
-			$("#state").change(function () {
-				let options_cidades = '';
-				let str = "";					
-				
-				$("#state option:selected").each(function () {
-					str += $(this).text();
-				});
-				
-				$.each(data, function (key, val) {
-					if(val.nome == str) {							
-						$.each(val.cidades, function (key_city, val_city) {
-							options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-						});							
-					}
-				});
-				
-				$("#city").html(options_cidades);	
-			}).change();
-		});
     });	
   </script>
 </body>
