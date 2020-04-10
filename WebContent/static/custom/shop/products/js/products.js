@@ -55,7 +55,12 @@ $(document).ready(() => {
   }
   
   function getFilters(checkPrice = false) {
-    let minPrice = 0, maxPrice = Number.MAX_SAFE_INTEGER, brands = [], ram = [], monitor = [], storage = [], os = []
+    let title, minPrice = 0, maxPrice = Number.MAX_SAFE_INTEGER, brands = [], ram = [], monitor = [], storage = [], os = []
+
+    // Title
+    title = new URL(window.location).searchParams.get('descricao') || '';
+    title = title.trim().toLowerCase();
+
     // Price
     if (checkPrice) {
       minPrice = $('#products-filter [name=minimum-price]').val() || minPrice
@@ -87,11 +92,12 @@ $(document).ready(() => {
       if (e.checked) os.push($(e).val().split('-')[1]);
     });
 
-    return { minPrice, maxPrice, brands, ram, monitor, storage, os }
+    return { title, minPrice, maxPrice, brands, ram, monitor, storage, os }
   }
 
   function meetFilterRequirements(filters, product) {
-    return product.price >= filters.minPrice &&
+    return (!filters.title || product.title.toLowerCase().includes(filters.title)) && 
+      product.price >= filters.minPrice &&
       product.price <= filters.maxPrice &&
       (filters.brands.length === 0 || filters.brands.includes(product.brandName.toLowerCase())) &&
       (filters.ram.length === 0 || (filters.ram.includes(product.ram) || filters.ram.includes('others'))) &&
@@ -135,6 +141,11 @@ $(document).ready(() => {
       $('#products-filter [name=maximum-price]').val(minPrice + 500);
     }
   })
+
+  let searchTitle = new URL(window.location).searchParams.get('descricao');
+  if (searchTitle && searchTitle.trim()) {
+    $('#form-header-search input').val(searchTitle)
+  }
 
   // Load products
   $.ajax({
