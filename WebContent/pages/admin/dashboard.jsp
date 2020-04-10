@@ -245,7 +245,7 @@
                 <div class="card-header">
                   <h3 class="card-title">Laptops com mais trocas</h3>
 
-                  <div class="card-tools">
+                  <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <input type="number" min="5" max="100" step="1" placeholder="linhas" name="table_search"
                         class="w-25 form-control float-right" placeholder="Search">
@@ -257,7 +257,7 @@
                         <i class="fas fa-minus"></i>
                       </button>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 400px;">
@@ -328,7 +328,7 @@
                 <div class="card-header">
                   <h3 class="card-title">Laptops mais vendidos</h3>
 
-                  <div class="card-tools">
+                  <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <input type="number" min="5" max="100" step="1" placeholder="linhas" name="table_search"
                         class="w-25 form-control float-right" placeholder="Search">
@@ -340,7 +340,7 @@
                         <i class="fas fa-minus"></i>
                       </button>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 400px;">
