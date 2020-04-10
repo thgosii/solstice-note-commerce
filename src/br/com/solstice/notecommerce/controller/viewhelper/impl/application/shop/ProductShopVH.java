@@ -78,23 +78,23 @@ public class ProductShopVH implements IViewHelper {
 					JSONArray jsonArray = new JSONArray();
 	
 					for (Product product : products) {
-						JSONObject brandDetailsJSON = new JSONObject();
-						brandDetailsJSON.put("id", product.getId());
-						brandDetailsJSON.put("title", product.getTitle());
-						brandDetailsJSON.put("imageURL", product.getImage().getUrl());
-						brandDetailsJSON.put("price", product.getPrice());
-						brandDetailsJSON.put("description", product.getDescription());
-						brandDetailsJSON.put("brandName", product.getBrand().getName());
-						brandDetailsJSON.put("processor", product.getProcessor());
-						brandDetailsJSON.put("graphicsCard", product.getGraphicsCard());
-						brandDetailsJSON.put("ram", product.getRam());
-						brandDetailsJSON.put("monitor", product.getMonitor());
-						brandDetailsJSON.put("hd", product.getHd());
-						brandDetailsJSON.put("ssd", product.getSsd());
-						brandDetailsJSON.put("os", product.getOs());
-						jsonArray.put(brandDetailsJSON);
+						JSONObject addressDetailsJSON = new JSONObject();
+						addressDetailsJSON.put("id", product.getId());
+						addressDetailsJSON.put("title", product.getTitle());
+						addressDetailsJSON.put("imageURL", product.getImage().getUrl());
+						addressDetailsJSON.put("price", product.getPrice());
+						addressDetailsJSON.put("description", product.getDescription());
+						addressDetailsJSON.put("brandName", product.getBrand().getName());
+						addressDetailsJSON.put("processor", product.getProcessor());
+						addressDetailsJSON.put("graphicsCard", product.getGraphicsCard());
+						addressDetailsJSON.put("ram", product.getRam());
+						addressDetailsJSON.put("monitor", product.getMonitor());
+						addressDetailsJSON.put("hd", product.getHd());
+						addressDetailsJSON.put("ssd", product.getSsd());
+						addressDetailsJSON.put("os", product.getOs());
+						jsonArray.put(addressDetailsJSON);
 					}
-					responseDetailsJson.put("brands", jsonArray);
+					responseDetailsJson.put("products", jsonArray);
 	
 					PrintWriter writer = response.getWriter();
 					writer.write(jsonArray.toString());

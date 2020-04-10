@@ -1,12 +1,18 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
@@ -15,7 +21,6 @@ import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.AddressType;
-import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class AddressVH implements IViewHelper {
 
@@ -168,7 +173,7 @@ public class AddressVH implements IViewHelper {
 				address.setId(id);
 
 				return address;
-			} else if (operation.equals("update")) {				
+			} else if (operation.equals("update")) {
 				Long id = 0L;
 				if (null != request.getParameter("id")) {
 					try {
@@ -176,7 +181,7 @@ public class AddressVH implements IViewHelper {
 					} catch (Exception ex) {
 					}
 				}
-				
+
 				String cep = "";
 				if (null != request.getParameter("cep")) {
 					try {
@@ -298,13 +303,54 @@ public class AddressVH implements IViewHelper {
 				request.getRequestDispatcher("/pages/customer/customer-address-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
-			List<Entity> adresses = (List<Entity>) result.getEntities();
-			request.setAttribute("adresses", adresses);
+			boolean isAsync = false;
 
-			if (null == adresses) {
-				return;
+			if (request.getParameter("isAsync") != null) {
+				isAsync = request.getParameter("isAsync").equals("true") ? true : false;
 			}
-			request.getRequestDispatcher("/pages/customer/customer-address-list.jsp").forward(request, response);
+			
+			if (isAsync) {
+				List<Address> adresses = result.getEntities().stream().map(address -> (Address) address)
+						.collect(Collectors.toList());
+
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+
+				try {
+					JSONObject responseDetailsJson = new JSONObject();
+					JSONArray jsonArray = new JSONArray();
+
+					for (Address address : adresses) {
+						JSONObject addressDetailsJSON = new JSONObject();
+						addressDetailsJSON.put("id", address.getId());
+						addressDetailsJSON.put("cep", address.getCep());
+						addressDetailsJSON.put("city", address.getCity());
+						addressDetailsJSON.put("state", address.getState());
+						addressDetailsJSON.put("neighbourhood", address.getNeighbourhood());
+						addressDetailsJSON.put("publicPlace", address.getPublicPlace());
+						addressDetailsJSON.put("number", address.getNumber());
+						addressDetailsJSON.put("type", address.getType());
+						addressDetailsJSON.put("customerId", address.getCustomer().getId());
+						jsonArray.put(addressDetailsJSON);
+					}
+
+					responseDetailsJson.put("adresses", jsonArray);
+
+					PrintWriter writer = response.getWriter();
+					writer.write(jsonArray.toString());
+					writer.flush();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+				List<Entity> adresses = (List<Entity>) result.getEntities();
+				request.setAttribute("adresses", adresses);
+
+				if (null == adresses) {
+					return;
+				}
+				request.getRequestDispatcher("/pages/customer/customer-address-list.jsp").forward(request, response);
+			}
 		} else if (operation.equals("remove")) {
 			response.sendRedirect("/note-commerce/customer/adresses?operation=consult");
 		} else if (operation.equals("update")) {

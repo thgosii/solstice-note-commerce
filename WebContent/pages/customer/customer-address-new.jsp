@@ -255,9 +255,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <script type="text/javascript">  
     $(document).ready(function () {
-    
       $("#cep").inputmask("99999-999");
-      
+           
       $(".select2bs4").select2({ // #city and #state
           theme: 'bootstrap4',
           language: "pt-BR",
@@ -285,6 +284,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           		data.forEach(s => {
           			const option = new Option(s.nome, s.sigla, false, false);
           			$(option).attr('data-ibge-id', s.id) // Necessary for IBGE API city request
+          			if ("${address.state}" != null && "${address.state}" != "") {
+          				if ("${address.state}" == s.sigla) {
+          					$(option).prop('selected', true)
+          					$("#city").prop("disabled", false);
+          					loadCities(s.id);
+          				}
+          			}
           			$("#state").append(option)
           		});
           	});
@@ -303,6 +309,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         		data.forEach(c => {
             		const option = new Option(c.nome, c.nome, false, false);
           			$(option).attr('data-ibge-id', c.id) // Necessary for IBGE API city request
+          			if ("${address.city}" != null && "${address.city}" != "") {
+          				if ("${address.city}" == c.nome) {
+          					$(option).prop('selected', true)
+          				}
+          			}
             		$("#city").append(option)
         		})
         		    

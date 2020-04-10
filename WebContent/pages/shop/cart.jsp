@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
-          <div class="col-sm-6">
+          <div class="col-sm-10">
             <h1>Carrinho</h1>
           </div>
         </div><!-- /.container-fluid -->
@@ -166,9 +166,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	                <td>
 	                  <img src="${item.product.image.url}" style="width: 70px; height: 50px;">
 	                </td>
-	                <td style="max-width:350px;">${item.product.title}</td>
+	                <td style="max-width:300px;">${item.product.title}</td>
 	                <td>
-                      <span id="price_${item.product.id}">${item.product.price}</span>
+                      R$ <span id="price_${item.product.id}">${item.product.price}</span>
 	                </td>
 	                <td>
                     <button type="button" class="btn btn-sm btn-secondary" onclick="decreaseItemQty(${item.product.id});" style="font-size:13px;">
@@ -180,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </button>
 	                </td>
 	                <td>
-                      <span id="subTotal_${item.product.id}">${item.subTotal}</span>
+                      R$ <span id="subTotal_${item.product.id}">${item.subTotal}</span>
                     </td>
 	                <td>
 	                  <button class="btn btn-danger btn-sm" onclick="removeCartItem(${item.product.id});">
@@ -193,11 +193,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </table>
           <hr>
           <div style="display: flex; justify-content: space-between;">
-            <h3>Total: R$ <span id="total">R$ 0</h3>
-            <a href="#" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
+            <h3>Total: R$ <span id="total">R$ 0</span></h3>
+            <button type="button" onclick="window.location.href='/note-commerce/pages/shop/checkout-step-1.jsp'" id="initCheckout" class="btn btn-info btn-lg btn-flat" style="margin-right: 10px;">
               <i class="fas fa-credit-card fa-lg mr-2"></i>
               Iniciar compra
-            </a>
+            </button>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -256,17 +256,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
     	  
     	  updateCartItem(id, parseInt(qty) + 1);
       }
-     
+      
+      function checkCartItemQuantity() {
+    	  let quantity = 0;
+    	  
+    	  $("#tableItems tr").not(':first').each(function() {
+     		++quantity;
+     	  });
+    	  
+    	  console.log(quantity);
+    	  
+    	  if (quantity > 0) {
+    		  $("#initCheckout").attr("disabled", false);
+    	  } else {
+    		  $("#initCheckout").attr("disabled", true);
+    	  }
+      }
   
   	  function updateCartItem(id, qty) {
-  		$.ajax({
-  		  type: "POST",
+	  		$.ajax({
+	  		  type: "POST",
   		  url: '/note-commerce/shop/cart',
   		  data: {operation : 'update', productId : id, quantity : qty},
   		  success: function() {
+  			  fixMoneyNumbers();
   			  $("#qty_" + id).text(qty);
-  			  
-  			  $("#subTotal_" + id).text(qty * parseFloat	($("#price_" + id).text()));
+  			  $("#subTotal_" + id).text(parseFloat(qty * parseFloat($("#price_" + id).text())).toFixed(2));
   			  calculateTotal();
   		  },
   		  dataType: "text"
@@ -281,6 +296,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		  success: function() {
 			  $("#row_" + id).remove();
 			  calculateTotal();
+			  checkCartItemQuantity();
 		  },
 		  dataType: "text"
 		});
@@ -289,14 +305,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
   	  function calculateTotal() {
   		let total = 0;  
   		$("#tableItems tr").not(':first').each(function() {
-  		  total +=  parseFloat($(this).find("td:eq(4)").text());
+  		  total +=  parseFloat($(this).find("td:eq(4) span").text());
   		});
   		
-		$("#total").text(total);
+		$("#total").text(parseFloat(total).toFixed(2));
+  	  }
+  	  
+  	  function fixMoneyNumbers() {
+  		$("#tableItems tr").not(':first').each(function() {
+   		  $(this).find("td:eq(2) span").text(parseFloat($(this).find("td:eq(2) span").text()).toFixed(2));
+   		  $(this).find("td:eq(4) span").text(parseFloat($(this).find("td:eq(4) span").text()).toFixed(2));
+   		});
   	  }
   	  
   	  $(document).ready(() => {
+    	fixMoneyNumbers();
   		calculateTotal();
+  		checkCartItemQuantity();
   	  })
   </script>
 </body>

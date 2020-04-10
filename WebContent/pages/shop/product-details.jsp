@@ -178,7 +178,7 @@
                     <i class="fas fa-cart-plus fa-lg mr-2"></i>
                     Adicionar ao carrinho
                   </button>
-                  <a href="#" class="btn btn-info btn-lg btn-flat">
+                  <a href="/note-commerce/shop/cart?operation=consult" class="btn btn-info btn-lg btn-flat">
                     <i class="fas fa-shopping-bag fa-lg mr-2"></i>
                     Comprar
                   </a>
