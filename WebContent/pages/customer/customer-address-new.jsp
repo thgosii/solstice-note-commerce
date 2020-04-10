@@ -172,12 +172,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="form-group">
                   <label for="state">Estado<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="state" name="state" data-target='#city' disabled>
+                  <select class="form-control" id="state" name="state" data-target='#city'>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="city">Cidade<span class="text-danger text-bold"> *</span></label>
-                  <select class="form-control" id="city" name="city" disabled>
+                  <select class="form-control" id="city" name="city">
                   </select>
                 </div>
                 <div class="form-group">
@@ -247,110 +247,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script type="text/javascript">  
     $(document).ready(function () {
       $("#cep").inputmask("99999-999");
+            
+      $.getJSON('/note-commerce/static/custom/general/json/estados_cidades.json', function (data) {
+			let items = [];
+			let options = '<option value="">Selecione um estado...</option>';	
+
+			$.each(data, function (key, val) {
+				if ("${address.state}" != null && "${address.state}" != "") {
+					if (val.nome == "${address.state}") {
+						options += '<option value="' + val.nome + '" selected>' + val.nome + '</option>';
+					} else {
+						options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+					}
+				} else {
+					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+				}
+			});					
+			
+			$("#state").html(options);
+			
+			$("#state").change(function () {
+				let options_cidades = '';
+				let str = "";					
+				
+				$("#state option:selected").each(function () {
+					str += $(this).text();
+				});
+				
+				$.each(data, function (key, val) {
+					if(val.nome == str) {							
+						$.each(val.cidades, function (key_city, val_city) {
+							if ("${address.city}" != null && "${address.city}" != "") {
+								if (val_city == "${address.city}") {
+									options_cidades += '<option value="' + val_city + '" selected>' + val_city + '</option>';
+								} else {
+									options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+								}
+							} else {
+								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+							}
+						});							
+					}
+				});
+				
+				$("#city").html(options_cidades);	
+			}).change();
+		});
     });	
     
-	let states = [];
-	let flagFocusout = false;
-	
-	function loadStates(element) {
-	  if (states.length > 0) {
-	    putStates(element);
-	    $(element).removeAttr('disabled');
-	  } else {
-	    $.ajax({
-	      url: 'https://api.myjson.com/bins/enzld',
-	      method: 'get',
-	      dataType: 'json',
-	      beforeSend: function() {
-	        $(element).html('<option>Carregando...</option>');
-	      }
-	    }).done(function(response) {
-	      states = response.estados;
-	      putStates(element);
-	      $(element).removeAttr('disabled');
-	      let target = $("#state").data('target');
-		  if (target) {
-		    loadCities(target, $("#state").children(":selected").attr("id"));
-		  }
-	    });
-	  }
-	}
-	
-	function putStates(element) {
-	  let options;
-	  for (let i in states) {
-	    let state = states[i];
-	    options += '<option value="' + state.nome + '" id="' + state.sigla + '">' + state.nome + '</option>';
-	  }
-	  $(element).html(options);
-	}
-	
-	function loadCities(element, state_initials) {
-	  if (states.length > 0) {
-	    putCities(element, state_initials);
-	    $(element).removeAttr('disabled');
-	  } else {
-	    $.ajax({
-	      url: theme_url + '/assets/json/estados.json',
-	      method: 'get',
-	      dataType: 'json',
-	      beforeSend: function() {
-	        $(element).html('<option>Carregando...</option>');
-	      }
-	    }).done(function(response) {
-	      states = response.estados;
-	      putCities(element, state_initials);
-	      $(element).removeAttr('disabled');
-	    });
-	  }
-	}
-	
-	function putCities(element, state_initials) {
-	  let options;
-	  for (let i in states) {
-	    let state = states[i];
-	    if (state.sigla != state_initials)
-	      continue;
-	    for (let j in state.cidades) {
-	      let city = state.cidades[j];
-	      options += '<option value="' + city + '" id="' + city + '">' + city + '</option>';
-	    }
-	  }
-	  $(element).html(options);
-	  if (!flagFocusout) {
-  	  	$('#cep').trigger('focusout');
-  	  	flagFocusout = true;
-	  }
-	}
-	
-	document.addEventListener('DOMContentLoaded', function() {
-	  loadStates('#state');
-	  $(document).on('change', '#state', function(e) {
-	    let target = $(this).data('target');
-	    if (target) {
-	      loadCities(target, $(this).children(":selected").attr("id"));
-	    }
-	  });
-	}, false);
-	
-	$("#cep").focusout(function(){
-		$.ajax({
-			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-			dataType: 'json',
-			success: function(response){
-				$("#publicPlace").val(response.logradouro);
-				$("#neighbourhood").val(response.bairro);		
-				$("#state option[id='" + response.uf + "']").attr("selected", "selected");
-				$("#number").focus();
-			}
-		}).done(function(response) {
-			let target = $("#state").data('target');
-			if (target) {
-			  loadCities(target, $("#state").children(":selected").attr("id"));
-			}
-			$("#city option[id='" + response.localidade + "']").attr("selected", "selected");
-		});
-	});	
   </script>
 </body>
 
