@@ -159,7 +159,7 @@
                     <div class="row">
                       <div class="form-group text-xs mb-2 w-100">
                         <label for="maximum-price">Preço Mínimo</label>
-                        <input type="text" name="minimum-price" class="form-control form-control-sm"
+                        <input type="number" min="0" max="100000" step="50" name="minimum-price" class="form-control form-control-sm"
                           placeholder="R$ 1000">
                       </div>
                     </div>
@@ -167,7 +167,7 @@
                     <div class="row">
                       <div class="form-group text-xs mb-2 w-100">
                         <label for="maximum-price">Preço Máximo</label>
-                        <input type="text" name="maximum-price" class="form-control form-control-sm"
+                        <input type="number" min="0" max="100000" step="50" name="maximum-price" class="form-control form-control-sm"
                           placeholder="R$ 5000">
                       </div>
                     </div>
@@ -270,7 +270,7 @@
                           </div>
                           <div id="filter-group-monitor" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" id="monitor-upto11" name="monitor[]" value="upto11">
+                              <input type="checkbox" id="monitor-upto11" name="monitor[]" value="0-11">
                               <label for="monitor-upto11">até 11 polegadas</label>
                             </div>
                             <div class="icheck-primary">
@@ -286,7 +286,7 @@
                               <label for="monitor-15-17">15 - 17 polegadas</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" id="monitor-above17" name="monitor[]" value="above17">
+                              <input type="checkbox" id="monitor-above17" name="monitor[]" value="17-99">
                               <label for="monitor-above17">acima de 17 pol.</label>
                             </div>
                           </div>
@@ -304,11 +304,11 @@
                           </div>
                           <div id="filter-group-storage" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" id="storage-hd" name="storage-hd">
+                              <input type="checkbox" id="storage-hd" name="storage-hd" value="storage-hd">
                               <label for="storage-hd">Com HD</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" id="storage-ssd" name="storage-ssd">
+                              <input type="checkbox" id="storage-ssd" name="storage-ssd" value="storage-ssd">
                               <label for="storage-ssd">Com SSD</label>
                             </div>
                           </div>
@@ -326,11 +326,11 @@
                           </div>
                           <div id="filter-group-os" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" name="os-w.indows" id="os-windows">
+                              <input type="checkbox" name="os-windows" id="os-windows" value="os-windows">
                               <label for="os-windows">Windows</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" name="os-linux" id="os-linux">
+                              <input type="checkbox" name="os-linux" id="os-linux" value="os-linux">
                               <label for="os-linux">Linux</label>
                             </div>
                           </div>
@@ -422,44 +422,11 @@
 
   <!-- Bootstrap slider -->
   <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
-  <script>
-	  function moneyMask(value) {
-	    value = value.toString().replace(/\D/g,"");
-	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
-	    value = value.toString().replace(/(\d)(\d{5})$/,"$1.$2");
-	    value = value.toString().replace(/(\d)(\d{2})$/,"$1,$2");
-	    return value;                
-	  }
   
-  	  function addProductToCart(id) {
-  		$.ajax({
-  		  type: "POST",
-  		  url: '/note-commerce/shop/cart',
-  		  data: {operation : 'save', productId : id},
-  		  success: function() {},
-  		  dataType: "text"
-  		});
-  	  }
-	  
-	  $(document).ready(() => {
-		   	$.ajax({
-		   	    url:'/note-commerce/shop/products?operation=consult',
-		   	    type:'GET',
-		   	    dataType: 'json',
-		   	    success: function( json ) {
-		   	        $.each(json, function(i, value) {
-		   	           let card=$($('#product-card').html());
-		   	           card.find("#product-name-link").text(value.title);
-		   	           card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
-		   	           card.find("#product-image-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
-		   	           card.find("#product-image").attr('src', value.imageURL);
-		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
-		   	           card.find("button[name='addProduct']").attr('onclick', "addProductToCart(" + value.id + ");this.classList.remove('btn-success');this.classList.add('btn-secondary');");
-		   	           $('#products-row').append(card);
-		   	        });
-		   	    }
-		   	});
-	  })
+  <!-- Page scripts -->
+  <script src="/note-commerce/static/custom/shop/products/js/products.js"></script>
+  
+  <script>
   </script>
 </body>
 
