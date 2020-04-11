@@ -172,6 +172,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="row">
                   <div class="col col-6">
+                    <a href="/note-commerce/customer/creditCards?operation=consult" type="submit" class="btn btn-danger btn-block">Voltar</a>
+                  </div>
+                  <div class="col col-6">
                     <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                   </div>
                 </div>
