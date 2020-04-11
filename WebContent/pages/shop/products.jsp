@@ -415,6 +415,14 @@
 	   </div>
   </template>
 
+  <template id="no-products-message">
+    <div class="w-100 text-center">
+      <i class="fas fa-heart-broken" style="font-size: 80pt;"></i>
+      <h2>Nenhum produto encontrado!</h2>
+      <h3> Tente uma pesquisa mais ampla!</h3>
+    </div>
+  </template>
+
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->

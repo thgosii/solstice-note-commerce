@@ -117,6 +117,11 @@ $(document).ready(() => {
       if (meetFilterRequirements(filters, product))
         $('#products-row').append(createProductCard(product));
     });
+
+    // No products found
+    if ($('#products-row').is(':empty')) {
+      $('#products-row').append($('#no-products-message').html());
+    }
   }
 
   // **************************************************************************************
