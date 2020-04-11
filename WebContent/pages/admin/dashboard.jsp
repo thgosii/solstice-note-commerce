@@ -11,6 +11,11 @@
   <title>Dashboard | LapTop Computadores</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Pace -->
+  <script src="/note-commerce/static/plugins/pace-progress/pace.min.js"></script>
+  <link href="/note-commerce/static/plugins/pace-progress/themes/blue/pace-theme-flash.css" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->

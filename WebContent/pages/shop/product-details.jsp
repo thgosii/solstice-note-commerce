@@ -13,6 +13,10 @@
 
   <title>LapTop Computadores</title>
 
+  <!-- Pace -->
+  <script src="/note-commerce/static/plugins/pace-progress/pace.min.js"></script>
+  <link href="/note-commerce/static/plugins/pace-progress/themes/blue/pace-theme-flash.css" rel="stylesheet">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
