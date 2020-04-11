@@ -25,7 +25,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#">LapTop <b>Computadores</b></a>
+    <a href="/note-commerce/pages/shop/products.jsp">LapTop <b>Computadores</b></a>
   </div>
   <!-- /.login-logo -->
   <c:if test="${not empty requestScope.message}">
