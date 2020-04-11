@@ -95,7 +95,7 @@
           <!-- Perfil -->
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <span class="p-1">usuário</span>
+              <span class="p-1">${loggedUser.email}</span>
               <i class="fas fa-user mr-2"></i>
               <!-- <img src="../../static/dist/img/avatar.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
             </a>
