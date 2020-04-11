@@ -71,6 +71,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+<c:choose>
+  <c:when test="${(empty loggedUser) or (loggedUser.role == 'ADMIN')}">
+  		  <li class="nav-item ml-2">
+            <a class="nav-link" href="/note-commerce/pages/login.jsp">
+              Entrar
+              <i class="ml-1 fas fa-sign-in-alt"></i>
+            </a>
+          </li>
+  </c:when>
+  <c:otherwise>
           <li class="nav-item">
             <a class="nav-link" href="#">
               Saldo digital: <strong>R$ 0,00</strong>
@@ -101,10 +111,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
-              <a href="sales.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
-              <a href="exchanges.html" class="dropdown-item">
+              <a href="#" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
@@ -113,6 +123,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </div>
           </li>
+  </c:otherwise>
+</c:choose>
         </ul>
       </div>
     </nav>

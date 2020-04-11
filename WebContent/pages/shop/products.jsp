@@ -74,8 +74,19 @@
           </form>
         </div>
 
+
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+<c:choose>
+  <c:when test="${(empty loggedUser) or (loggedUser.role == 'ADMIN')}">
+  		  <li class="nav-item ml-2">
+            <a class="nav-link" href="/note-commerce/pages/login.jsp">
+              Entrar
+              <i class="ml-1 fas fa-sign-in-alt"></i>
+            </a>
+          </li>
+  </c:when>
+  <c:otherwise>
           <li class="nav-item">
             <a class="nav-link" href="#">
               Saldo digital: <strong>R$ 0,00</strong>
@@ -118,6 +129,8 @@
               </a>
             </div>
           </li>
+  </c:otherwise>
+</c:choose>
         </ul>
       </div>
     </nav>
