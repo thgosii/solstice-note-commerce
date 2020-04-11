@@ -27,8 +27,6 @@
 
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- bootstrap slider -->
-  <link rel="stylesheet" href="/note-commerce/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
 
 
   <!-- custom css -->
@@ -444,9 +442,6 @@
   <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
-
-  <!-- Bootstrap slider -->
-  <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
   
   <!-- Page scripts -->
   <script src="/note-commerce/static/custom/shop/products/js/products.js"></script>
