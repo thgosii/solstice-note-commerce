@@ -42,4 +42,9 @@ public class CartItem extends DomainEntity {
 		this.subTotal = subTotal;
 	}
 
+	@Override
+	public String toString() {
+		return "CartItem [quantity=" + quantity + ", subTotal=" + subTotal + ", product=" + product + "]";
+	}
+
 }

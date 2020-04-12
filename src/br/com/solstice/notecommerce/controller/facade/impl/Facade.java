@@ -25,10 +25,17 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.Vali
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateProductSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateStorage;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeActionWithStatus;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductAlreadyInTrade;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductQuantity;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSale;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSave;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeUpdate;
 import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.application.admin.DashboardDataDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
@@ -39,6 +46,7 @@ import br.com.solstice.notecommerce.entity.application.admin.dashboard.Dashboard
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
+import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
@@ -169,6 +177,28 @@ public class Facade implements IFacade {
 		cartBusinessRulesMap.put("save", cartBusinessRulesSave);
 
 		businessRulesMap.put(CartItem.class.getName(), cartBusinessRulesMap);
+
+		/*
+		 * General (used in more than one part of the e-commerce)
+		 */
+		
+		// Sale
+		
+		
+		// Trade
+		daosMap.put(Trade.class.getName(), new TradeDAO());
+		Map<String, List<IStrategy>> tradeBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+		
+		List<IStrategy> tradeBusinessRulesSave = new ArrayList<IStrategy>();
+		tradeBusinessRulesSave.add(new ValidateTradeSave());
+		tradeBusinessRulesSave.add(new ValidateTradeProductQuantity());
+		tradeBusinessRulesSave.add(new ValidateTradeProductAlreadyInTrade());
+		tradeBusinessRulesSave.add(new ValidateTradeSale());
+
+		List<IStrategy> tradeBusinessRulesUpdate = new ArrayList<IStrategy>();
+		tradeBusinessRulesSave.add(new ValidateTradeUpdate());
+		tradeBusinessRulesSave.add(new ValidateTradeActionWithStatus());
+		
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {

@@ -12,6 +12,10 @@
 
   <title>Produtos | LapTop Computadores</title>
 
+  <!-- Pace -->
+  <script src="/note-commerce/static/plugins/pace-progress/pace.min.js"></script>
+  <link href="/note-commerce/static/plugins/pace-progress/themes/blue/pace-theme-flash.css" rel="stylesheet">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -23,8 +27,6 @@
 
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- bootstrap slider -->
-  <link rel="stylesheet" href="/note-commerce/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
 
 
   <!-- custom css -->
@@ -57,8 +59,8 @@
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="#" method="GET" class="form-inline ml-0 ml-md-3">
-            <div class="input-group input-group-sm">
+          <form id="form-header-search" action="/note-commerce/pages/shop/products.jsp" method="GET" class="form-inline ml-0 ml-md-3 w-100">
+            <div class="input-group input-group-sm w-100">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
               <div class="input-group-append">
@@ -70,8 +72,19 @@
           </form>
         </div>
 
+
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+<c:choose>
+  <c:when test="${(empty loggedUser) or (loggedUser.role == 'ADMIN')}">
+  		  <li class="nav-item ml-2">
+            <a class="nav-link" href="/note-commerce/pages/login.jsp">
+              Entrar
+              <i class="ml-1 fas fa-sign-in-alt"></i>
+            </a>
+          </li>
+  </c:when>
+  <c:otherwise>
           <li class="nav-item">
             <a class="nav-link" href="#">
               Saldo digital: <strong>R$ 0,00</strong>
@@ -87,7 +100,7 @@
           <!-- Perfil -->
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <span class="p-1">usuário</span>
+              <span class="p-1">${loggedUser.email}</span>
               <i class="fas fa-user mr-2"></i>
               <!-- <img src="../../static/dist/img/avatar.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
             </a>
@@ -114,6 +127,8 @@
               </a>
             </div>
           </li>
+  </c:otherwise>
+</c:choose>
         </ul>
       </div>
     </nav>
@@ -159,7 +174,7 @@
                     <div class="row">
                       <div class="form-group text-xs mb-2 w-100">
                         <label for="maximum-price">Preço Mínimo</label>
-                        <input type="text" name="minimum-price" class="form-control form-control-sm"
+                        <input type="number" min="0" max="100000" step="50" name="minimum-price" class="form-control form-control-sm"
                           placeholder="R$ 1000">
                       </div>
                     </div>
@@ -167,7 +182,7 @@
                     <div class="row">
                       <div class="form-group text-xs mb-2 w-100">
                         <label for="maximum-price">Preço Máximo</label>
-                        <input type="text" name="maximum-price" class="form-control form-control-sm"
+                        <input type="number" min="0" max="100000" step="50" name="maximum-price" class="form-control form-control-sm"
                           placeholder="R$ 5000">
                       </div>
                     </div>
@@ -270,7 +285,7 @@
                           </div>
                           <div id="filter-group-monitor" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" id="monitor-upto11" name="monitor[]" value="upto11">
+                              <input type="checkbox" id="monitor-upto11" name="monitor[]" value="0-11">
                               <label for="monitor-upto11">até 11 polegadas</label>
                             </div>
                             <div class="icheck-primary">
@@ -286,7 +301,7 @@
                               <label for="monitor-15-17">15 - 17 polegadas</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" id="monitor-above17" name="monitor[]" value="above17">
+                              <input type="checkbox" id="monitor-above17" name="monitor[]" value="17-99">
                               <label for="monitor-above17">acima de 17 pol.</label>
                             </div>
                           </div>
@@ -304,11 +319,11 @@
                           </div>
                           <div id="filter-group-storage" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" id="storage-hd" name="storage-hd">
+                              <input type="checkbox" id="storage-hd" name="storage-hd" value="storage-hd">
                               <label for="storage-hd">Com HD</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" id="storage-ssd" name="storage-ssd">
+                              <input type="checkbox" id="storage-ssd" name="storage-ssd" value="storage-ssd">
                               <label for="storage-ssd">Com SSD</label>
                             </div>
                           </div>
@@ -326,11 +341,11 @@
                           </div>
                           <div id="filter-group-os" class="collapse show">
                             <div class="icheck-primary">
-                              <input type="checkbox" name="os-w.indows" id="os-windows">
+                              <input type="checkbox" name="os-windows" id="os-windows" value="os-windows">
                               <label for="os-windows">Windows</label>
                             </div>
                             <div class="icheck-primary">
-                              <input type="checkbox" name="os-linux" id="os-linux">
+                              <input type="checkbox" name="os-linux" id="os-linux" value="os-linux">
                               <label for="os-linux">Linux</label>
                             </div>
                           </div>
@@ -411,6 +426,14 @@
 	   </div>
   </template>
 
+  <template id="no-products-message">
+    <div class="w-100 text-center">
+      <i class="fas fa-heart-broken" style="font-size: 80pt;"></i>
+      <h2>Nenhum produto encontrado!</h2>
+      <h3> Tente uma pesquisa mais ampla!</h3>
+    </div>
+  </template>
+
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
@@ -419,47 +442,11 @@
   <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
-
-  <!-- Bootstrap slider -->
-  <script src="/note-commerce/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
-  <script>
-	  function moneyMask(value) {
-	    value = value.toString().replace(/\D/g,"");
-	    value = value.toString().replace(/(\d)(\d{8})$/,"$1.$2");
-	    value = value.toString().replace(/(\d)(\d{5})$/,"$1.$2");
-	    value = value.toString().replace(/(\d)(\d{2})$/,"$1,$2");
-	    return value;                
-	  }
   
-  	  function addProductToCart(id) {
-  		$.ajax({
-  		  type: "POST",
-  		  url: '/note-commerce/shop/cart',
-  		  data: {operation : 'save', productId : id},
-  		  success: function() {},
-  		  dataType: "text"
-  		});
-  	  }
-	  
-	  $(document).ready(() => {
-		   	$.ajax({
-		   	    url:'/note-commerce/shop/products?operation=consult',
-		   	    type:'GET',
-		   	    dataType: 'json',
-		   	    success: function( json ) {
-		   	        $.each(json, function(i, value) {
-		   	           let card=$($('#product-card').html());
-		   	           card.find("#product-name-link").text(value.title);
-		   	           card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
-		   	           card.find("#product-image-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + value.id);
-		   	           card.find("#product-image").attr('src', value.imageURL);
-		   	           card.find("#product-price").text("R$ " + moneyMask(value.price.toFixed(2)));
-		   	           card.find("button[name='addProduct']").attr('onclick', "addProductToCart(" + value.id + ");this.classList.remove('btn-success');this.classList.add('btn-secondary');");
-		   	           $('#products-row').append(card);
-		   	        });
-		   	    }
-		   	});
-	  })
+  <!-- Page scripts -->
+  <script src="/note-commerce/static/custom/shop/products/js/products.js"></script>
+  
+  <script>
   </script>
 </body>
 

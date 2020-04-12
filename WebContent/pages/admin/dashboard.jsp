@@ -11,6 +11,11 @@
   <title>Dashboard | LapTop Computadores</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Pace -->
+  <script src="/note-commerce/static/plugins/pace-progress/pace.min.js"></script>
+  <link href="/note-commerce/static/plugins/pace-progress/themes/blue/pace-theme-flash.css" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -245,7 +250,7 @@
                 <div class="card-header">
                   <h3 class="card-title">Laptops com mais trocas</h3>
 
-                  <div class="card-tools">
+                  <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <input type="number" min="5" max="100" step="1" placeholder="linhas" name="table_search"
                         class="w-25 form-control float-right" placeholder="Search">
@@ -257,7 +262,7 @@
                         <i class="fas fa-minus"></i>
                       </button>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 400px;">
@@ -328,7 +333,7 @@
                 <div class="card-header">
                   <h3 class="card-title">Laptops mais vendidos</h3>
 
-                  <div class="card-tools">
+                  <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <input type="number" min="5" max="100" step="1" placeholder="linhas" name="table_search"
                         class="w-25 form-control float-right" placeholder="Search">
@@ -340,7 +345,7 @@
                         <i class="fas fa-minus"></i>
                       </button>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 400px;">

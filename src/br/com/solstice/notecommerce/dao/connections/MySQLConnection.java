@@ -18,21 +18,14 @@ public class MySQLConnection {
 		user = "notecommerce_user";
 		password = "notecommerce_password";
 
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		Class.forName(driver);
 		
 		Connection connection = null;
 		
-		try {
-			connection = DriverManager.getConnection(url, user, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Connected!");
+		connection = DriverManager.getConnection(url, user, password);
+		
+		System.out.println("Connected to " + connection.getCatalog());
+		
 		return connection;
 	}
 

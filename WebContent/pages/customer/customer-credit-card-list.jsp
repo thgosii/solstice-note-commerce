@@ -16,6 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>Meus Cartões | LapTop Computadores</title>
 
+  <!-- Pace -->
+  <script src="/note-commerce/static/plugins/pace-progress/pace.min.js"></script>
+  <link href="/note-commerce/static/plugins/pace-progress/themes/blue/pace-theme-flash.css" rel="stylesheet">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/note-commerce/static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -51,8 +55,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </ul>
 
           <!-- SEARCH FORM -->
-          <form id="form-header-search" action="/loja/produtos" method="GET" class="form-inline ml-0 ml-md-3">
-            <div class="input-group input-group-sm">
+          <form id="form-header-search" action="/note-commerce/pages/shop/products.jsp" method="GET" class="form-inline ml-0 ml-md-3 w-100">
+            <div class="input-group input-group-sm w-100">
               <input name="descricao" class="form-control form-control-navbar" type="search"
                 placeholder="Pesquisar Laptops" aria-label="Pesquisar Laptops">
               <div class="input-group-append">
@@ -81,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Perfil -->
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <span class="p-1">usuário</span>
+              <span class="p-1">${loggedUser.email}</span>
               <i class="fas fa-user mr-2"></i>
               <!-- <img src="../../static/dist/img/avatar.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
             </a>
