@@ -17,7 +17,7 @@
       "id": "128a97f1-3eaf-4641-9862-f8f28f6b699a",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -109,7 +109,7 @@
       "id": "008d074b-198d-428c-94f1-e64563048ac1",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -402,7 +402,7 @@
       "id": "948e4fc6-55f0-432b-b016-99de3d135dc1",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -617,7 +617,7 @@
       "id": "0e3f5313-923e-4d1b-ab28-010b6ea90eaa",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -870,7 +870,7 @@
       "id": "57ff0d9c-af45-49a5-9fee-4abb65c780c3",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -962,7 +962,7 @@
       "id": "ed020e06-c6d5-44f3-8da4-23f0c2beadb8",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -1272,6 +1272,13 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "6a6e5b4d-679d-400d-bfd1-e8779d497479",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "e383303e-dffc-4ac1-9b1b-a69a6a2dab4d",
       "comment": "Verificar se foi redirecionado ao login",
       "command": "assertTitle",
@@ -1321,7 +1328,7 @@
       "id": "111c18b0-6fe0-4321-a43b-efb595b4def8",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -1593,7 +1600,7 @@
       "id": "9a9a73f4-45d6-415d-be54-647407f3a17b",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -1756,7 +1763,7 @@
       "id": "ad9df916-1c7a-4c96-bf2d-0f9bbaefd32c",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -2139,7 +2146,7 @@
       "id": "400ae889-7e92-4bdb-8a9b-7d4b476541d9",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -2345,7 +2352,7 @@
       "id": "cbc19009-ea90-4f16-82f8-30f5981f3c40",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -2674,7 +2681,7 @@
       "id": "6e5d1e3b-7402-403d-bc02-2b1b589e13e8",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -2773,7 +2780,7 @@
       "id": "83c926dc-fab6-4ee9-b630-f17fbfa48aaa",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -2933,7 +2940,7 @@
       "id": "ee1ad554-a16e-431e-8c13-f8e414ea37a8",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -3093,7 +3100,7 @@
       "id": "1d87689f-ce1b-4e20-bef2-55c75382ac1d",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -3309,7 +3316,7 @@
       "id": "111dbca2-bca0-4670-bc84-9e979929a4d2",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -3546,7 +3553,7 @@
       "id": "ca062e3e-ee1b-4ae1-8d5c-40e60fc10cd8",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
@@ -3650,7 +3657,7 @@
       "id": "378f9537-f2a1-4ea5-8c3c-8ea6d10f2594",
       "comment": "Ajustar tamanho da tela para melhor visualização",
       "command": "setWindowSize",
-      "target": "1146x1023",
+      "target": "1221x1090",
       "targets": [],
       "value": ""
     }, {
