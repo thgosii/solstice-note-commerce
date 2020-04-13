@@ -2157,15 +2157,13 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "3b5826f8-1d91-4f67-b48b-22cd0d8bc2b5",
-      "comment": "Clicar no botão do menu dropdown de cliente",
+      "id": "b82a177b-c756-4a04-bdd4-99790e1e827c",
+      "comment": "Clicar no menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
-        ["linkText=usuário", "linkText"],
-        ["css=.dropdown > .nav-link", "css:finder"],
-        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
-        ["xpath=//li[3]/a", "xpath:position"]
+        ["css=.fas:nth-child(2)", "css:finder"],
+        ["xpath=//li[3]/a/i", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -2359,7 +2357,7 @@
       "id": "e011bf18-e4d9-46c9-a663-8773eb63ada5",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -2794,7 +2792,7 @@
       "id": "4e8d5457-ba40-4327-894d-d9aab633fece",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -2954,7 +2952,7 @@
       "id": "cae3e50d-b114-4f8b-b930-116e0a0cd5aa",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -3114,7 +3112,7 @@
       "id": "2194af07-b11e-4f66-b579-4c77f17b8de0",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -3330,7 +3328,7 @@
       "id": "c5b08c9f-226d-4676-8dd5-d392461e506c",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -3567,7 +3565,7 @@
       "id": "160e7e5d-ee8d-4d58-8a20-593e7d599574",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
@@ -3671,7 +3669,7 @@
       "id": "55de784c-0610-4182-b7a5-b9fcefd6ccb6",
       "comment": "Clicar no botão do menu dropdown de cliente",
       "command": "click",
-      "target": "linkText=usuário",
+      "target": "css=.navbar .fas:nth-child(2)",
       "targets": [
         ["linkText=usuário", "linkText"],
         ["css=.dropdown > .nav-link", "css:finder"],
