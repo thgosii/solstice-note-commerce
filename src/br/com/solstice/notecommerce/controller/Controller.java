@@ -35,12 +35,8 @@ import br.com.solstice.notecommerce.entity.Result;
 		"/logout",
 		"/signup",
 		"/admin/*" ,
-		"/customer",
-		"/customer/creditCards",
-		"/customer/adresses",
-		"/customer/balance",
-		"/shop/products",
-		"/shop/cart"
+		"/customer/*",
+		"/shop/*"
 		})
 @MultipartConfig
 public class Controller extends HttpServlet {
