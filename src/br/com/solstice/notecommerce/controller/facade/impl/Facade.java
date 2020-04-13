@@ -70,6 +70,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
+		
+		
+		
 		/*
 		 * Admin
 		 */
@@ -101,6 +104,10 @@ public class Facade implements IFacade {
 
 		// Stock
 
+		
+		
+		
+		
 		/*
 		 * Customer
 		 */
@@ -147,7 +154,6 @@ public class Facade implements IFacade {
 		businessRulesMap.put(Address.class.getName(), addressBusinessRulesMap);
 
 		// Credit Card
-
 		daosMap.put(CreditCard.class.getName(), new CreditCardDAO());
 		Map<String, List<IStrategy>> creditCardBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
@@ -162,6 +168,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(CreditCard.class.getName(), creditCardBusinessRulesMap);
 
+		
+		
+		
 		/*
 		 * Shop
 		 */
@@ -199,6 +208,8 @@ public class Facade implements IFacade {
 		tradeBusinessRulesSave.add(new ValidateTradeUpdate());
 		tradeBusinessRulesSave.add(new ValidateTradeActionWithStatus());
 		
+		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);
+		tradeBusinessRulesMap.put("update", tradeBusinessRulesUpdate);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
