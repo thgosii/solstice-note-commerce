@@ -117,6 +117,8 @@ public class Controller extends HttpServlet {
 		System.out.println("entity: " + entity + "\n");
 
 		if (null == entity) {
+			response.setStatus(406); // Not Acceptable (invalid operation)
+			System.out.println("--------------------------------");
 			return;
 		}
 
@@ -126,13 +128,11 @@ public class Controller extends HttpServlet {
 			for (Entity resultEntity : result.getEntities()) {
 				System.out.println(resultEntity);
 			}
-		} else {
-			System.out.println("null entity list");
-		}
+		} else { System.out.println("null entity list"); }
 
 		viewHelper.setView(result, request, response);
 
-		System.out.println("\n--------------------------------");
+		System.out.println("--------------------------------");
 	}
 
 }
