@@ -72,7 +72,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 0,00</strong>
+              Saldo digital: <strong id="navbar-customer-balance"></strong>
             </a>
           </li>
           <!-- Carrinho -->
@@ -218,6 +218,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
   <!-- jQuery InputMask -->
   <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+
+  <c:if test="${(not empty loggedUser) and (loggedUser.role == 'CLIENT')}">
+    <!-- Customer balance (navbar) -->
+    <script src="/note-commerce/static/custom/customer/js/balance.js"></script>
+  </c:if>
   
   <script>
   	$(document).ready(() => {

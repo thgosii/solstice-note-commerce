@@ -82,7 +82,7 @@
   <c:otherwise>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Saldo digital: <strong>R$ 0,00</strong>
+              Saldo digital: <strong id="navbar-customer-balance"></strong>
             </a>
           </li>
           <!-- Carrinho -->
@@ -232,6 +232,12 @@
   <script src="/note-commerce/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/note-commerce/static/dist/js/adminlte.min.js"></script>
+
+  <c:if test="${(not empty loggedUser) and (loggedUser.role == 'CLIENT')}">
+    <!-- Customer balance (navbar) -->
+    <script src="/note-commerce/static/custom/customer/js/balance.js"></script>
+  </c:if>
+  
   <script>
       function addProductToCart(id) {
 		$.ajax({
