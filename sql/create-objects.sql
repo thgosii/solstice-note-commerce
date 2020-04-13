@@ -91,7 +91,7 @@ create table if not exists sales(
     foreign key (sal_cus_id) references customers(cus_id)
 );
 
-create table if not exists sale_items(
+create table if not exists sales_products(
 	sit_id int auto_increment not null,
     sit_quantity int,
     sit_subtotal double,
