@@ -1061,6 +1061,13 @@
       "targets": [],
       "value": "Laptop de Teste após form inválido"
     }, {
+      "id": "ae992893-d258-4bd2-bfd4-a4a6bb07faa9",
+      "comment": "Selecionar input de preço",
+      "command": "click",
+      "target": "id=price",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "52ea0a34-aca0-4914-9fe3-1025cc2dc5d4",
       "comment": "Inserir preço",
       "command": "type",
