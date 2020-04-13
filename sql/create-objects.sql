@@ -95,16 +95,10 @@ create table if not exists sale_items(
 	sit_id int auto_increment not null,
     sit_quantity int,
     sit_subtotal double,
+    sit_sal_id int,
     sit_prd_id int,
     primary key (sit_id),
-    foreign key (sit_prd_id) references products(prd_id)
+    foreign key (sit_prd_id) references products(prd_id),
+    foreign key (sit_sal_id) references sales(sal_id)
 );
 
-create table if not exists sales_sale_items(
-	ssi_id int auto_increment not null,
-    ssi_sal_id int,
-    ssi_sit_id int,
-    primary key (ssi_id),
-    foreign key (ssi_sal_id) references sales(sal_id),
-    foreign key (ssi_sit_id) references sale_items(sit_id)
-);
