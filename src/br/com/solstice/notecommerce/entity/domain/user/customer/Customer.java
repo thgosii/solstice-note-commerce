@@ -17,6 +17,7 @@ public class Customer extends DomainEntity {
 	private List<Address> adresses;
 	private List<CreditCard> creditCards;
 	private String phone;
+	private double balance;
 	private User user;
 
 	public String getName() {
@@ -73,6 +74,14 @@ public class Customer extends DomainEntity {
 
 	public void setCreditCards(List<CreditCard> creditCards) {
 		this.creditCards = creditCards;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 	public User getUser() {

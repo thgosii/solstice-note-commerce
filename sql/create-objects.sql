@@ -23,6 +23,7 @@ create table if not exists customers(
     cus_date_of_birth date,
     cus_phone varchar(255),
     cus_gender varchar(255),
+    cus_balance double,
     cus_usr_id int,
     cus_deleted boolean default false,
     primary key (cus_id),

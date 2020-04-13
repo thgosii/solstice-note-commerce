@@ -96,7 +96,7 @@ public class CustomerDAO extends AbstractDAO {
 
 		Customer customer = (Customer) entity;
 
-		String sql = "UPDATE " + table + " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=? WHERE "
+		String sql = "UPDATE " + table + " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=?, cus_balance=? WHERE "
 				+ idTable + "=?";
 
 		try {
@@ -106,7 +106,8 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setDate(2, Date.valueOf(customer.getDateOfBirth()));
 			pstm.setString(3, customer.getGender().toString().toLowerCase());
 			pstm.setString(4, customer.getPhone());
-			pstm.setLong(5, customer.getId());
+			pstm.setDouble(5, customer.getBalance());
+			pstm.setLong(6, customer.getId());
 			
 			System.out.println("pstm: " + pstm.toString());
 
@@ -170,6 +171,7 @@ public class CustomerDAO extends AbstractDAO {
 				currentCustomer.setDateOfBirth((rs.getDate("cus_date_of_birth").toLocalDate()));
 				currentCustomer.setGender(rs.getString("cus_gender").equals("male") ? Gender.MALE : Gender.FEMALE);
 				currentCustomer.setPhone(rs.getString("cus_phone"));
+				currentCustomer.setBalance(rs.getDouble("cus_balance"));
 				
 				User user = new User();
 				user.setId(rs.getLong("cus_usr_id"));
