@@ -204,13 +204,13 @@ public class Facade implements IFacade {
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
 		stringBuilder = new StringBuilder();
 		for (IStrategy businessRule : businessRules) {
-			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
+			System.out.print("Processing bussiness rule " + businessRule.getClass().getSimpleName() + ": ");
 			String message = businessRule.process(entity);
 
 			if (message != null && !message.trim().isEmpty()) {
-				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
+				System.out.println("\n\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
-			}
+			} else { System.out.println("ok"); }
 		}
 	}
 
