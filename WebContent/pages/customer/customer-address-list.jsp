@@ -70,16 +70,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Saldo digital: <strong id="navbar-customer-balance"></strong>
-            </a>
-          </li>
           <!-- Carrinho -->
           <li class="nav-item">
             <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
               <i class="fas fa-shopping-cart"></i>
               <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              Saldo digital: <strong id="navbar-customer-balance"></strong>
             </a>
           </li>
           <!-- Perfil -->

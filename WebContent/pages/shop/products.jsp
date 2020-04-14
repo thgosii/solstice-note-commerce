@@ -75,9 +75,16 @@
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Carrinho -->
+          <li class="nav-item">
+            <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
+            </a>
+          </li>
 <c:choose>
   <c:when test="${(empty loggedUser) or (loggedUser.role == 'ADMIN')}">
-  		  <li class="nav-item ml-2">
+  		    <li class="nav-item ml-2">
             <a class="nav-link" href="/note-commerce/pages/login.jsp">
               Entrar
               <i class="ml-1 fas fa-sign-in-alt"></i>
@@ -88,13 +95,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">
               Saldo digital: <strong id="navbar-customer-balance"></strong>
-            </a>
-          </li>
-          <!-- Carrinho -->
-          <li class="nav-item">
-            <a class="nav-link" href="/note-commerce/shop/cart?operation=consult">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="badge badge-danger navbar-badge"><c:out value="${sessionScope.cart.items.size()}"/></span>
             </a>
           </li>
           <!-- Perfil -->
