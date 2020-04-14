@@ -104,7 +104,7 @@ public class Controller extends HttpServlet {
 		String operation = request.getParameter("operation");
 
 		System.out.println("\n--------------------------------");
-		System.out.println("New " + request.getMethod() + " request to " + request.getServletPath().toString()
+		System.out.println("New " + request.getMethod() + " request to " + request.getRequestURI().substring(request.getContextPath().length())
 				+ " with operation \"" + operation + "\"");
 
 		ICommand command = commandsMap.get(operation);
@@ -114,19 +114,13 @@ public class Controller extends HttpServlet {
 		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
 		if (null == command || null == viewHelper) {
-			response.setStatus(406); // Not Acceptable (invalid operation)
-			System.out.println("--------------------------------");
+			response.setStatus(422); // Unprocessable Entity
+			System.out.println("Invalid path or operation\n--------------------------------");
 			return;
 		}
 
 		Entity entity = viewHelper.getEntity(request);
 		System.out.println("entity: " + entity + "\n");
-
-		if (null == entity) {
-			response.setStatus(406); // Not Acceptable (invalid operation)
-			System.out.println("--------------------------------");
-			return;
-		}
 
 		Result result = command.execute(entity, request.getSession(), operation);
 		System.out.println("\nResult entities list:");
