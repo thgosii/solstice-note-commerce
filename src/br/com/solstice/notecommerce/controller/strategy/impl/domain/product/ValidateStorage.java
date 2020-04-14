@@ -22,8 +22,8 @@ public class ValidateStorage implements IStrategy {
 				sb.append("ssd-capacity: Quantidade inválida\n");
 			}
 		}
-			
-		return sb.toString();
+
+		return sb.toString().trim().isEmpty() ? null : sb.toString().trim();
 	}
 
 }

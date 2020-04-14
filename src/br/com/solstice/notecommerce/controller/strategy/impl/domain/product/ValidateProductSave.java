@@ -36,7 +36,7 @@ public class ValidateProductSave implements IStrategy {
 			sb.append("os: O sistema operacional é obrigatório\n");
 		}
 		
-		return sb.toString();
+		return sb.toString().trim().isEmpty() ? null : sb.toString().trim();
 	}
 
 }

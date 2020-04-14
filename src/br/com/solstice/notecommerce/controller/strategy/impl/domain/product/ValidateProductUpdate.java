@@ -32,8 +32,8 @@ public class ValidateProductUpdate implements IStrategy {
 		if (null == product.getOs() || product.getOs().trim().isEmpty()) {
 			sb.append("os: O sistema operacional é obrigatório\n");
 		}
-		
-		return sb.toString();
+
+		return sb.toString().trim().isEmpty() ? null : sb.toString().trim();
 	}
 
 }
