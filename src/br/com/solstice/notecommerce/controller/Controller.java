@@ -113,6 +113,12 @@ public class Controller extends HttpServlet {
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
 		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
+		if (null == command || null == viewHelper) {
+			response.setStatus(406); // Not Acceptable (invalid operation)
+			System.out.println("--------------------------------");
+			return;
+		}
+
 		Entity entity = viewHelper.getEntity(request);
 		System.out.println("entity: " + entity + "\n");
 
