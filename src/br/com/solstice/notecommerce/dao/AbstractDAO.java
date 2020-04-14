@@ -19,7 +19,7 @@ public abstract class AbstractDAO implements IDAO {
 	protected void openConnection() {
 		try {
 			if (connection == null || connection.isClosed()) {
-				connection = MySQLConnection.getConecction();
+				connection = MySQLConnection.getConnection();
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

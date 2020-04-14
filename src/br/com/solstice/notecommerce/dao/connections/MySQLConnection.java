@@ -12,7 +12,7 @@ public class MySQLConnection {
 	private static String user;
 	private static String password;
 
-	public static Connection getConecction() throws ClassNotFoundException, SQLException {
+	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		driver = "com.mysql.jdbc.Driver";
 		url = "jdbc:mysql://localhost:3306/notecommerce_db?allowPublicKeyRetrieval=true&useSSL=false";
 		user = "notecommerce_user";
