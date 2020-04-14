@@ -30,7 +30,7 @@ public class CustomerFilter implements Filter {
 			System.out.println("CustomerFilter: "
 					+ (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")"
 							: "not logged-in user")
-					+ " tried to access customer page \"" + request.getRequestURI() + "\", redirecting...");
+					+ " tried to access customer page \"" + request.getRequestURI().substring(request.getContextPath().length()) + "\", redirecting...");
 			response.sendRedirect("/note-commerce/pages/login.jsp");
 			return;
 		}
