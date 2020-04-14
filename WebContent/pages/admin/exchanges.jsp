@@ -46,17 +46,18 @@
 
 
 
-<body class="hold-transition layout-top-nav">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 
   <c:set var="loggedUser" value="${sessionScope.loggedUser}" />
 
   <div class="wrapper">
     <!-- *********************************************************************************** -->
-    <!-- SHOP/CUSTOMER NAVBAR -->
+    <!-- ADMIN SIDEBAR AND NAVBAR -->
     <!-- *********************************************************************************** -->
-    <jsp:include page="/fragments/shop/navbar.jsp"></jsp:include>
+    <jsp:include page="/fragments/admin/navbar.jsp"></jsp:include>
+    <jsp:include page="/fragments/admin/sidebar.jsp"></jsp:include>
     <!-- *********************************************************************************** -->
-    <!-- /SHOP/CUSTOMER NAVBAR -->
+    <!-- /ADMIN SIDEBAR AND NAVBAR -->
     <!-- *********************************************************************************** -->
 
 
@@ -67,14 +68,6 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <div class="content-header">
-        <div class="container">
-
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <div class="content">
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
@@ -88,7 +81,8 @@
             </div>
           </div>
         </div><!-- /.container-fluid -->
-      </section>
+      </div>
+      <!-- /.content-header -->
 
       <!-- Main content -->
       <section class="content">
@@ -223,6 +217,12 @@
       <strong>Desenvolvido por</strong>
       <img src="/note-commerce/static/custom/general/img/solstice_logo.png" style="height: 25px;">
     </footer>
+    
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 

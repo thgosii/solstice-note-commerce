@@ -295,31 +295,6 @@
 
 
 
-    <!-- *********************************************************************************** -->
-    <!-- PAGE CONTENT -->
-    <!-- *********************************************************************************** -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container">
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- *********************************************************************************** -->
-    <!-- /PAGE CONTENT -->
-    <!-- *********************************************************************************** -->
-
-
-
     <!-- Main Footer -->
     <footer class="main-footer">
       <!-- To the right -->
@@ -330,6 +305,12 @@
       <strong>Desenvolvido por</strong>
       <img src="/note-commerce/static/custom/general/img/solstice_logo.png" style="height: 25px;">
     </footer>
+    
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 

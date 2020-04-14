@@ -47,6 +47,8 @@
 
 <body class="hold-transition sidebar-mini sidebar-collapse">
 
+  <c:set var="loggedUser" value="${sessionScope.loggedUser}" />
+
   <div class="wrapper">
     <!-- *********************************************************************************** -->
     <!-- ADMIN SIDEBAR AND NAVBAR -->

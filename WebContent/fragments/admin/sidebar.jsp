@@ -49,13 +49,13 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="sales.html" class="nav-link">
+              <a href="/note-commerce/pages/admin/sales.jsp" class="nav-link">
                 <i class="nav-icon fas fa-dollar-sign"></i>
                 <p>Vendas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="exchanges.html" class="nav-link">
+              <a href="/note-commerce/pages/admin/exchanges.jsp" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>Trocas</p>
               </a>
