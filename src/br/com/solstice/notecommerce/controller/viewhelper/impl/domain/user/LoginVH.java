@@ -73,6 +73,12 @@ public class LoginVH implements IViewHelper {
 				request.getSession().invalidate();
 				request.getSession().setAttribute("loggedUser", resultUser);
 				
+				String redirectPath = request.getParameter("redirect");
+				if (redirectPath != null && !redirectPath.trim().isEmpty()) {
+					response.sendRedirect(redirectPath);
+					return;
+				}
+				
 				if (resultUser.getRole() == UserRole.CLIENT) {
 					response.sendRedirect("/note-commerce/pages/shop/products.jsp");
 					return;

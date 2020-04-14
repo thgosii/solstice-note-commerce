@@ -66,6 +66,9 @@
         <p class="login-box-msg">Entre em sua conta</p>
 
         <form action="/note-commerce/login" method="POST">
+          <c:if test="${not empty param.redirect}">
+            <input type="hidden" name="redirect" value="${param.redirect}">
+          </c:if>
           <input type="hidden" name="operation" value="login">
           <div class="input-group mb-3">
             <input type="email" class="form-control" name="email" placeholder="E-mail">
