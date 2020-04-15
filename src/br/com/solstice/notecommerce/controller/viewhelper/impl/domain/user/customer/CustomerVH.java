@@ -21,11 +21,6 @@ public class CustomerVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 
 		String operation = request.getParameter("operation");
 

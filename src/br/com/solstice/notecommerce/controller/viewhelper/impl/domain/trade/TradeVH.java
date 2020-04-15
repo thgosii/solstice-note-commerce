@@ -14,14 +14,29 @@ public class TradeVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		String operation = request.getParameter("operation");
+		
+		if (operation == null) return null;
+		
+		if (operation.equals("save")) {
+			
+		} else if (operation.equals("update")) {
+			
+		}
+		
 		return null;
 	}
 
 	@Override
 	public void setView(Result result, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		String operation = request.getParameter("operation");
+		
+		if (operation.equals("save")) {
+			
+		} else if (operation.equals("update")) {
+			
+		}
 
 	}
 

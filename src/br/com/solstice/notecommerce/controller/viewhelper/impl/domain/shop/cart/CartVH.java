@@ -19,6 +19,8 @@ public class CartVH implements IViewHelper {
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
 		String operation = request.getParameter("operation");
+		
+		if (operation == null) return null;
 
 		if (operation.equals("save")) {
 			CartItem cartItem = new CartItem();
