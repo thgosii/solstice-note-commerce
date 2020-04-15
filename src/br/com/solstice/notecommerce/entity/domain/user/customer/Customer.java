@@ -115,8 +115,8 @@ public class Customer extends DomainEntity {
 	@Override
 	public String toString() {
 		return "Customer [name=" + name + ", cpf=" + cpf + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
-				+ ", adresses=" + adresses + ", creditCards=" + creditCards + ", phone=" + phone + ", user=" + user
-				+ ", getId()=" + getId() + "]";
+				+ ", adresses=" + adresses + ", creditCards=" + creditCards + ", phone=" + phone + ", balance="
+				+ balance + ", user=" + user + ", getId()=" + getId() + "]";
 	}
 
 }
