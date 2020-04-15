@@ -70,7 +70,7 @@ public class LoginVH implements IViewHelper {
 			if (resultEntities.size() > 0) {
 				User resultUser = (User) resultEntities.get(0);
 
-				request.getSession().invalidate();
+				//request.getSession().invalidate();
 				request.getSession().setAttribute("loggedUser", resultUser);
 				
 				String redirectPath = request.getParameter("redirect");
