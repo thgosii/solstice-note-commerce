@@ -75,7 +75,7 @@ public class CreditCardDAO extends AbstractDAO {
 
 			pstm.setLong(1, creditCard.getId());
 
-			System.out.println("pstm: " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 		} catch (SQLException e) {

@@ -103,7 +103,7 @@ public class Controller extends HttpServlet {
 			throws IOException, ServletException {
 		String operation = request.getParameter("operation");
 
-		System.out.println("\n--------------------------------");
+		System.out.println("================================");
 		System.out.println("New " + request.getMethod() + " request to " + request.getRequestURI().substring(request.getContextPath().length())
 				+ " with operation \"" + operation + "\"");
 
@@ -115,15 +115,15 @@ public class Controller extends HttpServlet {
 
 		if (null == command || null == viewHelper) {
 			response.setStatus(422); // Unprocessable Entity
-			System.out.println("Invalid path or operation\n--------------------------------");
+			System.out.println("Invalid path or operation\n================================\n\n");
 			return;
 		}
 
 		Entity entity = viewHelper.getEntity(request);
-		System.out.println("entity: " + entity + "\n");
+		System.out.println("entity: " + entity + "\n--------------------------------");
 
 		Result result = command.execute(entity, request.getSession(), operation);
-		System.out.println("\nResult entities list:");
+		System.out.println("--------------------------------\nResult entities list:");
 		if (result.getEntities() != null) {
 			for (Entity resultEntity : result.getEntities()) {
 				System.out.println(resultEntity);
@@ -132,7 +132,7 @@ public class Controller extends HttpServlet {
 
 		viewHelper.setView(result, request, response);
 
-		System.out.println("--------------------------------");
+		System.out.println("================================\n\n");
 	}
 
 }

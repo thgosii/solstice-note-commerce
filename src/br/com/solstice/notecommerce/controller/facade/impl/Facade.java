@@ -223,6 +223,7 @@ public class Facade implements IFacade {
 				stringBuilder.append(message + '\n');
 			}
 		}
+		if (businessRules.size() > 0) System.out.println("----------------");
 	}
 
 	@Override

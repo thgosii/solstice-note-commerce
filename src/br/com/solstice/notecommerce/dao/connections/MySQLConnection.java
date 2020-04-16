@@ -24,8 +24,6 @@ public class MySQLConnection {
 		
 		connection = DriverManager.getConnection(url, user, password);
 		
-		System.out.println("Connected to " + connection.getCatalog());
-		
 		return connection;
 	}
 

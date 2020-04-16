@@ -52,7 +52,7 @@ public class ProductDAO extends AbstractDAO {
 			pstm.setInt(11, product.getSsd());
 			pstm.setString(12, product.getOs());
 
-			System.out.println("pstm: " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 
@@ -94,7 +94,7 @@ public class ProductDAO extends AbstractDAO {
 
 			pstm.setLong(1, product.getId());
 
-			System.out.println("pstm: " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 		} catch (SQLException e) {
@@ -138,7 +138,7 @@ public class ProductDAO extends AbstractDAO {
 
 			pstm.setLong(13, product.getId());
 
-			System.out.println("pstm: " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 		} catch (SQLException e) {
@@ -185,7 +185,7 @@ public class ProductDAO extends AbstractDAO {
 				pstm.setLong(1, product.getId());
 			}
 
-			System.out.println("pstm: " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			rs = pstm.executeQuery();
 
