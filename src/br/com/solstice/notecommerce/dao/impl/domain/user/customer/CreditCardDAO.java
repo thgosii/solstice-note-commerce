@@ -39,7 +39,7 @@ public class CreditCardDAO extends AbstractDAO {
 			pstm.setString(2, creditCard.getPrintedName());
 			pstm.setString(3, creditCard.getSecurityCode());
 			
-			Customer customer = (Customer) new CustomerDAO().consult(creditCard.getCustomer(), "consult").get(0);
+			Customer customer = (Customer) new CustomerDAO(connection).consult(creditCard.getCustomer(), "consult").get(0);
 			creditCard.setCustomer(customer);
 			
 			pstm.setLong(4, creditCard.getCustomer().getId());

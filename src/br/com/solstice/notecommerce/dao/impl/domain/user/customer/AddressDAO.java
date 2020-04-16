@@ -46,7 +46,7 @@ public class AddressDAO extends AbstractDAO {
 			pstm.setString(7, address.getState());
 			pstm.setString(8, address.getType().toString().toLowerCase());
 
-			Customer customer = (Customer) new CustomerDAO().consult(address.getCustomer(), "consult").get(0);
+			Customer customer = (Customer) new CustomerDAO(connection).consult(address.getCustomer(), "consult").get(0);
 
 			pstm.setLong(9, customer.getId());
 			pstm.setBoolean(10, address.isDeleted());

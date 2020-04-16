@@ -189,7 +189,7 @@ public class ProductDAO extends AbstractDAO {
 
 			rs = pstm.executeQuery();
 
-			BrandDAO brandDAO = new BrandDAO();
+			BrandDAO brandDAO = new BrandDAO(connection);
 
 			while (rs.next()) {
 				Product currentProduct = new Product();

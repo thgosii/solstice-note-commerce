@@ -38,7 +38,7 @@ public class CustomerDAO extends AbstractDAO {
 
 		User user = customer.getUser();
 
-		int idUser = new UserDAO().save(user);
+		int idUser = new UserDAO(connection).save(user);
 
 		if (idUser == 0) {
 			return 0;
@@ -112,7 +112,7 @@ public class CustomerDAO extends AbstractDAO {
 
 			pstm.executeUpdate();
 			
-			new UserDAO().update(customer.getUser());
+			new UserDAO(connection).update(customer.getUser());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -154,7 +154,7 @@ public class CustomerDAO extends AbstractDAO {
 
 			rs = pstm.executeQuery();
 
-			UserDAO userDAO = new UserDAO();
+			UserDAO userDAO = new UserDAO(connection);
 
 			while (rs.next()) {
 				Customer currentCustomer = new Customer();
