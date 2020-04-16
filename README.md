@@ -17,13 +17,15 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
 ## Installing and Running
 Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-ide-enterprise-java-developers), [Apache Tomcat](https://tomcat.apache.org/download-80.cgi) and MySQL
 1. Clone the project: `git clone https://github.com/thiago-bezerra/solstice-note-commerce.git`
-2. Run the scripts at `sql/` as root user to create the database, user and to fill table data
-   - Recommended to use [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) to easily connect and paste/run the scripts
-3. Make sure your Apache Tomcat is ready to be used by Eclipse ([guide](https://crunchify.com/step-by-step-guide-to-setup-and-install-apache-tomcat-server-in-eclipse-development-environment-ide/)) and the project root context is set to `note-commerce` ([guide](https://stackoverflow.com/a/8334309/11138267))
-4. Fix your build path (if needed) to use your installed JRE:
-   - Right click on project -> Build Path -> Configure Build Path -> JRE System Library -> Edit -> Alternative JRE
+2. Import the project into Eclipse ([guide](https://help.eclipse.org/2019-12/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-importproject.htm))
+3. Fix your build path (if needed) to use your installed JRE:
+   - Project Explorer -> Right click on project -> Build Path -> Configure Build Path -> JRE System Library -> Edit -> Alternative JRE
    - You may need to do the same with the Apache Tomcat library
-5. Start the server and build/run the project
+4. Make sure your Apache Tomcat is ready to be used by Eclipse ([guide](https://crunchify.com/step-by-step-guide-to-setup-and-install-apache-tomcat-server-in-eclipse-development-environment-ide/)) and the __project root context is set to `note-commerce`__ ([guide](https://stackoverflow.com/a/8334309/11138267))
+5. Run the scripts at `sql/` as root user to create the database, user and to fill table data
+   - Recommended to use [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) to easily connect and paste/run the scripts
+6. Run the project on your server
+7. The project should be accessible through something like [localhost:8080/note-commerce/](http://localhost:8080/note-commerce/)
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
