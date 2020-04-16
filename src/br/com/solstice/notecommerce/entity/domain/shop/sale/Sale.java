@@ -16,6 +16,7 @@ public class Sale extends DomainEntity {
 	private Customer customer;
 	private List<SaleItem> items;
 	private LocalDateTime dateTime;
+	private SaleStatus saleStatus;
 
 	public double getBalanceUsage() {
 		return balanceUsage;
@@ -63,6 +64,14 @@ public class Sale extends DomainEntity {
 
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
+	}
+
+	public SaleStatus getSaleStatus() {
+		return saleStatus;
+	}
+
+	public void setSaleStatus(SaleStatus saleStatus) {
+		this.saleStatus = saleStatus;
 	}
 
 }

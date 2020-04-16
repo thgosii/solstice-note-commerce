@@ -90,6 +90,7 @@ create table if not exists sales(
     sal_ads_id int,
     sal_crd_id int,
     sal_cus_id int,
+    sal_status varchar(255),
 	primary key (sal_id),
     foreign key (sal_cus_id) references customers(cus_id),
     foreign key (sal_ads_id) references adresses(ads_id),
