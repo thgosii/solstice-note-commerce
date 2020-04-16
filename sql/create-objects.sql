@@ -113,6 +113,7 @@ create table if not exists trades(
 	trd_request_date datetime not null,
 	trd_status varchar(255) not null,
 	trd_sit_id int,
-	foreign key (trd_sit_id) int references sales_products(sit_id)
+    primary key (trd_id),
+	foreign key (trd_sit_id) references sales_products(sit_id)
 );
 
