@@ -84,7 +84,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Saldo virtual - <small>Você tem <strong>R$ 0,00</strong> em saldo virtual</small>
+              <h3 class="card-title">Saldo virtual - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
               </h3>
             </div>
             <div class="card-body register-card-body">
@@ -235,6 +235,16 @@
       $("#nextStepButtonBySelect").prop("disabled", false);
     }
   }
+  
+  $(document).ready(() => {
+	  $.ajax('/note-commerce/customer/balance?operation=consult')
+	    .then(data => {
+	      const currentBalanceText = Number(data.balance)
+	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+	      $('#cus_balance').text(currentBalanceText)
+	    })
+
+	})
 </script>
 <!-- *********************************************************************************** -->
 <!-- /PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
