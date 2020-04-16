@@ -85,11 +85,15 @@ create table if not exists products(
 
 create table if not exists sales(
 	sal_id int auto_increment not null,
-    sal_total double,
 	sal_date_time datetime,
+    sal_balance_usage double,
+    sal_ads_id int,
+    sal_crd_id int,
     sal_cus_id int,
 	primary key (sal_id),
-    foreign key (sal_cus_id) references customers(cus_id)
+    foreign key (sal_cus_id) references customers(cus_id),
+    foreign key (sal_ads_id) references adresses(ads_id),
+    foreign key (sal_crd_id) references credit_cards(crd_id)
 );
 
 create table if not exists sales_products(

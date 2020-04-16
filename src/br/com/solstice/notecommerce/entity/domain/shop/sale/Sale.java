@@ -5,20 +5,40 @@ import java.util.List;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class Sale extends DomainEntity {
 
-	private double total;
+	private double balanceUsage;
+	private CreditCard creditCard;
+	private Address address;
 	private Customer customer;
 	private List<SaleItem> items;
 	private LocalDateTime dateTime;
 
-	public double getTotal() {
-		return total;
+	public double getBalanceUsage() {
+		return balanceUsage;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
+	public void setBalanceUsage(double balanceUsage) {
+		this.balanceUsage = balanceUsage;
+	}
+
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Customer getCustomer() {
