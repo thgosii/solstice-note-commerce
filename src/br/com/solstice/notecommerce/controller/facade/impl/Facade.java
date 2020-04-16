@@ -234,7 +234,7 @@ public class Facade implements IFacade {
 		String entityName = entity.getClass().getName();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesSaveEntity = businessRulesEntityMap.get("save");
+		List<IStrategy> businessRulesSaveEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("save") : null;
 
 		if (businessRulesSaveEntity != null) {
 			processBusinessRules(businessRulesSaveEntity, entity);
@@ -245,7 +245,7 @@ public class Facade implements IFacade {
 		if (stringBuilder.length() == 0) {
 			if (daosMap.containsKey(entityName)) {
 				daosMap.get(entityName).save(entity);
-			} else {
+			} else if (sessionHelpersMap.containsKey(entityName)) {
 				sessionHelpersMap.get(entityName).save(entity, session);
 			}
 		} else {
@@ -261,9 +261,16 @@ public class Facade implements IFacade {
 
 		String entityName = entity.getClass().getName();
 
+		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
+		List<IStrategy> businessRulesRemoveEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("remove") : null;
+
+		if (businessRulesRemoveEntity != null) {
+			processBusinessRules(businessRulesRemoveEntity, entity);
+		}
+
 		if (daosMap.containsKey(entityName)) {
 			daosMap.get(entityName).remove(entity);
-		} else {
+		} else if (sessionHelpersMap.containsKey(entityName)) {
 			sessionHelpersMap.get(entityName).remove(entity, session);
 		}
 
@@ -280,7 +287,7 @@ public class Facade implements IFacade {
 		String entityName = entity.getClass().getName();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesUpdateEntity = businessRulesEntityMap.get("update");
+		List<IStrategy> businessRulesUpdateEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("update") : null;
 
 		if (businessRulesUpdateEntity != null) {
 			processBusinessRules(businessRulesUpdateEntity, entity);
@@ -291,7 +298,7 @@ public class Facade implements IFacade {
 		if (stringBuilder.length() == 0) {
 			if (daosMap.containsKey(entityName)) {
 				daosMap.get(entityName).update(entity);
-			} else {
+			} else if (sessionHelpersMap.containsKey(entityName)) {
 				sessionHelpersMap.get(entityName).update(entity, session);
 			}
 		} else {
@@ -307,12 +314,23 @@ public class Facade implements IFacade {
 
 		String entityName = entity.getClass().getName();
 
-		List<Entity> consultEntities;
+		List<Entity> consultEntities = new ArrayList<Entity>();
 
-		if (daosMap.containsKey(entityName)) {
-			consultEntities = daosMap.get(entityName).consult(entity, operation);
+		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
+		List<IStrategy> businessRulesConsultEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("consult") : null;
+
+		if (businessRulesConsultEntity != null) {
+			processBusinessRules(businessRulesConsultEntity, entity);
+		}
+		
+		if (stringBuilder.length() == 0) {
+			if (daosMap.containsKey(entityName)) {
+				consultEntities = daosMap.get(entityName).consult(entity, operation);
+			} else if (sessionHelpersMap.containsKey(entityName)) {
+				consultEntities = sessionHelpersMap.get(entityName).consult(entity, session, operation);
+			}
 		} else {
-			consultEntities = sessionHelpersMap.get(entityName).consult(entity, session, operation);
+			result.setMessage(stringBuilder.toString());
 		}
 
 		result.setEntities(consultEntities);
