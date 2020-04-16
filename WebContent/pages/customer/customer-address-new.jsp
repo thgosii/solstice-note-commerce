@@ -114,7 +114,7 @@
                 <input type="hidden" name="operation" value="save">
                 <div class="form-group">
                   <label for="cep">CEP<span class="text-danger text-bold"> *</span></label>
-                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" value="${address.cep}" required>
                 </div>
                 <div class="form-group">
                   <label for="publicPlace">Logradouro<span class="text-danger text-bold"> *</span></label>
