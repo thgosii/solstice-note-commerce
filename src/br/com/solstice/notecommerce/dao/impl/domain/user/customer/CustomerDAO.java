@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.user.customer;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,10 @@ public class CustomerDAO extends AbstractDAO {
 
 	public CustomerDAO() {
 		super("customers", "cus_id");
+	}
+
+	public CustomerDAO(Connection connection) {
+		super("customers", "cus_id", connection);
 	}
 
 	@Override
@@ -72,13 +77,7 @@ public class CustomerDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 		return 0;
 	}
@@ -123,13 +122,7 @@ public class CustomerDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 	}
 
@@ -193,13 +186,7 @@ public class CustomerDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 		
 		return null;

@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.product;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +17,8 @@ public class BrandDAO extends AbstractDAO {
 		super("brands", "brd_id");
 	}
 
-	public BrandDAO(String table, String idtable) {
-		super(table, idtable);
+	public BrandDAO(Connection connection) {
+		super("brands", "brd_id", connection);
 	}
 
 	@Override
@@ -83,13 +84,7 @@ public class BrandDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 
 		return null;

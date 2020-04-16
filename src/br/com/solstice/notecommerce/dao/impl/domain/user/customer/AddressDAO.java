@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.user.customer;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,10 @@ public class AddressDAO extends AbstractDAO {
 
 	public AddressDAO() {
 		super("adresses", "ads_id");
+	}
+
+	public AddressDAO(Connection connection) {
+		super("adresses", "ads_id", connection);
 	}
 
 	@Override
@@ -56,13 +61,7 @@ public class AddressDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 		return 0;
 	}
@@ -93,13 +92,7 @@ public class AddressDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 	}
 
@@ -139,13 +132,7 @@ public class AddressDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 	}
 
@@ -219,13 +206,7 @@ public class AddressDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 
 		return adresses;

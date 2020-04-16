@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.trade;
 
+import java.sql.Connection;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
@@ -11,8 +12,8 @@ public class TradeDAO extends AbstractDAO {
 		super("trades", "trd_id");
 	}
 
-	public TradeDAO(String table, String idtable) {
-		super(table, idtable);
+	public TradeDAO(Connection connection) {
+		super("trades", "trd_id", connection);
 	}
 
 	@Override

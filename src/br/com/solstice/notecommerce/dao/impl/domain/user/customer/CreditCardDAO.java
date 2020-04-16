@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.user.customer;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,10 @@ public class CreditCardDAO extends AbstractDAO {
 
 	public CreditCardDAO() {
 		super("credit_cards", "crd_id");
+	}
+
+	public CreditCardDAO(Connection connection) {
+		super("credit_cards", "crd_id", connection);
 	}
 
 	@Override
@@ -51,13 +56,7 @@ public class CreditCardDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 		return 0;
 	}
@@ -88,13 +87,7 @@ public class CreditCardDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 	}
 
@@ -130,13 +123,7 @@ public class CreditCardDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 	}
 
@@ -198,13 +185,7 @@ public class CreditCardDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection...");
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 
 		return creditCards;

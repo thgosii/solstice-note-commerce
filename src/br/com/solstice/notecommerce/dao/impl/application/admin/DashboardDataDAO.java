@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.application.admin;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,10 @@ public class DashboardDataDAO extends AbstractDAO {
 
 	public DashboardDataDAO() {
 		super(null, null);
+	}
+
+	public DashboardDataDAO(Connection connection) {
+		super(null, null, connection);
 	}
 
 	@Override
@@ -52,13 +57,7 @@ public class DashboardDataDAO extends AbstractDAO {
 				} catch (SQLException e) {
 				}
 			}
-			if (connection != null) {
-				try {
-					System.out.println("Closing connection from " + this.getClass().getSimpleName());
-					connection.close();
-				} catch (SQLException e) {
-				}
-			}
+			closeConnection();
 		}
 
 		
