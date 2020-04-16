@@ -74,4 +74,11 @@ public class Sale extends DomainEntity {
 		this.saleStatus = saleStatus;
 	}
 
+	@Override
+	public String toString() {
+		return "Sale [getId()=" + getId() + ", balanceUsage=" + balanceUsage + ", creditCard=" + creditCard + ", address=" + address
+				+ ", customer=" + customer + ", items=" + items + ", dateTime=" + dateTime + ", saleStatus="
+				+ saleStatus + "]";
+	}
+
 }

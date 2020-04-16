@@ -33,4 +33,9 @@ public class SaleItem extends DomainEntity {
 		this.subTotal = subTotal;
 	}
 
+	@Override
+	public String toString() {
+		return "SaleItem [quantity=" + quantity + ", subTotal=" + subTotal + ", product=" + product + "]";
+	}
+
 }
