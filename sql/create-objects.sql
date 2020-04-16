@@ -103,3 +103,11 @@ create table if not exists sales_products(
     foreign key (sit_sal_id) references sales(sal_id)
 );
 
+create table if not exists trades(
+	trd_id int auto_increment not null,
+	trd_request_date datetime not null,
+	trd_status varchar(255) not null,
+	trd_sit_id int,
+	foreign key (trd_sit_id) int references sales_products(sit_id)
+);
+
