@@ -12,11 +12,19 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
 public class SaleItem extends DomainEntity {
 
 	private Product product;
 	private int quantity;
 	private double subTotal;
+	
+	 // Used by Trade Strategy to calculate balance return
+	public Double getPricePerProduct() {
+		if (quantity > 0 && subTotal > 0d) {
+			return subTotal / quantity;
+		}
+		return null;
+	}
 
 }
