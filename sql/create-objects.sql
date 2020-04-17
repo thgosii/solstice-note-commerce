@@ -98,10 +98,10 @@ create table if not exists sales(
 );
 
 create table if not exists sales_products(
-    sit_quantity int,
-    sit_subtotal double,
     sit_sal_id int,
     sit_prd_id int,
+    sit_quantity int,
+    sit_subtotal double,
     primary key (sit_prd_id, sit_sal_id),
     foreign key (sit_prd_id) references products(prd_id),
     foreign key (sit_sal_id) references sales(sal_id)
@@ -111,10 +111,11 @@ create table if not exists trades(
 	trd_id int auto_increment not null,
 	trd_request_date datetime not null,
 	trd_status varchar(255) not null,
-    trd_sit_sal_id int,
-    trd_sit_prd_id int,
+	trd_quantity int not null,
+    trd_sal_id int not null,
+    trd_prd_id int not null,
+    trd_deleted boolean default false,
     primary key (trd_id),
-    foreign key (trd_sit_sal_id) references sales_products(sit_sal_id),
-	foreign key (trd_sit_prd_id) references sales_products(sit_prd_id)
+    foreign key (trd_sal_id) references products(prd_id),
+    foreign key (trd_prd_id) references sales(sal_id)
 );
-
