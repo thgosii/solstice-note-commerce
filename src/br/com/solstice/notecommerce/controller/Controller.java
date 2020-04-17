@@ -123,7 +123,7 @@ public class Controller extends HttpServlet {
 		System.out.println("entity: " + entity + "\n--------------------------------");
 
 		Result result = command.execute(entity, request.getSession(), operation);
-		System.out.println("--------------------------------\nResult entities list:");
+		System.out.println("--------------------------------\nResult entities list" + (result.getEntities() != null ? " (" + result.getEntities().size() + "):" : ":"));
 		if (result.getEntities() != null) {
 			for (Entity resultEntity : result.getEntities()) {
 				System.out.println(resultEntity);
