@@ -33,7 +33,7 @@ public class ProductDAO extends AbstractDAO {
 
 //		saveOrOverwriteFile(product.getImage());
 
-		String sql = "INSERT INTO `notecommerce_db`.`products` "
+		String sql = "INSERT INTO " + table + " "
 				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_os`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -87,7 +87,7 @@ public class ProductDAO extends AbstractDAO {
 
 		Product product = (Product) entity;
 
-		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_deleted`='1' WHERE `prd_id`=?";
+		String sql = "UPDATE " + table + " SET `prd_deleted`='1' WHERE " + idTable + "=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -119,7 +119,8 @@ public class ProductDAO extends AbstractDAO {
 
 //		saveOrOverwriteFile(product.getImage());
 
-		String sql = "UPDATE `notecommerce_db`.`products` SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? WHERE `prd_id`=?";
+		String sql = "UPDATE " + table + " SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? "
+				+ "WHERE " + idTable +"=?";
 		try {
 			pstm = connection.prepareStatement(sql);
 
