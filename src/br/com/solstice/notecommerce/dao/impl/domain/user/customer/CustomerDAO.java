@@ -55,7 +55,7 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setInt(6, idUser);
 			pstm.setBoolean(7, customer.isDeleted());
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.execute();
 
@@ -108,7 +108,7 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setDouble(5, customer.getBalance());
 			pstm.setLong(6, customer.getId());
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.executeUpdate();
 			
@@ -150,7 +150,7 @@ public class CustomerDAO extends AbstractDAO {
 				pstm.setLong(1, customer.getUser().getId());
 			}
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 

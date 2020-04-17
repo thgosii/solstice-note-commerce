@@ -40,7 +40,7 @@ public class UserDAO extends AbstractDAO {
 			pstm.setString(3, user.getRole().toString().toLowerCase());
 			pstm.setBoolean(4, user.isDeleted());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.execute();
 
@@ -88,7 +88,7 @@ public class UserDAO extends AbstractDAO {
 			pstm.setString(1, user.getPassword());
 			pstm.setLong(2, user.getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -136,7 +136,7 @@ public class UserDAO extends AbstractDAO {
 				pstm.setString(1, user.getEmail());
 			}
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 

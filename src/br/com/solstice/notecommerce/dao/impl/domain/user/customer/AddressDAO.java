@@ -80,7 +80,7 @@ public class AddressDAO extends AbstractDAO {
 
 			pstm.setLong(1, address.getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.execute();
 		} catch (SQLException e) {
