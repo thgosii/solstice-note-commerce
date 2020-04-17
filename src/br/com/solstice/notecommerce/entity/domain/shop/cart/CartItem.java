@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.entity.domain.shop.cart;
 
+import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CartItem {
+public class CartItem extends DomainEntity {
 
 	private Product product;
 	private int quantity;
