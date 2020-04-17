@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString(callSuper = true)
 public class Cart extends DomainEntity {
 
 	private List<CartItem> items;
 
 	public Cart() {
 		items = new ArrayList<CartItem>();
-	}
-
-	public List<CartItem> getItems() {
-		return items;
-	}
-
-	public void setItems(List<CartItem> items) {
-		this.items = items;
 	}
 
 	public void addItem(CartItem item) {
