@@ -1,6 +1,7 @@
 package br.com.solstice.notecommerce.entity.domain.trade;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
@@ -14,6 +15,12 @@ public class Trade extends DomainEntity {
 	private TradeStatus status;
 	private SaleItem saleItem;
 	private Sale sale;
+	
+	public static String generateTrackingNumber(Long userId) {
+		String code = UUID.randomUUID().toString().replaceAll("[^0-9a-z]", "").substring(0, 4);
+		long now = System.currentTimeMillis();
+		return "T-" + userId + "-" + code + "-" + now;
+	}
 
 	public String getTrackingNumber() {
 		return trackingNumber;
