@@ -7,14 +7,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
-import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 

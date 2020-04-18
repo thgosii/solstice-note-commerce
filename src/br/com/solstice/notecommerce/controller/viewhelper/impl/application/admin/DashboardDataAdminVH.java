@@ -2,7 +2,6 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.application.admi
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.application.admin.dashboard.DashboardData;
-import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class DashboardDataAdminVH implements IViewHelper {
 

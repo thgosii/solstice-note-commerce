@@ -1,7 +1,6 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletException;

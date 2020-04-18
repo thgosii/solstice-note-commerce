@@ -1,7 +1,6 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
