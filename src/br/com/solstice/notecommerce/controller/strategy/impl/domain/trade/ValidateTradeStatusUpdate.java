@@ -15,14 +15,10 @@ public class ValidateTradeStatusUpdate extends AbstractStrategy {
 		super(Arrays.asList(ValidateTradeUpdate.class.getName())); // Define default/always required-to-be-valid BRs here
 	}
 	
-	public ValidateTradeStatusUpdate(String requiredBussinessRule) { 
-		super(Arrays.asList(requiredBussinessRule));
+	public ValidateTradeStatusUpdate(String... requiredBussinessRules) { 
+		super(Arrays.asList(requiredBussinessRules));
 	}
 	
-	public ValidateTradeStatusUpdate(List<String> requiredBussinessRules) { 
-		super(requiredBussinessRules);
-	}
-
 	// Validate if trade action can be taken based on current trade status (example: authorizing already authorized trade, finishing already finished/not authorized, etc)
 	// Processed only when updating! (trade is already saved and is at least AWAITING_AUTHORIZATION)
 	@Override

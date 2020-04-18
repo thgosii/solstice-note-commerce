@@ -13,12 +13,8 @@ import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 
 public class ValidateBrand extends AbstractStrategy {
 	
-	public ValidateBrand(String requiredBussinessRule) { 
-		super(Arrays.asList(requiredBussinessRule));
-	}
-	
-	public ValidateBrand(List<String> requiredBussinessRules) { 
-		super(requiredBussinessRules);
+	public ValidateBrand(String... requiredBussinessRules) { 
+		super(Arrays.asList(requiredBussinessRules));
 	}
 
 	@Override
