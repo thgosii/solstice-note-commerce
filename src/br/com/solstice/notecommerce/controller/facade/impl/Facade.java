@@ -85,12 +85,12 @@ public class Facade implements IFacade {
 
 		List<IStrategy> productBusinessRulesSave = new ArrayList<IStrategy>();
 		productBusinessRulesSave.add(new ValidateProductSave());
-		productBusinessRulesSave.add(new ValidateBrand());
+		productBusinessRulesSave.add(new ValidateBrand(ValidateProductSave.class.getName()));
 		productBusinessRulesSave.add(new ValidateStorage());
 
 		List<IStrategy> productBusinessRulesUpdate = new ArrayList<IStrategy>();
 		productBusinessRulesUpdate.add(new ValidateProductUpdate());
-		productBusinessRulesUpdate.add(new ValidateBrand());
+		productBusinessRulesUpdate.add(new ValidateBrand(ValidateProductUpdate.class.getName()));
 		productBusinessRulesUpdate.add(new ValidateStorage());
 
 		productBusinessRulesMap.put("save", productBusinessRulesSave);
@@ -189,6 +189,10 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(CartItem.class.getName(), cartBusinessRulesMap);
 
+		
+		
+		
+		
 		/*
 		 * General (used in more than one part of the e-commerce)
 		 */
@@ -218,26 +222,26 @@ public class Facade implements IFacade {
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
 		stringBuilder = new StringBuilder();
 		
-		ArrayList<String> validatedBussinessRulesMap = new ArrayList<>();
+		ArrayList<String> validatedBussinessRules = new ArrayList<>();
 		
-		for (IStrategy businessRule : businessRules) {
-			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
-			
+		for (IStrategy businessRule : businessRules) {			
 			if (businessRule instanceof AbstractStrategy) { // If BR requires that some BRs are already valid
 				AbstractStrategy businessRuleWithRequirements = (AbstractStrategy) businessRule;
-				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRulesMap)) { // Not all required BRs are valid
+				
+				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs are valid
 					System.out.println("Skipping bussiness rule " + businessRule.getClass().getSimpleName());
 					continue; // Do not process
 				}
 			}
-			
+
+			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
 			String message = businessRule.process(entity);
 
 			if (message != null && !message.trim().isEmpty()) {
 				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			} else {
-				validatedBussinessRulesMap.add(businessRule.getClass().getSimpleName());
+				validatedBussinessRules.add(businessRule.getClass().getSimpleName());
 			}
 		}
 		if (businessRules.size() > 0) System.out.println("----------------");

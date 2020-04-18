@@ -1,14 +1,27 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.trade;
 
+import java.util.Arrays;
 import java.util.List;
 
-import br.com.solstice.notecommerce.controller.strategy.IStrategy;
+import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
 import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 
-public class ValidateTradeStatusUpdate implements IStrategy {
+public class ValidateTradeStatusUpdate extends AbstractStrategy {
+	
+	public ValidateTradeStatusUpdate() { 
+		super(Arrays.asList(ValidateTradeUpdate.class.getName())); // Define default/always required-to-be-valid BRs here
+	}
+	
+	public ValidateTradeStatusUpdate(String requiredBussinessRule) { 
+		super(Arrays.asList(requiredBussinessRule));
+	}
+	
+	public ValidateTradeStatusUpdate(List<String> requiredBussinessRules) { 
+		super(requiredBussinessRules);
+	}
 
 	// Validate if trade action can be taken based on current trade status (example: authorizing already authorized trade, finishing already finished/not authorized, etc)
 	// Processed only when updating! (trade is already saved and is at least AWAITING_AUTHORIZATION)
@@ -17,9 +30,7 @@ public class ValidateTradeStatusUpdate implements IStrategy {
 		Trade trade = (Trade) entity;
 		TradeDAO tradeDAO = new TradeDAO();
 		
-		if (trade.getStatus() == null) {
-			return "A ação para essa troca é inválida";
-		} else if (trade.getStatus() == TradeStatus.AWAITING_AUTHORIZATION) {
+		if (trade.getStatus() == TradeStatus.AWAITING_AUTHORIZATION) {
 			return "Não é possível desautorizar trocas";
 		}
 		
