@@ -266,9 +266,10 @@ public class Facade implements IFacade {
 				sessionHelpersMap.get(entityName).save(entity, session);
 			}
 		} else {
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
-
+		
 		return result;
 	}
 
@@ -285,10 +286,15 @@ public class Facade implements IFacade {
 			processBusinessRules(businessRulesRemoveEntity, entity);
 		}
 
-		if (daosMap.containsKey(entityName)) {
-			daosMap.get(entityName).remove(entity);
-		} else if (sessionHelpersMap.containsKey(entityName)) {
-			sessionHelpersMap.get(entityName).remove(entity, session);
+		if (stringBuilder.length() == 0) {
+			if (daosMap.containsKey(entityName)) {
+				daosMap.get(entityName).remove(entity);
+			} else if (sessionHelpersMap.containsKey(entityName)) {
+				sessionHelpersMap.get(entityName).remove(entity, session);
+			}
+		} else {
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
+			result.setMessage(stringBuilder.toString());
 		}
 
 		result.getEntities().add(entity);
@@ -319,6 +325,7 @@ public class Facade implements IFacade {
 				sessionHelpersMap.get(entityName).update(entity, session);
 			}
 		} else {
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
 
@@ -347,6 +354,7 @@ public class Facade implements IFacade {
 				consultEntities = sessionHelpersMap.get(entityName).consult(entity, session, operation);
 			}
 		} else {
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
 
