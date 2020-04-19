@@ -13,6 +13,10 @@ public class ValidateTradeProductQuantity extends AbstractStrategy {
 	public ValidateTradeProductQuantity() { 
 		super(Arrays.asList(ValidateTradeSave.class.getName()));
 	}
+	
+	public ValidateTradeProductQuantity(String... requiredBussinessRules) { 
+		super(Arrays.asList(requiredBussinessRules));
+	}
 
 	@Override
 	public String process(Entity entity) {

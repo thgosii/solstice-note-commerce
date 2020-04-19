@@ -12,7 +12,7 @@ import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 public class ValidateTradeStatusUpdate extends AbstractStrategy {
 	
 	public ValidateTradeStatusUpdate() { 
-		super(Arrays.asList(ValidateTradeUpdate.class.getName())); // Define default/always required-to-be-valid BRs here
+		super(Arrays.asList(ValidateTradeUpdate.class.getName(), ValidateTradeToUpdateExists.class.getName())); // Define default/always required-to-be-valid BRs here
 	}
 	
 	public ValidateTradeStatusUpdate(String... requiredBussinessRules) { 
@@ -26,24 +26,20 @@ public class ValidateTradeStatusUpdate extends AbstractStrategy {
 		Trade trade = (Trade) entity;
 		TradeDAO tradeDAO = new TradeDAO();
 		
-		if (trade.getStatus() == TradeStatus.AWAITING_AUTHORIZATION) {
-			return "Não é possível desautorizar trocas";
-		}
+		System.out.println("entity status: " + ((Trade) entity).getStatus());
 		
-		Trade previousTrade = null;
-		
-		List<Entity> listEntities = tradeDAO.consult(trade, "consult"); // trade must have id set
-		if (listEntities.size() == 0) {
-			return "A troca não existe";
-		}
-		
-		previousTrade = (Trade) listEntities.get(0);
+		Trade previousTrade = (Trade) tradeDAO.consult(trade, "consult").get(0);
+		System.out.println("previous trade status: " + previousTrade.getStatus());
 		
 		if (previousTrade.getStatus() == TradeStatus.PRODUCT_RECEIVED) {
 			return "A troca já foi finalizada";
-		} else if (previousTrade.getStatus() == TradeStatus.AWAITING_AUTHORIZATION && trade.getStatus() != TradeStatus.AUTHORIZED) {
-			return "Só é possível autorizar trocas que estão aguardando autorização";
+		} else if (previousTrade.getStatus() == TradeStatus.AWAITING_AUTHORIZATION) {
+			((Trade) entity).setStatus(TradeStatus.AUTHORIZED);
+		} else if (previousTrade.getStatus() == TradeStatus.AUTHORIZED) {
+			((Trade) entity).setStatus(TradeStatus.PRODUCT_RECEIVED);
 		}
+
+		System.out.println("entity status after processing: " + ((Trade) entity).getStatus());
 		
 		return null;
 	}

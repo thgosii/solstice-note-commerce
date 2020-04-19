@@ -8,21 +8,25 @@ import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 
-public class ValidateTradeSaleStatus extends AbstractStrategy {
+public class ValidateTradeToSaveAlreadyExists extends AbstractStrategy {
 	
-	public ValidateTradeSaleStatus() { 
-		super(Arrays.asList(ValidateTradeSave.class.getName(), ValidateTradeToSaveAlreadyExists.class.getName()));
+	public ValidateTradeToSaveAlreadyExists() { 
+		super(Arrays.asList(ValidateTradeSave.class.getName()));
 	}
 	
-	public ValidateTradeSaleStatus(String... requiredBussinessRules) { 
+	public ValidateTradeToSaveAlreadyExists(String... requiredBussinessRules) { 
 		super(Arrays.asList(requiredBussinessRules));
 	}
-
+	
 	@Override
 	public String process(Entity entity) {
-		// TODO: Use SaleDAO to verify if Sale is delivered (status)
 		Trade trade = (Trade) entity;
+		TradeDAO tradeDAO = new TradeDAO();
 		
+		List<Entity> listEntities = tradeDAO.consult(trade, "findFromSaleAndProduct");
+		if (listEntities.size() != 0) {
+			return "Esse produto já faz parte de uma venda";
+		}
 		
 		return null;
 	}

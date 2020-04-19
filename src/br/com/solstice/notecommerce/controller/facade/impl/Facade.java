@@ -26,12 +26,14 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.Vali
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateProductSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateProductUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateStorage;
-import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeAlreadyExists;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToSaveAlreadyExists;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToUpdateExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductQuantity;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSaleStatus;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeStatusUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeUpdate;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeUpdateCustomerBalance;
 import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.application.admin.DashboardDataDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
@@ -206,13 +208,14 @@ public class Facade implements IFacade {
 		List<IStrategy> tradeBusinessRulesSave = new ArrayList<IStrategy>();
 		tradeBusinessRulesSave.add(new ValidateTradeSave());
 		tradeBusinessRulesSave.add(new ValidateTradeProductQuantity());
-		tradeBusinessRulesSave.add(new ValidateTradeAlreadyExists());
+		tradeBusinessRulesSave.add(new ValidateTradeToSaveAlreadyExists());
 		tradeBusinessRulesSave.add(new ValidateTradeSaleStatus());
 
 		List<IStrategy> tradeBusinessRulesUpdate = new ArrayList<IStrategy>();
 		tradeBusinessRulesSave.add(new ValidateTradeUpdate());
+		tradeBusinessRulesSave.add(new ValidateTradeToUpdateExists());
 		tradeBusinessRulesSave.add(new ValidateTradeStatusUpdate());
-		tradeBusinessRulesSave.add(new ValidateTradeStatusUpdate());
+		tradeBusinessRulesSave.add(new ValidateTradeUpdateCustomerBalance());
 		
 		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);
 		tradeBusinessRulesMap.put("update", tradeBusinessRulesUpdate);
