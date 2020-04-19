@@ -31,7 +31,7 @@ public class Trade extends DomainEntity {
 	}
 	
 	public Double getBalanceReturn() {
-		return saleItem.getPricePerProduct();
+		return saleItem.getPricePerProduct() * productQuantity;
 	}
 
 }
