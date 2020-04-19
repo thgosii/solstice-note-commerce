@@ -34,6 +34,8 @@ public class CustomerFilter implements Filter {
 			response.sendRedirect("/note-commerce/pages/login.jsp");
 			return;
 		}
+		
+		request.setAttribute("loggedUser", (User) request.getSession().getAttribute("loggedUser"));
 
 		chain.doFilter(request, response);
 	}

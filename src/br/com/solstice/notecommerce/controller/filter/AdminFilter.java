@@ -32,6 +32,8 @@ public class AdminFilter implements Filter {
 			return;
 		}
 		
+		request.setAttribute("loggedUser", (User) request.getSession().getAttribute("loggedUser"));
+		
 		chain.doFilter(request, response);
 	}
 
