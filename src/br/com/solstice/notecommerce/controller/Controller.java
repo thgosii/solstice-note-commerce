@@ -23,6 +23,8 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.application.custo
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop.ProductShopVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.cart.CartVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeAdminVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.AddressVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer.CreditCardVH;
@@ -64,6 +66,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/admin/products", new ProductVH());
 		viewHelpersMap.put("/note-commerce/admin/dashboard", new DashboardDataAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/brands", new BrandAdminVH());
+		viewHelpersMap.put("/note-commerce/admin/trades", new TradeAdminVH());
 
 		// customer
 		viewHelpersMap.put("/note-commerce/signup", new CustomerVH());
@@ -71,6 +74,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/customer/creditCards", new CreditCardVH());
 		viewHelpersMap.put("/note-commerce/customer/adresses", new AddressVH());
 		viewHelpersMap.put("/note-commerce/customer/balance", new BalanceCustomerVH());
+		viewHelpersMap.put("/note-commerce/customer/trades", new TradeCustomerVH());
 
 		// shop
 		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopVH());
