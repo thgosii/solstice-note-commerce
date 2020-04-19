@@ -32,7 +32,7 @@ public class TradeDAO extends AbstractDAO {
 
 	public TradeDAO(Connection connection) {
 		super("trades", "trd_id", connection);
-	}
+	}	
 
 	@Override
 	public int save(Entity entity) {
@@ -129,15 +129,15 @@ public class TradeDAO extends AbstractDAO {
 
 		String sql = "";
 
-		if (operation.equals("consult")) {
+		if (operation.equals("consult")) { // Gets trade table data and pro
 			if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getId() != null) {
 				// User consult (user specific trades)
 				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ?" : "") + "AND trd_deleted = false";
 			} else {
 				// Admin consult (all trades)
-				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE " + (trade.getId() != null ? "trd_id = ? AND" : "") + "trd_deleted = false";
+				sql = "SELECT trades.* FROM " + table + " WHERE " + (trade.getId() != null ? "trd_id = ? AND" : "") + "trd_deleted = false";
 			}
-		} else if (operation.equals("findSaleProduct")) {
+		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
 			sql = "SELECT sit_quantity, sit_subtotal FROM " + table + " "
 					+ "JOIN sales_products ON trd_sal_id = sit_sal_id AND trd_prd_id = sit_prd_id "
@@ -175,24 +175,24 @@ public class TradeDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Trade currentTrade = new Trade();
-				if (operation.equals("consult")) {
+				if (operation.equals("consult") || operation.equals("findFromSaleAndProduct")) {
+					currentTrade.setId(rs.getLong("trd_id"));
+					currentTrade.setProductQuantity(rs.getInt("trd_quantity"));
 					currentTrade.setRequestDate(rs.getTimestamp("trd_request_date").toLocalDateTime());
+					currentTrade.setStatus(TradeStatus.valueOf(rs.getString("trd_status")));
 					
 					Sale sale = new Sale();
 					sale.setId(rs.getLong("trd_sal_id"));
 					currentTrade.setSale(sale);
 					
-					currentTrade.setStatus(TradeStatus.valueOf(rs.getString("trd_status")));
-					
 					Product product = new Product();
 					product.setId(rs.getLong("trd_prd_id"));
-					currentTrade.setSaleItem(new SaleItem((Product) productDAO.consult(product, "consult").get(0), rs.getInt("trd_quantity"), 0d));
-					currentTrade.getSaleItem().setSubTotal(currentTrade.getSaleItem().getPricePerProduct());
 					
+					currentTrade.setSaleItem(new SaleItem((Product) productDAO.consult(product, "consult").get(0), -1, -1d));
 				} else if (operation.equals("findSaleItem")) {
 					currentTrade.setSaleItem(new SaleItem(null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
 					trades.add(currentTrade);
-				} else if (operation.equals("findExistent")) {
+				} else if (operation.equals("findFromSaleAndProduct")) {
 				}
 			}
 
