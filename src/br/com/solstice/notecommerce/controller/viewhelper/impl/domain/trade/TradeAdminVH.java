@@ -1,6 +1,8 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,10 +43,22 @@ public class TradeAdminVH implements IViewHelper {
 			throws IOException, ServletException {
 		String operation = request.getParameter("operation");
 		
+		request.setAttribute("message", result.getMessage());
+		
 		if (operation.equals("update")) {
-			
+			if (null == result.getMessage()) {
+				response.sendRedirect("/note-commerce/admin/trades?operation=consult");
+			} else {
+				response.getWriter().write(result.getMessage());
+			}
 		} else if (operation.equals("consult")) {
+			List<Trade> trades = new ArrayList<>();
+			for (Entity entity : result.getEntities()) {
+				trades.add((Trade) entity);
+			}
+			request.setAttribute("trades", trades);
 			
+			request.getRequestDispatcher("/pages/admin/trades.jsp").forward(request, response);;
 		}
 
 	}
