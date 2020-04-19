@@ -109,8 +109,9 @@ create table if not exists sales_products(
 
 create table if not exists trades(
 	trd_id int auto_increment not null,
+	trd_tracking_number varchar(50) not null,
 	trd_request_date datetime not null,
-	trd_status varchar(255) not null,
+	trd_status varchar(50) not null,
 	trd_quantity int not null,
     trd_sal_id int not null,
     trd_prd_id int not null,
