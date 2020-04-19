@@ -41,15 +41,16 @@ public class TradeDAO extends AbstractDAO {
 
 		Trade trade = (Trade) entity;
 
-		String sql = "INSERT INTO " + table + " (`trd_request_date`, `trd_status`, `trd_sit_sal_id`, `trd_sit_prd_id`) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO " + table + " (`trd_tracking_number`, `trd_request_date`, `trd_status`, `trd_sit_sal_id`, `trd_sit_prd_id`) VALUES (?, ?, ?, ?, ?)";
 		
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-			pstm.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
-			pstm.setString(2, trade.getStatus().name());
-			pstm.setLong(3, trade.getSale().getId());
-			pstm.setLong(4, trade.getSaleItem().getProduct().getId());
+			pstm.setString(1, trade.getTrackingNumber());
+			pstm.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+			pstm.setString(3, trade.getStatus().name());
+			pstm.setLong(4, trade.getSale().getId());
+			pstm.setLong(5, trade.getSaleItem().getProduct().getId());
 
 			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
