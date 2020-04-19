@@ -15,6 +15,7 @@ import com.sun.org.apache.bcel.internal.generic.I2F;
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
@@ -23,6 +24,7 @@ import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class TradeDAO extends AbstractDAO {
 	
@@ -131,7 +133,7 @@ public class TradeDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) { // Gets trade table data and pro
-			if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getId() != null) {
+			if (trade.getSale() != null && trade.getSale().getCustomer() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
 				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ?" : "") + "AND trd_deleted = false";
 			} else {
@@ -153,8 +155,14 @@ public class TradeDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			if (operation.equals("consult")) {
-				if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getId() != null) {
-					pstm.setLong(1, trade.getSale().getCustomer().getId());
+				if (trade.getSale() != null && trade.getSale().getCustomer() != null) {
+					// Get customer id from user id
+					Customer customer = new Customer();
+					customer.setId(trade.getSale().getCustomer().getUser().getId());
+					CustomerDAO customerDAO = new CustomerDAO(connection);
+					Long idCustomer = ((Customer) customerDAO.consult(customer, operation).get(0)).getId();
+					
+					pstm.setLong(1, idCustomer);
 					if (trade.getId() != null) {
 						pstm.setLong(2, trade.getId());
 					}
