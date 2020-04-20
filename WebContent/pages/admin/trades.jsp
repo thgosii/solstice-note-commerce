@@ -125,7 +125,7 @@
                         <span class="badge bg-warning">Em troca</span>
   </c:when>
   <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-                        <span class="badge bg-info">Em troca</span>
+                        <span class="badge bg-info">Troca Autorizada</span>
   </c:when>
   <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
                         <span class="badge bg-success">Trocado</span>
