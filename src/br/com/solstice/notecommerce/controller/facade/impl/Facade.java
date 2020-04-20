@@ -245,7 +245,7 @@ public class Facade implements IFacade {
 				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
 				stringBuilder.append(message + '\n');
 			} else {
-				validatedBussinessRules.add(businessRule.getClass().getSimpleName());
+				validatedBussinessRules.add(businessRule.getClass().getName());
 			}
 		}
 		if (businessRules.size() > 0) System.out.println("----------------");
