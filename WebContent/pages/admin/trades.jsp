@@ -103,8 +103,9 @@
                 <thead>
                   <tr>
                     <th>Data do pedido de troca</th>
-                    <th>Venda relacionada</th>
+                    <th>Venda</th>
                     <th>Produto</th>
+                    <th>Qtd</th>
                     <th>Nº Rastreamento</th>
                     <th>Status</th>
                     <th>Ações</th>
@@ -116,6 +117,7 @@
                       <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedISORequestDate()}}</td>
                       <td><a href="/note-commerce/admin/sales?operation=consult&table_filter=${trade.sale.id}">${trade.sale.id}</a></td>
                       <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult&table_filter=${trade.saleItem.product.title}">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
+                      <td>${trade.productQuantity}</td>
                       <td>${trade.trackingNumber}</td>
                       <td>
 <c:choose>
@@ -233,7 +235,7 @@
       $('#products-table').DataTable({
         columnDefs: [
           {
-            targets: [4], // Colunas de: [Ações]
+            targets: [5], // Colunas de: [Ações]
             searchable: false,
             orderable: false
           }
