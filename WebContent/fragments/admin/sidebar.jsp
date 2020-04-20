@@ -55,7 +55,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/note-commerce/pages/admin/exchanges.jsp" class="nav-link">
+              <a href="/note-commerce/admin/trades?operation=consult" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>Trocas</p>
               </a>
