@@ -112,10 +112,10 @@ public class Controller extends HttpServlet {
 				+ " with operation \"" + operation + "\"");
 
 		ICommand command = commandsMap.get(operation);
-		System.out.println("command: " + (command != null ? command.getClass().getSimpleName() : command));
+		System.out.println("Command: " + (command != null ? command.getClass().getSimpleName() : command));
 
 		IViewHelper viewHelper = viewHelpersMap.get(request.getRequestURI());
-		System.out.println("viewHelper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
+		System.out.println("View Helper: " + (viewHelper != null ? viewHelper.getClass().getSimpleName() : viewHelper));
 
 		if (null == command || null == viewHelper) {
 			response.setStatus(422); // Unprocessable Entity
@@ -124,7 +124,7 @@ public class Controller extends HttpServlet {
 		}
 
 		Entity entity = viewHelper.getEntity(request);
-		System.out.println("entity: " + entity + "\n--------------------------------");
+		System.out.println("Entity: " + entity + "\n--------------------------------");
 
 		Result result = command.execute(entity, request.getSession(), operation);
 		System.out.println("--------------------------------\nResult entities list" + (result.getEntities() != null ? " (" + result.getEntities().size() + "):" : ":"));
