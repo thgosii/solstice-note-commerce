@@ -2,7 +2,7 @@ drop database if exists notecommerce_db;
 create database if not exists notecommerce_db;
 
 drop user if exists notecommerce_user@localhost;
-create user if not exists notecommerce_user@localhost identified by 'notecommerce_password';
+create user if not exists notecommerce_user@localhost identified by 'noteCommerce_password1';
 grant all privileges on notecommerce_db.* to notecommerce_user@localhost;
 
 use notecommerce_db;

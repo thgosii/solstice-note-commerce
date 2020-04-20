@@ -7,24 +7,25 @@ import java.sql.SQLException;
 
 public class MySQLConnection {
 
-	private static String driver;
-	private static String url;
-	private static String user;
-	private static String password;
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	
+	private static final String DB_PROTOCOL = "jdbc:mysql";
+	private static final String DB_ADDRESS = "localhost";
+	private static final String DB_PORT = "3306";
+	private static final String DB_PARAMS = "allowPublicKeyRetrieval=true&useSSL=false";
+
+	private static final String DB_NAME = "notecommerce_db";
+	private static final String DB_USER = "notecommerce_user";
+	private static final String DB_PASSWORD = "noteCommerce_password1";
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-		driver = "com.mysql.jdbc.Driver";
-		url = "jdbc:mysql://localhost:3306/notecommerce_db?allowPublicKeyRetrieval=true&useSSL=false";
-		user = "notecommerce_user";
-		password = "notecommerce_password";
-
-		Class.forName(driver);
+		Class.forName(DRIVER);
 		
-		Connection connection = null;
-		
-		connection = DriverManager.getConnection(url, user, password);
-		
-		return connection;
+		return DriverManager.getConnection(getUrl(), DB_USER, DB_PASSWORD);
+	}
+	
+	private static String getUrl() {
+		return DB_PROTOCOL + "://" + DB_ADDRESS + ":" + DB_PORT + "/" + DB_NAME + (DB_PARAMS != null && !DB_PARAMS.isEmpty() ? "?" + DB_PARAMS : "");
 	}
 
 }
