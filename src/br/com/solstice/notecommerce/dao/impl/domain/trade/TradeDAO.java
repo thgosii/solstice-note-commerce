@@ -184,8 +184,10 @@ public class TradeDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Trade currentTrade = new Trade();
+				
 				if (operation.equals("consult") || operation.equals("findFromSaleAndProduct")) {
 					currentTrade.setId(rs.getLong("trd_id"));
+					currentTrade.setTrackingNumber(rs.getString("trd_tracking_number"));
 					currentTrade.setProductQuantity(rs.getInt("trd_quantity"));
 					currentTrade.setRequestDate(rs.getTimestamp("trd_request_date").toLocalDateTime());
 					currentTrade.setStatus(TradeStatus.valueOf(rs.getString("trd_status")));
@@ -200,8 +202,8 @@ public class TradeDAO extends AbstractDAO {
 					currentTrade.setSaleItem(new SaleItem((Product) productDAO.consult(product, "consult").get(0), -1, -1d));
 				} else if (operation.equals("findSaleItem")) {
 					currentTrade.setSaleItem(new SaleItem(null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
-				} else if (operation.equals("findFromSaleAndProduct")) {
 				}
+				
 				trades.add(currentTrade);
 			}
 
