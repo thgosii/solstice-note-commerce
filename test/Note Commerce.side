@@ -2865,7 +2865,7 @@
       "command": "type",
       "target": "name=number",
       "targets": [],
-      "value": "9876543212345678"
+      "value": "4929120882285261"
     }, {
       "id": "5f9800a7-3238-4ffe-909a-6f805bfe98ad",
       "comment": "Selecionar input de nome no cartão",
@@ -3025,7 +3025,7 @@
       "command": "type",
       "target": "name=number",
       "targets": [],
-      "value": "0101 2323 4567 9876"
+      "value": "4485283312422825"
     }, {
       "id": "21ff28b4-4891-4e0e-8f1a-dae2380bbd84",
       "comment": "Selecionar input de nome no cartão",
