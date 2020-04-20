@@ -114,7 +114,7 @@
                 <tbody>
                   <c:forEach items="${trades}" var="trade">
                     <tr>
-                      <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedISORequestDate()}</td>
+                      <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedRequestDate()}</td>
                       <td><a href="/note-commerce/admin/sales?operation=consult&table_filter=${trade.sale.id}">${trade.sale.id}</a></td>
                       <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult&table_filter=${trade.saleItem.product.title}">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
                       <td>${trade.productQuantity}</td>
@@ -235,7 +235,7 @@
       $('#products-table').DataTable({
         columnDefs: [
           {
-            targets: [5], // Colunas de: [Ações]
+            targets: [6], // Colunas de: [Ações]
             searchable: false,
             orderable: false
           }

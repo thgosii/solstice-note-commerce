@@ -36,7 +36,7 @@ public class Trade extends DomainEntity {
 	}
 	
 	public String getFormattedRequestDate() {
-		return requestDate != null ? requestDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
+		return requestDate != null ? requestDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) : null;
 	}
 	
 	public String getFormattedISORequestDate() {
