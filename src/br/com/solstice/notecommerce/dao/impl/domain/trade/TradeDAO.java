@@ -135,10 +135,10 @@ public class TradeDAO extends AbstractDAO {
 		if (operation.equals("consult")) { // Gets trade table data and pro
 			if (trade.getSale() != null && trade.getSale().getCustomer() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
-				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ?" : "") + "AND trd_deleted = false";
+				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_deleted = false";
 			} else {
 				// Admin consult (all trades)
-				sql = "SELECT trades.* FROM " + table + " WHERE " + (trade.getId() != null ? "trd_id = ? AND" : "") + "trd_deleted = false";
+				sql = "SELECT trades.* FROM " + table + " WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_deleted = false";
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
