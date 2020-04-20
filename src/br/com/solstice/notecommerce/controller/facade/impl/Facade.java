@@ -233,12 +233,12 @@ public class Facade implements IFacade {
 				AbstractStrategy businessRuleWithRequirements = (AbstractStrategy) businessRule;
 				
 				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs are valid
-					System.out.println("Skipping bussiness rule " + businessRule.getClass().getSimpleName());
+					System.out.println("- Skipping bussiness rule " + businessRule.getClass().getSimpleName());
 					continue; // Do not process
 				}
 			}
 
-			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
+			System.out.println("- Processing bussiness rule " + businessRule.getClass().getSimpleName());
 			String message = businessRule.process(entity);
 
 			if (message != null && !message.trim().isEmpty()) {

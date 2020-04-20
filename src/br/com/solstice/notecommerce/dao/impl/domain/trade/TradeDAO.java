@@ -54,7 +54,7 @@ public class TradeDAO extends AbstractDAO {
 			pstm.setLong(4, trade.getSale().getId());
 			pstm.setLong(5, trade.getSaleItem().getProduct().getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 
@@ -102,7 +102,7 @@ public class TradeDAO extends AbstractDAO {
 			pstm.setString(1, trade.getStatus().name());
 			pstm.setLong(2, trade.getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 		} catch (SQLException e) {
@@ -176,7 +176,7 @@ public class TradeDAO extends AbstractDAO {
 				pstm.setLong(2, trade.getSaleItem().getProduct().getId());
 			}
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 			

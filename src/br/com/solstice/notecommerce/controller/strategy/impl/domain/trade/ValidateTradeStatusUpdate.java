@@ -26,10 +26,7 @@ public class ValidateTradeStatusUpdate extends AbstractStrategy {
 		Trade trade = (Trade) entity;
 		TradeDAO tradeDAO = new TradeDAO();
 		
-		System.out.println("entity status: " + ((Trade) entity).getStatus());
-		
 		Trade previousTrade = (Trade) tradeDAO.consult(trade, "consult").get(0);
-		System.out.println("previous trade status: " + previousTrade.getStatus());
 		
 		if (previousTrade.getStatus() == TradeStatus.PRODUCT_RECEIVED) {
 			return "A troca já foi finalizada";
@@ -38,8 +35,6 @@ public class ValidateTradeStatusUpdate extends AbstractStrategy {
 		} else if (previousTrade.getStatus() == TradeStatus.AUTHORIZED) {
 			((Trade) entity).setStatus(TradeStatus.PRODUCT_RECEIVED);
 		}
-
-		System.out.println("entity status after processing: " + ((Trade) entity).getStatus());
 		
 		return null;
 	}

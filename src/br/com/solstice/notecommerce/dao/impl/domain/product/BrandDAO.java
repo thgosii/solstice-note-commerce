@@ -62,7 +62,7 @@ public class BrandDAO extends AbstractDAO {
 				pstm.setLong(1, brand.getId());
 			}
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 
