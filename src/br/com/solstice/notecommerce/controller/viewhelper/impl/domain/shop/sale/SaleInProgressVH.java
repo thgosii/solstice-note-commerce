@@ -99,7 +99,9 @@ public class SaleInProgressVH implements IViewHelper {
 
 			String json = new Gson().toJson(saleInProgress);
 
-			response.getWriter().print(json);
+			PrintWriter writer = response.getWriter();
+			writer.print(json);
+			writer.flush();
 		}
 	}
 
