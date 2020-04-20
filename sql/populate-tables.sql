@@ -1,11 +1,64 @@
 -- Admin account
 INSERT INTO `notecommerce_db`.`users` (`usr_id`, `usr_email`, `usr_password`, `usr_role`) VALUES ('1', 'admin@admin.com', 'Admin@123', 'admin');
 
--- Customer account
-INSERT INTO `notecommerce_db`.`users` (`usr_id`, `usr_email`, `usr_password`, `usr_role`) VALUES ('2', 'client@client.com', 'Client@123', 'client');
-INSERT INTO `notecommerce_db`.`customers` (`cus_id`, `cus_name`, `cus_cpf`, `cus_date_of_birth`, `cus_phone`, `cus_gender`, `cus_usr_id`) VALUES ('1', 'Cliente de Teste', '44404019025', '1999-05-20', '(21) 12345-6789', 'male', '2');
 
--- Brands
+
+-- Customer accounts
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (2,'client@client.com','Client@123','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (3,'cliente2@teste.com.br','clienteteste!2','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (4,'cliente3@teste.com.br','clienteteste!3','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (5,'cliente4@teste.com.br','clienteteste!4','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (6,'cliente5@teste.com.br','clienteteste!5','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (7,'cliente6@teste.com.br','clienteteste!6','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (8,'cliente7@teste.com.br','clienteteste!7','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (9,'cliente8@teste.com.br','clienteteste!8','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (10,'cliente9@teste.com.br','clienteteste!9','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (11,'cliente10@teste.com.br','clienteteste!10','client',0);
+
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (1,'Cliente de Teste','44404019025','1999-05-20','(21) 12345-6789','male',NULL,2,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (2,'Segundo cliente de teste','24275992040','2000-10-23','(11) 12345-6789','female',NULL,3,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (3,'Cliente de Teste 3','24275992040','2000-10-23','(11) 12345-6789','male',NULL,4,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (4,'Cliente de Teste 4','24275992040','2001-10-23','(11) 12345-6789','female',NULL,5,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (5,'Cliente de Teste 5','24275992040','1990-11-23','(11) 12345-6789','female',NULL,6,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (6,'Cliente de Teste 6','24275992040','2005-10-23','(11) 12345-6789','male',NULL,7,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (7,'Cliente de Teste 7','24275992040','2007-01-23','(11) 12345-6789','male',NULL,8,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (8,'Cliente de Teste 8','24275992040','2002-03-23','(11) 12345-6789','male',NULL,9,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (9,'Cliente de Teste 9','24275992040','2002-10-01','(11) 12345-6789','female',NULL,10,0);
+INSERT INTO `notecommerce_db`.`customers` (`cus_id`,`cus_name`,`cus_cpf`,`cus_date_of_birth`,`cus_phone`,`cus_gender`,`cus_balance`,`cus_usr_id`,`cus_deleted`) VALUES (10,'Cliente de Teste 10','24275992040','1995-01-01','(11) 12345-6789','male',NULL,11,0);
+
+
+
+-- Customers addresses
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (10,'69921-539','Rua da Esperança','73','subsolo','Montanhês','Rio Branco','AC','shipping_and_billing',1,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (1,'87501-655','Rua Nova Aliança','12345','Fundos','Jardim Maria Lúcia','Umuarama','PR','shipping_and_billing',2,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (2,'77427-000','Avenida B','8','','Residencial Jardim América','Gurupi','TO','shipping',3,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (11,'68905-670','Rua Cândido Mendes','67','','Perpétuo Socorro','Macapá','AP','billing',3,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (3,'29222-100','Rua Turmalina','1000','','Setiba','Guarapari','ES','shipping_and_billing',4,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (4,'59615-600','Rua Alcindo Falcão','78','portão B','Santa Delmira','Mossoró','RN','shipping_and_billing',5,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (5,'49009-073','Rua José Domingos Maia III','12','','Zona de Expansão (Mosqueiro)','Aracaju','SE','shipping_and_billing',6,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (6,'95033-350','Estrada Municipal David Milani','6346','','Monte Bérico','Caxias do Sul','RS','shipping_and_billing',7,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (7,'79010-140','Rua Doutor Dolor Ferreira de Andrade','1','','Monte Castelo','Campo Grande','MS','shipping_and_billing',8,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (8,'76812-592','Rua Cruzeiro','331','ap 23','Três Marias','Porto Velho','RO','shipping_and_billing',9,0);
+INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,`ads_number`,`ads_complement`,`ads_neighbourhood`,`ads_city`,`ads_state`,`ads_type`,`ads_cus_id`,`ads_deleted`) VALUES (9,'69915-112','Rua Montreal','4','','Conjunto Esperança','Rio Branco','AC','shipping_and_billing',10,0);
+
+
+
+-- Customers credit cards
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (1,'4916559042822551','Cartão de Teste Visa','659',1,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (2,'4485283312422825','CARTAO NOME JOÃO','321',2,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (3,'5251465567765987','Vesaodir','820',3,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (4,'5543849773514305','Kesyothen','638',4,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (5,'4539286124457661','Gouarn Ispe','335',5,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (6,'4987654321234567','CLIENTE TESTE','123',6,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (7,'4916559042822551','Cartão de Teste Visa','659',7,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (8,'4485283312422825','NOME IMPRESSO 321','321',8,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (9,'5251465567765987','Vesaodir','820',9,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (10,'5543849773514305','Kesyothen','638',10,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (12,'4987654321234567','TESTE TESTE 2','123',3,0);
+
+
+
+-- Product brands
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('1', 'Acer');
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('2', 'Asus');
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('3', 'Dell');
@@ -13,6 +66,8 @@ INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('4', 'Hp')
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('5', 'Lenovo');
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('6', 'Positivo');
 INSERT INTO `notecommerce_db`.`brands` (`brd_id`, `brd_name`) VALUES ('7', 'Samsung');
+
+
 
 -- Products
 INSERT INTO `notecommerce_db`.`products` (`prd_id`,`prd_title`,`prd_image_url`,`prd_price`,`prd_description`,`prd_brd_id`,`prd_processor`,`prd_graphics_card`,`prd_ram`,`prd_monitor`,`prd_hd`,`prd_ssd`,`prd_os`,`prd_deleted`) VALUES (1,'Notebook Lenovo Ideapad S145-15IWL Intel Core i5 - 8GB 1TB 15,6” Windows 10','/note-commerce/static/custom/general/img/products/default_laptop_01.jfif',2399.1,'O notebook Lenovo S145-15IWL Ideapad S145 é compacto e sofisticado. A tela HD de 15.6\" é antirreflexo e as bordas ultrafinas do notebook permitem uma tela infinita, para você ter um notebook com design muito mais elegante. O modelo vem equipado com placa de Vídeo integrada Intel UHD Graphics 620, que resulta em mais agilidade e performance para a edição de fotos e vídeos. Desempenho de ponta com processador Intel Core i5-8265U; memória RAM de 8GB; capacidade do HD de 1TB, além do sistema operacional Windows 10 home assegura um notebook de alta tecnologia. Alto falantes com certificação Dolby Áudio garantem som alto e definido. Conte com o WiFi AC ultrarrápido para mais velocidade de navegação, e também com conexões como 02 USB 3.1, 01 USB 2.0, 01 Porta combo para Headset/Smartphone e 01 HDMI. ',1,'Intel Core i5','Intel UHD Graphics 620',8,'15.6',1,-1,'Windows',0);

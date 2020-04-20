@@ -181,7 +181,7 @@ public class Facade implements IFacade {
 		cartBusinessRulesMap.put("save", cartBusinessRulesSave);
 
 		businessRulesMap.put(CartItem.class.getName(), cartBusinessRulesMap);
-		
+
 		// Sale in progress
 		sessionHelpersMap.put(SaleInProgress.class.getName(), new SaleInProgressSH());
 		Map<String, List<IStrategy>> saleInProgressBusinessRulesMap = new HashMap<String, List<IStrategy>>();
@@ -194,7 +194,6 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(SaleInProgress.class.getName(), saleInProgressBusinessRulesMap);
 
-		
 		/*
 		 * General (used in more than one part of the e-commerce)
 		 */
@@ -217,8 +216,15 @@ public class Facade implements IFacade {
 		tradeBusinessRulesSave.add(new ValidateTradeStatusUpdate());
 		tradeBusinessRulesSave.add(new ValidateTradeUpdateCustomerBalance());
 
+		tradeBusinessRulesUpdate.add(new ValidateTradeUpdate());
+		tradeBusinessRulesUpdate.add(new ValidateTradeToUpdateExists());
+		tradeBusinessRulesUpdate.add(new ValidateTradeStatusUpdate());
+		tradeBusinessRulesUpdate.add(new ValidateTradeUpdateCustomerBalance());
+
 		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);
 		tradeBusinessRulesMap.put("update", tradeBusinessRulesUpdate);
+
+		businessRulesMap.put(Trade.class.getName(), tradeBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
@@ -233,22 +239,28 @@ public class Facade implements IFacade {
 				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs are
 																								// valid
 					System.out.println("Skipping bussiness rule " + businessRule.getClass().getSimpleName());
-					continue; // Do not process
+
+					if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs
+																									// are valid
+						System.out.println("- Skipping bussiness rule " + businessRule.getClass().getSimpleName());
+						continue; // Do not process
+					}
 				}
-			}
 
-			System.out.println("Processing bussiness rule " + businessRule.getClass().getSimpleName());
-			String message = businessRule.process(entity);
+				System.out.println("- Processing bussiness rule " + businessRule.getClass().getSimpleName());
+				String message = businessRule.process(entity);
 
-			if (message != null && !message.trim().isEmpty()) {
-				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
-				stringBuilder.append(message + '\n');
-			} else {
-				validatedBussinessRules.add(businessRule.getClass().getSimpleName());
+				if (message != null && !message.trim().isEmpty()) {
+					System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
+					stringBuilder.append(message + '\n');
+				} else {
+					validatedBussinessRules.add(businessRule.getClass().getName());
+				}
 			}
 		}
 		if (businessRules.size() > 0)
 			System.out.println("----------------");
+
 	}
 
 	@Override

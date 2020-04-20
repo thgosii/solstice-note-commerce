@@ -1,6 +1,7 @@
 package br.com.solstice.notecommerce.entity.domain.trade;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
@@ -32,6 +33,14 @@ public class Trade extends DomainEntity {
 	
 	public Double getBalanceReturn() {
 		return saleItem.getPricePerProduct() * productQuantity;
+	}
+	
+	public String getFormattedRequestDate() {
+		return requestDate != null ? requestDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) : null;
+	}
+	
+	public String getFormattedISORequestDate() {
+		return requestDate != null ? requestDate.format(DateTimeFormatter.ISO_DATE_TIME) : null;
 	}
 
 }

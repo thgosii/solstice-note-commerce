@@ -75,7 +75,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="dashboard.html">Admin Home</a></li>
+                <li class="breadcrumb-item"><a href="/note-commerce/pages/admin/dashboard.jsp">Admin Home</a></li>
                 <li class="breadcrumb-item active">Trocas</li>
               </ol>
             </div>
@@ -103,94 +103,50 @@
                 <thead>
                   <tr>
                     <th>Data do pedido de troca</th>
-                    <th>Venda relacionada</th>
+                    <th>Venda</th>
                     <th>Produto</th>
+                    <th>Qtd</th>
                     <th>Nº Rastreamento</th>
                     <th>Status</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
-                    <td><a href="sales.html">6568768</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td>0-678678678</td>
-                    <td><span class="badge bg-info">Troca Autorizada</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Marcar como Trocado</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
-                    <td><a href="sales.html">234234</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-05-05</span>05/05/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td>0-768686</td>
-                    <td><span class="badge bg-success">Trocado</span></td>
-                    <td class="text-center">
-                      <small>Sem Ações</small>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td><a href="sales.html">345345</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td><a href="sales.html">0-00-090908</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td>0-12312312</td>
-                    <td><span class="badge bg-info">Troca Autorizada</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Marcar como Trocado</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-03-24</span>24/03/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                    <td class="text-center">
-                      <button type="button" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-04-13</span>13/04/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
-                    <td>0-09808080</td>
-                    <td><span class="badge bg-success">Trocado</span></td>
-                    <td class="text-center">
-                      <small>Sem Ações</small>
-                    </td>
-                  </tr>
+                  <c:forEach items="${trades}" var="trade">
+                    <tr>
+                      <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedRequestDate()}</td>
+                      <td><a href="/note-commerce/admin/sales?operation=consult&table_filter=${trade.sale.id}">${trade.sale.id}</a></td>
+                      <td class="truncate-text" style="max-width: 200px;"><a href="/note-commerce/admin/products?operation=consult&table_filter=${trade.saleItem.product.title}">Notebook HP Novo i5-15251 GTX 01804tI</a></td>
+                      <td>${trade.productQuantity}</td>
+                      <td>${trade.trackingNumber}</td>
+                      <td>
+<c:choose>
+  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+                        <span class="badge bg-warning">Em troca</span>
+  </c:when>
+  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+                        <span class="badge bg-info">Troca Autorizada</span>
+  </c:when>
+  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+                        <span class="badge bg-success">Trocado</span>
+  </c:when>
+</c:choose>
+                      </td>
+                      <td class="text-center">
+<c:choose>
+  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+                        <a href="/note-commerce/admin/trades?operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</a>
+  </c:when>
+  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+                        <a href="/note-commerce/admin/trades?operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Marcar como Trocado</a>
+  </c:when>
+  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+                        <small>Sem Ações</small>
+  </c:when>
+</c:choose>
+                      </td>
+                    </tr>
+                  </c:forEach>
                 </tbody>
               </table>
             </div>
@@ -279,7 +235,7 @@
       $('#products-table').DataTable({
         columnDefs: [
           {
-            targets: [4], // Colunas de: [Ações]
+            targets: [6], // Colunas de: [Ações]
             searchable: false,
             orderable: false
           }

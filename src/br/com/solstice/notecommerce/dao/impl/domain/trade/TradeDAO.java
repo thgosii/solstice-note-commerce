@@ -54,7 +54,7 @@ public class TradeDAO extends AbstractDAO {
 			pstm.setLong(4, trade.getSale().getId());
 			pstm.setLong(5, trade.getSaleItem().getProduct().getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 
@@ -102,7 +102,7 @@ public class TradeDAO extends AbstractDAO {
 			pstm.setString(1, trade.getStatus().name());
 			pstm.setLong(2, trade.getId());
 
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
 			pstm.execute();
 		} catch (SQLException e) {
@@ -135,10 +135,10 @@ public class TradeDAO extends AbstractDAO {
 		if (operation.equals("consult")) { // Gets trade table data and pro
 			if (trade.getSale() != null && trade.getSale().getCustomer() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
-				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ?" : "") + "AND trd_deleted = false";
+				sql = "SELECT trades.* FROM " + table + " JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_deleted = false";
 			} else {
 				// Admin consult (all trades)
-				sql = "SELECT trades.* FROM " + table + " WHERE " + (trade.getId() != null ? "trd_id = ? AND" : "") + "trd_deleted = false";
+				sql = "SELECT trades.* FROM " + table + " WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_deleted = false";
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
@@ -155,10 +155,10 @@ public class TradeDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			if (operation.equals("consult")) {
-				if (trade.getSale() != null && trade.getSale().getCustomer() != null) {
+				if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getUser() != null && trade.getSale().getCustomer().getUser().getId() != null) {
 					// Get customer id from user id
 					Customer customer = new Customer();
-					customer.setId(trade.getSale().getCustomer().getUser().getId());
+					customer.setUser(trade.getSale().getCustomer().getUser());
 					CustomerDAO customerDAO = new CustomerDAO(connection);
 					Long idCustomer = ((Customer) customerDAO.consult(customer, operation).get(0)).getId();
 					
@@ -176,7 +176,7 @@ public class TradeDAO extends AbstractDAO {
 				pstm.setLong(2, trade.getSaleItem().getProduct().getId());
 			}
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 			
@@ -184,8 +184,10 @@ public class TradeDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Trade currentTrade = new Trade();
+				
 				if (operation.equals("consult") || operation.equals("findFromSaleAndProduct")) {
 					currentTrade.setId(rs.getLong("trd_id"));
+					currentTrade.setTrackingNumber(rs.getString("trd_tracking_number"));
 					currentTrade.setProductQuantity(rs.getInt("trd_quantity"));
 					currentTrade.setRequestDate(rs.getTimestamp("trd_request_date").toLocalDateTime());
 					currentTrade.setStatus(TradeStatus.valueOf(rs.getString("trd_status")));
@@ -200,9 +202,9 @@ public class TradeDAO extends AbstractDAO {
 					currentTrade.setSaleItem(new SaleItem((Product) productDAO.consult(product, "consult").get(0), -1, -1d));
 				} else if (operation.equals("findSaleItem")) {
 					currentTrade.setSaleItem(new SaleItem(null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
-					trades.add(currentTrade);
-				} else if (operation.equals("findFromSaleAndProduct")) {
 				}
+				
+				trades.add(currentTrade);
 			}
 
 			return trades;
