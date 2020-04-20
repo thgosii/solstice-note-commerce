@@ -155,10 +155,10 @@ public class TradeDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			if (operation.equals("consult")) {
-				if (trade.getSale() != null && trade.getSale().getCustomer() != null) {
+				if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getUser() != null && trade.getSale().getCustomer().getUser().getId() != null) {
 					// Get customer id from user id
 					Customer customer = new Customer();
-					customer.setId(trade.getSale().getCustomer().getUser().getId());
+					customer.setUser(trade.getSale().getCustomer().getUser());
 					CustomerDAO customerDAO = new CustomerDAO(connection);
 					Long idCustomer = ((Customer) customerDAO.consult(customer, operation).get(0)).getId();
 					
@@ -176,7 +176,7 @@ public class TradeDAO extends AbstractDAO {
 				pstm.setLong(2, trade.getSaleItem().getProduct().getId());
 			}
 			
-			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
+			System.out.println(this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 			
