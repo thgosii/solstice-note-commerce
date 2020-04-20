@@ -27,7 +27,7 @@
   <!-- PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
@@ -37,7 +37,7 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
-  <link rel="stylesheet" href="../../static/custom/general/css/tables.css">
+  <link rel="stylesheet" href="/note-commerce/static/custom/general/css/tables.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
@@ -260,7 +260,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -269,7 +269,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -278,7 +278,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -287,7 +287,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -296,7 +296,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Ideapad l340 - 16GB RAM - 250GB SSD - I7 </td>
                     <td>R$ 2.444,21</td>
@@ -305,7 +305,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Ideapad l340 - 16GB RAM - 250GB SSD - I7 </td>
                     <td>R$ 2.444,21</td>
@@ -314,7 +314,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -323,7 +323,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
+                      <img src="/note-commerce/static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
                     </td>
                     <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
                     <td>R$ 2.444,21</td>
@@ -465,8 +465,8 @@
 <!-- PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
   <!-- DataTables -->
-  <script src="../../static/plugins/datatables/jquery.dataTables.js"></script>
-  <script src="../../static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <script src="/note-commerce/static/plugins/datatables/jquery.dataTables.js"></script>
+  <script src="/note-commerce/static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -476,7 +476,7 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
-  <!-- <script src="../../static/custom/admin/sales/js/sales.js"></script> -->
+  <!-- <script src="/note-commerce/static/custom/admin/sales/js/sales.js"></script> -->
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->

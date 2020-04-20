@@ -27,7 +27,7 @@
   <!-- PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
@@ -38,7 +38,7 @@
   <!-- PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../../static/custom/general/css/tables.css">
+  <link rel="stylesheet" href="/note-commerce/static/custom/general/css/tables.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
@@ -252,8 +252,8 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
-  <script src="../../static/plugins/datatables/jquery.dataTables.js"></script>
-  <script src="../../static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <script src="/note-commerce/static/plugins/datatables/jquery.dataTables.js"></script>
+  <script src="/note-commerce/static/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -263,7 +263,7 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
-  <!-- <script src="../../static/custom/admin/exchanges/js/exchanges.js"></script> -->
+  <!-- <script src="/note-commerce/static/custom/admin/exchanges/js/exchanges.js"></script> -->
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
