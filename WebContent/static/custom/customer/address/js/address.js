@@ -77,6 +77,11 @@ $(document).ready(() => {
 
     searchCEP(cep)
       .then(async data => {
+        if (data.erro) {
+          console.log('CEP not found');
+          return;
+        }
+
         $("#publicPlace").val(data.logradouro);
         $("#neighbourhood").val(data.bairro);
         $("#state").val(data.uf);
