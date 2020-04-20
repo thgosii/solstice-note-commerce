@@ -23,6 +23,7 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.application.custo
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop.ProductShopVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.cart.CartVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleInProgressVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginVH;
@@ -38,7 +39,7 @@ import br.com.solstice.notecommerce.entity.Result;
 		"/signup",
 		"/admin/*" ,
 		"/customer/*",
-		"/shop/*"
+		"/shop/*",
 		})
 @MultipartConfig
 public class Controller extends HttpServlet {
@@ -79,6 +80,7 @@ public class Controller extends HttpServlet {
 		// shop
 		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopVH());
 		viewHelpersMap.put("/note-commerce/shop/cart", new CartVH());
+		viewHelpersMap.put("/note-commerce/shop/saleInProgress", new SaleInProgressVH());
 	}
 
 	@Override

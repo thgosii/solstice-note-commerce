@@ -26,7 +26,9 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
-
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/note-commerce/static/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
@@ -84,69 +86,25 @@
             </div>
           </div>
         </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <div class="content">
+        
         <div class="container">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Selecione um endereço cadastrado</h3>
             </div>
             <div class="card-body register-card-body">
-              <div class="form-group">
-                <label for="address">Endereço</label>
-                <select class="form-control" id="address" name="address">
-
-                </select>
-              </div>
-              <a href="/note-commerce/pages/shop/checkout-step-2.jsp" class="btn btn-primary float-right">Próximo</a>
+              <form action="/note-commerce/shop/saleInProgress" method="POST">
+                <input type="hidden" name="operation" value="save">
+                <input type="hidden" name="step" value="1">
+                <div class="form-group">	
+                  <label for="address">Endereço</label>
+                  <select class="form-control" id="address" name="address">
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary float-right" id="next1">Próximo</button>
+              </form>
             </div>
           </div>
-          <div class="text-center">
-            <p>- OU -</p>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Insira os dados do endereço</h3>
-            </div>
-            <div class="card-body register-card-body">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="publicPlace" name="publicPlace" placeholder="Logradouro">
-              </div>
-              <div class="form-group">
-                <label for="state">Estado</label>
-                <select class="form-control" id="state" name="state">
-
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="city">Cidade</label>
-                <select class="form-control" id="city" name="city">
-
-                </select>
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" placeholder="Bairro">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="number" name="number" placeholder="Número">
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="complement" name="complement" placeholder="Complemento">
-              </div>
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="cbFuture">
-                <label class="form-check-label" for="cbFuture">Cadastrar esse endereço para compras futuras</label>
-              </div>
-              <a href="/note-commerce/pages/shop/checkout-step-2.jsp" class="btn btn-primary float-right">Próximo</a>
-            </div>
-          </div>
-
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
@@ -198,6 +156,9 @@
 <!-- *********************************************************************************** -->
 <!-- jQuery InputMask -->
 <script src="/note-commerce/static/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+<!-- Select2 -->
+<script src="/note-commerce/static/plugins/select2/js/select2.full.min.js"></script>
+<script src="/note-commerce/static/plugins/select2/js/i18n/pt-BR.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -207,7 +168,7 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
-
+<script src="/note-commerce/static/custom/customer/address/js/address.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -219,8 +180,6 @@
 <!-- *********************************************************************************** -->
 <script type="text/javascript">
   $(document).ready(function () {
-    $("#cep").inputmask("99999-999");
-
     $.ajax({
       url: '/note-commerce/customer/adresses?operation=consult&isAsync=true',
       type: 'GET',
@@ -230,6 +189,10 @@
           let addressLabel = value.cep + ", " + value.publicPlace + ", " + value.city + ", " + value.state;
           $('#address').append($(`<option>`).text(addressLabel).attr('value', value.id));
         });
+        
+        if (Object.keys(json).length === 0) {
+        	$("#next1").prop("disabled", true);
+        }
       }
     });
   });	

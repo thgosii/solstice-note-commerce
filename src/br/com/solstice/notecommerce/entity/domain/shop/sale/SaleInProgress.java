@@ -1,6 +1,5 @@
 package br.com.solstice.notecommerce.entity.domain.shop.sale;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
@@ -18,14 +17,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Sale extends DomainEntity {
+public class SaleInProgress extends DomainEntity {
 
 	private double balanceUsage;
 	private CreditCard creditCard;
 	private Address address;
 	private Customer customer;
 	private List<SaleItem> items;
-	private LocalDateTime dateTime;
-	private SaleStatus saleStatus;
-
+	
 }

@@ -2,6 +2,7 @@ package br.com.solstice.notecommerce.entity.domain.shop.sale;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
+import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,14 @@ public class SaleItem extends DomainEntity {
 		return null;
 	}
 
+	public static SaleItem fromCartItem(CartItem item) {
+		SaleItem saleItem = new SaleItem();
+		
+		saleItem.setProduct(item.getProduct());
+		saleItem.setQuantity(item.getQuantity());
+		saleItem.setSubTotal(item.getSubTotal());
+		
+		return saleItem;
+	}
+	
 }

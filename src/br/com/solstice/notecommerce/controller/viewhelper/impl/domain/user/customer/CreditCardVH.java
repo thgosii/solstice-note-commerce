@@ -1,11 +1,17 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.customer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
@@ -57,7 +63,7 @@ public class CreditCardVH implements IViewHelper {
 
 				User loggedUser = (User) request.getSession().getAttribute("loggedUser");
 				Long customerUserId = loggedUser.getId();
-				
+
 				User user = new User();
 				user.setId(customerUserId);
 
@@ -193,14 +199,53 @@ public class CreditCardVH implements IViewHelper {
 				request.getRequestDispatcher("/pages/customer/customer-credit-card-new.jsp").forward(request, response);
 			}
 		} else if (operation.equals("consult")) {
-			List<Entity> creditCards = (List<Entity>) result.getEntities();
-			request.setAttribute("creditCards", creditCards);
+			boolean isAsync = false;
 
-			if (null == creditCards) {
-				return;
+			if (request.getParameter("isAsync") != null) {
+				isAsync = request.getParameter("isAsync").equals("true") ? true : false;
 			}
 
-			request.getRequestDispatcher("/pages/customer/customer-credit-card-list.jsp").forward(request, response);
+			if (isAsync) {
+				List<CreditCard> creditCards = result.getEntities().stream().map(creditCard -> (CreditCard) creditCard)
+						.collect(Collectors.toList());
+
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				
+				try {
+					JSONObject responseDetailsJson = new JSONObject();
+					JSONArray jsonArray = new JSONArray();
+
+					for (CreditCard creditCard : creditCards) {
+						JSONObject creditCardDetailsJSON = new JSONObject();
+						creditCardDetailsJSON.put("id", creditCard.getId());
+						creditCardDetailsJSON.put("number", creditCard.getNumber());
+						creditCardDetailsJSON.put("customerId", creditCard.getCustomer().getId());
+						creditCardDetailsJSON.put("printedName", creditCard.getPrintedName());
+						creditCardDetailsJSON.put("securityCode", creditCard.getSecurityCode());
+						
+						jsonArray.put(creditCardDetailsJSON);
+					}
+
+					responseDetailsJson.put("creditCards", jsonArray);
+
+					PrintWriter writer = response.getWriter();
+					writer.write(jsonArray.toString());
+					writer.flush();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			} else {
+				List<Entity> creditCards = (List<Entity>) result.getEntities();
+				request.setAttribute("creditCards", creditCards);
+
+				if (null == creditCards) {
+					return;
+				}
+
+				request.getRequestDispatcher("/pages/customer/customer-credit-card-list.jsp").forward(request,
+						response);
+			}
 		} else if (operation.equals("remove")) {
 			response.sendRedirect("/note-commerce/customer/creditCards?operation=consult");
 		} else if (operation.equals("update")) {

@@ -81,63 +81,45 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Saldo virtual - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
-              </h3>
-            </div>
-            <div class="card-body register-card-body">
-              <h4 class="mb-4">Total: R$ 0,00</h4>
-              <div class="form-check mb-3">
-                <input class="form-check-input" id="cbVirtual" type="checkbox">
-                <label class="form-check-label" for="cbVirtual">Saldo virtual</label>
+          <form action="/note-commerce/shop/saleInProgress" method="POST">
+            <input type="hidden" name="operation" value="save">
+            <input type="hidden" name="step" value="2">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Saldo virtual - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
+                </h3>
               </div>
-              <div class="input-group mb-3">
-                <input type="number" class="form-control" id="virtual" placeholder="Valor saldo virtual">
-              </div>
-            </div>
-          </div>
-
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Cartão de crédito</h3>
-            </div>
-            <div class="card-body register-card-body">
-              <div class="form-check mb-3">
-                <input class="form-check-input" id="cbCreditCard" type="checkbox">
-                <label class="form-check-label" for="cbCreditCard">Cartão de crédito</label>
-              </div>
-              <p>Selecione um cartão de crédito cadastrado</p>
-              <div class="form-group">
-                <label for="creditCard">Cartão de crédito</label>
-                <select class="form-control" id="creditCard">
-                </select>
-              </div>
-              <p class="text-center mb - 2">- OU -</p>
-              <p>Insira os dados do cartão</p>
-              <form id="formCreditCard" action="#" method="POST">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="number" placeholder="Número do cartão">
-                </div>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="name" placeholder="Nome impresso no cartão">
-                </div>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" name="securityCode" placeholder="Código de segurança">
-                </div>
+              <div class="card-body register-card-body">
+                <h4 class="mb-4">Total: R$ 0,00</h4>
                 <div class="form-check mb-3">
-                  <input class="form-check-input" id="cbFuture" type="checkbox">
-                  <label class="form-check-label" for="cbFuture">Cadastrar esse cartão de crédito para compras
-                    futuras</label>
+                  <input class="form-check-input" id="cbDigital" type="checkbox" autocomplete='off'>
+                  <label class="form-check-label" for="cbDigital">Utilizar saldo digital</label>
                 </div>
-                <button type="button" onclick="window.location.href='/note-commerce/pages/shop/checkout-step-3.jsp';"
-                  class="btn btn-primary float-right" id="nextStepButtonByData">Próximo</button>
-              </form>
+                <div class="form-group">
+                  <label for="balance">Valor saldo digital</label>
+                  <input type="number" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital" min="1">
+                </div>
+              </div>
             </div>
-          </div>
-
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Cartão de crédito</h3>
+              </div>
+              <div class="card-body register-card-body">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" id="cbCreditCard" type="checkbox" autocomplete='off'>
+                  <label class="form-check-label" for="cbCreditCard">Cartão de crédito</label>
+                </div>
+                <p>Selecione um cartão de crédito cadastrado</p>
+                <div class="form-group">
+                  <label for="creditCard">Cartão de crédito</label>
+                  <select class="form-control" id="creditCard" name="creditCard">
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary float-right" id="nextStepButton">Próximo</button>
+              </div>
+            </div>
+	      </form>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
@@ -211,13 +193,13 @@
   $(function () {
     enable_virtual_input();
     enable_credit_card_select();
-    $("#cbVirtual").click(enable_virtual_input);
+    $("#cbDigital").click(enable_virtual_input);
     $("#cbCreditCard").click(enable_credit_card_select);
   });
 
   function enable_virtual_input() {
     enableOrDisableCheckboxes();
-    $("#virtual").prop("disabled", !this.checked);
+    $("#balance").prop("disabled", !this.checked);
   }
 
   function enable_credit_card_select() {
@@ -227,16 +209,26 @@
   }
 
   function enableOrDisableCheckboxes() {
-    if (!$("#cbVirtual").is(":checked") && !$("#cbCreditCard").is(":checked")) {
-      $("#nextStepButtonByData").prop("disabled", true);
-      $("#nextStepButtonBySelect").prop("disabled", true);
+    if (!$("#cbDigital").is(":checked") && !$("#cbCreditCard").is(":checked")) {
+      $("#nextStepButton").prop("disabled", true);
     } else {
-      $("#nextStepButtonByData").prop("disabled", false);
-      $("#nextStepButtonBySelect").prop("disabled", false);
+      $("#nextStepButton").prop("disabled", false);
     }
   }
   
   $(document).ready(() => {
+	  $.ajax({
+	      url: '/note-commerce/customer/creditCards?operation=consult&isAsync=true',
+	      type: 'GET',
+	      dataType: 'json',
+	      success: function (json) {
+	        $.each(json, function (i, value) {
+	          let creditCardLabel = value.number + ", " + value.printedName;
+	          $('#creditCard').append($(`<option>`).text(creditCardLabel).attr('value', value.id));
+	        });
+	      }
+	  });
+	  
 	  $.ajax('/note-commerce/customer/balance?operation=consult')
 	    .then(data => {
 	      const currentBalanceText = Number(data.balance)
