@@ -212,13 +212,15 @@ public class Facade implements IFacade {
 		tradeBusinessRulesSave.add(new ValidateTradeSaleStatus());
 
 		List<IStrategy> tradeBusinessRulesUpdate = new ArrayList<IStrategy>();
-		tradeBusinessRulesSave.add(new ValidateTradeUpdate());
-		tradeBusinessRulesSave.add(new ValidateTradeToUpdateExists());
-		tradeBusinessRulesSave.add(new ValidateTradeStatusUpdate());
-		tradeBusinessRulesSave.add(new ValidateTradeUpdateCustomerBalance());
+		tradeBusinessRulesUpdate.add(new ValidateTradeUpdate());
+		tradeBusinessRulesUpdate.add(new ValidateTradeToUpdateExists());
+		tradeBusinessRulesUpdate.add(new ValidateTradeStatusUpdate());
+		tradeBusinessRulesUpdate.add(new ValidateTradeUpdateCustomerBalance());
 		
 		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);
 		tradeBusinessRulesMap.put("update", tradeBusinessRulesUpdate);
+		
+		businessRulesMap.put(Trade.class.getName(), tradeBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
