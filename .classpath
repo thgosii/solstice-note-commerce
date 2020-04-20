@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.48.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.json.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lombok-1.18.12.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
