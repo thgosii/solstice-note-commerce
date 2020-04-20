@@ -108,29 +108,40 @@
                   <input type="hidden" name="id" value="${creditCard.id}">
                 </c:if>
                 <div class="row">
-                	<div class="col col-12">
-		                <div class="form-group">
-		                  <label for="number">Número do cartão<span class="text-danger text-bold"> *</span></label>
-		                  <input type="text" class="form-control" name="number" placeholder="Número do cartão"
-		                    pattern="\d{4} \d{4} \d{4} \d{4}" value="${creditCard.number}" required>
-		                </div>
-                	</div>
+                  <div class="col col-4">
+                    <div class="form-group">
+                      <label for="state">Bandeira<span class="text-danger text-bold"> *</span></label>
+                      <select class="form-control" id="cc-brand" name="cc-brand" required>
+                        <option value="VISA">Visa</option>
+                        <option value="MASTER_CARD">Master Card</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col col-8">
+                    <div class="form-group">
+                      <label for="number">Número do cartão<span class="text-danger text-bold"> *</span></label>
+                      <input type="text" class="form-control" id="cc-number" name="number" placeholder="Número do cartão" pattern="\d+"
+                        value="${creditCard.number}" required>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
-                	<div class="col col-8">
-		                <div class="form-group">
-		                  <label for="printedName">Nome impresso no cartão<span class="text-danger text-bold"> *</span></label>
-		                  <input type="text" class="form-control" name="printedName" placeholder="Nome impresso no cartão"
-		                    value="${creditCard.printedName}" maxlength="100" required>
-		                </div>
-                	</div>
-                	<div class="col col-4">
-		                <div class="form-group">
-		                  <label for="securityCode">Código de segurança (CVV)<span class="text-danger text-bold"> *</span></label>
-		                  <input type="password" class="form-control" name="securityCode" placeholder="Código de segurança"
-		                    pattern="\d{3}" maxlength="3" value="${creditCard.securityCode}" required>
-		                </div>
-                	</div>
+                  <div class="col col-8">
+                    <div class="form-group">
+                      <label for="printedName">Nome impresso no cartão<span class="text-danger text-bold">
+                          *</span></label>
+                      <input type="text" class="form-control" id="cc-printedName" name="printedName" placeholder="Nome impresso no cartão"
+                        value="${creditCard.printedName}" maxlength="100" required>
+                    </div>
+                  </div>
+                  <div class="col col-4">
+                    <div class="form-group">
+                      <label for="securityCode">Código de segurança (CVV)<span class="text-danger text-bold">
+                          *</span></label>
+                      <input type="password" class="form-control" id="cc-securityCode" name="securityCode" placeholder="Código de segurança"
+                        pattern="\d{3}" maxlength="3" value="${creditCard.securityCode}" required>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col col-6">
@@ -205,6 +216,7 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
+<script src="/note-commerce/static/custom/customer/creditcard/js/brand-regex.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -215,15 +227,6 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
-  $(document).ready(() => {
-
-    $("input[name=number]").inputmask({
-    	mask: "9999 9999 9999 9999",
-        autoUnmask: true,
-        removeMaskOnSubmit: true
-    });
-
-  });
 </script>
 <!-- *********************************************************************************** -->
 <!-- /PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
