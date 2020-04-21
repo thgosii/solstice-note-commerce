@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.solstice.notecommerce.entity.application.ApplicationEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -24,6 +26,15 @@ public class DashboardData extends ApplicationEntity {
 	public DashboardData(LocalDate minDate, LocalDate maxDate) {
 		this.minDate = minDate;
 		this.maxDate = maxDate;
+	}
+
+	public DashboardData(Map<String, List<BrandSale>> brandSaleGraph, Map<String, Long> regionSaleMap,
+			List<ProductTableRow> mostSoldProductsTable, List<ProductTableRow> mostTradedProductsTable) {
+		super();
+		this.brandSaleGraph = brandSaleGraph;
+		this.regionSaleMap = regionSaleMap;
+		this.mostSoldProductsTable = mostSoldProductsTable;
+		this.mostTradedProductsTable = mostTradedProductsTable;
 	}
 
 }
