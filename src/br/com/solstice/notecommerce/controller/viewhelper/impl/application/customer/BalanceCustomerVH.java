@@ -48,7 +48,6 @@ public class BalanceCustomerVH implements IViewHelper {
 			Customer customer = (Customer) result.getEntities().get(0);
 			
 			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
 			
 			try {
 				JSONObject jsonObject = new JSONObject();

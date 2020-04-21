@@ -210,7 +210,6 @@ public class CreditCardVH implements IViewHelper {
 						.collect(Collectors.toList());
 
 				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
 				
 				try {
 					JSONObject responseDetailsJson = new JSONObject();

@@ -21,12 +21,6 @@ public class SaleInProgressVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException ex) {
-			ex.printStackTrace();
-		}
-
 		String operation = request.getParameter("operation");
 
 		if (operation.equals("save")) {
@@ -95,7 +89,6 @@ public class SaleInProgressVH implements IViewHelper {
 			SaleInProgress saleInProgress = (SaleInProgress) result.getEntities().get(0);
 
 			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
 
 			String json = new Gson().toJson(saleInProgress);
 
