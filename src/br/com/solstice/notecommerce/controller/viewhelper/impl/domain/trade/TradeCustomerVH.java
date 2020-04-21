@@ -3,7 +3,6 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
