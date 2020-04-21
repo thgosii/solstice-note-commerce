@@ -15,10 +15,7 @@ import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.application.admin.dashboard.BrandSale;
 import br.com.solstice.notecommerce.entity.application.admin.dashboard.DashboardData;
-import br.com.solstice.notecommerce.entity.application.admin.dashboard.MostSoldProduct;
-import br.com.solstice.notecommerce.entity.application.admin.dashboard.MostTradedProduct;
 import br.com.solstice.notecommerce.entity.application.admin.dashboard.ProductTableRow;
-import br.com.solstice.notecommerce.entity.application.admin.dashboard.RegionSale;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 
 public class DashboardDataDAO extends AbstractDAO {
