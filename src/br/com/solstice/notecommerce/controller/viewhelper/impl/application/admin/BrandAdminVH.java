@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
@@ -40,27 +42,12 @@ public class BrandAdminVH implements IViewHelper {
 			List<Brand> brands = result.getEntities().stream().map(brand -> (Brand) brand).collect(Collectors.toList());
 
 			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
 
-			try {
-				JSONObject responseDetailsJson = new JSONObject();
-				JSONArray jsonArray = new JSONArray();
+			Gson gson = new Gson();
 
-				for (Brand brand : brands) {
-					JSONObject brandDetailsJSON = new JSONObject();
-					brandDetailsJSON.put("id", brand.getId());
-					brandDetailsJSON.put("name", brand.getName());
-					jsonArray.put(brandDetailsJSON);
-
-				}
-				responseDetailsJson.put("brands", jsonArray);
-
-				PrintWriter writer = response.getWriter();
-				writer.write(jsonArray.toString());
-				writer.flush();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+			PrintWriter writer = response.getWriter();
+			writer.write(gson.toJson(brands));
+			writer.flush();
 		}
 	}
 
