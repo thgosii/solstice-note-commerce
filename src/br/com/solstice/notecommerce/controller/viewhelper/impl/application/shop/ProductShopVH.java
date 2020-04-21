@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
@@ -67,35 +69,11 @@ public class ProductShopVH implements IViewHelper {
 	
 				response.setContentType("application/json");
 	
-				try {
-					JSONObject responseDetailsJson = new JSONObject();
-					JSONArray jsonArray = new JSONArray();
+				Gson gson = new Gson();
 	
-					for (Product product : products) {
-						JSONObject addressDetailsJSON = new JSONObject();
-						addressDetailsJSON.put("id", product.getId());
-						addressDetailsJSON.put("title", product.getTitle());
-						addressDetailsJSON.put("imageURL", product.getImage().getUrl());
-						addressDetailsJSON.put("price", product.getPrice());
-						addressDetailsJSON.put("description", product.getDescription());
-						addressDetailsJSON.put("brandName", product.getBrand().getName());
-						addressDetailsJSON.put("processor", product.getProcessor());
-						addressDetailsJSON.put("graphicsCard", product.getGraphicsCard());
-						addressDetailsJSON.put("ram", product.getRam());
-						addressDetailsJSON.put("monitor", product.getMonitor());
-						addressDetailsJSON.put("hd", product.getHd());
-						addressDetailsJSON.put("ssd", product.getSsd());
-						addressDetailsJSON.put("os", product.getOs());
-						jsonArray.put(addressDetailsJSON);
-					}
-					responseDetailsJson.put("products", jsonArray);
-	
-					PrintWriter writer = response.getWriter();
-					writer.write(jsonArray.toString());
-					writer.flush();
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				PrintWriter writer = response.getWriter();
+				writer.write(gson.toJson(products));
+				writer.flush();
 			}
 		}
 	}

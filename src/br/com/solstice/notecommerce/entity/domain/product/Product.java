@@ -17,7 +17,7 @@ public class Product extends DomainEntity {
 	private String title;
 	private ProductFile image;
 	private double price;
-	private String description;
+	private transient String description;
 	private Brand brand;
 	private String processor;
 	private String graphicsCard;
