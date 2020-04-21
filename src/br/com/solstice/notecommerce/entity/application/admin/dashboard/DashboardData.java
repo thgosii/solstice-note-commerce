@@ -17,9 +17,9 @@ public class DashboardData extends ApplicationEntity {
 	private LocalDate minDate;
 	private LocalDate maxDate;
 	private Map<String, List<BrandSale>> brandSaleGraph; // Re-mapped in client
-	private Map<String, RegionSale> regionSaleMap;
-	private List<MostSoldProduct> mostSoldProductsTable;
-	private List<MostTradedProduct> mostTradedProductsTable;
+	private Map<String, Long> regionSaleMap;
+	private List<ProductTableRow> mostSoldProductsTable;
+	private List<ProductTableRow> mostTradedProductsTable;
 	
 	public DashboardData(LocalDate minDate, LocalDate maxDate) {
 		this.minDate = minDate;
