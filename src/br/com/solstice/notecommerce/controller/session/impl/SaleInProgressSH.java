@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import br.com.solstice.notecommerce.controller.session.ISessionHelper;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.Cart;
@@ -15,6 +17,8 @@ import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class SaleInProgressSH implements ISessionHelper {
 
@@ -46,10 +50,12 @@ public class SaleInProgressSH implements ISessionHelper {
 		SaleInProgress sessionSaleInProgress = (SaleInProgress) session.getAttribute("saleInProgress");
 
 		if (saleInProgress.getCreditCard() == null && saleInProgress.getBalanceUsage() == -1.0) {
+			saleInProgress.setAddress((Address) new AddressDAO().consult(saleInProgress.getAddress(), "findById").get(0));
 			sessionSaleInProgress.setAddress(saleInProgress.getAddress());
 		}
 
 		if (saleInProgress.getCreditCard() != null) {
+			saleInProgress.setCreditCard((CreditCard) new CreditCardDAO().consult(saleInProgress.getCreditCard(), "findById").get(0));
 			sessionSaleInProgress.setCreditCard(saleInProgress.getCreditCard());
 		}
 
