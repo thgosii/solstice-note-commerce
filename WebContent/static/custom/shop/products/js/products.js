@@ -44,7 +44,7 @@ $(document).ready(() => {
     card.find("#product-name-link").text(product.title);
     card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + product.id);
     card.find("#product-image-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + product.id);
-    card.find("#product-image").attr('src', product.imageURL);
+    card.find("#product-image").attr('src', product.image.url);
     card.find("#product-price").text("R$ " + moneyMask(product.price.toFixed(2)));
     card.find("button[name='addProduct']").on('click', () => {
       addProductToCart(product.id);
@@ -99,12 +99,12 @@ $(document).ready(() => {
     return (!filters.title || product.title.toLowerCase().includes(filters.title)) && 
       product.price >= filters.minPrice &&
       product.price <= filters.maxPrice &&
-      (filters.brands.length === 0 || filters.brands.includes(product.brandName.toLowerCase())) &&
+      (filters.brands.length === 0 || filters.brands.includes(product.brand.name.toLowerCase())) &&
       (filters.ram.length === 0 || (filters.ram.includes(product.ram) || filters.ram.includes('others'))) &&
       (filters.monitor.length === 0 || 
         filters.monitor.some(m => m.min <= Number(product.monitor) && m.max >= Number(product.monitor))) &&
       (filters.storage.length === 0 || filters.storage.some(s => product[s] !== -1)) &&
-      (filters.os.length === 0 || filters.brands.includes(product.os.toLowerCase()));
+      (filters.os.length === 0 || filters.os.includes(product.os.toLowerCase()));
   }
 
   function filterProducts(checkPrice = false) {
