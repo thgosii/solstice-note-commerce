@@ -138,7 +138,7 @@ public class CreditCardDAO extends AbstractDAO {
 
 		String sql = "";
 
-		if (operation.equals("prepareUpdate")) {
+		if (operation.equals("prepareUpdate") || operation.equals("findById")) {
 			sql = "SELECT * from " + table + " WHERE " + idTable + "=?";
 		} else if (operation.equals("consult")) {
 			sql = "SELECT * from " + table
@@ -150,7 +150,7 @@ public class CreditCardDAO extends AbstractDAO {
 		try {
 			pstm = connection.prepareStatement(sql);
 
-			if (operation.equals("prepareUpdate")) {
+			if (operation.equals("prepareUpdate") || operation.equals("findById")) {
 				pstm.setLong(1, creditCard.getId());
 			} else if (operation.equals("consult")) {
 				pstm.setLong(1, creditCard.getCustomer().getUser().getId());
