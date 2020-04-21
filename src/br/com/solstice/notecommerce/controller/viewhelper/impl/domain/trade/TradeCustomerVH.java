@@ -85,10 +85,9 @@ public class TradeCustomerVH implements IViewHelper {
 		
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
-				// TODO: foward to trade form
-//				request.getRequestDispatcher("/pages/customer/");
+				request.getRequestDispatcher("/pages/customer/customer-trade.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("/note-commerce/customer/trades?operation=consult");
+				response.sendRedirect("/note-commerce/customer/trades?operation=consult");
 			}
 		} else if (operation.equals("consult")) {
 			List<Trade> trades = new ArrayList<>();
@@ -97,7 +96,7 @@ public class TradeCustomerVH implements IViewHelper {
 			}
 			request.setAttribute("trades", trades);
 			
-			request.getRequestDispatcher("/pages/customer/trades.jsp");
+			request.getRequestDispatcher("/pages/customer/customer-trades.jsp").forward(request, response);
 		}
 
 	}
