@@ -72,7 +72,7 @@
               <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
                 <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
-              <a href="#" class="dropdown-item">
+              <a href="/note-commerce/customer/sales?operation=consult" class="dropdown-item">
                 <i class="fas fa-box-open mr-2"></i> Pedidos
               </a>
               <a href="/note-commerce/customer/trades?operation=consult" class="dropdown-item">
