@@ -12,7 +12,7 @@ import lombok.Setter;
 public class DomainEntity extends Entity {
 
 	private Long id;
-	private boolean deleted;
+	private transient boolean deleted;
 	
 	public DomainEntity(Long id) {
 		this.id = id;

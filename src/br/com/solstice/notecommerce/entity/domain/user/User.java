@@ -15,7 +15,7 @@ import lombok.ToString;
 public class User extends DomainEntity {
 
 	private String email;
-	private String password;
+	private transient String password;
 	private String confirmPassword;
 	private UserRole role;
 
