@@ -75,6 +75,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap = new HashMap<String, Map<String, List<IStrategy>>>();
 
+		
+		
+		
 		/*
 		 * Admin
 		 */
@@ -100,12 +103,16 @@ public class Facade implements IFacade {
 
 		// DashboardData
 		daosMap.put(DashboardData.class.getName(), new DashboardDataDAO());
-
+		
 		// Brands
 		daosMap.put(Brand.class.getName(), new BrandDAO());
 
 		// Stock
 
+		
+		
+		
+		
 		/*
 		 * Customer
 		 */
@@ -166,6 +173,9 @@ public class Facade implements IFacade {
 
 		businessRulesMap.put(CreditCard.class.getName(), creditCardBusinessRulesMap);
 
+		
+		
+		
 		/*
 		 * Shop
 		 */
@@ -184,26 +194,30 @@ public class Facade implements IFacade {
 
 		// Sale in progress
 		sessionHelpersMap.put(SaleInProgress.class.getName(), new SaleInProgressSH());
+		
 		Map<String, List<IStrategy>> saleInProgressBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 
 		List<IStrategy> saleInProgressBusinessRulesSave = new ArrayList<IStrategy>();
-
 		// saleInProgressBusinessRulesSave.add();
 
 		saleInProgressBusinessRulesMap.put("save", saleInProgressBusinessRulesSave);
 
 		businessRulesMap.put(SaleInProgress.class.getName(), saleInProgressBusinessRulesMap);
-
+		
+		
+		
+		
 		/*
 		 * General (used in more than one part of the e-commerce)
 		 */
-
+		
 		// Sale
-
+		
+		
 		// Trade
 		daosMap.put(Trade.class.getName(), new TradeDAO());
 		Map<String, List<IStrategy>> tradeBusinessRulesMap = new HashMap<String, List<IStrategy>>();
-
+		
 		List<IStrategy> tradeBusinessRulesSave = new ArrayList<IStrategy>();
 		tradeBusinessRulesSave.add(new ValidateTradeSave());
 		tradeBusinessRulesSave.add(new ValidateTradeProductQuantity());
@@ -211,56 +225,43 @@ public class Facade implements IFacade {
 		tradeBusinessRulesSave.add(new ValidateTradeSaleStatus());
 
 		List<IStrategy> tradeBusinessRulesUpdate = new ArrayList<IStrategy>();
-		tradeBusinessRulesSave.add(new ValidateTradeUpdate());
-		tradeBusinessRulesSave.add(new ValidateTradeToUpdateExists());
-		tradeBusinessRulesSave.add(new ValidateTradeStatusUpdate());
-		tradeBusinessRulesSave.add(new ValidateTradeUpdateCustomerBalance());
-
 		tradeBusinessRulesUpdate.add(new ValidateTradeUpdate());
 		tradeBusinessRulesUpdate.add(new ValidateTradeToUpdateExists());
 		tradeBusinessRulesUpdate.add(new ValidateTradeStatusUpdate());
 		tradeBusinessRulesUpdate.add(new ValidateTradeUpdateCustomerBalance());
-
+		
 		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);
 		tradeBusinessRulesMap.put("update", tradeBusinessRulesUpdate);
-
+		
 		businessRulesMap.put(Trade.class.getName(), tradeBusinessRulesMap);
 	}
 
 	public void processBusinessRules(List<IStrategy> businessRules, Entity entity) {
 		stringBuilder = new StringBuilder();
-
+		
 		ArrayList<String> validatedBussinessRules = new ArrayList<>();
-
-		for (IStrategy businessRule : businessRules) {
+		
+		for (IStrategy businessRule : businessRules) {			
 			if (businessRule instanceof AbstractStrategy) { // If BR requires that some BRs are already valid
 				AbstractStrategy businessRuleWithRequirements = (AbstractStrategy) businessRule;
-
-				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs are
-																								// valid
-					System.out.println("Skipping bussiness rule " + businessRule.getClass().getSimpleName());
-
-					if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs
-																									// are valid
-						System.out.println("- Skipping bussiness rule " + businessRule.getClass().getSimpleName());
-						continue; // Do not process
-					}
-				}
-
-				System.out.println("- Processing bussiness rule " + businessRule.getClass().getSimpleName());
-				String message = businessRule.process(entity);
-
-				if (message != null && !message.trim().isEmpty()) {
-					System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
-					stringBuilder.append(message + '\n');
-				} else {
-					validatedBussinessRules.add(businessRule.getClass().getName());
+				
+				if (!businessRuleWithRequirements.canBeProcessed(validatedBussinessRules)) { // Not all required BRs are valid
+					System.out.println("- Skipping bussiness rule " + businessRule.getClass().getSimpleName());
+					continue; // Do not process
 				}
 			}
-		}
-		if (businessRules.size() > 0)
-			System.out.println("----------------");
 
+			System.out.println("- Processing bussiness rule " + businessRule.getClass().getSimpleName());
+			String message = businessRule.process(entity);
+
+			if (message != null && !message.trim().isEmpty()) {
+				System.out.println("\tmessage: " + message.replaceAll("\r", " ").replaceAll("\n", " "));
+				stringBuilder.append(message + '\n');
+			} else {
+				validatedBussinessRules.add(businessRule.getClass().getName());
+			}
+		}
+		if (businessRules.size() > 0) System.out.println("----------------");
 	}
 
 	@Override
@@ -271,8 +272,7 @@ public class Facade implements IFacade {
 		String entityName = entity.getClass().getName();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesSaveEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("save")
-				: null;
+		List<IStrategy> businessRulesSaveEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("save") : null;
 
 		if (businessRulesSaveEntity != null) {
 			processBusinessRules(businessRulesSaveEntity, entity);
@@ -287,11 +287,10 @@ public class Facade implements IFacade {
 				sessionHelpersMap.get(entityName).save(entity, session);
 			}
 		} else {
-			System.out.println(
-					entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
-
+		
 		return result;
 	}
 
@@ -302,9 +301,7 @@ public class Facade implements IFacade {
 		String entityName = entity.getClass().getName();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesRemoveEntity = businessRulesEntityMap != null
-				? businessRulesEntityMap.get("remove")
-				: null;
+		List<IStrategy> businessRulesRemoveEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("remove") : null;
 
 		if (businessRulesRemoveEntity != null) {
 			processBusinessRules(businessRulesRemoveEntity, entity);
@@ -317,8 +314,7 @@ public class Facade implements IFacade {
 				sessionHelpersMap.get(entityName).remove(entity, session);
 			}
 		} else {
-			System.out.println(
-					entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
 
@@ -335,9 +331,7 @@ public class Facade implements IFacade {
 		String entityName = entity.getClass().getName();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesUpdateEntity = businessRulesEntityMap != null
-				? businessRulesEntityMap.get("update")
-				: null;
+		List<IStrategy> businessRulesUpdateEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("update") : null;
 
 		if (businessRulesUpdateEntity != null) {
 			processBusinessRules(businessRulesUpdateEntity, entity);
@@ -352,8 +346,7 @@ public class Facade implements IFacade {
 				sessionHelpersMap.get(entityName).update(entity, session);
 			}
 		} else {
-			System.out.println(
-					entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
 
@@ -369,14 +362,12 @@ public class Facade implements IFacade {
 		List<Entity> consultEntities = new ArrayList<Entity>();
 
 		Map<String, List<IStrategy>> businessRulesEntityMap = businessRulesMap.get(entityName);
-		List<IStrategy> businessRulesConsultEntity = businessRulesEntityMap != null
-				? businessRulesEntityMap.get("consult")
-				: null;
+		List<IStrategy> businessRulesConsultEntity = businessRulesEntityMap != null ? businessRulesEntityMap.get("consult") : null;
 
 		if (businessRulesConsultEntity != null) {
 			processBusinessRules(businessRulesConsultEntity, entity);
 		}
-
+		
 		if (stringBuilder.length() == 0) {
 			if (daosMap.containsKey(entityName)) {
 				consultEntities = daosMap.get(entityName).consult(entity, operation);
@@ -384,8 +375,7 @@ public class Facade implements IFacade {
 				consultEntities = sessionHelpersMap.get(entityName).consult(entity, session, operation);
 			}
 		} else {
-			System.out.println(
-					entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
+			System.out.println(entity.getClass().getSimpleName() + " is invalid, not accessing SH/DAO, returning message");
 			result.setMessage(stringBuilder.toString());
 		}
 
