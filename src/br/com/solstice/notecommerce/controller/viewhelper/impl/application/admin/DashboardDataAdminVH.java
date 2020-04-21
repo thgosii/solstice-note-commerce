@@ -1,11 +1,14 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
@@ -48,7 +51,15 @@ public class DashboardDataAdminVH implements IViewHelper {
 		String operation = request.getParameter("operation");
 
 		if (operation.equals("consult")) {
+			DashboardData dashboardData = (DashboardData) result.getEntities().get(0);
 			
+			response.setContentType("application/json");
+			
+			Gson gson = new Gson();
+			
+			PrintWriter writer = response.getWriter();
+			writer.write(gson.toJson(dashboardData));
+			writer.flush();
 		}
 	}
 
