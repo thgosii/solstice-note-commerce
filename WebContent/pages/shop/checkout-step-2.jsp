@@ -90,14 +90,14 @@
                 </h3>
               </div>
               <div class="card-body register-card-body">
-                <h4 class="mb-4">Total: R$ 0,00</h4>
+                <h4 class="mb-4">Total: R$ <span id="total"></span></h4>
                 <div class="form-check mb-3">
                   <input class="form-check-input" id="cbDigital" type="checkbox" autocomplete='off'>
                   <label class="form-check-label" for="cbDigital">Utilizar saldo digital</label>
                 </div>
                 <div class="form-group">
                   <label for="balance">Valor saldo digital</label>
-                  <input type="number" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital" min="1">
+                  <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital">
                 </div>
               </div>
             </div>
@@ -173,9 +173,8 @@
 <!-- *********************************************************************************** -->
 <!-- /PAGE PLUGINS SCRIPTS -->
 <!-- *********************************************************************************** -->
-
-
-
+<!-- InputMask -->
+<script src="/note-commerce/static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -229,14 +228,36 @@
 	      }
 	  });
 	  
+	  $.ajax({
+	      url: '/note-commerce/shop/saleInProgress?operation=consult',
+	      type: 'GET',
+	      dataType: 'json',
+	      success: function (data) {
+	    	const totalText = Number(data.total)
+		        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+	        $("#total").text(totalText);
+	      }
+	  });
+	  
 	  $.ajax('/note-commerce/customer/balance?operation=consult')
 	    .then(data => {
 	      const currentBalanceText = Number(data.balance)
 	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 	      $('#cus_balance').text(currentBalanceText)
 	    })
-
-	})
+	    
+      $('#balance').inputmask('currency', {
+        groupSeparator: ',',
+        digits: 2,
+        radixPoint: '.',
+        prefix: 'R$ ',
+        rightAlign: false,
+        max: 100000,
+        allowMinus: false,
+        autoUnmask: true,
+        removeMaskOnSubmit: true
+      });  
+   });
 </script>
 <!-- *********************************************************************************** -->
 <!-- /PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
