@@ -57,7 +57,14 @@ public class DashboardDataDAO extends AbstractDAO {
 		try {
 
 			// brandSaleGraph
-			sql = "";
+			sql = "SELECT brd_name brand, date(sal_date_time) date, sum(sit_quantity) amount" + 
+					"FROM sales " + 
+					"JOIN sales_products ON sal_id = sit_sal_id " + 
+					"JOIN products ON sit_prd_id = prd_id " + 
+					"JOIN brands ON prd_brd_id = brd_id " + 
+					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"GROUP BY date(sal_date_time) " +
+					"ORDER BY date(sal_date_time)";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
@@ -75,12 +82,18 @@ public class DashboardDataDAO extends AbstractDAO {
 				brandSaleGraph.get(brandName).add(new BrandSale(date, amount));
 			}
 			
-			
 			pstm.close();
 
 			
+			
 			// regionSaleMap
-			sql = "";
+			sql = "SELECT ads_state state, sum(sit_quantity) amount" + 
+					"FROM sales " + 
+					"JOIN sales_products ON sal_id = sit_sal_id " + 
+					"JOIN adresses ON sal_ads_id = ads_id " + 
+					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"GROUP BY ads_state " + 
+					"ORDER BY ads_state";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
@@ -93,13 +106,19 @@ public class DashboardDataDAO extends AbstractDAO {
 				regionSaleMap.put(stateInitials, amount);
 			}
 			
-			
 			pstm.close();
 
 			
 			
 			// mostSoldProductsTable
-			sql = "";
+			sql = "SELECT prd_id id, prd_title title, sum(sit_quantity) amount" + 
+					"FROM sales " + 
+					"JOIN sales_products ON sal_id = sit_sal_id " + 
+					"JOIN products ON sit_prd_id = prd_id " + 
+					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"GROUP BY prd_title " + 
+					"ORDER BY sum(sit_quantity) desc " + 
+					"LIMIT 10";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
@@ -115,13 +134,18 @@ public class DashboardDataDAO extends AbstractDAO {
 				mostSoldProductsTable.add(new ProductTableRow(amount, product));
 			}
 			
-			
 			pstm.close();
 
 			
 			
 			// mostTradedProductsTable
-			sql = "";
+			sql = "SELECT prd_id id, prd_title title, sum(trd_quantity) amount " + 
+					"FROM trades " + 
+					"JOIN products ON trd_prd_id = trd_id " + 
+					"WHERE trd_request_date >= ? AND trd_request_date <= ? " + 
+					"GROUP BY prd_title " + 
+					"ORDER BY sum(trd_quantity) desc " + 
+					"LIMIT 10";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
@@ -136,7 +160,6 @@ public class DashboardDataDAO extends AbstractDAO {
 				
 				mostTradedProductsTable.add(new ProductTableRow(amount, product));
 			}
-			
 			
 			pstm.close();
 			
