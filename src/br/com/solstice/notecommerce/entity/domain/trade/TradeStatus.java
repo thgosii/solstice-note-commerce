@@ -4,6 +4,8 @@ public enum TradeStatus {
 	
 	AWAITING_AUTHORIZATION, // Trade requested by customer, waiting authorization
 	AUTHORIZED,			    // Trade authorized by admin, now waiting for product to arrive
-	PRODUCT_RECEIVED		// Items were received by the store from the client, balance updated, no more actions
+	PRODUCT_RECEIVED,		// Trade items were received by the store from the client. (Devolution only: balance updated, no more actions)
+	REPLACEMENT_ON_DELIVERY,// (Exchange only): Replacement products are being delivered
+	REPLACEMENT_DELIVERED   // (Exchange only): Replacement products were delivered
 	
 }
