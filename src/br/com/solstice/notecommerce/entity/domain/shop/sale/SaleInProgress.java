@@ -20,9 +20,25 @@ import lombok.ToString;
 public class SaleInProgress extends DomainEntity {
 
 	private double balanceUsage;
+	private double creditCardUsage;
 	private CreditCard creditCard;
 	private Address address;
 	private Customer customer;
 	private List<SaleItem> items;
+	private double total;
+
+	public void calculateTotal() {
+		double total = 0.0;
+
+		for (SaleItem item : items) {
+			total += item.getSubTotal();
+		}
+
+		this.total = total;
+	}
 	
+	public void calculateCreditCardUsage() {
+		this.creditCardUsage = total - balanceUsage;
+	}
+
 }

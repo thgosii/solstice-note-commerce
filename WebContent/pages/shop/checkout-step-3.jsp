@@ -82,7 +82,7 @@
       <div class="content">
         <div class="container">
 
-          <table class="table table-striped">
+          <table class="table table-striped" id="tableItems">
             <thead>
               <tr>
                 <th>
@@ -101,18 +101,9 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <!--<tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
-                <td>R$ 2.444,21</td>
-                <td>
-                  2
-                </td>
-                <td>R$ 4888,42</td>
-              </tr>-->
+            <tbody id="saleItemsTableBody">
+            	
+            </tbody>
           </table>
           <hr>
           <div class="mb-4">
@@ -121,19 +112,19 @@
               <tbody>
                 <tr>
                   <td><strong>Cidade</strong></td>
-                  <td></td>
+                  <td id="city"></td>
                 </tr>
                 <tr>
                   <td><strong>Estado</strong></td>
-                  <td></td>
+                  <td id="state"></td>
                 </tr>
                 <tr>
                   <td><strong>Número</strong></td>
-                  <td></td>
+                  <td id="number"></td>
                 </tr>
                 <tr>
                   <td><strong>Complemento</strong></td>
-                  <td></td>
+                  <td id="complement"></td>
                 </tr>
               </tbody>
             </table>
@@ -143,55 +134,37 @@
             <h4>Pagamento</h4>
             <table class="table table-striped">
               <thead>
-                <td><strong>Forma de pagamento</strong></td>
-                <td><strong>Valor</strong></td>
+             	<tr>
+                  <td><strong>Forma de pagamento</strong></td>
+                  <td><strong>Valor</strong></td>
+                </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
                     <strong>Cartão</strong>
                   </td>
-                  <td>
-
-                  </td>
+                  <td id="creditCardUsage"></td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Saldo virtual</strong>
                   </td>
+                  <td id="balanceUsage"></td>
+                </tr>
+                <tr>
                   <td>
-
+                    <strong>Total</strong>
                   </td>
+                  <td id="total"></td>
                 </tr>
               </tbody>
             </table>
             <hr>
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <td style="width: 61%;">
-                    <strong>Subtotal</strong>
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td style="width: 61%;">
-                    <strong>Entrega</strong>
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td style="width: 61%;">
-                    <strong>Total</strong>
-                  </td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
           </div>
           <div style="padding-bottom: 60px;">
-            <a href="/note-commerce/pages/shop/checkout-finish.jsp" class="btn btn-primary float-right"
-              id="nextStepButtonByData"><i class="fas fa-check-circle fa-lg mr-2"></i>Finalizar</a>
+            <button type="submit" class="btn btn-primary float-right"
+              id="nextStepButton"><i class="fas fa-check-circle fa-lg mr-2"></i>Finalizar</button>
           </div>
 
         </div><!-- /.container-fluid -->
@@ -222,7 +195,7 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE EXTRA HTML -->
   <!-- *********************************************************************************** -->
-
+  
   <!-- *********************************************************************************** -->
   <!-- /PAGE EXTRA HTML -->
   <!-- *********************************************************************************** -->
@@ -264,6 +237,53 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
+    function moneyMask(value) {
+      value = value.toString().replace(/\D/g, "");
+      value = value.toString().replace(/(\d)(\d{8})$/, "$1.$2");
+      value = value.toString().replace(/(\d)(\d{5})$/, "$1.$2");
+      value = value.toString().replace(/(\d)(\d{2})$/, "$1,$2");
+      return value;
+    }
+    
+	$(document).ready(() => {
+	  $.ajax({
+	      url: '/note-commerce/shop/saleInProgress?operation=consult',
+	      type: 'GET',
+	      dataType: 'json',
+	      success: function (json) {
+	    	// Address
+	        $("#city").text(json.address.city);
+	        $("#state").text(json.address.state);
+	        $("#number").text(json.address.number);
+	        $("#complement").text(json.address.complement);
+	        
+	        // Payment
+	        const creditCardUsageText = Number(json.creditCardUsage)
+	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+	        $("#creditCardUsage").text(creditCardUsageText);
+	        const balanceUsageText = Number(json.balanceUsage)
+	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+	        $("#balanceUsage").text(balanceUsageText);
+	        const totalText = Number(json.total)
+	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+	        $("#total").text(totalText);
+	        
+	        let trHTML = '';
+
+	        $.each(json.items, function (i, item) {
+	            trHTML += '<tr>';
+	            trHTML += '<td><img src=' + item.product.image.url + ' style="width: 70px; height: 50px;"></td>';
+	            trHTML += '<td style="max-width:300px;">' + item.product.title + '</td>';
+	            trHTML += '<td>R$ ' + moneyMask(item.product.price) + '</td>';
+	            trHTML += '<td>' + item.quantity + '</td>';
+	            trHTML += '<td>R$ ' + moneyMask(item.subTotal) + '</td>';
+	            trHTML += '</tr>';
+	        });
+
+	        $('#saleItemsTableBody').append(trHTML);
+	      }
+	  });
+	})
 </script>
 <!-- *********************************************************************************** -->
 <!-- /PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->

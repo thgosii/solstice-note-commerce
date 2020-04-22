@@ -43,7 +43,8 @@ public class SaleInProgressSH implements ISessionHelper {
 				saleItems.add(SaleItem.fromCartItem(item));
 			}
 			newSessionSaleInProgress.setItems(saleItems);
-
+			newSessionSaleInProgress.calculateTotal();
+			
 			session.setAttribute("saleInProgress", newSessionSaleInProgress);
 		}
 
@@ -60,8 +61,12 @@ public class SaleInProgressSH implements ISessionHelper {
 		}
 
 		if (saleInProgress.getBalanceUsage() != -1) {
+			if (saleInProgress.getCreditCard() == null) {
+				sessionSaleInProgress.setCreditCard(null);
+			}
 			sessionSaleInProgress.setBalanceUsage(saleInProgress.getBalanceUsage());
-		}
+			sessionSaleInProgress.calculateCreditCardUsage();
+		}		
 	}
 
 	@Override

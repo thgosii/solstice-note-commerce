@@ -45,21 +45,22 @@ public class SaleInProgressVH implements IViewHelper {
 				double balance = 0.0;
 				Long creditCardId = null;
 
+				SaleInProgress saleInProgress = new SaleInProgress();
+				saleInProgress.setBalanceUsage(balance);
+
 				if (request.getParameter("balance") != null) {
 					balance = Double.valueOf(request.getParameter("balance"));
+					saleInProgress.setBalanceUsage(balance);
 				}
 
 				if (request.getParameter("creditCard") != null) {
 					creditCardId = Long.valueOf(request.getParameter("creditCard"));
+
+					CreditCard creditCard = new CreditCard();
+					creditCard.setId(creditCardId);
+
+					saleInProgress.setCreditCard(creditCard);
 				}
-
-				SaleInProgress saleInProgress = new SaleInProgress();
-				saleInProgress.setBalanceUsage(balance);
-
-				CreditCard creditCard = new CreditCard();
-				creditCard.setId(creditCardId);
-
-				saleInProgress.setCreditCard(creditCard);
 
 				return saleInProgress;
 			}
