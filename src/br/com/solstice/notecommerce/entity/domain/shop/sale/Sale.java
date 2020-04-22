@@ -27,5 +27,6 @@ public class Sale extends DomainEntity {
 	private List<SaleItem> items;
 	private LocalDateTime dateTime;
 	private SaleStatus saleStatus;
+	private String identifyNumber;
 
 }
