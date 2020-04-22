@@ -117,6 +117,6 @@ create table if not exists trades(
     trd_prd_id int not null,
     trd_deleted boolean default false,
     primary key (trd_id),
-    foreign key (trd_sal_id) references products(prd_id),
-    foreign key (trd_prd_id) references sales(sal_id)
+    foreign key (trd_sal_id) references sales(sal_id),
+    foreign key (trd_prd_id) references products(prd_id)
 );
