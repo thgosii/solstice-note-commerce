@@ -55,9 +55,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/note-commerce/admin/trades?operation=consult" class="nav-link">
+              <a href="/note-commerce/admin/trades?type=exchange&operation=consult" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>Trocas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/note-commerce/admin/trades?type=devolution&operation=consult" class="nav-link">
+                <i class="nav-icon fas fa-hand-holding-usd"></i>
+                <p>Devoluções</p>
               </a>
             </li>
             <li class="nav-item">
