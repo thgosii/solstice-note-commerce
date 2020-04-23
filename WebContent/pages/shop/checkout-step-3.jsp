@@ -162,11 +162,13 @@
             </table>
             <hr>
           </div>
-          <div style="padding-bottom: 60px;">
-            <button type="submit" class="btn btn-primary float-right"
-              id="nextStepButton"><i class="fas fa-check-circle fa-lg mr-2"></i>Finalizar</button>
-          </div>
-
+          <form action="/note-commerce/shop/sales">
+            <input type="hidden" name="operation" value="save">
+            <div style="padding-bottom: 60px;">
+              <button type="submit" class="btn btn-primary float-right">
+              <i class="fas fa-check-circle fa-lg mr-2"></i>Finalizar</button>
+            </div>
+		  </form>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->

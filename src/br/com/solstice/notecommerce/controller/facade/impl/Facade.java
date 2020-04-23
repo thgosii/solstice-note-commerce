@@ -39,6 +39,7 @@ import br.com.solstice.notecommerce.dao.IDAO;
 import br.com.solstice.notecommerce.dao.impl.application.admin.DashboardDataDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.sale.SaleDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.UserDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
@@ -50,6 +51,7 @@ import br.com.solstice.notecommerce.entity.application.admin.dashboard.Dashboard
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.user.User;
@@ -212,7 +214,19 @@ public class Facade implements IFacade {
 		 */
 		
 		// Sale
+		daosMap.put(Sale.class.getName(), new SaleDAO());
+		Map<String, List<IStrategy>> saleBusinessRulesMap = new HashMap<String, List<IStrategy>>();
 		
+		List<IStrategy> saleBusinessRulesSave = new ArrayList<IStrategy>();
+		// saleBusinessRulesSave.add();
+
+		List<IStrategy> saleBusinessRulesUpdate = new ArrayList<IStrategy>();
+		// saleBusinessRulesUpdate.add();
+		
+		saleBusinessRulesMap.put("save", saleBusinessRulesSave);
+		saleBusinessRulesMap.put("update", saleBusinessRulesUpdate);
+		
+		businessRulesMap.put(Sale.class.getName(), saleBusinessRulesMap);
 		
 		// Trade
 		daosMap.put(Trade.class.getName(), new TradeDAO());

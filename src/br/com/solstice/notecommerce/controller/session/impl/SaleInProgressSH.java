@@ -36,27 +36,29 @@ public class SaleInProgressSH implements ISessionHelper {
 			customer = (Customer) new CustomerDAO().consult(customer, "consult").get(0);
 			newSessionSaleInProgress.setCustomer(customer);
 
-			// Set Items
-			Cart cart = (Cart) session.getAttribute("cart");
-			List<SaleItem> saleItems = new ArrayList<SaleItem>();
-			for (CartItem item : cart.getItems()) {
-				saleItems.add(SaleItem.fromCartItem(item));
-			}
-			newSessionSaleInProgress.setItems(saleItems);
-			newSessionSaleInProgress.calculateTotal();
-			
 			session.setAttribute("saleInProgress", newSessionSaleInProgress);
 		}
 
 		SaleInProgress sessionSaleInProgress = (SaleInProgress) session.getAttribute("saleInProgress");
 
+		// Set Items
+		Cart cart = (Cart) session.getAttribute("cart");
+		List<SaleItem> saleItems = new ArrayList<SaleItem>();
+		for (CartItem item : cart.getItems()) {
+			saleItems.add(SaleItem.fromCartItem(item));
+		}
+		sessionSaleInProgress.setItems(saleItems);
+		sessionSaleInProgress.calculateTotal();
+
 		if (saleInProgress.getCreditCard() == null && saleInProgress.getBalanceUsage() == -1.0) {
-			saleInProgress.setAddress((Address) new AddressDAO().consult(saleInProgress.getAddress(), "findById").get(0));
+			saleInProgress
+					.setAddress((Address) new AddressDAO().consult(saleInProgress.getAddress(), "findById").get(0));
 			sessionSaleInProgress.setAddress(saleInProgress.getAddress());
 		}
 
 		if (saleInProgress.getCreditCard() != null) {
-			saleInProgress.setCreditCard((CreditCard) new CreditCardDAO().consult(saleInProgress.getCreditCard(), "findById").get(0));
+			saleInProgress.setCreditCard(
+					(CreditCard) new CreditCardDAO().consult(saleInProgress.getCreditCard(), "findById").get(0));
 			sessionSaleInProgress.setCreditCard(saleInProgress.getCreditCard());
 		}
 
@@ -66,7 +68,7 @@ public class SaleInProgressSH implements ISessionHelper {
 			}
 			sessionSaleInProgress.setBalanceUsage(saleInProgress.getBalanceUsage());
 			sessionSaleInProgress.calculateCreditCardUsage();
-		}		
+		}
 	}
 
 	@Override
@@ -82,7 +84,7 @@ public class SaleInProgressSH implements ISessionHelper {
 	@Override
 	public List<Entity> consult(Entity entity, HttpSession session, String operation) {
 		SaleInProgress saleInProgress = (SaleInProgress) session.getAttribute("saleInProgress");
-		
+
 		return Arrays.asList(saleInProgress);
 	}
 
