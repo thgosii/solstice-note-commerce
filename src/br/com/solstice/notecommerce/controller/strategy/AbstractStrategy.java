@@ -3,8 +3,6 @@ package br.com.solstice.notecommerce.controller.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
-
 public abstract class AbstractStrategy implements IStrategy {
 
 	// Business rules that need to be already validated for this business rule to process

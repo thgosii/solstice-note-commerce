@@ -1,7 +1,6 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.trade;
 
 import java.util.Arrays;
-import java.util.List;
 
 import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
 import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;

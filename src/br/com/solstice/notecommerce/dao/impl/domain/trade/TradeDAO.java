@@ -10,16 +10,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.I2F;
-
 import br.com.solstice.notecommerce.dao.AbstractDAO;
-import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
-import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
-import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
