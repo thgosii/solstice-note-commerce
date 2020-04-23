@@ -19,6 +19,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Trade extends DomainEntity {
 	
+	private TradeType type;
 	private String trackingNumber;
 	private LocalDateTime requestDate;
 	private TradeStatus status;

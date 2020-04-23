@@ -15,6 +15,7 @@ import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
+import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
@@ -25,6 +26,11 @@ public class TradeCustomerVH implements IViewHelper {
 		String operation = request.getParameter("operation");
 		
 		if (operation == null) return null;
+		
+		String type = request.getParameter("type");
+		if (type != null) {
+			type = type.toUpperCase();
+		}
 		
 		if (operation.equals("save")) {
 			Long idProduct = null;
@@ -58,6 +64,7 @@ public class TradeCustomerVH implements IViewHelper {
 			trade.setProductQuantity(productQuantity);
 			trade.setSale(sale);
 			trade.setSaleItem(saleItem);
+			trade.setType(TradeType.valueOf(type));
 			return trade;
 		} else if (operation.equals("consult")) {
 			User user = (User) request.getSession().getAttribute("loggedUser");
@@ -70,6 +77,7 @@ public class TradeCustomerVH implements IViewHelper {
 			
 			Trade trade = new Trade();
 			trade.setSale(sale);
+			trade.setType(TradeType.valueOf(type));
 			return trade;
 		}
 		
@@ -83,11 +91,20 @@ public class TradeCustomerVH implements IViewHelper {
 		
 		request.setAttribute("message", result.getMessage());
 		
+		String tradeType = request.getParameter("type");
+		if (tradeType != null) {
+			tradeType = tradeType.toUpperCase();
+		}
+		
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
-				request.getRequestDispatcher("/pages/customer/customer-trade.jsp").forward(request, response);
+				if (TradeType.DEVOLUTION.name().equals(tradeType)) {
+					request.getRequestDispatcher("/pages/customer/trades-devolution.jsp").forward(request, response);
+				} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
+					request.getRequestDispatcher("/pages/customer/trades-exchange.jsp").forward(request, response);
+				}
 			} else {
-				response.sendRedirect("/note-commerce/customer/trades?operation=consult");
+				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType.toLowerCase() + "operation=consult");
 			}
 		} else if (operation.equals("consult")) {
 			List<Trade> trades = new ArrayList<>();
@@ -96,7 +113,11 @@ public class TradeCustomerVH implements IViewHelper {
 			}
 			request.setAttribute("trades", trades);
 			
-			request.getRequestDispatcher("/pages/customer/customer-trades.jsp").forward(request, response);
+			if (TradeType.DEVOLUTION.name().equals(tradeType)) {
+				request.getRequestDispatcher("/pages/customer/trades-devolutions.jsp").forward(request, response);
+			} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
+				request.getRequestDispatcher("/pages/customer/trades-exchanges.jsp").forward(request, response);
+			}
 		}
 
 	}
