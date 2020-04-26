@@ -1,5 +1,5 @@
 # Note Commerce
-This is an Java EE application of a laptop e-commerce. It was made for the 
+This is a Java EE application of a laptop e-commerce. It was made for the 
 fictional company "LapTop Computadores" by the fictional software company "Solstice".
 
 ## Overview
