@@ -24,7 +24,7 @@ public class AddressDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 

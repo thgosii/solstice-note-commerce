@@ -29,7 +29,7 @@ public class DashboardDataDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		return 0;
 	}
 

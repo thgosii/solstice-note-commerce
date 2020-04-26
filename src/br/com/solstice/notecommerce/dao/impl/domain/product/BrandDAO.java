@@ -22,7 +22,7 @@ public class BrandDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

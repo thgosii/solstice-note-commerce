@@ -24,7 +24,7 @@ public class UserDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -46,10 +46,10 @@ public class UserDAO extends AbstractDAO {
 
 			ResultSet rs = pstm.getGeneratedKeys();
 
-			int idUser = 0;
+			long idUser = 0;
 
 			if (rs.next()) {
-				idUser = rs.getInt(1);
+				idUser = rs.getLong(1);
 			}
 
 			return idUser;

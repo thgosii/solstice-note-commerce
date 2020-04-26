@@ -14,6 +14,12 @@ public class SaleVH implements IViewHelper {
 
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
+		String operation = request.getParameter("operation");
+		
+		if (operation.equals("save")) {
+			
+		}
+		
 		return null;
 	}
 

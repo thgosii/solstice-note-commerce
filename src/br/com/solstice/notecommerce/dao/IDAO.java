@@ -6,7 +6,7 @@ import br.com.solstice.notecommerce.entity.Entity;
 
 public interface IDAO {
 
-	public int save(Entity entity);
+	public long save(Entity entity);
 
 	public void remove(Entity entity);
 

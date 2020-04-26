@@ -32,7 +32,7 @@ public class TradeDAO extends AbstractDAO {
 	}	
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -55,10 +55,10 @@ public class TradeDAO extends AbstractDAO {
 
 			ResultSet rs = pstm.getGeneratedKeys();
 
-			int idProduct = 0;
+			long idProduct = 0;
 
 			if (rs.next()) {
-				idProduct = rs.getInt(1);
+				idProduct = rs.getLong(1);
 			}
 
 			return idProduct;

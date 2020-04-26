@@ -27,7 +27,7 @@ public class CustomerDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int save(Entity entity) {
+	public long save(Entity entity) {
 		openConnection();
 		PreparedStatement pstm = null;
 
@@ -38,7 +38,7 @@ public class CustomerDAO extends AbstractDAO {
 
 		User user = customer.getUser();
 
-		int idUser = new UserDAO(connection).save(user);
+		long idUser = new UserDAO(connection).save(user);
 
 		if (idUser == 0) {
 			return 0;
@@ -52,7 +52,7 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setDate(3, Date.valueOf(customer.getDateOfBirth()));
 			pstm.setString(4, customer.getPhone());
 			pstm.setString(5, customer.getGender().toString().toLowerCase());
-			pstm.setInt(6, idUser);
+			pstm.setLong(6, idUser);
 			pstm.setBoolean(7, customer.isDeleted());
 			
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
@@ -61,13 +61,13 @@ public class CustomerDAO extends AbstractDAO {
 
 			ResultSet rs = pstm.getGeneratedKeys();
 
-			int idClient = 0;
+			long idCustomer = 0;
 
 			if (rs.next()) {
-				idClient = rs.getInt(1);
+				idCustomer = rs.getLong(1);
 			}
 
-			return idClient;
+			return idCustomer;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
