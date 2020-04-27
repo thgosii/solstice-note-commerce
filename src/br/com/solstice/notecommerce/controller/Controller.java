@@ -21,10 +21,10 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin.DashboardDataAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.customer.BalanceCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop.ProductShopVH;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.cart.CartVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleInProgressVH;
-import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleShopVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginVH;
@@ -65,7 +65,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/login", new LoginVH());
 
 		// admin
-		viewHelpersMap.put("/note-commerce/admin/products", new ProductVH());
+		viewHelpersMap.put("/note-commerce/admin/products", new ProductAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/dashboard", new DashboardDataAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/brands", new BrandAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/trades", new TradeAdminVH());
@@ -82,7 +82,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopVH());
 		viewHelpersMap.put("/note-commerce/shop/cart", new CartVH());
 		viewHelpersMap.put("/note-commerce/shop/saleInProgress", new SaleInProgressVH());
-		viewHelpersMap.put("/note-commerce/shop/sales", new SaleVH());
+		viewHelpersMap.put("/note-commerce/shop/sales", new SaleShopVH());
 	}
 
 	@Override

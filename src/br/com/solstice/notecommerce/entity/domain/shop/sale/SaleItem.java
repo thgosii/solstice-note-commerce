@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class SaleItem extends DomainEntity {
 
+	private Sale sale;
 	private Product product;
 	private int quantity;
 	private double subTotal;

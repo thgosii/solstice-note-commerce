@@ -10,6 +10,7 @@ import java.util.List;
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 
 public class SaleDAO extends AbstractDAO {
 
@@ -51,8 +52,17 @@ public class SaleDAO extends AbstractDAO {
 			if (rs.next()) {
 				idSale = rs.getLong(1);
 			}
-			
-			
+
+			if (idSale != 0) {
+				sale.setId(idSale);
+
+				SaleItemDAO saleItemDAO = new SaleItemDAO("", "");
+
+				for (SaleItem item : sale.getItems()) {
+					item.setSale(sale);
+					saleItemDAO.save(item);
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
