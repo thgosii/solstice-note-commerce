@@ -86,7 +86,7 @@
               <div>
               	<form action="/note-commerce/shop/sales">
               		<input type="hidden" name="operation" value="findByCustomer">
-                	<button type="submit">Minhas compras</button>
+                	<button class="btn btn-primary" type="submit">Minhas compras</button>
                 </form>
               </div>
             </div>
