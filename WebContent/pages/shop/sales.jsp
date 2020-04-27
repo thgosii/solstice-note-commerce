@@ -87,12 +87,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!--<tr>
-                    <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">324543535</a></td>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td>R$ 4,15</td>
-                    <td><span class="badge bg-danger">Reprovado</span></td>
-                  </tr> -->
+                  <c:forEach var="sale" items="${requestScope.sales}">
+                    <tr>
+                      <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">${sale.identifyNumber}</a></td>
+                      <td><span class="dt-date-sort">${sale.getFormattedDateTime()}</span></td>
+                      <td class="money"><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></script></td>
+                      <td><span class="badge ${sale.getStatusColorName()}">${sale.getFormattedStatus()}</span></td>
+                    </tr>
+                  </c:forEach>
                </tbody>
               </table>
             </div>

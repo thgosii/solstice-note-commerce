@@ -1,6 +1,7 @@
 package br.com.solstice.notecommerce.entity.domain.shop.sale;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
@@ -38,6 +39,47 @@ public class Sale extends DomainEntity {
 		}
 
 		return userId + "" + invertedMillis;
+	}
+
+	public double getTotal() {
+		double total = 0;
+
+		for (SaleItem item : items) {
+			total += item.getSubTotal();
+		}
+
+		return total;
+	}
+
+	public String getFormattedDateTime() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
+		return formatter.format(dateTime);
+	}
+
+	public String getFormattedStatus() {
+		switch (status) {
+			case DELIVERED:
+				return "Entregue";
+			case ON_DELIVERY:
+				return "Entrega em andamento";
+			case PAYMENT_APPROVED:
+				return "Pagamento aprovado";
+		}
+
+		return "";
+	}
+
+	public String getStatusColorName() {
+		switch (status) {
+			case DELIVERED:
+				return "bg-success";
+			case ON_DELIVERY:
+				return "bg-warning";
+			case PAYMENT_APPROVED:
+				return "bg-primary";
+		}
+
+		return "";
 	}
 
 }

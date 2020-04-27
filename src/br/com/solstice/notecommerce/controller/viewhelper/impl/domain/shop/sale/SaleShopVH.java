@@ -84,7 +84,7 @@ public class SaleShopVH implements IViewHelper {
 			}
 		} else if (operation.equals("findByCustomer")) {
 			List<Entity> sales = (List<Entity>) result.getEntities();
-			request.setAttribute("adresses", sales);
+			request.setAttribute("sales", sales);
 
 			if (null == sales) {
 				return;

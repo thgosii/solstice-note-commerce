@@ -214,14 +214,6 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
-  function moneyMask(value) {
-    value = value.toString().replace(/\D/g, "");
-    value = value.toString().replace(/(\d)(\d{8})$/, "$1.$2");
-    value = value.toString().replace(/(\d)(\d{5})$/, "$1.$2");
-    value = value.toString().replace(/(\d)(\d{2})$/, "$1,$2");
-    return value;
-  }
-
   function decreaseItemQty(id) {
     let qty = $("#qty_" + id).text();
 
