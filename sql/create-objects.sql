@@ -99,13 +99,13 @@ create table if not exists sales(
 );
 
 create table if not exists sales_products(
-    sit_sal_id int,
-    sit_prd_id int,
-    sit_quantity int,
-    sit_subtotal double,
-    primary key (sit_prd_id, sit_sal_id),
-    foreign key (sit_prd_id) references products(prd_id),
-    foreign key (sit_sal_id) references sales(sal_id)
+    sap_sal_id int,
+    sap_prd_id int,
+    sap_quantity int,
+    sap_subtotal double,
+    primary key (sap_prd_id, sap_sal_id),
+    foreign key (sap_prd_id) references products(prd_id),
+    foreign key (sap_sal_id) references sales(sal_id)
 );
 
 create table if not exists trades(
