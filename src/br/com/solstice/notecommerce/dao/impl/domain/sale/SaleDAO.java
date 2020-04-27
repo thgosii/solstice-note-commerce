@@ -110,6 +110,8 @@ public class SaleDAO extends AbstractDAO {
 
 		if (operation.equals("findByCustomer")) {
 			sql = "SELECT * from sales WHERE sal_cus_id=?";
+		} else if (operation.equals("findById")) {
+			sql = "SELECT * from sales WHERE sal_id=?";
 		}
 
 		List<Entity> sales = new ArrayList<Entity>();
@@ -118,7 +120,11 @@ public class SaleDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			if (operation.equals("findByCustomer")) {
-				pstm.setLong(1, sale.getCustomer().getId());
+				Customer customer = sale.getCustomer();
+				customer = (Customer) new CustomerDAO().consult(customer, "consult").get(0);
+				pstm.setLong(1, customer.getId());
+			} else if (operation.equals("findById")) {
+				pstm.setLong(1, sale.getId());
 			}
 
 			System.out.println(
@@ -137,17 +143,17 @@ public class SaleDAO extends AbstractDAO {
 
 				Customer customer = new Customer();
 				customer.setId(rs.getLong("sal_cus_id"));
-				customer = (Customer) new CustomerDAO().consult(customer, "findById");
+				customer = (Customer) new CustomerDAO().consult(customer, "findById").get(0);
 				currentSale.setCustomer(customer);
 
 				Address address = new Address();
 				address.setId(rs.getLong("sal_ads_id"));
-				address = (Address) new AddressDAO().consult(address, "findById");
+				address = (Address) new AddressDAO().consult(address, "findById").get(0);
 				currentSale.setAddress(address);
 
 				CreditCard creditCard = new CreditCard();
 				creditCard.setId(rs.getLong("sal_crd_id"));
-				creditCard = (CreditCard) new CreditCardDAO().consult(creditCard, "findById");
+				creditCard = (CreditCard) new CreditCardDAO().consult(creditCard, "findById").get(0);
 				currentSale.setCreditCard(creditCard);
 
 				SaleItem saleItemAux = new SaleItem();

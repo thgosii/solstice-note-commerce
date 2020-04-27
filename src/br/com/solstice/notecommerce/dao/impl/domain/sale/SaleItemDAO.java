@@ -102,7 +102,6 @@ public class SaleItemDAO extends AbstractDAO {
 				// set sale
 				Sale sale = new Sale();
 				sale.setId(rs.getLong("sap_sal_id"));
-				sale = (Sale) new SaleDAO().consult(sale, "findById").get(0);
 				saleItem.setSale(sale);
 				
 				// set product

@@ -13,15 +13,14 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 public class SaleItem extends DomainEntity {
 
 	private Sale sale;
 	private Product product;
 	private int quantity;
 	private double subTotal;
-	
-	 // Used by Trade Strategy to calculate balance return
+
+	// Used by Trade Strategy to calculate balance return
 	public Double getPricePerProduct() {
 		if (quantity > 0 && subTotal > 0d) {
 			return subTotal / quantity;
@@ -31,12 +30,17 @@ public class SaleItem extends DomainEntity {
 
 	public static SaleItem fromCartItem(CartItem item) {
 		SaleItem saleItem = new SaleItem();
-		
+
 		saleItem.setProduct(item.getProduct());
 		saleItem.setQuantity(item.getQuantity());
 		saleItem.setSubTotal(item.getSubTotal());
-		
+
 		return saleItem;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "SaleItem [product=" + product + ", quantity=" + quantity + ", subTotal=" + subTotal + "]";
+	}
+
 }

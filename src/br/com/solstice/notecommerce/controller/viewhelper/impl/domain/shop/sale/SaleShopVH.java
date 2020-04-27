@@ -2,6 +2,7 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
+import br.com.solstice.notecommerce.entity.domain.user.User;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class SaleShopVH implements IViewHelper {
 
@@ -41,6 +44,17 @@ public class SaleShopVH implements IViewHelper {
 			}
 
 			return sale;
+		} else if (operation.equals("findByCustomer")) {
+			Sale sale = new Sale();
+			
+			User user = (User) request.getSession().getAttribute("loggedUser");
+			
+			Customer customer = new Customer();
+			customer.setUser(user);
+			
+			sale.setCustomer(customer);
+			
+			return sale;
 		}
 
 		return null;
@@ -68,6 +82,15 @@ public class SaleShopVH implements IViewHelper {
 
 				request.getRequestDispatcher("/pages/shop/checkout-step-1.jsp").forward(request, response);
 			}
+		} else if (operation.equals("findByCustomer")) {
+			List<Entity> sales = (List<Entity>) result.getEntities();
+			request.setAttribute("adresses", sales);
+
+			if (null == sales) {
+				return;
+			}
+			
+			request.getRequestDispatcher("/pages/shop/sales.jsp").forward(request, response);
 		}
 	}
 

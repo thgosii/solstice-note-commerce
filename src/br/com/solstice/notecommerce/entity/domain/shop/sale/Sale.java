@@ -11,11 +11,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class Sale extends DomainEntity {
 
 	private double balanceUsage;
@@ -26,15 +28,15 @@ public class Sale extends DomainEntity {
 	private LocalDateTime dateTime;
 	private SaleStatus status;
 	private String identifyNumber;
-	
+
 	public static String generateIdentifyNumber(Long userId) {
 		String millis = String.valueOf(System.currentTimeMillis());
 		String invertedMillis = "";
-		
+
 		for (int i = millis.length() - 1; i >= 0; i--) {
 			invertedMillis += millis.charAt(i);
 		}
-		
+
 		return userId + "" + invertedMillis;
 	}
 
