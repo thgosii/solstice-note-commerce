@@ -5,12 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.AddressDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
+import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
+import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
+import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 
 public class SaleDAO extends AbstractDAO {
 
@@ -90,7 +99,82 @@ public class SaleDAO extends AbstractDAO {
 
 	@Override
 	public List<Entity> consult(Entity entity, String operation) {
-		return null;
+		openConnection();
+
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		Sale sale = (Sale) entity;
+
+		String sql = "";
+
+		if (operation.equals("findByCustomer")) {
+			sql = "SELECT * from sales WHERE sal_cus_id=?";
+		}
+
+		List<Entity> sales = new ArrayList<Entity>();
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			if (operation.equals("findByCustomer")) {
+				pstm.setLong(1, sale.getCustomer().getId());
+			}
+
+			System.out.println(
+					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
+							+ ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				Sale currentSale = new Sale();
+				currentSale.setId(rs.getLong("sal_id"));
+				currentSale.setStatus(SaleStatus.valueOf(rs.getString("sal_status")));
+				currentSale.setBalanceUsage(rs.getDouble("sal_balance_usage"));
+				currentSale.setDateTime(rs.getTimestamp("sal_date_time").toLocalDateTime());
+				currentSale.setIdentifyNumber(rs.getString("sal_identify_number"));
+
+				Customer customer = new Customer();
+				customer.setId(rs.getLong("sal_cus_id"));
+				customer = (Customer) new CustomerDAO().consult(customer, "findById");
+				currentSale.setCustomer(customer);
+
+				Address address = new Address();
+				address.setId(rs.getLong("sal_ads_id"));
+				address = (Address) new AddressDAO().consult(address, "findById");
+				currentSale.setAddress(address);
+
+				CreditCard creditCard = new CreditCard();
+				creditCard.setId(rs.getLong("sal_crd_id"));
+				creditCard = (CreditCard) new CreditCardDAO().consult(creditCard, "findById");
+				currentSale.setCreditCard(creditCard);
+
+				SaleItem saleItemAux = new SaleItem();
+				saleItemAux.setSale(currentSale);
+
+				List<SaleItem> saleItems = new SaleItemDAO("", "").consult(saleItemAux, "consult").stream()
+						.map(saleItem -> (SaleItem) saleItem).collect(Collectors.toList());
+				
+				currentSale.setItems(saleItems);
+
+				sales.add(currentSale);
+			}
+
+			return sales;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			closeConnection();
+		}
+
+		return sales;
 	}
 
 }

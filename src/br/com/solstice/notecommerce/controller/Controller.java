@@ -58,6 +58,7 @@ public class Controller extends HttpServlet {
 		commandsMap.put("remove", new RemoveCommand());
 		commandsMap.put("login", new ConsultCommand());
 		commandsMap.put("prepareUpdate", new ConsultCommand());
+		commandsMap.put("findByCustomer", new ConsultCommand());
 
 		viewHelpersMap = new HashMap<String, IViewHelper>();
 

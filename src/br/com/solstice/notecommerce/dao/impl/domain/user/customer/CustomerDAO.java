@@ -54,8 +54,10 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setString(5, customer.getGender().toString().toLowerCase());
 			pstm.setLong(6, idUser);
 			pstm.setBoolean(7, customer.isDeleted());
-			
-			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+
+			System.out.println(
+					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
+							+ ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.execute();
 
@@ -84,7 +86,7 @@ public class CustomerDAO extends AbstractDAO {
 
 	@Override
 	public void remove(Entity entity) {
-		
+
 	}
 
 	@Override
@@ -95,8 +97,9 @@ public class CustomerDAO extends AbstractDAO {
 
 		Customer customer = (Customer) entity;
 
-		String sql = "UPDATE " + table + " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=?, cus_balance=? WHERE "
-				+ idTable + "=?";
+		String sql = "UPDATE " + table
+				+ " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=?, cus_balance=? WHERE " + idTable
+				+ "=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -107,11 +110,13 @@ public class CustomerDAO extends AbstractDAO {
 			pstm.setString(4, customer.getPhone());
 			pstm.setDouble(5, customer.getBalance());
 			pstm.setLong(6, customer.getId());
-			
-			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+
+			System.out.println(
+					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
+							+ ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			pstm.executeUpdate();
-			
+
 			new UserDAO(connection).update(customer.getUser());
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,8 +144,10 @@ public class CustomerDAO extends AbstractDAO {
 
 		if (operation.equals("consult")) {
 			sql = "SELECT * from " + table + " WHERE cus_usr_id=? AND cus_deleted = false";
+		} else if (operation.equals("findById")) {
+			sql = "SELECT * from " + table + " WHERE cus_id=? AND cus_deleted = false";
 		}
-		
+
 		List<Entity> customers = new ArrayList<Entity>();
 
 		try {
@@ -148,9 +155,13 @@ public class CustomerDAO extends AbstractDAO {
 
 			if (operation.equals("consult")) {
 				pstm.setLong(1, customer.getUser().getId());
+			} else if (operation.equals("findById")) {
+				pstm.setLong(1, customer.getId());
 			}
-			
-			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+
+			System.out.println(
+					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
+							+ ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
 			rs = pstm.executeQuery();
 
@@ -165,12 +176,12 @@ public class CustomerDAO extends AbstractDAO {
 				currentCustomer.setGender(rs.getString("cus_gender").equals("male") ? Gender.MALE : Gender.FEMALE);
 				currentCustomer.setPhone(rs.getString("cus_phone"));
 				currentCustomer.setBalance(rs.getDouble("cus_balance"));
-				
+
 				User user = new User();
 				user.setId(rs.getLong("cus_usr_id"));
 
 				user = (User) userDAO.consult(user, "findById").get(0);
-				
+
 				currentCustomer.setUser(user);
 
 				customers.add(currentCustomer);
@@ -188,7 +199,7 @@ public class CustomerDAO extends AbstractDAO {
 			}
 			closeConnection();
 		}
-		
+
 		return null;
 	}
 
