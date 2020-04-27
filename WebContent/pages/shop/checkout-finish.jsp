@@ -77,7 +77,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Sucesso</small></h3>
+              <h3 class="card-title">Sucesso</h3>
             </div>
             <div class="card-body register-card-body">
               <h2 class="mb-5">Venda realizada com sucesso!</h2>

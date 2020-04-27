@@ -87,37 +87,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <!--<tr>
                     <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">324543535</a></td>
                     <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
                     <td>R$ 4,15</td>
                     <td><span class="badge bg-danger">Reprovado</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">786-97-96-7896-7</a></td>
-                    <td><span class="dt-date-sort">2010-11-02</span>02/11/2010</td>
-                    <td>R$ 424,42</td>
-                    <td><span class="badge bg-primary">Em transporte</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">735-34-5-34-57896-7</a></td>
-                    <td><span class="dt-date-sort">2020-05-22</span>22/05/2020</td>
-                    <td>R$ 123,76</td>
-                    <td><span class="badge bg-success">Entregue</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">123123-12312-123</a></td>
-                    <td><span class="dt-date-sort">2018-06-01</span>01/06/2020</td>
-                    <td>R$ 1421,42</td>
-                    <td><span class="badge bg-warning">Aguardando aceitação</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">11598347539423</a></td>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td>R$ 4,15</td>
-                    <td><span class="badge bg-info">Pagamento Aprovado</span></td>
-                  </tr>
-                </tbody>
+                  </tr> -->
+               </tbody>
               </table>
             </div>
           </div>
@@ -181,7 +157,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!--<tr>
                   <td>
                     <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
                   </td>
@@ -189,70 +165,7 @@
                   <td>R$ 2.444,21</td>
                   <td><span class="badge bg-success">Vendido</span></td>
                   <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-warning">Aguardando troca</span></td>
-                  <td>Sem ações</td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample2.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Dell G3 - 16GB RAM - 120GB SSD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Ideapad l340 - 16GB RAM - 250GB SSD - I7 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample3.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Ideapad l340 - 16GB RAM - 250GB SSD - I7 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-danger">Trocado</span></td>
-                  <td><a href="#">Ver Troca</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample4.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Asus Zenbook 14 - 8GB RAM - 500GB HD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>
+                </tr>-->
             </table>
           </div>
           <hr>
@@ -262,19 +175,19 @@
               <tbody>
                 <tr>
                   <td><strong>Cidade</strong></td>
-                  <td>São Paulo</td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td><strong>Estado</strong></td>
-                  <td>São Paulo - SP</td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td><strong>Número</strong></td>
-                  <td>130</td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td><strong>Complemento</strong></td>
-                  <td>apt 3 - bloco 2</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -292,7 +205,7 @@
                     <strong>Cartão</strong>
                   </td>
                   <td>
-                    R$ 14465,26
+                    
                   </td>
                 </tr>
                 <tr>
@@ -300,7 +213,7 @@
                     <strong>Saldo virtual</strong>
                   </td>
                   <td>
-                    R$ 200,00
+                    
                   </td>
                 </tr>
               </tbody>
@@ -312,19 +225,19 @@
                   <td style="width: 61%;">
                     <strong>Subtotal</strong>
                   </td>
-                  <td>R$ 14665,26</td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td style="width: 61%;">
                     <strong>Entrega</strong>
                   </td>
-                  <td>R$ 20,00</td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div>
-            <h4>Total: R$ 244,23</h4>
+            <h4>Total: </h4>
           </div>
         </div>
         <div class="modal-footer justify-content-between">
