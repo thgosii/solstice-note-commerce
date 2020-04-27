@@ -194,9 +194,9 @@ public class TradeDAO extends AbstractDAO {
 					Product product = new Product();
 					product.setId(rs.getLong("trd_prd_id"));
 					
-					currentTrade.setSaleItem(new SaleItem((Product) productDAO.consult(product, "consult").get(0), -1, -1d));
+					currentTrade.setSaleItem(new SaleItem(null, (Product) productDAO.consult(product, "consult").get(0), -1, -1d));
 				} else if (operation.equals("findSaleItem")) {
-					currentTrade.setSaleItem(new SaleItem(null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
+					currentTrade.setSaleItem(new SaleItem(null, null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
 				}
 				
 				trades.add(currentTrade);
