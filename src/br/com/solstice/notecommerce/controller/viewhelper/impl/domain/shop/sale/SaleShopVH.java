@@ -48,7 +48,21 @@ public class SaleShopVH implements IViewHelper {
 		String operation = request.getParameter("operation");
 		
 		if (operation.equals("save")) {
+			Sale sale = (Sale) result.getEntities().get(0);
+			request.setAttribute("sale", sale);
+
+			if (null == sale) {
+				return;
+			}
 			
+			if (null == result.getMessage()) {
+				request.getRequestDispatcher("/pages/shop/checkout-finish.jsp").forward(request, response);
+			} else {
+				String[] messages = result.getMessage().trim().split("\n");
+				request.setAttribute("messages", messages);
+
+				request.getRequestDispatcher("/pages/shop/checkout-step-1.jsp").forward(request, response);
+			}
 		}
 	}
 

@@ -76,7 +76,18 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-
+		  <c:if test="${not empty requestScope.messages}">
+            <div class="alert alert-danger" role="alert" style="font-size: 16px;">
+              Erros encontrados na venda:
+              <ul>
+                <c:forEach var="message" items="${messages}">
+                  <li>
+                    <c:out value="${message}" />
+                  </li>
+                </c:forEach>
+              </ul>
+            </div>
+          </c:if>	
           <div class="col-sm-6 mb-3">
             <h1>Passo 1 de 3 - Endereço de entrega</h1>
           </div>

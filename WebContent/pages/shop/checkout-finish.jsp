@@ -82,7 +82,7 @@
             <div class="card-body register-card-body">
               <h2 class="mb-5">Venda realizada com sucesso!</h2>
               <h3 class="mb-4"><small>Número do pedido: </small><strong
-                  style="color: rgb(64, 112, 175);">0000000</strong></h3>
+                  style="color: rgb(64, 112, 175);"><c:out value="${sale.identifyNumber}"></c:out></strong></h3>
               <div>
                 <a href="#" class="btn btn-primary" id="nextStepButtonByData">Minhas compras</a>
               </div>
