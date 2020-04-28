@@ -162,7 +162,7 @@
 	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.product.price}" /></td>
 	                    <td>${item.quantity}</td>
 	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>
-	                    <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
+	                    <td><a href="#" class="btn btn-primary btn-sm">Trocar</a></td>
 	                  </tr>
 	                </c:forEach>
 	            </table>
