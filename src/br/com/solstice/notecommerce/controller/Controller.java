@@ -78,6 +78,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/customer/adresses", new AddressVH());
 		viewHelpersMap.put("/note-commerce/customer/balance", new BalanceCustomerVH());
 		viewHelpersMap.put("/note-commerce/customer/trades", new TradeCustomerVH());
+		viewHelpersMap.put("/note-commerce/customer/sales", new SaleShopVH());
 
 		// shop
 		viewHelpersMap.put("/note-commerce/shop/products", new ProductShopVH());
@@ -130,6 +131,12 @@ public class Controller extends HttpServlet {
 
 		Entity entity = viewHelper.getEntity(request);
 		System.out.println("Entity: " + entity + "\n--------------------------------");
+		
+		if (null == entity) {
+			response.setStatus(422); // Unprocessable Entity
+			System.out.println("Invalid operation for " + viewHelper.getClass().getSimpleName() + "\n================================\n\n");
+			return;
+		}
 
 		Result result = command.execute(entity, request.getSession(), operation);
 		System.out.println("--------------------------------\nResult entities list" + (result.getEntities() != null ? " (" + result.getEntities().size() + "):" : ":"));
