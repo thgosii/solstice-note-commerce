@@ -64,16 +64,16 @@
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
               <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
-                <i class="fas fa-user mr-2"></i> Meus dados
+                <i class="fas fa-user mr-2"></i> Meus Dados
               </a>
               <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
-                <i class="fas fa-address-card mr-2"></i> Meus endereços
+                <i class="fas fa-address-card mr-2"></i> Meus Endereços
               </a>
               <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
-                <i class="fas fa-credit-card mr-2"></i> Meus cartões
+                <i class="fas fa-credit-card mr-2"></i> Meus Cartões
               </a>
-              <a href="/note-commerce/shop/sales?operation=findByCustomer" class="dropdown-item">
-                <i class="fas fa-box-open mr-2"></i> Pedidos
+              <a href="/note-commerce/customer/sales?operation=findByCustomer" class="dropdown-item">
+                <i class="fas fa-box-open mr-2"></i> Minhas Compras
               </a>
               <a href="/note-commerce/customer/trades?type=exchange&operation=consult" class="dropdown-item">
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas

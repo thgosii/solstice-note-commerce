@@ -84,7 +84,7 @@
               <h3 class="mb-4"><small>Número do pedido: </small><strong
                   style="color: rgb(64, 112, 175);"><c:out value="${sale.identifyNumber}"></c:out></strong></h3>
               <div>
-                <a href="/note-commerce/shop/sales?operation=findByCustomer" class="btn btn-primary">Minhas Compras</a>
+                <a href="/note-commerce/customer/sales?operation=findByCustomer" class="btn btn-primary">Minhas Compras</a>
               </div>
             </div>
           </div>

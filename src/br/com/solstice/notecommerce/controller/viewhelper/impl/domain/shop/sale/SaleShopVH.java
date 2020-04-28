@@ -44,17 +44,6 @@ public class SaleShopVH implements IViewHelper {
 			}
 
 			return sale;
-		} else if (operation.equals("findByCustomer")) {
-			Sale sale = new Sale();
-			
-			User user = (User) request.getSession().getAttribute("loggedUser");
-			
-			Customer customer = new Customer();
-			customer.setUser(user);
-			
-			sale.setCustomer(customer);
-			
-			return sale;
 		}
 
 		return null;
@@ -82,15 +71,6 @@ public class SaleShopVH implements IViewHelper {
 
 				request.getRequestDispatcher("/pages/shop/checkout-step-1.jsp").forward(request, response);
 			}
-		} else if (operation.equals("findByCustomer")) {
-			List<Entity> sales = (List<Entity>) result.getEntities();
-			request.setAttribute("sales", sales);
-
-			if (null == sales) {
-				return;
-			}
-			
-			request.getRequestDispatcher("/pages/customer/sales.jsp").forward(request, response);
 		}
 	}
 
