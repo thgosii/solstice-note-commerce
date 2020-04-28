@@ -79,7 +79,7 @@
                 <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
               </a>
               <a href="/note-commerce/customer/trades?type=devolutionoperation=consult" class="dropdown-item">
-                <i class="fas fa-exchange-alt mr-2"></i> Minhas Devoluções
+                <i class="fas fa-hand-holding-usd mr-2"></i> Minhas Devoluções
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
                 <i class="fas fa-sign-out-alt mr-2"></i>
