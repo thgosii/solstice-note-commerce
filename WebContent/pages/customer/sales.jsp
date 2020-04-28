@@ -149,7 +149,6 @@
 	                  <th>Preço</th>
 	                  <th>Quantidade</th>
 	                  <th>Subtotal</th>
-	                  <th>Status</th>
 	                  <th>Ações</th>
 	                </tr>
 	              </thead>
