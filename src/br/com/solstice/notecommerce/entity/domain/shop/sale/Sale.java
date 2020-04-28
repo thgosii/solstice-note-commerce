@@ -81,5 +81,9 @@ public class Sale extends DomainEntity {
 
 		return "";
 	}
+	
+	public double getCreditCardUsage() {
+		return getTotal() - balanceUsage;
+	}
 
 }

@@ -89,9 +89,9 @@
                 <tbody>
                   <c:forEach var="sale" items="${requestScope.sales}">
                     <tr>
-                      <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal">${sale.identifyNumber}</a></td>
+                      <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal_${sale.id}">${sale.identifyNumber}</a></td>
                       <td><span class="dt-date-sort">${sale.getFormattedDateTime()}</span></td>
-                      <td class="money"><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></script></td>
+                      <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></script></td>
                       <td><span class="badge ${sale.getStatusColorName()}">${sale.getFormattedStatus()}</span></td>
                     </tr>
                   </c:forEach>
@@ -128,128 +128,107 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE EXTRA HTML -->
   <!-- *********************************************************************************** -->
-  <div class="modal fade" id="sale-detail-modal">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Compra 3424234324</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div style="max-height: 500px; overflow-y: scroll">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>
-                    Produto
-                  </th>
-                  <th>
-                  </th>
-                  <th>
-                    Preço
-                  </th>
-                  <th>
-                    Status
-                  </th>
-                  <th>
-                    Ações
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <!--<tr>
-                  <td>
-                    <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
-                  </td>
-                  <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
-                  <td>R$ 2.444,21</td>
-                  <td><span class="badge bg-success">Vendido</span></td>
-                  <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
-                </tr>-->
-            </table>
-          </div>
-          <hr>
-          <div class="mb-4">
-            <h4>Endereço</h4>
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <td><strong>Cidade</strong></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><strong>Estado</strong></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><strong>Número</strong></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><strong>Complemento</strong></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="mb-4">
-            <h4>Pagamento</h4>
-            <table class="table table-striped">
-              <thead>
-                <td><strong>Forma de pagamento</strong></td>
-                <td><strong>Valor</strong></td>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Cartão</strong>
-                  </td>
-                  <td>
-                    
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Saldo virtual</strong>
-                  </td>
-                  <td>
-                    
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <hr>
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <td style="width: 61%;">
-                    <strong>Subtotal</strong>
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td style="width: 61%;">
-                    <strong>Entrega</strong>
-                  </td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
-            <h4>Total: </h4>
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
+  <c:forEach var="sale" items="${requestScope.sales}">
+	  <div class="modal fade" id="sale-detail-modal_${sale.id}">
+	    <div class="modal-dialog modal-xl">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Compra #${sale.identifyNumber}</h4>
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	          </button>
+	        </div>
+	        <div class="modal-body">
+	          <div style="max-height: 500px; overflow-y: scroll">
+	            <table class="table table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Produto</th>
+	                  <th>
+	                  </th>
+	                  <th>Preço</th>
+	                  <th>Quantidade</th>
+	                  <th>Subtotal</th>
+	                  <th>Status</th>
+	                  <th>Ações</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                <c:forEach var="item" items="${sale.items}">
+	                  <tr>
+	                    <td>
+	                      <img src="${item.product.image.url}" style="width: 70px; height: 50px;">
+	                    </td>
+	                    <td>${item.product.title}</td>
+	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.product.price}" /></td>
+	                    <td>${item.quantity}</td>
+	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>
+	                    <td><a href="exchange.html" class="btn btn-primary btn-sm">Trocar</a></td>
+	                  </tr>
+	                </c:forEach>
+	            </table>
+	          </div>
+	          <hr>
+	          <div class="mb-4">
+	            <h4>Endereço</h4>
+	            <table class="table table-striped">
+	              <tbody>
+	                <tr>
+	                  <td><strong>Cidade</strong></td>
+	                  <td>${sale.address.city}</td>
+	                </tr>
+	                <tr>
+	                  <td><strong>Estado</strong></td>
+	                  <td>${sale.address.state}</td>
+	                </tr>
+	                <tr>
+	                  <td><strong>Número</strong></td>
+	                  <td>${sale.address.number}</td>
+	                </tr>
+	                <tr>
+	                  <td><strong>Complemento</strong></td>
+	                  <td>${sale.address.complement}</td>
+	                </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	          <div class="mb-4">
+	            <h4>Pagamento</h4>
+	            <table class="table table-striped">
+	              <thead>
+	                <td><strong>Forma de pagamento</strong></td>
+	                <td><strong>Valor</strong></td>
+	              </thead>
+	              <tbody>
+	                <tr>
+	                  <td>
+	                    <strong>Cartão</strong>
+	                  </td>
+	                  <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getCreditCardUsage()}" /></td>
+	                </tr>
+	                <tr>
+	                  <td>
+	                    <strong>Saldo digital</strong>
+	                  </td>
+	                  <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getBalanceUsage()}" /></td>
+	                </tr>
+	              </tbody>
+	            </table>
+	            <hr>
+	          </div>
+	          <div>
+	            <h4>Total: <fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></h4>
+	          </div>
+	        </div>
+	        <div class="modal-footer justify-content-between">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+	        </div>
+	      </div>
+	      <!-- /.modal-content -->
+	    </div>
+	    <!-- /.modal-dialog -->
+	  </div>
+  </c:forEach>
   <!-- /.modal -->
   <!-- *********************************************************************************** -->
   <!-- /PAGE EXTRA HTML -->
