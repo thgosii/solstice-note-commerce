@@ -99,9 +99,9 @@ public class TradeCustomerVH implements IViewHelper {
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
 				if (TradeType.DEVOLUTION.name().equals(tradeType)) {
-					request.getRequestDispatcher("/pages/customer/trades-devolution.jsp").forward(request, response);
+					request.getRequestDispatcher("/pages/customer/customer-trade-devolution.jsp").forward(request, response);
 				} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
-					request.getRequestDispatcher("/pages/customer/trades-exchange.jsp").forward(request, response);
+					request.getRequestDispatcher("/pages/customer/customer-trade-exchange.jsp").forward(request, response);
 				}
 			} else {
 				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType.toLowerCase() + "operation=consult");
@@ -114,9 +114,9 @@ public class TradeCustomerVH implements IViewHelper {
 			request.setAttribute("trades", trades);
 			
 			if (TradeType.DEVOLUTION.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/customer/trades-devolutions.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/customer/customer-trade-devolutions.jsp").forward(request, response);
 			} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/customer/trades-exchanges.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/customer/customer-trade-exchanges.jsp").forward(request, response);
 			}
 		}
 

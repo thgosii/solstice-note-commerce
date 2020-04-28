@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.sale;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +18,10 @@ public class SaleItemDAO extends AbstractDAO {
 
 	public SaleItemDAO(String table, String idtable) {
 		super("", "");
+	}
+
+	public SaleItemDAO(String table, String idtable, Connection connection) {
+		super("", "", connection);
 	}
 
 	@Override
@@ -107,7 +112,7 @@ public class SaleItemDAO extends AbstractDAO {
 				// set product
 				Product product = new Product();
 				product.setId(rs.getLong("sap_prd_id"));
-				product = (Product) new ProductDAO().consult(product, "findById").get(0);
+				product = (Product) new ProductDAO(connection).consult(product, "findById").get(0);
 				saleItem.setProduct(product);
 				
 				items.add(saleItem);

@@ -207,22 +207,26 @@
 	  
 	  $.ajax('/note-commerce/customer/balance?operation=consult')
 	    .then(data => {
+        currentBalance = data.balance;
 	      const currentBalanceText = Number(data.balance)
 	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-	      $('#cus_balance').text(currentBalanceText)
+        $('#cus_balance').text(currentBalanceText)
+
+        // Cannot use digital balance if its empty
+        if (currentBalance != 0) {
+          $('#balance').inputmask('currency', {
+            groupSeparator: ',',
+            digits: 2,
+            radixPoint: '.',
+            prefix: 'R$ ',
+            rightAlign: false,
+            max: currentBalance,
+            allowMinus: false,
+            autoUnmask: true,
+            removeMaskOnSubmit: true
+          });
+        }
 	    })
-	    
-      $('#balance').inputmask('currency', {
-        groupSeparator: ',',
-        digits: 2,
-        radixPoint: '.',
-        prefix: 'R$ ',
-        rightAlign: false,
-        max: 100000,
-        allowMinus: false,
-        autoUnmask: true,
-        removeMaskOnSubmit: true
-      });  
    });
 </script>
 <!-- *********************************************************************************** -->
