@@ -90,7 +90,7 @@ public class SaleShopVH implements IViewHelper {
 				return;
 			}
 			
-			request.getRequestDispatcher("/pages/shop/sales.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/customer/sales.jsp").forward(request, response);
 		}
 	}
 
