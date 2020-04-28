@@ -28,8 +28,8 @@ public class Trade extends DomainEntity {
 	private Sale sale;
 	
 	public static String generateTrackingNumber(Long userId) {
-		long millis = System.currentTimeMillis();
-		return "T-" + userId + "-" + millis;
+		String millisString = String.valueOf(System.currentTimeMillis());
+		return userId + "" + new StringBuilder(millisString).reverse();
 	}
 	
 	public Double getBalanceReturn() {
