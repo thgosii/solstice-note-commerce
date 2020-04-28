@@ -92,12 +92,12 @@
               <div class="card-body register-card-body">
                 <h4 class="mb-4">Total: R$ <span id="total"></span></h4>
                 <div class="form-check mb-3">
-                  <input class="form-check-input" id="cbDigital" type="checkbox" autocomplete='off'>
+                  <input class="form-check-input" id="cbDigital" type="checkbox" autocomplete='off' disabled>
                   <label class="form-check-label" for="cbDigital">Utilizar saldo digital</label>
                 </div>
                 <div class="form-group">
                   <label for="balance">Valor saldo digital</label>
-                  <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital">
+                  <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital" disabled>
                 </div>
               </div>
             </div>
@@ -189,16 +189,20 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
+
   $(function () {
     enable_virtual_input();
     enable_credit_card_select();
-    $("#cbDigital").click(enable_virtual_input);
-    $("#cbCreditCard").click(enable_credit_card_select);
+    $("#cbDigital").change(enable_virtual_input);
+    $("#cbCreditCard").change(enable_credit_card_select);
   });
 
   function enable_virtual_input() {
     enableOrDisableCheckboxes();
     $("#balance").prop("disabled", !this.checked);
+    if (!this.checked) {
+      $("#balance").val(''); // Reset value so it doesn't get send with the form
+    }
   }
 
   function enable_credit_card_select() {
@@ -241,22 +245,28 @@
 	  
 	  $.ajax('/note-commerce/customer/balance?operation=consult')
 	    .then(data => {
+        currentBalance = data.balance;
 	      const currentBalanceText = Number(data.balance)
 	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-	      $('#cus_balance').text(currentBalanceText)
+        $('#cus_balance').text(currentBalanceText)
+
+        // Cannot use digital balance if its empty
+        if (currentBalance != 0) {
+          $('#balance').inputmask('currency', {
+            groupSeparator: ',',
+            digits: 2,
+            radixPoint: '.',
+            prefix: 'R$ ',
+            rightAlign: false,
+            max: currentBalance,
+            allowMinus: false,
+            autoUnmask: true,
+            removeMaskOnSubmit: true
+          });
+          $("#cbDigital").prop("disabled", false);
+          $("#balance").prop("disabled", false);
+        }
 	    })
-	    
-      $('#balance').inputmask('currency', {
-        groupSeparator: ',',
-        digits: 2,
-        radixPoint: '.',
-        prefix: 'R$ ',
-        rightAlign: false,
-        max: 100000,
-        allowMinus: false,
-        autoUnmask: true,
-        removeMaskOnSubmit: true
-      });  
    });
 </script>
 <!-- *********************************************************************************** -->
