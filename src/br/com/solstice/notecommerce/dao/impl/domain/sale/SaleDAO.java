@@ -1,5 +1,6 @@
 package br.com.solstice.notecommerce.dao.impl.domain.sale;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,10 @@ public class SaleDAO extends AbstractDAO {
 
 	public SaleDAO() {
 		super("sales", "sal_id");
+	}
+
+	public SaleDAO(String table, String idtable, Connection connection) {
+		super("sales", "sal_id", connection);
 	}
 
 	@Override
@@ -65,7 +70,7 @@ public class SaleDAO extends AbstractDAO {
 			if (idSale != 0) {
 				sale.setId(idSale);
 
-				SaleItemDAO saleItemDAO = new SaleItemDAO("", "");
+				SaleItemDAO saleItemDAO = new SaleItemDAO("", "", connection);
 
 				for (SaleItem item : sale.getItems()) {
 					item.setSale(sale);
@@ -121,7 +126,7 @@ public class SaleDAO extends AbstractDAO {
 
 			if (operation.equals("findByCustomer")) {
 				Customer customer = sale.getCustomer();
-				customer = (Customer) new CustomerDAO().consult(customer, "consult").get(0);
+				customer = (Customer) new CustomerDAO(connection).consult(customer, "consult").get(0);
 				pstm.setLong(1, customer.getId());
 			} else if (operation.equals("findById")) {
 				pstm.setLong(1, sale.getId());
@@ -143,23 +148,23 @@ public class SaleDAO extends AbstractDAO {
 
 				Customer customer = new Customer();
 				customer.setId(rs.getLong("sal_cus_id"));
-				customer = (Customer) new CustomerDAO().consult(customer, "findById").get(0);
+				customer = (Customer) new CustomerDAO(connection).consult(customer, "findById").get(0);
 				currentSale.setCustomer(customer);
 
 				Address address = new Address();
 				address.setId(rs.getLong("sal_ads_id"));
-				address = (Address) new AddressDAO().consult(address, "findById").get(0);
+				address = (Address) new AddressDAO(connection).consult(address, "findById").get(0);
 				currentSale.setAddress(address);
 
 				CreditCard creditCard = new CreditCard();
 				creditCard.setId(rs.getLong("sal_crd_id"));
-				creditCard = (CreditCard) new CreditCardDAO().consult(creditCard, "findById").get(0);
+				creditCard = (CreditCard) new CreditCardDAO(connection).consult(creditCard, "findById").get(0);
 				currentSale.setCreditCard(creditCard);
 
 				SaleItem saleItemAux = new SaleItem();
 				saleItemAux.setSale(currentSale);
 
-				List<SaleItem> saleItems = new SaleItemDAO("", "").consult(saleItemAux, "consult").stream()
+				List<SaleItem> saleItems = new SaleItemDAO("", "", connection).consult(saleItemAux, "consult").stream()
 						.map(saleItem -> (SaleItem) saleItem).collect(Collectors.toList());
 				
 				currentSale.setItems(saleItems);
