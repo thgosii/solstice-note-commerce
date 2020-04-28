@@ -238,15 +238,7 @@
 <!-- *********************************************************************************** -->
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
-<script>
-    function moneyMask(value) {
-      value = value.toString().replace(/\D/g, "");
-      value = value.toString().replace(/(\d)(\d{8})$/, "$1.$2");
-      value = value.toString().replace(/(\d)(\d{5})$/, "$1.$2");
-      value = value.toString().replace(/(\d)(\d{2})$/, "$1,$2");
-      return value;
-    }
-    
+<script>    
 	$(document).ready(() => {
 	  $.ajax({
 	      url: '/note-commerce/shop/saleInProgress?operation=consult',
@@ -276,9 +268,9 @@
 	            trHTML += '<tr>';
 	            trHTML += '<td><img src=' + item.product.image.url + ' style="width: 70px; height: 50px;"></td>';
 	            trHTML += '<td style="max-width:300px;">' + item.product.title + '</td>';
-	            trHTML += '<td>R$ ' + moneyMask(item.product.price) + '</td>';
+	            trHTML += '<td>R$ ' + item.product.price + '</td>';
 	            trHTML += '<td>' + item.quantity + '</td>';
-	            trHTML += '<td>R$ ' + moneyMask(item.subTotal) + '</td>';
+	            trHTML += '<td>R$ ' + item.subTotal + '</td>';
 	            trHTML += '</tr>';
 	        });
 

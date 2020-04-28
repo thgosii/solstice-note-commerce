@@ -91,10 +91,6 @@
               </div>
               <div class="card-body register-card-body">
                 <h4 class="mb-4">Total: R$ <span id="total"></span></h4>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" id="cbDigital" type="checkbox" autocomplete='off'>
-                  <label class="form-check-label" for="cbDigital">Utilizar saldo digital</label>
-                </div>
                 <div class="form-group">
                   <label for="balance">Valor saldo digital</label>
                   <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital">
@@ -106,10 +102,6 @@
                 <h3 class="card-title">Cartão de crédito</h3>
               </div>
               <div class="card-body register-card-body">
-                <div class="form-check mb-3">
-                  <input class="form-check-input" id="cbCreditCard" type="checkbox" autocomplete='off'>
-                  <label class="form-check-label" for="cbCreditCard">Cartão de crédito</label>
-                </div>
                 <p>Selecione um cartão de crédito cadastrado</p>
                 <div class="form-group">
                   <label for="creditCard">Cartão de crédito</label>
@@ -189,32 +181,6 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
-  $(function () {
-    enable_virtual_input();
-    enable_credit_card_select();
-    $("#cbDigital").click(enable_virtual_input);
-    $("#cbCreditCard").click(enable_credit_card_select);
-  });
-
-  function enable_virtual_input() {
-    enableOrDisableCheckboxes();
-    $("#balance").prop("disabled", !this.checked);
-  }
-
-  function enable_credit_card_select() {
-    enableOrDisableCheckboxes();
-    $("#creditCard").prop("disabled", !this.checked);
-    $("#formCreditCard :input").prop("disabled", !this.checked);
-  }
-
-  function enableOrDisableCheckboxes() {
-    if (!$("#cbDigital").is(":checked") && !$("#cbCreditCard").is(":checked")) {
-      $("#nextStepButton").prop("disabled", true);
-    } else {
-      $("#nextStepButton").prop("disabled", false);
-    }
-  }
-  
   $(document).ready(() => {
 	  $.ajax({
 	      url: '/note-commerce/customer/creditCards?operation=consult&isAsync=true',

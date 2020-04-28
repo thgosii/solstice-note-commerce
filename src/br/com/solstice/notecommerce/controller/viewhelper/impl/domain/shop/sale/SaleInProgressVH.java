@@ -31,7 +31,6 @@ public class SaleInProgressVH implements IViewHelper {
 				Long addressId = Long.valueOf(request.getParameter("address"));
 
 				SaleInProgress saleInProgress = new SaleInProgress();
-				saleInProgress.setBalanceUsage(-1);
 
 				Address address = new Address();
 				address.setId(addressId);
@@ -46,12 +45,15 @@ public class SaleInProgressVH implements IViewHelper {
 				Long creditCardId = null;
 
 				SaleInProgress saleInProgress = new SaleInProgress();
-				saleInProgress.setBalanceUsage(balance);
 
 				if (request.getParameter("balance") != null) {
-					balance = Double.valueOf(request.getParameter("balance"));
-					saleInProgress.setBalanceUsage(balance);
+					try {
+						balance = Double.valueOf(request.getParameter("balance"));
+					} catch (Exception ex) {
+						balance = 0.0;
+					}
 				}
+				saleInProgress.setBalanceUsage(balance);
 
 				if (request.getParameter("creditCard") != null) {
 					creditCardId = Long.valueOf(request.getParameter("creditCard"));
@@ -80,7 +82,7 @@ public class SaleInProgressVH implements IViewHelper {
 		if (operation.equals("save")) {
 			SaleInProgress saleInProgress = (SaleInProgress) result.getEntities().get(0);
 
-			if (saleInProgress.getCreditCard() == null && saleInProgress.getBalanceUsage() == -1.0) {
+			if (saleInProgress.getCreditCard() == null) {
 				response.sendRedirect("/note-commerce/pages/shop/checkout-step-2.jsp");
 			} else {
 				response.sendRedirect("/note-commerce/pages/shop/checkout-step-3.jsp");

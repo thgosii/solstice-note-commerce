@@ -75,6 +75,7 @@ public class SaleShopVH implements IViewHelper {
 
 			if (null == result.getMessage()) {
 				request.getSession().removeAttribute("saleInProgress");
+				request.getSession().removeAttribute("cart");
 				request.getRequestDispatcher("/pages/shop/checkout-finish.jsp").forward(request, response);
 			} else {
 				String[] messages = result.getMessage().trim().split("\n");
