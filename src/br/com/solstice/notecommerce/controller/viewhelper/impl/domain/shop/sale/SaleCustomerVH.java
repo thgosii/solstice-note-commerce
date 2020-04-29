@@ -1,7 +1,6 @@
 package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +11,6 @@ import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
-import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
-import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 

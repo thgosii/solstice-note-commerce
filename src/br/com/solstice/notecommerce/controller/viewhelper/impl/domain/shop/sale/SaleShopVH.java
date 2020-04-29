@@ -2,7 +2,6 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +13,6 @@ import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
-import br.com.solstice.notecommerce.entity.domain.user.User;
-import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class SaleShopVH implements IViewHelper {
 
@@ -64,6 +61,7 @@ public class SaleShopVH implements IViewHelper {
 
 			if (null == result.getMessage()) {
 				request.getSession().removeAttribute("saleInProgress");
+				request.getSession().removeAttribute("cart");
 				request.getRequestDispatcher("/pages/shop/checkout-finish.jsp").forward(request, response);
 			} else {
 				String[] messages = result.getMessage().trim().split("\n");

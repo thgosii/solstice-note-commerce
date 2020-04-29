@@ -41,7 +41,7 @@ public class SaleInProgressSH implements ISessionHelper {
 
 		SaleInProgress sessionSaleInProgress = (SaleInProgress) session.getAttribute("saleInProgress");
 
-		// Set Items
+		// Set items
 		Cart cart = (Cart) session.getAttribute("cart");
 		List<SaleItem> saleItems = new ArrayList<SaleItem>();
 		for (CartItem item : cart.getItems()) {
@@ -50,22 +50,17 @@ public class SaleInProgressSH implements ISessionHelper {
 		sessionSaleInProgress.setItems(saleItems);
 		sessionSaleInProgress.calculateTotal();
 
-		if (saleInProgress.getCreditCard() == null && saleInProgress.getBalanceUsage() == -1.0) {
+		if (saleInProgress.getCreditCard() == null) {
+			// Set address
+			
 			saleInProgress
 					.setAddress((Address) new AddressDAO().consult(saleInProgress.getAddress(), "findById").get(0));
 			sessionSaleInProgress.setAddress(saleInProgress.getAddress());
-		}
-
-		if (saleInProgress.getCreditCard() != null) {
+		} else {
+			// Set credit card and balance usage
 			saleInProgress.setCreditCard(
 					(CreditCard) new CreditCardDAO().consult(saleInProgress.getCreditCard(), "findById").get(0));
 			sessionSaleInProgress.setCreditCard(saleInProgress.getCreditCard());
-		}
-
-		if (saleInProgress.getBalanceUsage() != -1) {
-			if (saleInProgress.getCreditCard() == null) {
-				sessionSaleInProgress.setCreditCard(null);
-			}
 			sessionSaleInProgress.setBalanceUsage(saleInProgress.getBalanceUsage());
 			sessionSaleInProgress.calculateCreditCardUsage();
 		}
