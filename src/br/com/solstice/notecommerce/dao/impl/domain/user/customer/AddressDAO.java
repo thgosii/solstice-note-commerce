@@ -16,11 +16,11 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.address.AddressT
 public class AddressDAO extends AbstractDAO {
 
 	public AddressDAO() {
-		super("adresses", "ads_id");
+		super();
 	}
 
 	public AddressDAO(Connection connection) {
-		super("adresses", "ads_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class AddressDAO extends AbstractDAO {
 
 		Address address = (Address) entity;
 
-		String sql = "INSERT INTO " + table + "(ads_cep, ads_public_place, ads_number, "
+		String sql = "INSERT INTO adresses (ads_cep, ads_public_place, ads_number, "
 				+ "ads_complement, ads_neighbourhood, ads_city, ads_state, ads_type, "
 				+ "ads_cus_id, ads_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -73,7 +73,7 @@ public class AddressDAO extends AbstractDAO {
 
 		Address address = (Address) entity;
 
-		String sql = "UPDATE " + table + " SET `ads_deleted`='1' WHERE `ads_id`=?";
+		String sql = "UPDATE adresses SET `ads_deleted`='1' WHERE `ads_id`=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -104,9 +104,9 @@ public class AddressDAO extends AbstractDAO {
 
 		Address address = (Address) entity;
 
-		String sql = "UPDATE " + table
+		String sql = "UPDATE adresses "
 				+ " SET ads_cep=?, ads_public_place=?, ads_number=?, ads_complement=?, ads_neighbourhood=?, ads_city=?, ads_state=?, ads_type=?, ads_deleted=? WHERE "
-				+ idTable + "=?";
+				+ "ads_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -148,10 +148,10 @@ public class AddressDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * from " + table
+			sql = "SELECT * from adresses"
 					+ " INNER JOIN customers ON adresses.ads_cus_id=customers.cus_id WHERE customers.cus_usr_id=? AND ads_deleted = false";
 		} else if (operation.equals("prepareUpdate") || operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE " + idTable + "=?";
+			sql = "SELECT * from adresses WHERE ads_id=?";
 		}
 
 		List<Entity> adresses = new ArrayList<Entity>();
@@ -169,7 +169,7 @@ public class AddressDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Address currentAddress = new Address();
-				currentAddress.setId(rs.getLong(idTable));
+				currentAddress.setId(rs.getLong("ads_id"));
 				currentAddress.setCep(rs.getString("ads_cep"));
 				currentAddress.setPublicPlace(rs.getString("ads_public_place"));
 				currentAddress.setNumber(rs.getString("ads_number"));

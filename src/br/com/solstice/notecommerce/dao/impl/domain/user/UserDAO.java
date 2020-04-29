@@ -16,11 +16,11 @@ import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 public class UserDAO extends AbstractDAO {
 
 	public UserDAO() {
-		super("users", "usr_id");
+		super();
 	}
 
 	public UserDAO(Connection connection) {
-		super("users", "usr_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class UserDAO extends AbstractDAO {
 
 		User user = (User) entity;
 
-		String sql = "INSERT INTO " + table + "(usr_email, usr_password, usr_role, usr_deleted) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO users (usr_email, usr_password, usr_role, usr_deleted) VALUES (?, ?, ?, ?)";
 
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -80,7 +80,7 @@ public class UserDAO extends AbstractDAO {
 
 		User user = (User) entity;
 
-		String sql = "UPDATE " + table + " SET usr_password=? WHERE " + idTable + "=?";
+		String sql = "UPDATE users SET usr_password=? WHERE usr_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -115,11 +115,11 @@ public class UserDAO extends AbstractDAO {
 
 		String sql = "";
 		if (operation.equals("login")) {
-			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_password=? AND usr_deleted = false";
+			sql = "SELECT * from users WHERE usr_email=? AND usr_password=? AND usr_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE usr_id=? AND usr_deleted = false";
+			sql = "SELECT * from users WHERE usr_id=? AND usr_deleted = false";
 		} else if (operation.equals("existsEmail")) {
-			sql = "SELECT * from " + table + " WHERE usr_email=? AND usr_deleted = false";
+			sql = "SELECT * from users WHERE usr_email=? AND usr_deleted = false";
 		}
 
 		List<Entity> users = new ArrayList<Entity>();
@@ -142,7 +142,7 @@ public class UserDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				User currentUser = new User();
-				currentUser.setId(rs.getLong(idTable));
+				currentUser.setId(rs.getLong("usr_id"));
 				currentUser.setEmail(rs.getString("usr_email"));
 				currentUser.setPassword(rs.getString("usr_password"));
 				currentUser.setRole(rs.getString("usr_role").equals("client") ? UserRole.CLIENT : UserRole.ADMIN);

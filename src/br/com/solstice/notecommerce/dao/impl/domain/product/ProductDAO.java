@@ -17,11 +17,11 @@ import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
 public class ProductDAO extends AbstractDAO {
 
 	public ProductDAO() {
-		super("products", "prd_id");
+		super();
 	}
 
 	public ProductDAO(Connection connection) {
-		super("products", "prd_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ProductDAO extends AbstractDAO {
 
 //		saveOrOverwriteFile(product.getImage());
 
-		String sql = "INSERT INTO " + table + " "
+		String sql = "INSERT INTO products "
 				+ "(`prd_title`, `prd_image_url`, `prd_price`, `prd_description`, `prd_brd_id`, `prd_processor`, `prd_graphics_card`, `prd_ram`, `prd_monitor`, `prd_hd`, `prd_ssd`, `prd_os`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -87,7 +87,7 @@ public class ProductDAO extends AbstractDAO {
 
 		Product product = (Product) entity;
 
-		String sql = "UPDATE " + table + " SET `prd_deleted`='1' WHERE " + idTable + "=?";
+		String sql = "UPDATE products SET `prd_deleted`='1' WHERE prd_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -119,8 +119,8 @@ public class ProductDAO extends AbstractDAO {
 
 //		saveOrOverwriteFile(product.getImage());
 
-		String sql = "UPDATE " + table + " SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? "
-				+ "WHERE " + idTable +"=?";
+		String sql = "UPDATE products SET `prd_title`=?, `prd_image_url`=?, `prd_price`=?, `prd_description`=?, `prd_brd_id`=?, `prd_processor`=?, `prd_graphics_card`=?, `prd_ram`=?, `prd_monitor`=?, `prd_hd`=?, `prd_ssd`=?, `prd_os`=? "
+				+ "WHERE prd_id=?";
 		try {
 			pstm = connection.prepareStatement(sql);
 
@@ -171,9 +171,9 @@ public class ProductDAO extends AbstractDAO {
 		}
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * from " + table + " WHERE prd_deleted = false";
+			sql = "SELECT * from products WHERE prd_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND prd_deleted = false";
+			sql = "SELECT * from products WHERE prd_id = ? AND prd_deleted = false";
 		}
 
 		List<Entity> products = new ArrayList<Entity>();
@@ -194,7 +194,7 @@ public class ProductDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Product currentProduct = new Product();
-				currentProduct.setId(rs.getLong(idTable));
+				currentProduct.setId(rs.getLong("prd_id"));
 				currentProduct.setTitle(rs.getString("prd_title"));
 
 				ProductFile productFile = new ProductFile();

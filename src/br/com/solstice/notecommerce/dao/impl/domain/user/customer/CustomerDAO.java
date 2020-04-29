@@ -19,11 +19,11 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.Gender;
 public class CustomerDAO extends AbstractDAO {
 
 	public CustomerDAO() {
-		super("customers", "cus_id");
+		super();
 	}
 
 	public CustomerDAO(Connection connection) {
-		super("customers", "cus_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class CustomerDAO extends AbstractDAO {
 
 		Customer customer = (Customer) entity;
 
-		String sql = "INSERT INTO " + table
+		String sql = "INSERT INTO customers "
 				+ "(cus_name, cus_cpf, cus_date_of_birth, cus_phone, cus_gender, cus_usr_id, cus_deleted) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		User user = customer.getUser();
@@ -97,9 +97,9 @@ public class CustomerDAO extends AbstractDAO {
 
 		Customer customer = (Customer) entity;
 
-		String sql = "UPDATE " + table
-				+ " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=?, cus_balance=? WHERE " + idTable
-				+ "=?";
+		String sql = "UPDATE customers "
+				+ " SET cus_name=?, cus_date_of_birth=?, cus_gender=?, cus_phone=?, cus_balance=? WHERE "
+				+ "cus_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -143,9 +143,9 @@ public class CustomerDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * from " + table + " WHERE cus_usr_id=? AND cus_deleted = false";
+			sql = "SELECT * from customers WHERE cus_usr_id=? AND cus_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE cus_id=? AND cus_deleted = false";
+			sql = "SELECT * from customers WHERE cus_id=? AND cus_deleted = false";
 		}
 
 		List<Entity> customers = new ArrayList<Entity>();
@@ -169,7 +169,7 @@ public class CustomerDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Customer currentCustomer = new Customer();
-				currentCustomer.setId(rs.getLong(idTable));
+				currentCustomer.setId(rs.getLong("cus_id"));
 				currentCustomer.setName(rs.getString("cus_name"));
 				currentCustomer.setCpf(rs.getString("cus_cpf"));
 				currentCustomer.setDateOfBirth((rs.getDate("cus_date_of_birth").toLocalDate()));

@@ -15,11 +15,11 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.Cred
 public class CreditCardDAO extends AbstractDAO {
 
 	public CreditCardDAO() {
-		super("credit_cards", "crd_id");
+		super();
 	}
 
 	public CreditCardDAO(Connection connection) {
-		super("credit_cards", "crd_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class CreditCardDAO extends AbstractDAO {
 
 		CreditCard creditCard = (CreditCard) entity;
 
-		String sql = "INSERT INTO " + table
+		String sql = "INSERT INTO credit_cards "
 				+ "(crd_number, crd_printed_name, crd_security_code, crd_cus_id, crd_deleted) VALUES (?, ?, ?, ?, ?)";
 
 		try {
@@ -68,7 +68,7 @@ public class CreditCardDAO extends AbstractDAO {
 
 		CreditCard creditCard = (CreditCard) entity;
 
-		String sql = "UPDATE " + table + " SET `crd_deleted`='1' WHERE `crd_id`=?";
+		String sql = "UPDATE credit_cards SET `crd_deleted`='1' WHERE `crd_id`=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -101,8 +101,8 @@ public class CreditCardDAO extends AbstractDAO {
 
 		String sql = "";
 
-		sql = "UPDATE " + table + " SET crd_number=?, crd_printed_name=?, crd_security_code=?, crd_deleted=? WHERE "
-				+ idTable + "=?";
+		sql = "UPDATE credit_cards SET crd_number=?, crd_printed_name=?, crd_security_code=?, crd_deleted=? WHERE "
+				+ "crd_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -139,9 +139,9 @@ public class CreditCardDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("prepareUpdate") || operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE " + idTable + "=?";
+			sql = "SELECT * from credit_cards WHERE crd_id=?";
 		} else if (operation.equals("consult")) {
-			sql = "SELECT * from " + table
+			sql = "SELECT * from credit_cards"
 					+ " INNER JOIN customers ON credit_cards.crd_cus_id=customers.cus_id WHERE customers.cus_usr_id=? AND crd_deleted=false";
 		}
 
@@ -160,7 +160,7 @@ public class CreditCardDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				CreditCard currentCreditCard = new CreditCard();
-				currentCreditCard.setId(rs.getLong(idTable));
+				currentCreditCard.setId(rs.getLong("crd_id"));
 				currentCreditCard.setNumber(rs.getString("crd_number"));
 				currentCreditCard.setSecurityCode(rs.getString("crd_security_code"));
 				currentCreditCard.setPrintedName(rs.getString("crd_printed_name"));

@@ -8,19 +8,13 @@ import br.com.solstice.notecommerce.dao.connections.MySQLConnection;
 public abstract class AbstractDAO implements IDAO {
 
 	protected Connection connection;
-	protected String table;
-	protected String idTable;
 	private final boolean shouldManageConnection;
 
-	public AbstractDAO(String table, String idtable) {
-		this.table = table;
-		this.idTable = idtable;
+	public AbstractDAO() {
 		this.shouldManageConnection = true;
 	}
 
-	public AbstractDAO(String table, String idtable, Connection connection) {
-		this.table = table;
-		this.idTable = idtable;
+	public AbstractDAO(Connection connection) {
 		this.connection = connection;
 		this.shouldManageConnection = false;
 	}

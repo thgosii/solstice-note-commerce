@@ -25,11 +25,11 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.Cred
 public class SaleDAO extends AbstractDAO {
 
 	public SaleDAO() {
-		super("sales", "sal_id");
+		super();
 	}
 
-	public SaleDAO(String table, String idtable, Connection connection) {
-		super("sales", "sal_id", connection);
+	public SaleDAO(Connection connection) {
+		super(connection);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class SaleDAO extends AbstractDAO {
 
 		Sale sale = (Sale) entity;
 
-		String sql = "INSERT INTO " + table
+		String sql = "INSERT INTO sales "
 				+ "(sal_date_time, sal_balance_usage, sal_ads_id, sal_crd_id, sal_cus_id, sal_status, sal_identify_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -70,7 +70,7 @@ public class SaleDAO extends AbstractDAO {
 			if (idSale != 0) {
 				sale.setId(idSale);
 
-				SaleItemDAO saleItemDAO = new SaleItemDAO("", "", connection);
+				SaleItemDAO saleItemDAO = new SaleItemDAO(connection);
 
 				for (SaleItem item : sale.getItems()) {
 					item.setSale(sale);
@@ -164,7 +164,7 @@ public class SaleDAO extends AbstractDAO {
 				SaleItem saleItemAux = new SaleItem();
 				saleItemAux.setSale(currentSale);
 
-				List<SaleItem> saleItems = new SaleItemDAO("", "", connection).consult(saleItemAux, "consult").stream()
+				List<SaleItem> saleItems = new SaleItemDAO(connection).consult(saleItemAux, "consult").stream()
 						.map(saleItem -> (SaleItem) saleItem).collect(Collectors.toList());
 				
 				currentSale.setItems(saleItems);

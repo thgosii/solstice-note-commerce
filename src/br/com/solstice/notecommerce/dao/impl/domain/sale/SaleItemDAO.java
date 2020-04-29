@@ -16,12 +16,12 @@ import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 
 public class SaleItemDAO extends AbstractDAO {
 
-	public SaleItemDAO(String table, String idtable) {
-		super("", "");
+	public SaleItemDAO() {
+		super();
 	}
 
-	public SaleItemDAO(String table, String idtable, Connection connection) {
-		super("", "", connection);
+	public SaleItemDAO(Connection connection) {
+		super(connection);
 	}
 
 	@Override

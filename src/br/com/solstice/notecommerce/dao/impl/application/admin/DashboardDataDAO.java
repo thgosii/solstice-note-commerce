@@ -21,11 +21,11 @@ import br.com.solstice.notecommerce.entity.domain.product.Product;
 public class DashboardDataDAO extends AbstractDAO {
 
 	public DashboardDataDAO() {
-		super(null, null);
+		super();
 	}
 
 	public DashboardDataDAO(Connection connection) {
-		super(null, null, connection);
+		super(connection);
 	}
 
 	@Override

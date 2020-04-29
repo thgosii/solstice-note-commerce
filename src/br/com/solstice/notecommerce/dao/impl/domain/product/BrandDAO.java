@@ -14,11 +14,11 @@ import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 public class BrandDAO extends AbstractDAO {
 
 	public BrandDAO() {
-		super("brands", "brd_id");
+		super();
 	}
 
 	public BrandDAO(Connection connection) {
-		super("brands", "brd_id", connection);
+		super(connection);
 	}
 
 	@Override
@@ -49,9 +49,9 @@ public class BrandDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * from " + table + " WHERE brd_deleted = false";
+			sql = "SELECT * from brands WHERE brd_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from " + table + " WHERE " + idTable + " = ? AND brd_deleted = false";
+			sql = "SELECT * from brands WHERE brd_id = ? AND brd_deleted = false";
 		}
 		List<Entity> brands = new ArrayList<Entity>();
 
@@ -68,7 +68,7 @@ public class BrandDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Brand currentBrand = new Brand();
-				currentBrand.setId(rs.getLong(idTable));
+				currentBrand.setId(rs.getLong("brd_id"));
 				currentBrand.setName(rs.getString("brd_name"));
 
 				brands.add(currentBrand);
