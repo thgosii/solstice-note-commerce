@@ -64,22 +64,22 @@
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
               <!-- <span class="dropdown-header">Meu nome</span> -->
               <a href="/note-commerce/customer?operation=consult" class="dropdown-item">
-                <i class="fas fa-user mr-2"></i> Meus Dados
+                <i class="fas fa-user mr-2"></i> Meus dados
               </a>
               <a href="/note-commerce/customer/adresses?operation=consult" class="dropdown-item">
-                <i class="fas fa-address-card mr-2"></i> Meus Endereços
+                <i class="fas fa-address-card mr-2"></i> Meus endereços
               </a>
               <a href="/note-commerce/customer/creditCards?operation=consult" class="dropdown-item">
-                <i class="fas fa-credit-card mr-2"></i> Meus Cartões
+                <i class="fas fa-credit-card mr-2"></i> Meus cartões
               </a>
               <a href="/note-commerce/customer/sales?operation=findByCustomer" class="dropdown-item">
-                <i class="fas fa-box-open mr-2"></i> Minhas Compras
+                <i class="fas fa-box-open mr-2"></i> Minhas compras
               </a>
               <a href="/note-commerce/customer/trades?type=exchange&operation=consult" class="dropdown-item">
-                <i class="fas fa-exchange-alt mr-2"></i> Minhas Trocas
+                <i class="fas fa-exchange-alt mr-2"></i> Minhas trocas
               </a>
               <a href="/note-commerce/customer/trades?type=devolution&operation=consult" class="dropdown-item">
-                <i class="fas fa-hand-holding-usd mr-2"></i> Minhas Devoluções
+                <i class="fas fa-hand-holding-usd mr-2"></i> Minhas devoluções
               </a>
               <a href="/note-commerce/logout" class="dropdown-item dropdown-footer text-left">
                 <i class="fas fa-sign-out-alt mr-2"></i>
