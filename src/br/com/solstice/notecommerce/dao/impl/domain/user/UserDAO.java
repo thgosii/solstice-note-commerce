@@ -14,6 +14,8 @@ import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 
 public class UserDAO extends AbstractDAO {
+	
+	private static final String PASSWORD_KEY = "The cake is a lie";
 
 	public UserDAO() {
 		super();
@@ -30,15 +32,16 @@ public class UserDAO extends AbstractDAO {
 
 		User user = (User) entity;
 
-		String sql = "INSERT INTO users (usr_email, usr_password, usr_role, usr_deleted) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO users (usr_email, usr_password, usr_role, usr_deleted) VALUES (?, hex(aes_encrypt(?, ?)), ?, ?)";
 
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setString(1, user.getEmail());
 			pstm.setString(2, user.getPassword());
-			pstm.setString(3, user.getRole().toString().toLowerCase());
-			pstm.setBoolean(4, user.isDeleted());
+			pstm.setString(3, PASSWORD_KEY);
+			pstm.setString(4, user.getRole().toString().toLowerCase());
+			pstm.setBoolean(5, user.isDeleted());
 
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
@@ -80,13 +83,14 @@ public class UserDAO extends AbstractDAO {
 
 		User user = (User) entity;
 
-		String sql = "UPDATE users SET usr_password=? WHERE usr_id=?";
+		String sql = "UPDATE users SET usr_password=hex(aes_encrypt(?, ?)) WHERE usr_id=?";
 
 		try {
 			pstm = connection.prepareStatement(sql);
 
 			pstm.setString(1, user.getPassword());
-			pstm.setLong(2, user.getId());
+			pstm.setString(2, PASSWORD_KEY);
+			pstm.setLong(3, user.getId());
 
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 
@@ -115,7 +119,8 @@ public class UserDAO extends AbstractDAO {
 
 		String sql = "";
 		if (operation.equals("login")) {
-			sql = "SELECT * from users WHERE usr_email=? AND usr_password=? AND usr_deleted = false";
+			sql = "SELECT usr_id, usr_email, cast(aes_decrypt(unhex(usr_password), ?) as char) usr_password, usr_role, usr_deleted"
+					+ " from users WHERE usr_email=? AND usr_password=hex(aes_encrypt(?, ?)) AND usr_deleted = false";
 		} else if (operation.equals("findById")) {
 			sql = "SELECT * from users WHERE usr_id=? AND usr_deleted = false";
 		} else if (operation.equals("existsEmail")) {
@@ -128,8 +133,10 @@ public class UserDAO extends AbstractDAO {
 			pstm = connection.prepareStatement(sql);
 
 			if (operation.equals("login")) {
-				pstm.setString(1, user.getEmail());
-				pstm.setString(2, user.getPassword());
+				pstm.setString(1, PASSWORD_KEY);
+				pstm.setString(2, user.getEmail());
+				pstm.setString(3, user.getPassword());
+				pstm.setString(4, PASSWORD_KEY);
 			} else if (operation.equals("findById")) {
 				pstm.setLong(1, user.getId());
 			} else if (operation.equals("existsEmail")) {
