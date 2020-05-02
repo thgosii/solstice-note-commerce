@@ -136,11 +136,11 @@
                 </div>
                 <div class="form-group">
                   <label for="password">Senha<span class="text-danger text-bold"> *</span></label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
+                  <input type="password" class="form-control" name="password" id="password" maxlength="50" placeholder="Senha">
                 </div>
                 <div class="form-group">
                   <label for="confirmPassword">Confirmar senha<span class="text-danger text-bold"> *</span></label>
-                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" maxlength="50"
                     placeholder="Insira a senha novamente">
                 </div>
                 <div class="mb-3">

@@ -103,12 +103,12 @@
           </div>
           <div class="form-group">
             <label for="password">Senha<span class="text-danger text-bold"> *</span></label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Senha" required>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Senha" maxlength="50" required>
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirmar senha<span class="text-danger text-bold"> *</span></label>
             <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
-              placeholder="Insira a senha novamente" required>
+              placeholder="Insira a senha novamente" maxlength="50" required>
           </div>
           <div class="mb-3">
             <span>A senha deve conter: 8 caracteres, uma letra minúscula e uma maiúscula, um caractere especial ou um
