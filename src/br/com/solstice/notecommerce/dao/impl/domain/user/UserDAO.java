@@ -122,9 +122,9 @@ public class UserDAO extends AbstractDAO {
 			sql = "SELECT usr_id, usr_email, cast(aes_decrypt(unhex(usr_password), ?) as char) usr_password, usr_role, usr_deleted"
 					+ " from users WHERE usr_email=? AND usr_password=hex(aes_encrypt(?, ?)) AND usr_deleted = false";
 		} else if (operation.equals("findById")) {
-			sql = "SELECT * from users WHERE usr_id=? AND usr_deleted = false";
+			sql = "SELECT usr_id, usr_email, cast(aes_decrypt(unhex(usr_password), ?) as char) usr_password, usr_role, usr_deleted from users WHERE usr_id=? AND usr_deleted = false";
 		} else if (operation.equals("existsEmail")) {
-			sql = "SELECT * from users WHERE usr_email=? AND usr_deleted = false";
+			sql = "SELECT usr_id, usr_email, cast(aes_decrypt(unhex(usr_password), ?) as char) usr_password, usr_role, usr_deleted from users WHERE usr_email=? AND usr_deleted = false";
 		}
 
 		List<Entity> users = new ArrayList<Entity>();
@@ -138,9 +138,11 @@ public class UserDAO extends AbstractDAO {
 				pstm.setString(3, user.getPassword());
 				pstm.setString(4, PASSWORD_KEY);
 			} else if (operation.equals("findById")) {
-				pstm.setLong(1, user.getId());
+				pstm.setString(1, PASSWORD_KEY);
+				pstm.setLong(2, user.getId());
 			} else if (operation.equals("existsEmail")) {
-				pstm.setString(1, user.getEmail());
+				pstm.setString(1, PASSWORD_KEY);
+				pstm.setString(2, user.getEmail());
 			}
 
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
