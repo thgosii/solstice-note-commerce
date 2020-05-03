@@ -27,8 +27,8 @@ public class Sale extends DomainEntity {
 	private LocalDateTime dateTime;
 	private SaleStatus status;
 	private String identifyNumber;
-
 	private boolean saveAddressForNext;
+	private boolean saveCreditCardForNext;
 
 	public static String generateIdentifyNumber(Long userId) {
 		String millis = String.valueOf(System.currentTimeMillis());

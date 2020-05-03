@@ -50,13 +50,21 @@ public class SaleDAO extends AbstractDAO {
 			}
 
 			address.setId(new AddressDAO().save(address));
+			
+			CreditCard creditCard = sale.getCreditCard();
+
+			if (!sale.isSaveCreditCardForNext()) {
+				creditCard.setDeleted(true);
+			}
+
+			creditCard.setId(new CreditCardDAO().save(creditCard));
 
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setTimestamp(1, Timestamp.valueOf(sale.getDateTime()));
 			pstm.setDouble(2, sale.getBalanceUsage());
 			pstm.setLong(3, address.getId());
-			pstm.setLong(4, sale.getCreditCard().getId());
+			pstm.setLong(4, creditCard.getId());
 			pstm.setLong(5, sale.getCustomer().getId());
 			pstm.setString(6, sale.getStatus().toString());
 			pstm.setString(7, sale.getIdentifyNumber());

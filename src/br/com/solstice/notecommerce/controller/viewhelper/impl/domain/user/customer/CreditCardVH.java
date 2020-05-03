@@ -222,6 +222,7 @@ public class CreditCardVH implements IViewHelper {
 						creditCardDetailsJSON.put("customerId", creditCard.getCustomer().getId());
 						creditCardDetailsJSON.put("printedName", creditCard.getPrintedName());
 						creditCardDetailsJSON.put("securityCode", creditCard.getSecurityCode());
+						creditCardDetailsJSON.put("isDeleted", creditCard.isDeleted());
 						
 						jsonArray.put(creditCardDetailsJSON);
 					}

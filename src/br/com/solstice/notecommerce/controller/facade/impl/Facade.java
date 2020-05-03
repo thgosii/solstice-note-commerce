@@ -32,6 +32,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.Validat
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateBalance;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidatePayment;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleAddressData;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleCreditCardData;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleData;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToSaveAlreadyExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToUpdateExists;
@@ -217,6 +218,7 @@ public class Facade implements IFacade {
 		saleBusinessRulesSave.add(new ValidateExistsAddress());
 		saleBusinessRulesSave.add(new ValidateExistsCreditCard());
 		saleBusinessRulesSave.add(new ValidateSaleAddressData());
+		saleBusinessRulesSave.add(new ValidateSaleCreditCardData());
 
 		List<IStrategy> saleBusinessRulesUpdate = new ArrayList<IStrategy>();
 		// saleBusinessRulesUpdate.add();

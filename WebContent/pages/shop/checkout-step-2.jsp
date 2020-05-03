@@ -99,10 +99,9 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Cartão de crédito</h3>
+                <h3 class="card-title">Selecione um Cartão de crédito</h3>
               </div>
               <div class="card-body register-card-body">
-                <p>Selecione um cartão de crédito cadastrado</p>
                 <div class="form-group">
                   <label for="creditCard">Cartão de crédito</label>
                   <select class="form-control" id="creditCard" name="creditCard">
@@ -112,6 +111,56 @@
               </div>
             </div>
 	      </form>
+	      <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Insira um Cartão de crédito</h3>
+            </div>
+            <div class="card-body register-card-body">
+              <form action="/note-commerce/shop/saleInProgress" method="POST">
+                <input type="hidden" name="operation" value="save">
+                <input type="hidden" name="step" value="2">
+                <div class="row">
+                  <div class="col col-4">
+                    <div class="form-group">
+                      <label for="cc-brand">Bandeira<span class="text-danger text-bold"> *</span></label>
+                      <select class="form-control" id="cc-brand" name="cc-brand" required>
+                        <option value="VISA">Visa</option>
+                        <option value="MASTER_CARD">Master Card</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col col-8">
+                    <div class="form-group">
+                      <label for="number">Número do cartão<span class="text-danger text-bold"> *</span></label>
+                      <input type="text" class="form-control" id="cc-number" name="number" placeholder="Número do cartão" pattern="\d+" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-8">
+                    <div class="form-group">
+                      <label for="printedName">Nome impresso no cartão<span class="text-danger text-bold">
+                          *</span></label>
+                      <input type="text" class="form-control" id="cc-printedName" name="printedName" placeholder="Nome impresso no cartão" maxlength="100" required>
+                    </div>
+                  </div>
+                  <div class="col col-4">
+                    <div class="form-group">
+                      <label for="securityCode">Código de segurança (CVV)<span class="text-danger text-bold">
+                          *</span></label>
+                      <input type="password" class="form-control" id="cc-securityCode" name="securityCode" placeholder="Código de segurança"
+                        pattern="\d{3}" maxlength="3" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                	<input type="checkbox" id="saveForNext" name="saveForNext">
+                	<label for="saveForNext">Salvar para próximas compras</label>
+                </div>
+                <button type="submit" class="btn btn-primary float-right" id="nextStepButton">Próximo</button>
+              </form>
+            </div>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
@@ -170,7 +219,7 @@
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
-
+<script src="/note-commerce/static/custom/customer/creditcard/js/brand-regex.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
@@ -188,8 +237,10 @@
 	      dataType: 'json',
 	      success: function (json) {
 	        $.each(json, function (i, value) {
-	          let creditCardLabel = value.number + ", " + value.printedName;
-	          $('#creditCard').append($(`<option>`).text(creditCardLabel).attr('value', value.id));
+	          if (!value.isDeleted) {
+	          	let creditCardLabel = value.number + ", " + value.printedName;
+	          	$('#creditCard').append($(`<option>`).text(creditCardLabel).attr('value', value.id));
+	          }
 	        });
 	      }
 	  });

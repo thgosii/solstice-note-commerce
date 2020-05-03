@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CreditCardDAO extends AbstractDAO {
 				+ "(crd_number, crd_printed_name, crd_security_code, crd_cus_id, crd_deleted) VALUES (?, ?, ?, ?, ?)";
 
 		try {
-			pstm = connection.prepareStatement(sql);
+			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setString(1, creditCard.getNumber());
 			pstm.setString(2, creditCard.getPrintedName());
@@ -47,6 +48,16 @@ public class CreditCardDAO extends AbstractDAO {
 			pstm.setBoolean(5, creditCard.isDeleted());
 
 			pstm.execute();
+			
+			ResultSet rs = pstm.getGeneratedKeys();
+
+			long idCreditCard = 0;
+
+			if (rs.next()) {
+				idCreditCard = rs.getLong(1);
+			}
+			
+			return idCreditCard;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -142,7 +153,7 @@ public class CreditCardDAO extends AbstractDAO {
 			sql = "SELECT * from credit_cards WHERE crd_id=?";
 		} else if (operation.equals("consult")) {
 			sql = "SELECT * from credit_cards"
-					+ " INNER JOIN customers ON credit_cards.crd_cus_id=customers.cus_id WHERE customers.cus_usr_id=? AND crd_deleted=false";
+					+ " INNER JOIN customers ON credit_cards.crd_cus_id=customers.cus_id WHERE customers.cus_usr_id=?";
 		}
 
 		List<Entity> creditCards = new ArrayList<Entity>();

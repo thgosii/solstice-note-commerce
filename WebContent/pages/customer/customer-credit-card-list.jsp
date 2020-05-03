@@ -95,47 +95,48 @@
             </thead>
             <tbody>
               <c:forEach var="creditCard" items="${requestScope.creditCards}" varStatus="loop">
-
-                <div class="modal fade" id="removeModal_${creditCard.id}" tabindex="-1" role="dialog"
-                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Remover Cartão</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        Deseja realmente remover esse cartão de crédito?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger" form="removeForm_${creditCard.id}">Remover</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <tr>
-                  <td>${creditCard.number}</td>
-                  <td>${creditCard.securityCode}</td>
-                  <td>${creditCard.printedName}</td>
-                  <td>
-                    <a href="/note-commerce/customer/creditCards?operation=prepareUpdate&id=${creditCard.id}"
-                      class="btn btn-primary">
-                      Alterar
-                    </a>
-                  </td>
-                  <td>
-                    <form id="removeForm_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
-                      <input type="hidden" name="operation" value="remove">
-                      <input type="hidden" name="id" value="${creditCard.id}">
-                      <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#removeModal_${creditCard.id}">Remover</button>
-                    </form>
-                  </td>
-                </tr>
+				<c:if test="${creditCard.deleted == false}">
+	                <div class="modal fade" id="removeModal_${creditCard.id}" tabindex="-1" role="dialog"
+	                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+	                  <div class="modal-dialog" role="document">
+	                    <div class="modal-content">
+	                      <div class="modal-header">
+	                        <h5 class="modal-title" id="exampleModalLabel">Remover Cartão</h5>
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+	                          <span aria-hidden="true">&times;</span>
+	                        </button>
+	                      </div>
+	                      <div class="modal-body">
+	                        Deseja realmente remover esse cartão de crédito?
+	                      </div>
+	                      <div class="modal-footer">
+	                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+	                        <button type="submit" class="btn btn-danger" form="removeForm_${creditCard.id}">Remover</button>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+	
+	                <tr>
+	                  <td>${creditCard.number}</td>
+	                  <td>${creditCard.securityCode}</td>
+	                  <td>${creditCard.printedName}</td>
+	                  <td>
+	                    <a href="/note-commerce/customer/creditCards?operation=prepareUpdate&id=${creditCard.id}"
+	                      class="btn btn-primary">
+	                      Alterar
+	                    </a>
+	                  </td>
+	                  <td>
+	                    <form id="removeForm_${creditCard.id}" action="/note-commerce/customer/creditCards" method="POST">
+	                      <input type="hidden" name="operation" value="remove">
+	                      <input type="hidden" name="id" value="${creditCard.id}">
+	                      <button type="button" class="btn btn-danger" data-toggle="modal"
+	                        data-target="#removeModal_${creditCard.id}">Remover</button>
+	                    </form>
+	                  </td>
+	                </tr>
+                </c:if>
               </c:forEach>
             </tbody>
           </table>

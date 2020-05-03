@@ -148,10 +148,10 @@ public class SaleInProgressVH implements IViewHelper {
 			}
 			case 2: {
 				// Save Credit Card
-				double balance = 0.0;
-				Long creditCardId = null;
+				CreditCard creditCard = new CreditCard();
 
-				SaleInProgress saleInProgress = new SaleInProgress();
+				double balance = 0.0;
+				long creditCardId = 0;
 
 				if (request.getParameter("balance") != null) {
 					try {
@@ -160,16 +160,64 @@ public class SaleInProgressVH implements IViewHelper {
 						balance = 0.0;
 					}
 				}
-				saleInProgress.setBalanceUsage(balance);
 
 				if (request.getParameter("creditCard") != null) {
 					creditCardId = Long.valueOf(request.getParameter("creditCard"));
+				} else {
+					String number = "";
+					if (null != request.getParameter("number")) {
+						try {
+							number = request.getParameter("number");
+						} catch (Exception ex) {
+						}
+					}
 
-					CreditCard creditCard = new CreditCard();
-					creditCard.setId(creditCardId);
+					String securityCode = "";
+					if (null != request.getParameter("securityCode")) {
+						try {
+							securityCode = request.getParameter("securityCode");
+						} catch (Exception ex) {
+						}
+					}
 
-					saleInProgress.setCreditCard(creditCard);
+					String printedName = "";
+					if (null != request.getParameter("printedName")) {
+						try {
+							printedName = request.getParameter("printedName");
+						} catch (Exception ex) {
+						}
+					}
+
+					creditCard.setNumber(number);
+					creditCard.setSecurityCode(securityCode);
+					creditCard.setPrintedName(printedName);
+
+					Customer customer = new Customer();
+
+					User loggedUser = (User) request.getSession().getAttribute("loggedUser");
+					Long customerUserId = loggedUser.getId();
+
+					User user = new User();
+					user.setId(customerUserId);
+
+					customer.setUser(user);
+
+					creditCard.setCustomer(customer);
 				}
+
+				SaleInProgress saleInProgress = new SaleInProgress();
+
+				boolean saveForNext = request.getParameter("saveForNext") != null ? true : false;
+
+				saleInProgress.setSaveCreditCardForNext(saveForNext);
+
+				if (creditCardId != 0) {
+					creditCard.setId(creditCardId);
+				}
+
+				saleInProgress.setBalanceUsage(balance);
+
+				saleInProgress.setCreditCard(creditCard);
 
 				return saleInProgress;
 			}
