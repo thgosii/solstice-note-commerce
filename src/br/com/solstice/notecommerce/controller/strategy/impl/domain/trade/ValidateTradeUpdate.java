@@ -9,12 +9,16 @@ public class ValidateTradeUpdate implements IStrategy {
 	@Override
 	public String process(Entity entity) {
 		Trade trade = (Trade) entity;
+		StringBuilder sb = new StringBuilder();
 		
 		if (trade.getId() == null) {
-			return "Troca não especificada";
+			sb.append("Troca não especificada\n");
 		}
-		
-		return null;
+		if (trade.getType() == null) {
+			sb.append("Tipo de troca não especificado\n");
+		}
+
+		return sb.toString().trim().isEmpty() ? null : sb.toString().trim();
 	}
 
 }

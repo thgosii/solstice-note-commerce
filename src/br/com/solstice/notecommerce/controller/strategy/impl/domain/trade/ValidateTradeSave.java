@@ -20,6 +20,9 @@ public class ValidateTradeSave implements IStrategy {
 		if (trade.getSaleItem().getProduct().getId() == null) {
 			sb.append("É necessario especificar o produto a ser trocado\n");
 		}
+		if (trade.getType() == null) {
+			sb.append("Tipo de troca não especificado\n");
+		}
 		
 		return sb.toString().trim().isEmpty() ? null : sb.toString().trim();
 	}

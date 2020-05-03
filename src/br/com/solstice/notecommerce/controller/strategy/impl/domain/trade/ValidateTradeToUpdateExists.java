@@ -25,7 +25,7 @@ public class ValidateTradeToUpdateExists extends AbstractStrategy {
 		
 		List<Entity> listEntities = tradeDAO.consult(trade, "consult");
 		if (listEntities.size() == 0) {
-			return "Troca inválida";
+			return "Troca ou devolução inválido";
 		}
 		
 		return null;
