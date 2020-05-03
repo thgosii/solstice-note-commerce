@@ -324,6 +324,7 @@ public class AddressVH implements IViewHelper {
 						addressDetailsJSON.put("number", address.getNumber());
 						addressDetailsJSON.put("type", address.getType());
 						addressDetailsJSON.put("customerId", address.getCustomer().getId());
+						addressDetailsJSON.put("isDeleted", address.isDeleted());
 						jsonArray.put(addressDetailsJSON);
 					}
 

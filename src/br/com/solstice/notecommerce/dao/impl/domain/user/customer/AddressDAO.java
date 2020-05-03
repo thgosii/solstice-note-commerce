@@ -149,7 +149,7 @@ public class AddressDAO extends AbstractDAO {
 
 		if (operation.equals("consult")) {
 			sql = "SELECT * from adresses"
-					+ " INNER JOIN customers ON adresses.ads_cus_id=customers.cus_id WHERE customers.cus_usr_id=? AND ads_deleted = false";
+					+ " INNER JOIN customers ON adresses.ads_cus_id=customers.cus_id WHERE customers.cus_usr_id=?";
 		} else if (operation.equals("prepareUpdate") || operation.equals("findById")) {
 			sql = "SELECT * from adresses WHERE ads_id=?";
 		}

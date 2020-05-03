@@ -100,60 +100,62 @@
             </thead>
             <tbody>
               <c:forEach var="address" items="${requestScope.adresses}" varStatus="loop">
-                <div class="modal fade" id="removeModal_${address.id}" tabindex="-1" role="dialog"
-                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Remover Endereço</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        Deseja realmente remover esse endereço?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger" form="removeForm_${address.id}">Remover</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <tr>
-                  <td>${address.cep}</td>
-                  <td>${address.publicPlace}</td>
-                  <td>${address.complement}</td>
-                  <td>${address.number}</td>
-                  <td>${address.neighbourhood}</td>
-                  <td>${address.city}</td>
-                  <td>${address.state}</td>
-                  <c:choose>
-                    <c:when test="${address.type eq 'SHIPPING'}">
-                      <td>Entrega</td>
-                    </c:when>
-                    <c:when test="${address.type eq 'BILLING'}">
-                      <td>Cobrança</td>
-                    </c:when>
-                    <c:otherwise>
-                      <td>Entrega e cobrança</td>
-                    </c:otherwise>
-                  </c:choose>
-                  <td>
-                    <a href="/note-commerce/customer/adresses?operation=prepareUpdate&id=${address.id}"
-                      class="btn btn-primary">
-                      Alterar
-                    </a>
-                  </td>
-                  <td>
-                    <form id="removeForm_${address.id}" action="adresses" method="POST">
-                      <input type="hidden" name="operation" value="remove">
-                      <input type="hidden" name="id" value="${address.id}">
-                      <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#removeModal_${address.id}">Remover</button>
-                    </form>
-                  </td>
-                </tr>
+                <c:if test="${address.deleted == false}">
+	                <div class="modal fade" id="removeModal_${address.id}" tabindex="-1" role="dialog"
+	                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+	                  <div class="modal-dialog" role="document">
+	                    <div class="modal-content">
+	                      <div class="modal-header">
+	                        <h5 class="modal-title" id="exampleModalLabel">Remover Endereço</h5>
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+	                          <span aria-hidden="true">&times;</span>
+	                        </button>
+	                      </div>
+	                      <div class="modal-body">
+	                        Deseja realmente remover esse endereço?
+	                      </div>
+	                      <div class="modal-footer">
+	                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+	                        <button type="submit" class="btn btn-danger" form="removeForm_${address.id}">Remover</button>
+	                      </div>
+	                    </div>
+	                  </div>
+	                </div>
+	                <tr>
+	                  <td>${address.cep}</td>
+	                  <td>${address.publicPlace}</td>
+	                  <td>${address.complement}</td>
+	                  <td>${address.number}</td>
+	                  <td>${address.neighbourhood}</td>
+	                  <td>${address.city}</td>
+	                  <td>${address.state}</td>
+	                  <c:choose>
+	                    <c:when test="${address.type eq 'SHIPPING'}">
+	                      <td>Entrega</td>
+	                    </c:when>
+	                    <c:when test="${address.type eq 'BILLING'}">
+	                      <td>Cobrança</td>
+	                    </c:when>
+	                    <c:otherwise>
+	                      <td>Entrega e cobrança</td>
+	                    </c:otherwise>
+	                  </c:choose>
+	                  <td>
+	                    <a href="/note-commerce/customer/adresses?operation=prepareUpdate&id=${address.id}"
+	                      class="btn btn-primary">
+	                      Alterar
+	                    </a>
+	                  </td>
+	                  <td>
+	                    <form id="removeForm_${address.id}" action="adresses" method="POST">
+	                      <input type="hidden" name="operation" value="remove">
+	                      <input type="hidden" name="id" value="${address.id}">
+	                      <button type="button" class="btn btn-danger" data-toggle="modal"
+	                        data-target="#removeModal_${address.id}">Remover</button>
+	                    </form>
+	                  </td>
+	                </tr>
+                </c:if>
               </c:forEach>
             </tbody>
           </table>

@@ -197,8 +197,10 @@
       dataType: 'json',
       success: function (json) {
         $.each(json, function (i, value) {
-          let addressLabel = value.cep + ", " + value.publicPlace + ", " + value.city + ", " + value.state;
-          $('#address').append($(`<option>`).text(addressLabel).attr('value', value.id));
+          if (!value.isDeleted) {	
+          	let addressLabel = value.cep + ", " + value.publicPlace + ", " + value.city + ", " + value.state;
+          	$('#address').append($(`<option>`).text(addressLabel).attr('value', value.id));
+          }
         });
         
         if (Object.keys(json).length === 0) {
