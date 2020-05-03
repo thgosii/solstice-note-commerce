@@ -18,7 +18,8 @@ import br.com.solstice.notecommerce.entity.domain.user.UserRole;
 	"/pages/shop/checkout-step-1.jsp", 
 	"/pages/shop/checkout-step-2.jsp", 
 	"/pages/shop/checkout-step-3.jsp", 
-	"/pages/shop/checkout-step-finish.jsp"
+	"/pages/shop/checkout-step-finish.jsp",
+	"/shop/saleInProgress"
 })
 public class ShopSaleFilter implements Filter {
 	
@@ -36,7 +37,7 @@ public class ShopSaleFilter implements Filter {
 					+ (loggedUser != null ? loggedUser.getRole() + " (" + loggedUser.getEmail() + ")"
 							: "not logged-in user")
 					+ " tried to start sale checkout (\"" + request.getRequestURI().substring(request.getContextPath().length()) + "\"), redirecting...");
-			response.sendRedirect("/note-commerce/pages/login.jsp?redirect=" + request.getRequestURI());
+			response.sendRedirect("/note-commerce/pages/login.jsp" + (request.getRequestURI().startsWith("/note-commerce/pages/") ? "?redirect=" + request.getRequestURI() : ""));
 			return;
 		}
 		
