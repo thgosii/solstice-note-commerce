@@ -14,9 +14,9 @@ import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
-public class ValidateTradeUpdateCustomerBalance extends AbstractStrategy {
+public class UpdateCustomerBalance extends AbstractStrategy {
 
-	public ValidateTradeUpdateCustomerBalance() {
+	public UpdateCustomerBalance() {
 		super(Arrays.asList(ValidateTradeStatusUpdate.class.getName()));
 	}
 
