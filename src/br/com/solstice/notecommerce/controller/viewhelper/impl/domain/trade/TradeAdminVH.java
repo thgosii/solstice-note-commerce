@@ -37,12 +37,17 @@ public class TradeAdminVH implements IViewHelper {
 			} catch (NumberFormatException e) {
 			}
 			
-			String status = request.getParameter("status");
+			TradeStatus status = null;
+			try {
+				status = TradeStatus.valueOf(request.getParameter("status"));
+			} catch (Exception exception) {
+				return null;
+			}
 			
 			Trade trade = new Trade();
 			trade.setId(idTrade);
 			trade.setType(type);
-			trade.setStatus(TradeStatus.valueOf(status));
+			trade.setStatus(status);
 			return trade;
 		} else if (operation.equals("consult")) {
 			Trade trade = new Trade();
