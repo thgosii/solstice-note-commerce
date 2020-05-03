@@ -76,6 +76,14 @@ public class SaleDAO extends AbstractDAO {
 					item.setSale(sale);
 					saleItemDAO.save(item);
 				}
+				
+				Customer customer = sale.getCustomer();
+				
+				customer.setBalance(customer.getBalance() - sale.getBalanceUsage());
+				
+				sale.setCustomer(customer);
+				
+				new CustomerDAO().update(sale.getCustomer());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
