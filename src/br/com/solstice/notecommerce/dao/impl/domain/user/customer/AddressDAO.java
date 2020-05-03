@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class AddressDAO extends AbstractDAO {
 				+ "ads_cus_id, ads_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
-			pstm = connection.prepareStatement(sql);
+			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setString(1, address.getCep());
 			pstm.setString(2, address.getPublicPlace());
@@ -52,6 +53,16 @@ public class AddressDAO extends AbstractDAO {
 			pstm.setBoolean(10, address.isDeleted());
 
 			pstm.execute();
+			
+			ResultSet rs = pstm.getGeneratedKeys();
+
+			long idAddress = 0;
+
+			if (rs.next()) {
+				idAddress = rs.getLong(1);
+			}
+			
+			return idAddress;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -172,6 +172,10 @@
 	            <h4>Endereço</h4>
 	            <table class="table table-striped">
 	              <tbody>
+	              	<tr>
+	                  <td><strong>Endereço</strong></td>
+	                  <td>${sale.address.publicPlace}</td>
+	                </tr>
 	                <tr>
 	                  <td><strong>Cidade</strong></td>
 	                  <td>${sale.address.city}</td>

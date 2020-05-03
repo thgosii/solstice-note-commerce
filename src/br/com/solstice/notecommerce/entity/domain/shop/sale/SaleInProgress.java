@@ -26,6 +26,7 @@ public class SaleInProgress extends DomainEntity {
 	private Customer customer;
 	private List<SaleItem> items;
 	private double total;
+	private boolean saveAddressForNext;
 
 	public void calculateTotal() {
 		double total = 0.0;

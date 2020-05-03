@@ -38,6 +38,7 @@ public class SaleShopVH implements IViewHelper {
 				sale.setStatus(SaleStatus.PAYMENT_APPROVED);
 				sale.setItems(saleInProgress.getItems());
 				sale.setIdentifyNumber(Sale.generateIdentifyNumber(sale.getCustomer().getUser().getId()));
+				sale.setSaveAddressForNext(saleInProgress.isSaveAddressForNext());
 			}
 
 			return sale;

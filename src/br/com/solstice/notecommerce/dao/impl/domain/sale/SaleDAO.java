@@ -43,11 +43,19 @@ public class SaleDAO extends AbstractDAO {
 				+ "(sal_date_time, sal_balance_usage, sal_ads_id, sal_crd_id, sal_cus_id, sal_status, sal_identify_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
+			Address address = sale.getAddress();
+
+			if (!sale.isSaveAddressForNext()) {
+				address.setDeleted(true);
+			}
+
+			address.setId(new AddressDAO().save(address));
+
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setTimestamp(1, Timestamp.valueOf(sale.getDateTime()));
 			pstm.setDouble(2, sale.getBalanceUsage());
-			pstm.setLong(3, sale.getAddress().getId());
+			pstm.setLong(3, address.getId());
 			pstm.setLong(4, sale.getCreditCard().getId());
 			pstm.setLong(5, sale.getCustomer().getId());
 			pstm.setString(6, sale.getStatus().toString());
@@ -76,13 +84,13 @@ public class SaleDAO extends AbstractDAO {
 					item.setSale(sale);
 					saleItemDAO.save(item);
 				}
-				
+
 				Customer customer = sale.getCustomer();
-				
+
 				customer.setBalance(customer.getBalance() - sale.getBalanceUsage());
-				
+
 				sale.setCustomer(customer);
-				
+
 				new CustomerDAO().update(sale.getCustomer());
 			}
 		} catch (SQLException e) {
@@ -174,7 +182,7 @@ public class SaleDAO extends AbstractDAO {
 
 				List<SaleItem> saleItems = new SaleItemDAO(connection).consult(saleItemAux, "consult").stream()
 						.map(saleItem -> (SaleItem) saleItem).collect(Collectors.toList());
-				
+
 				currentSale.setItems(saleItems);
 
 				sales.add(currentSale);

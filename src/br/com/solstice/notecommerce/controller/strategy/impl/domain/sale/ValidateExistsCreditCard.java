@@ -11,8 +11,10 @@ public class ValidateExistsCreditCard implements IStrategy {
 	public String process(Entity entity) {
 		Sale sale = (Sale) entity;
 
-		if (new CreditCardDAO().consult(sale.getCreditCard(), "consult").isEmpty()) {
-			return "Cartão de crédito não encontrado";
+		if (sale.getCreditCard().getId() != null) {
+			if (new CreditCardDAO().consult(sale.getCreditCard(), "consult").isEmpty()) {
+				return "Cartão de crédito não encontrado";
+			}
 		}
 
 		return null;

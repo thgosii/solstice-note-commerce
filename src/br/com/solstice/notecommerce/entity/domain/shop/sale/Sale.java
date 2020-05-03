@@ -12,13 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 public class Sale extends DomainEntity {
 
 	private double balanceUsage;
@@ -29,6 +27,8 @@ public class Sale extends DomainEntity {
 	private LocalDateTime dateTime;
 	private SaleStatus status;
 	private String identifyNumber;
+
+	private boolean saveAddressForNext;
 
 	public static String generateIdentifyNumber(Long userId) {
 		String millis = String.valueOf(System.currentTimeMillis());
@@ -58,12 +58,12 @@ public class Sale extends DomainEntity {
 
 	public String getFormattedStatus() {
 		switch (status) {
-			case DELIVERED:
-				return "Entregue";
-			case ON_DELIVERY:
-				return "Entrega em andamento";
-			case PAYMENT_APPROVED:
-				return "Pagamento aprovado";
+		case DELIVERED:
+			return "Entregue";
+		case ON_DELIVERY:
+			return "Entrega em andamento";
+		case PAYMENT_APPROVED:
+			return "Pagamento aprovado";
 		}
 
 		return "";
@@ -71,19 +71,26 @@ public class Sale extends DomainEntity {
 
 	public String getStatusColorName() {
 		switch (status) {
-			case DELIVERED:
-				return "bg-success";
-			case ON_DELIVERY:
-				return "bg-warning";
-			case PAYMENT_APPROVED:
-				return "bg-primary";
+		case DELIVERED:
+			return "bg-success";
+		case ON_DELIVERY:
+			return "bg-warning";
+		case PAYMENT_APPROVED:
+			return "bg-primary";
 		}
 
 		return "";
 	}
-	
+
 	public double getCreditCardUsage() {
 		return getTotal() - balanceUsage;
+	}
+
+	@Override
+	public String toString() {
+		return "Sale [balanceUsage=" + balanceUsage + ", creditCard=" + creditCard + ", address=" + address
+				+ ", customer=" + customer + ", items=" + items + ", dateTime=" + dateTime + ", status=" + status
+				+ ", identifyNumber=" + identifyNumber + "]";
 	}
 
 }

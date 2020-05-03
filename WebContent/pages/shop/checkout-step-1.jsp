@@ -116,6 +116,60 @@
               </form>
             </div>
           </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Insira um endereço</h3>
+            </div>
+            <div class="card-body register-card-body">
+              <form action="/note-commerce/shop/saleInProgress" method="POST">
+                <input type="hidden" name="step" value="1">
+                <input type="hidden" name="operation" value="save">
+                <div class="form-group">
+                  <label for="cep">CEP<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP"required>
+                </div>
+                <div class="form-group">
+                  <label for="publicPlace">Logradouro<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="publicPlace" name="publicPlace" placeholder="Logradouro" required>
+                </div>
+                <div class="form-group">
+                  <label for="state">Estado<span class="text-danger text-bold"> *</span></label>
+                  <select class="form-control select2bs4" id="state" name="state" data-target='#city' disabled>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="city">Cidade<span class="text-danger text-bold"> *</span></label>
+                  <select class="form-control select2bs4" id="city" name="city" disabled>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="neighbourhood">Bairro<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="neighbourhood" name="neighbourhood" placeholder="Bairro" required>
+                </div>
+                <div class="form-group">
+                  <label for="number">Número<span class="text-danger text-bold"> *</span></label>
+                  <input type="text" class="form-control" id="number" name="number" placeholder="Número" required>
+                </div>
+                <div class="form-group">
+                  <label for="complement">Complemento</label>
+                  <input type="text" class="form-control" id="complement" name="complement" placeholder="Complemento">
+                </div>
+                <div class="form-group">
+                  <label for="addressType">Tipo de endereço<span class="text-danger text-bold"> *</span></label>
+                  <select class="form-control" id="type" name="type">
+                    <option value="shipping">Entrega</option>
+                    <option value="billing">Cobrança</option>
+                    <option value="shipping_and_billing">Entrega e cobrança</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                	<input type="checkbox" id="saveForNext" name="saveForNext">
+                	<label for="saveForNext">Salvar para próximas compras</label>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Próximo</button>
+              </form>
+            </div>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->

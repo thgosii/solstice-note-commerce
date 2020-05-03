@@ -10,11 +10,13 @@ public class ValidateExistsAddress implements IStrategy {
 	@Override
 	public String process(Entity entity) {
 		Sale sale = (Sale) entity;
-		
-		if (new AddressDAO().consult(sale.getAddress(), "consult").isEmpty()) {
-			return "Endereço não encontrado";
+
+		if (sale.getAddress().getId() != null) {
+			if (new AddressDAO().consult(sale.getAddress(), "consult").isEmpty()) {
+				return "Endereço não encontrado";
+			}
 		}
-		
+
 		return null;
 	}
 

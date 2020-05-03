@@ -53,9 +53,12 @@ public class SaleInProgressSH implements ISessionHelper {
 		if (saleInProgress.getCreditCard() == null) {
 			// Set address
 			
-			saleInProgress
+			if (saleInProgress.getAddress().getId() != null) {
+				saleInProgress
 					.setAddress((Address) new AddressDAO().consult(saleInProgress.getAddress(), "findById").get(0));
+			}
 			sessionSaleInProgress.setAddress(saleInProgress.getAddress());
+			sessionSaleInProgress.setSaveAddressForNext(saleInProgress.isSaveAddressForNext());
 		} else {
 			// Set credit card and balance usage
 			saleInProgress.setCreditCard(

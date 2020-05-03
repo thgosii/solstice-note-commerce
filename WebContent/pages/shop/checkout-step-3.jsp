@@ -110,6 +110,10 @@
             <h4>Endereço</h4>
             <table class="table table-striped">
               <tbody>
+              	<tr>
+                  <td><strong>Endereço</strong></td>
+                  <td id="publicPlace"></td>
+                </tr>
                 <tr>
                   <td><strong>Cidade</strong></td>
                   <td id="city"></td>
@@ -246,6 +250,7 @@
 	      dataType: 'json',
 	      success: function (json) {
 	    	// Address
+	    	$("#publicPlace").text(json.address.publicPlace);
 	        $("#city").text(json.address.city);
 	        $("#state").text(json.address.state);
 	        $("#number").text(json.address.number);
