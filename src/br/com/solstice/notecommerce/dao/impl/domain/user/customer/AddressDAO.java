@@ -153,7 +153,7 @@ public class AddressDAO extends AbstractDAO {
 		} else if (operation.equals("prepareUpdate") || operation.equals("findById")) {
 			sql = "SELECT * from adresses WHERE ads_id=?";
 		}
-
+		
 		List<Entity> adresses = new ArrayList<Entity>();
 
 		try {
@@ -188,6 +188,8 @@ public class AddressDAO extends AbstractDAO {
 
 				Customer customer = new Customer();
 				customer.setId(rs.getLong("ads_cus_id"));
+				
+				customer = (Customer) new CustomerDAO().consult(customer, "findById").get(0);
 
 				currentAddress.setCustomer(customer);
 

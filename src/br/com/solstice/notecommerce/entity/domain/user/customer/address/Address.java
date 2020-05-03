@@ -6,13 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 public class Address extends DomainEntity {
 
 	private String cep;
@@ -24,5 +22,12 @@ public class Address extends DomainEntity {
 	private String state;
 	private Customer customer;
 	private AddressType type;
+
+	@Override
+	public String toString() {
+		return "Address [cep=" + cep + ", publicPlace=" + publicPlace + ", number=" + number + ", complement="
+				+ complement + ", neighbourhood=" + neighbourhood + ", city=" + city + ", state=" + state + ", type="
+				+ type + "]";
+	}
 
 }

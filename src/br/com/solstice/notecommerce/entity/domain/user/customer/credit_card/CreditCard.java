@@ -6,18 +6,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 public class CreditCard extends DomainEntity {
 
 	private String number;
 	private String securityCode;
 	private String printedName;
 	private Customer customer;
+
+	@Override
+	public String toString() {
+		return "CreditCard [number=" + number + ", securityCode=" + securityCode + ", printedName=" + printedName + "]";
+	}
 
 }
