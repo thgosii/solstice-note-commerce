@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>LapTop Computadores</title>
+  <title>Minhas Compras | LapTop Computadores</title>
 
   <!-- *********************************************************************************** -->
   <!-- REQUIRED STYLES -->
@@ -66,7 +66,9 @@
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
-
+          <div class="col-sm-6 mb-3">
+            <h1>Minhas compras</h1>
+          </div>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
