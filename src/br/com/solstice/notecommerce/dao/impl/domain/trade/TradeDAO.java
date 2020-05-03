@@ -38,16 +38,17 @@ public class TradeDAO extends AbstractDAO {
 
 		Trade trade = (Trade) entity;
 
-		String sql = "INSERT INTO trades (`trd_tracking_number`, `trd_request_date`, `trd_status`, `trd_sit_sal_id`, `trd_sit_prd_id`) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO trades (`trd_tracking_number`, `trd_request_date`, `trd_type`, `trd_status`, `trd_sit_sal_id`, `trd_sit_prd_id`) VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setString(1, trade.getTrackingNumber());
 			pstm.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-			pstm.setString(3, trade.getStatus().name());
-			pstm.setLong(4, trade.getSale().getId());
-			pstm.setLong(5, trade.getSaleItem().getProduct().getId());
+			pstm.setString(3, trade.getType().name());
+			pstm.setString(4, trade.getStatus().name());
+			pstm.setLong(5, trade.getSale().getId());
+			pstm.setLong(6, trade.getSaleItem().getProduct().getId());
 
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString());
 
@@ -130,18 +131,18 @@ public class TradeDAO extends AbstractDAO {
 		if (operation.equals("consult")) { // Gets trade table data and pro
 			if (trade.getSale() != null && trade.getSale().getCustomer() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
-				sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_deleted = false";
+				sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_type = ? AND trd_deleted = false";
 			} else {
 				// Admin consult (all trades)
-				sql = "SELECT trades.* FROM trades WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_deleted = false";
+				sql = "SELECT trades.* FROM trades WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_type = ? AND trd_deleted = false";
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
 			sql = "SELECT sit_quantity, sit_subtotal FROM trades "
 					+ "JOIN sales_products ON trd_sal_id = sit_sal_id AND trd_prd_id = sit_prd_id "
-					+ "WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_deleted = false";
+					+ "WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		} else if (operation.equals("findFromSaleAndProduct")) {
-			sql = "SELECT * FROM trades WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_deleted = false";
+			sql = "SELECT * FROM trades WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		}
 
 		List<Entity> trades = new ArrayList<Entity>();
@@ -160,15 +161,22 @@ public class TradeDAO extends AbstractDAO {
 					pstm.setLong(1, idCustomer);
 					if (trade.getId() != null) {
 						pstm.setLong(2, trade.getId());
+						pstm.setString(3, trade.getType().name());
+					} else {
+						pstm.setString(2, trade.getType().name());
 					}
 				} else {
 					if (trade.getId() != null) {
 						pstm.setLong(1, trade.getId());
+						pstm.setString(2, trade.getType().name());
+					} else {
+						pstm.setString(1, trade.getType().name());
 					}
 				}
 			} else if (operation.equals("findSaleItem") || operation.equals("findFromSaleAndProduct")) {
 				pstm.setLong(1, trade.getSale().getId());
 				pstm.setLong(2, trade.getSaleItem().getProduct().getId());
+				pstm.setString(3, trade.getType().name());
 			}
 			
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));

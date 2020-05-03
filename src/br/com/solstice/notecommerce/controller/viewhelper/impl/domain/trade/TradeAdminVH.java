@@ -12,6 +12,7 @@ import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
+import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 
 public class TradeAdminVH implements IViewHelper {
@@ -22,9 +23,11 @@ public class TradeAdminVH implements IViewHelper {
 		
 		if (operation == null) return null;
 		
-		String type = request.getParameter("type");
-		if (type != null) {
-			type = type.toUpperCase();
+		TradeType type = null;
+		try {
+			type = TradeType.valueOf(request.getParameter("type").toUpperCase());
+		} catch (Exception exception) {
+			return null;
 		}
 		
 		if (operation.equals("update")) {
@@ -34,13 +37,21 @@ public class TradeAdminVH implements IViewHelper {
 			} catch (NumberFormatException e) {
 			}
 			
+			TradeStatus status = null;
+			try {
+				status = TradeStatus.valueOf(request.getParameter("status"));
+			} catch (Exception exception) {
+				return null;
+			}
+			
 			Trade trade = new Trade();
 			trade.setId(idTrade);
-			trade.setType(TradeType.valueOf(type));
+			trade.setType(type);
+			trade.setStatus(status);
 			return trade;
 		} else if (operation.equals("consult")) {
 			Trade trade = new Trade();
-			trade.setType(TradeType.valueOf(type));
+			trade.setType(type);
 			return trade;
 		}
 		
@@ -72,11 +83,7 @@ public class TradeAdminVH implements IViewHelper {
 			}
 			request.setAttribute("trades", trades);
 
-			if (TradeType.DEVOLUTION.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/admin/trades-devolutions.jsp").forward(request, response);
-			} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/admin/trades-exchanges.jsp").forward(request, response);
-			}
+			request.getRequestDispatcher("/pages/admin/trades.jsp").forward(request, response);
 		}
 
 	}

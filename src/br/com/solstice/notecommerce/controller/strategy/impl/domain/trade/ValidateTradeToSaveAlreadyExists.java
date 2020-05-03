@@ -25,7 +25,7 @@ public class ValidateTradeToSaveAlreadyExists extends AbstractStrategy {
 		
 		List<Entity> listEntities = tradeDAO.consult(trade, "findFromSaleAndProduct");
 		if (listEntities.size() != 0) {
-			return "Esse produto já faz parte de uma venda";
+			return "Esse produto já faz está em troca ou devolução";
 		}
 		
 		return null;
