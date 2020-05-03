@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Realizar Troca | LapTop Computadores</title>
+  <title>Realizar Devoluções | LapTop Computadores</title>
 
   <!-- *********************************************************************************** -->
   <!-- REQUIRED STYLES -->

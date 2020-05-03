@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<c:set var="isTrade" value="${param.type == 'exchange'}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Trocas | LapTop Computadores</title>
+  <title>${isTrade ? 'Trocas' : 'Devoluções'} | LapTop Computadores</title>
 
   <!-- *********************************************************************************** -->
   <!-- REQUIRED STYLES -->
@@ -71,12 +73,12 @@
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Trocas</h1>
+              <h1>${isTrade ? 'Trocas' : 'Devoluções'}</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/note-commerce/pages/admin/dashboard.jsp">Admin Home</a></li>
-                <li class="breadcrumb-item active">Trocas</li>
+                <li class="breadcrumb-item active">${isTrade ? 'Trocas' : 'Devoluções'}</li>
               </ol>
             </div>
           </div>
@@ -90,7 +92,7 @@
 
           <div class="card card-default">
             <div class="card-header">
-              <h3 class="card-title">Lista de Trocas</h3>
+              <h3 class="card-title">Lista de ${isTrade ? 'Trocas' : 'Devoluções'}</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -102,7 +104,7 @@
               <table id="products-table" class="table table-borderless table-striped">
                 <thead>
                   <tr>
-                    <th>Data do pedido de troca</th>
+                    <th>Data do pedido</th>
                     <th>Venda</th>
                     <th>Produto</th>
                     <th>Qtd</th>
@@ -120,35 +122,86 @@
                       <td>${trade.productQuantity}</td>
                       <td>${trade.trackingNumber}</td>
                       <td>
+                      
 <c:choose>
-  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
-                        <span class="badge bg-warning">Aguardando autorização</span>
+  <c:when test="${isTrade}">
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <span class="badge bg-warning">Aguardando autorização</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <span class="badge bg-danger">Recusada</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <span class="badge bg-info">Aguardando retorno de produto</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <span class="badge bg-success">Produto recebido</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_ON_DELIVERY'}">
+	                        <span class="badge bg-info">Produto em entrega</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_DELIVERED'}">
+	                        <span class="badge bg-success">Produto entregue</span>
+	  </c:when>
+	</c:choose>
+	                      </td>
+	                      <td class="text-center">
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}&status=AUTHORIZED" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}&status=DENIED" class="btn btn-xs btn-danger"><i class="fas fa-times"></i> Recusar</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <small>Sem Ações</small>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-truck-loading"></i>Confirmar retorno</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-check"></i>Iniciar entrega</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_ON_DELIVERY'}">
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Confirmar entrega</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_DELIVERED'}">
+	                        <small>Sem Ações</small>
+	  </c:when>
+	</c:choose>
   </c:when>
-  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-                        <span class="badge bg-info">Aguardando recebimento de produto</span>
-  </c:when>
-  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-                        <span class="badge bg-success">Produtos recebidos</span>
-  </c:when>
-  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-                        <span class="badge bg-success">Trocado</span>
-  </c:when>
-  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-                        <span class="badge bg-success">Trocado</span>
-  </c:when>
-</c:choose>
-                      </td>
-                      <td class="text-center">
-<c:choose>
-  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
-                        <a href="/note-commerce/admin/trades?operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar troca</a>
-  </c:when>
-  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-                        <a href="/note-commerce/admin/trades?operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Marcar como Trocado</a>
-  </c:when>
-  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-                        <small>Sem Ações</small>
-  </c:when>
+  <c:otherwise>
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <span class="badge bg-warning">Aguardando autorização</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <span class="badge bg-danger">Recusado</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <span class="badge bg-info">Aguardando retorno de produto</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <span class="badge bg-success">Produto devolvido</span>
+	  </c:when>
+	</c:choose>
+	                      </td>
+	                      <td class="text-center">
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}&status=AUTHORIZED" class="btn btn-xs btn-info"><i class="fas fa-hands-helping"></i> Autorizar</a>
+	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}&status=DENIED" class="btn btn-xs btn-danger"><i class="fas fa-times"></i> Recusar</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <small>Sem Ações</small>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-hand-holding-usd"></i>Confirmar devolução</a>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <small>Sem Ações</small>
+	  </c:when>
+	</c:choose>
+  </c:otherwise>
 </c:choose>
                       </td>
                     </tr>
