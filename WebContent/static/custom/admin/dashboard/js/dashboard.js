@@ -144,7 +144,7 @@ $(document).ready(() => {
         },
         title: {
           formatter: (seriesName) => seriesName === '(Período)' ? '' : seriesName,
-      },
+        },
       }
     }
   };
