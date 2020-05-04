@@ -1,6 +1,7 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.trade;
 
 import java.util.Arrays;
+import java.util.List;
 
 import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
 import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
@@ -28,7 +29,11 @@ public class ValidateTradeProductQuantity extends AbstractStrategy {
 		
 		TradeDAO tradeDAO = new TradeDAO();
 		
-		SaleItem saleItem = ((Trade) tradeDAO.consult(trade, "findSaleItem").get(0)).getSaleItem();
+		List<Entity> listEntities = tradeDAO.consult(trade, "findSaleItem");
+		if (listEntities.size() == 0) {
+			return "Esse produto é inválido ou não faz parte dessa compra";
+		}
+		SaleItem saleItem = ((Trade) listEntities.get(0)).getSaleItem();
 		
 		if (saleItem.getQuantity() < trade.getProductQuantity()) {
 			return "Não é possível trocar mais unidades do que as que foram compradas";
