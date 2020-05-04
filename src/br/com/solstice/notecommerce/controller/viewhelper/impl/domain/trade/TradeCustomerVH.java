@@ -15,6 +15,7 @@ import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
+import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
@@ -67,6 +68,8 @@ public class TradeCustomerVH implements IViewHelper {
 			trade.setProductQuantity(productQuantity);
 			trade.setSale(sale);
 			trade.setSaleItem(saleItem);
+			trade.setStatus(TradeStatus.AWAITING_AUTHORIZATION);
+			trade.setTrackingNumber(Trade.generateTrackingNumber(((User) request.getSession().getAttribute("loggedUser")).getId()));
 			trade.setType(type);
 			return trade;
 		} else if (operation.equals("consult")) {
@@ -105,7 +108,7 @@ public class TradeCustomerVH implements IViewHelper {
 				request.setAttribute("title", request.getParameter("title"));
 				request.getRequestDispatcher("/pages/customer/customer-trade-form.jsp").forward(request, response);
 			} else {
-				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType + "operation=consult");
+				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType + "&operation=consult");
 			}
 		} else if (operation.equals("consult")) {
 			List<Trade> trades = new ArrayList<>();
