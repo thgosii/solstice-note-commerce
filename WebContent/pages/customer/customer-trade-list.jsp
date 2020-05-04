@@ -96,8 +96,8 @@
                   <c:forEach items="${trades}" var="trade">
                     <tr>
                       <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedRequestDate()}</td>
-                      <td><a href="/note-commerce/customer/sales?operation=consult&show_modal=${trade.sale.id}">${trade.sale.identifyNumber}</a></td>
-                      <td><a href="/note-commerce/admin/products?operation=consult&table_filter=${trade.saleItem.product.title}">${trade.saleItem.product.title}</a></td>
+                      <td><a href="/note-commerce/customer/sales?operation=findByCustomer&show_modal=${trade.sale.id}">${trade.sale.identifyNumber}</a></td>
+                      <td>${trade.saleItem.product.title}</td>
                       <td>${trade.productQuantity}</td>
                       <td>${trade.trackingNumber}</td>
                       <td>
