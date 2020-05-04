@@ -57,10 +57,10 @@ public class DashboardDataDAO extends AbstractDAO {
 		try {
 
 			// brandSaleGraph
-			sql = "SELECT brd_name brand, date(sal_date_time) date, sum(sit_quantity) amount" + 
+			sql = "SELECT brd_name brand, date(sal_date_time) date, sum(sap_quantity) amount " + 
 					"FROM sales " + 
-					"JOIN sales_products ON sal_id = sit_sal_id " + 
-					"JOIN products ON sit_prd_id = prd_id " + 
+					"JOIN sales_products ON sal_id = sap_sal_id " + 
+					"JOIN products ON sap_prd_id = prd_id " + 
 					"JOIN brands ON prd_brd_id = brd_id " + 
 					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
 					"GROUP BY date(sal_date_time) " +
@@ -87,9 +87,9 @@ public class DashboardDataDAO extends AbstractDAO {
 			
 			
 			// regionSaleMap
-			sql = "SELECT ads_state state, sum(sit_quantity) amount" + 
+			sql = "SELECT ads_state state, sum(sap_quantity) amount" + 
 					"FROM sales " + 
-					"JOIN sales_products ON sal_id = sit_sal_id " + 
+					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN adresses ON sal_ads_id = ads_id " + 
 					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
 					"GROUP BY ads_state " + 
@@ -111,13 +111,13 @@ public class DashboardDataDAO extends AbstractDAO {
 			
 			
 			// mostSoldProductsTable
-			sql = "SELECT prd_id id, prd_title title, sum(sit_quantity) amount" + 
+			sql = "SELECT prd_id id, prd_title title, sum(sap_quantity) amount" + 
 					"FROM sales " + 
-					"JOIN sales_products ON sal_id = sit_sal_id " + 
-					"JOIN products ON sit_prd_id = prd_id " + 
+					"JOIN sales_products ON sal_id = sap_sal_id " + 
+					"JOIN products ON sap_prd_id = prd_id " + 
 					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
 					"GROUP BY prd_title " + 
-					"ORDER BY sum(sit_quantity) desc " + 
+					"ORDER BY sum(sap_quantity) desc " + 
 					"LIMIT 10";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));

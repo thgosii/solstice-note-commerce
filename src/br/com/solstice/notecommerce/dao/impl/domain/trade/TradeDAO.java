@@ -40,7 +40,7 @@ public class TradeDAO extends AbstractDAO {
 
 		Trade trade = (Trade) entity;
 
-		String sql = "INSERT INTO trades (`trd_tracking_number`, `trd_request_date`, `trd_type`, `trd_status`, `trd_sit_sal_id`, `trd_sit_prd_id`) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO trades (`trd_tracking_number`, `trd_request_date`, `trd_type`, `trd_status`, `trd_sal_id`, `trd_prd_id`) VALUES (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -140,8 +140,8 @@ public class TradeDAO extends AbstractDAO {
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
-			sql = "SELECT sit_quantity, sit_subtotal FROM trades "
-					+ "JOIN sales_products ON trd_sal_id = sit_sal_id AND trd_prd_id = sit_prd_id "
+			sql = "SELECT sap_quantity, sap_subtotal FROM trades "
+					+ "JOIN sales_products ON trd_sal_id = sap_sal_id AND trd_prd_id = sap_prd_id "
 					+ "WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		} else if (operation.equals("findFromSaleAndProduct")) {
 			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
@@ -208,7 +208,7 @@ public class TradeDAO extends AbstractDAO {
 					
 					currentTrade.setSaleItem(new SaleItem(null, (Product) productDAO.consult(product, "consult").get(0), -1, -1d));
 				} else if (operation.equals("findSaleItem")) {
-					currentTrade.setSaleItem(new SaleItem(null, null, rs.getInt("sit_quantity"), rs.getInt("sit_subtotal")));
+					currentTrade.setSaleItem(new SaleItem(null, null, rs.getInt("sap_quantity"), rs.getInt("sap_subtotal")));
 				}
 				
 				trades.add(currentTrade);
