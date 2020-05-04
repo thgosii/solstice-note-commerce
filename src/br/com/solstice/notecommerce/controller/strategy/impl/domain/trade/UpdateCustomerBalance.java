@@ -17,7 +17,7 @@ import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 public class UpdateCustomerBalance extends AbstractStrategy {
 
 	public UpdateCustomerBalance() {
-		super(Arrays.asList(ValidateTradeStatusUpdate.class.getName()));
+		super(Arrays.asList(SetTradeStatus.class.getName()));
 	}
 
 	@Override

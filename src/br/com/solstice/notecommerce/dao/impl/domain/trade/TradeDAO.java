@@ -142,7 +142,7 @@ public class TradeDAO extends AbstractDAO {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
 			sql = "SELECT sap_quantity, sap_subtotal FROM trades "
 					+ "JOIN sales_products ON trd_sal_id = sap_sal_id AND trd_prd_id = sap_prd_id "
-					+ "WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
+					+ "WHERE sap_sal_id = ? AND sap_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		} else if (operation.equals("findFromSaleAndProduct")) {
 			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		}

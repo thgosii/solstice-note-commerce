@@ -37,9 +37,9 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.Validat
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToSaveAlreadyExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToUpdateExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductQuantity;
-import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.SetSaleStatus;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSaleStatus;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeSave;
-import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeStatusUpdate;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.SetTradeStatus;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeUpdate;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.UpdateCustomerBalance;
 import br.com.solstice.notecommerce.dao.IDAO;
@@ -236,12 +236,12 @@ public class Facade implements IFacade {
 		tradeBusinessRulesSave.add(new ValidateTradeSave());
 		tradeBusinessRulesSave.add(new ValidateTradeProductQuantity());
 		tradeBusinessRulesSave.add(new ValidateTradeToSaveAlreadyExists());
-		tradeBusinessRulesSave.add(new SetSaleStatus());
+		tradeBusinessRulesSave.add(new ValidateTradeSaleStatus());
 
 		List<IStrategy> tradeBusinessRulesUpdate = new ArrayList<IStrategy>();
 		tradeBusinessRulesUpdate.add(new ValidateTradeUpdate());
 		tradeBusinessRulesUpdate.add(new ValidateTradeToUpdateExists());
-		tradeBusinessRulesUpdate.add(new ValidateTradeStatusUpdate());
+		tradeBusinessRulesUpdate.add(new SetTradeStatus());
 		tradeBusinessRulesUpdate.add(new UpdateCustomerBalance());
 
 		tradeBusinessRulesMap.put("save", tradeBusinessRulesSave);

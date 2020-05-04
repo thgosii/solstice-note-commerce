@@ -9,13 +9,13 @@ import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 
-public class ValidateTradeStatusUpdate extends AbstractStrategy {
+public class SetTradeStatus extends AbstractStrategy {
 	
-	public ValidateTradeStatusUpdate() { 
+	public SetTradeStatus() { 
 		super(Arrays.asList(ValidateTradeUpdate.class.getName(), ValidateTradeToUpdateExists.class.getName())); // Define default/always required-to-be-valid BRs here
 	}
 	
-	public ValidateTradeStatusUpdate(String... requiredBussinessRules) { 
+	public SetTradeStatus(String... requiredBussinessRules) { 
 		super(Arrays.asList(requiredBussinessRules));
 	}
 	

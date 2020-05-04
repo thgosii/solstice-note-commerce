@@ -10,13 +10,13 @@ import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 
-public class SetSaleStatus extends AbstractStrategy {
+public class ValidateTradeSaleStatus extends AbstractStrategy {
 	
-	public SetSaleStatus() { 
+	public ValidateTradeSaleStatus() { 
 		super(Arrays.asList(ValidateTradeSave.class.getName(), ValidateTradeToSaveAlreadyExists.class.getName()));
 	}
 	
-	public SetSaleStatus(String... requiredBussinessRules) { 
+	public ValidateTradeSaleStatus(String... requiredBussinessRules) { 
 		super(Arrays.asList(requiredBussinessRules));
 	}
 
