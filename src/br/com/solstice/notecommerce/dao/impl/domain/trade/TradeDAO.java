@@ -12,6 +12,7 @@ import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.sale.SaleDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
@@ -19,6 +20,7 @@ import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 import br.com.solstice.notecommerce.entity.domain.trade.TradeStatus;
+import br.com.solstice.notecommerce.entity.domain.trade.TradeType;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 
 public class TradeDAO extends AbstractDAO {
@@ -129,9 +131,9 @@ public class TradeDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) { // Gets trade table data and pro
-			if (trade.getSale() != null && trade.getSale().getCustomer() != null) { // Assumes user id is filled	
+			if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getUser() != null && trade.getSale().getCustomer().getUser().getId() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
-				sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_type = ? AND trd_deleted = false";
+				sql = "SELECT trades.*, sal_cus_id FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_type = ? AND trd_deleted = false";
 			} else {
 				// Admin consult (all trades)
 				sql = "SELECT trades.* FROM trades WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_type = ? AND trd_deleted = false";
@@ -142,7 +144,7 @@ public class TradeDAO extends AbstractDAO {
 					+ "JOIN sales_products ON trd_sal_id = sit_sal_id AND trd_prd_id = sit_prd_id "
 					+ "WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		} else if (operation.equals("findFromSaleAndProduct")) {
-			sql = "SELECT * FROM trades WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
+			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		}
 
 		List<Entity> trades = new ArrayList<Entity>();
@@ -184,6 +186,7 @@ public class TradeDAO extends AbstractDAO {
 			rs = pstm.executeQuery();
 			
 			ProductDAO productDAO = new ProductDAO(connection);
+			SaleDAO saleDAO = new SaleDAO(connection);
 
 			while (rs.next()) {
 				Trade currentTrade = new Trade();
@@ -193,11 +196,12 @@ public class TradeDAO extends AbstractDAO {
 					currentTrade.setTrackingNumber(rs.getString("trd_tracking_number"));
 					currentTrade.setProductQuantity(rs.getInt("trd_quantity"));
 					currentTrade.setRequestDate(rs.getTimestamp("trd_request_date").toLocalDateTime());
+					currentTrade.setType(TradeType.valueOf(rs.getString("trd_type")));
 					currentTrade.setStatus(TradeStatus.valueOf(rs.getString("trd_status")));
 					
 					Sale sale = new Sale();
 					sale.setId(rs.getLong("trd_sal_id"));
-					currentTrade.setSale(sale);
+					currentTrade.setSale((Sale) saleDAO.consult(sale, "findById").get(0));
 					
 					Product product = new Product();
 					product.setId(rs.getLong("trd_prd_id"));
