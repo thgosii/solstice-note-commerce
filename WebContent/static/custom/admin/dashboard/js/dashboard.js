@@ -6,7 +6,19 @@ $(document).ready(() => {
 
   function updateDashboardWith(data) {
     console.log('Dashboard data received:', data)
-    salesChart.updateSeries(data.salesChart)
+    // Map chart series
+    const salesChartSeries = []
+    const brands = Object.keys(data.brandSaleGraph)
+    const saleData = Object.values(data.brandSaleGraph)
+    for (let i = 0; i < brands.length; i++) {
+      salesChartSeries.push({
+        name: brands[i],
+        data: saleData[i]
+      })
+    }
+    console.log(salesChartSeries)
+    salesChart.updateSeries(salesChartSeries)
+    
     createMap(data.regionSaleMap)
     fillTable($('sale-table'), data.mostSoldProductsTable)
     fillTable($('trade-table'), data.mostTradedProductsTable)

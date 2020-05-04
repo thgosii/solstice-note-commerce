@@ -23,7 +23,7 @@ public class BrandSale {
 	public BrandSale(LocalDate date, Long amount) {
 		this.date = date;
 		this.amount = amount;
-		this.formattedDate = date != null ? date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
+		this.formattedDate = date != null ? date.format(DateTimeFormatter.ISO_DATE) : null;
 	}
 
 }
