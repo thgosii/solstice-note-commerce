@@ -98,7 +98,7 @@ public class TradeCustomerVH implements IViewHelper {
 		
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
-				request.getRequestDispatcher("/pages/customer/customer-trades.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/customer/customer-trade-list.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType + "operation=consult");
 			}
