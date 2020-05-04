@@ -33,8 +33,8 @@ $(document).ready(() => {
         // salesChart.zoomX(minDate, maxDate)
         
         createMap(data.regionSaleMap)
-        fillTable($('sale-table'), data.mostSoldProductsTable)
-        fillTable($('trade-table'), data.mostTradedProductsTable)
+        fillTable($('#sale-table tbody'), data.mostSoldProductsTable)
+        fillTable($('#trade-table tbody'), data.mostTradedProductsTable)
       })
   }
 

@@ -167,7 +167,7 @@
                   </div> -->
                 </div>
                 <!-- /.card-header -->
-                <div id="sold-table" class="card-body table-responsive p-0" style="height: 400px;">
+                <div id="sale-table" class="card-body table-responsive p-0" style="height: 400px;">
                   <table class="table table-head-fixed">
                     <thead>
                       <tr>
