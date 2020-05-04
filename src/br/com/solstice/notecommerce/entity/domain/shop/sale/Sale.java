@@ -12,11 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class Sale extends DomainEntity {
 
 	private double balanceUsage;
@@ -84,13 +86,6 @@ public class Sale extends DomainEntity {
 
 	public double getCreditCardUsage() {
 		return getTotal() - balanceUsage;
-	}
-
-	@Override
-	public String toString() {
-		return "Sale [balanceUsage=" + balanceUsage + ", creditCard=" + creditCard + ", address=" + address
-				+ ", customer=" + customer + ", items=" + items + ", dateTime=" + dateTime + ", status=" + status
-				+ ", identifyNumber=" + identifyNumber + "]";
 	}
 
 }
