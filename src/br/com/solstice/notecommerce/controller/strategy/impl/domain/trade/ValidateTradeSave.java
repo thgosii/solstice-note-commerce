@@ -11,7 +11,7 @@ public class ValidateTradeSave implements IStrategy {
 		Trade trade = (Trade) entity;
 		StringBuilder sb = new StringBuilder();
 		
-		if (trade.getSale().getId() != null) {
+		if (trade.getSale().getId() == null) {
 			sb.append("É necessário especificar a compra relacionada a sua troca\n");
 		}
 		if (trade.getSaleItem().getQuantity() == -1) {
