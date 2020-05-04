@@ -87,7 +87,7 @@ public class DashboardDataDAO extends AbstractDAO {
 			
 			
 			// regionSaleMap
-			sql = "SELECT ads_state state, sum(sap_quantity) amount" + 
+			sql = "SELECT ads_state state, sum(sap_quantity) amount " + 
 					"FROM sales " + 
 					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN adresses ON sal_ads_id = ads_id " + 
@@ -111,7 +111,7 @@ public class DashboardDataDAO extends AbstractDAO {
 			
 			
 			// mostSoldProductsTable
-			sql = "SELECT prd_id id, prd_title title, sum(sap_quantity) amount" + 
+			sql = "SELECT prd_id id, prd_title title, sum(sap_quantity) amount " + 
 					"FROM sales " + 
 					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN products ON sap_prd_id = prd_id " + 
