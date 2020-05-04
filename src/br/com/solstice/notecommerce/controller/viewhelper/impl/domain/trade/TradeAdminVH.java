@@ -66,13 +66,10 @@ public class TradeAdminVH implements IViewHelper {
 		request.setAttribute("message", result.getMessage());
 		
 		String tradeType = request.getParameter("type");
-		if (tradeType != null) {
-			tradeType = tradeType.toUpperCase();
-		}
 		
 		if (operation.equals("update")) {
 			if (null == result.getMessage()) {
-				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType.toLowerCase() + "operation=consult");
+				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType + "operation=consult");
 			} else {
 				response.getWriter().write(result.getMessage());
 			}

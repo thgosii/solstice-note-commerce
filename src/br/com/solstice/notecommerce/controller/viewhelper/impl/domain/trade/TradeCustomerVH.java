@@ -95,28 +95,21 @@ public class TradeCustomerVH implements IViewHelper {
 		request.setAttribute("message", result.getMessage());
 		
 		String tradeType = request.getParameter("type");
-		if (tradeType != null) {
-			tradeType = tradeType.toUpperCase();
-		}
-		request.setAttribute("type", tradeType);
 		
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
 				request.getRequestDispatcher("/pages/customer/customer-trades.jsp").forward(request, response);
 			} else {
-				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType.toLowerCase() + "operation=consult");
+				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType + "operation=consult");
 			}
 		} else if (operation.equals("consult")) {
 			List<Trade> trades = new ArrayList<>();
 			for (Entity entity : result.getEntities()) {
 				trades.add((Trade) entity);
 			}
+			request.setAttribute("trades", trades);
 			
-			if (TradeType.DEVOLUTION.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/customer/customer-trade-devolutions.jsp").forward(request, response);
-			} else if (TradeType.EXCHANGE.name().equals(tradeType)) {
-				request.getRequestDispatcher("/pages/customer/customer-trade-exchanges.jsp").forward(request, response);
-			}
+			request.getRequestDispatcher("/pages/customer/customer-trade-list.jsp").forward(request, response);
 		}
 
 	}
