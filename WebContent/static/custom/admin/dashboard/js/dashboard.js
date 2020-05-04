@@ -1,28 +1,41 @@
 $(document).ready(() => {
 
   async function getDashboardAt(minDate, maxDate) {
-    return await $.ajax(`/note-commerce/admin/dashboard?minDate=${minDate}&maxDate=${maxDate}&operation=consult`)
-  }
+    console.log('get dashboard at: ', minDate, '-', maxDate)
+    await $.ajax(`/note-commerce/admin/dashboard?minDate=${minDate}&maxDate=${maxDate}&operation=consult`)
+      .then(data => {
+        console.log('Dashboard data received:', data)
+        // Map chart series
+        const salesChartSeries = []
+        const brands = Object.keys(data.brandSaleGraph)
+        const saleData = Object.values(data.brandSaleGraph)
 
-  function updateDashboardWith(data) {
-    console.log('Dashboard data received:', data)
-    // Map chart series
-    const salesChartSeries = []
-    const brands = Object.keys(data.brandSaleGraph)
-    const saleData = Object.values(data.brandSaleGraph)
-    for (let i = 0; i < brands.length; i++) {
-      salesChartSeries.push({
-        name: brands[i],
-        data: saleData[i]
+        for (let i = 0; i < brands.length; i++) {
+          // Creates dummy point to generate line
+          if (saleData[i].length === 1) {
+            saleData[i].unshift({
+              x: moment(saleData[i][0].x).subtract(1, 'days').format('YYYY-MM-DD'),
+              y: 0
+            })
+          }
+          salesChartSeries.push({
+            name: brands[i],
+            data: saleData[i]
+          })
+        }
+        
+        salesChartSeries.unshift({
+          name: '(Período)',
+          data: [ { x: minDate, y: 0 }, { x: maxDate, y: 0 } ]
+        })
+
+        salesChart.updateSeries(salesChartSeries)
+        // salesChart.zoomX(minDate, maxDate)
+        
+        createMap(data.regionSaleMap)
+        fillTable($('sale-table'), data.mostSoldProductsTable)
+        fillTable($('trade-table'), data.mostTradedProductsTable)
       })
-    }
-    console.log(salesChartSeries)
-    salesChart.updateSeries(salesChartSeries)
-    
-    createMap(data.regionSaleMap)
-    fillTable($('sale-table'), data.mostSoldProductsTable)
-    fillTable($('trade-table'), data.mostTradedProductsTable)
-    // Sales map
   }
 
   // ***********************************************************************************
@@ -51,7 +64,7 @@ $(document).ready(() => {
     function (start, end) {
       console.log('Chosen dashboard period:', start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
       $('#time-option').html(`De ${start.format('MMMM D, YYYY')} até ${end.format('MMMM D, YYYY')}`)
-      getDashboardAt(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')).then(updateDashboardWith)
+      getDashboardAt(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
     }
   )
   $('#time-option').html(`Últimos 30 dias`)
@@ -127,8 +140,11 @@ $(document).ready(() => {
       shared: true,
       y: {
         formatter: val => {
-          return (val).toFixed(0)
-        }
+          return val ? (val).toFixed(0) : val
+        },
+        title: {
+          formatter: (seriesName) => seriesName === '(Período)' ? '' : seriesName,
+      },
       }
     }
   };
@@ -211,6 +227,6 @@ $(document).ready(() => {
     When everything is ready and initialized calls
   */
 
-  getDashboardAt(moment().startOf('month').format('YYYY-MM-DD'), moment().endOf('month').format('YYYY-MM-DD')).then(updateDashboardWith)
+  getDashboardAt(moment().subtract(29, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'))
 
 })
