@@ -58,6 +58,7 @@ $(document).ready(() => {
       },
       startDate: moment().subtract(29, 'days'),
       endDate: moment(),
+      maxDate: moment(),
       // pt-BR Locale by João Pedro Raldi (https://stackoverflow.com/a/47271070/11138267)
       locale: { "format": "DD/MM/YYYY", "separator": " - ", "applyLabel": "Aplicar", "cancelLabel": "Cancelar", "fromLabel": "De", "toLabel": "Até", "customRangeLabel": "Período customizado", "daysOfWeek": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"], "monthNames": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"], "firstDay": 0 }
     },
