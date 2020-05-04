@@ -92,12 +92,12 @@ public class TradeCustomerVH implements IViewHelper {
 			throws IOException, ServletException {
 		String operation = request.getParameter("operation");
 
-		request.setAttribute("message", result.getMessage());
-
 		String tradeType = request.getParameter("type");
 		
 		if (operation.equals("save")) {
 			if (null != result.getMessage()) {
+				request.setAttribute("messages", result.getMessage().split("\n"));
+				
 				request.setAttribute("idSale", request.getParameter("sale"));
 				request.setAttribute("idProduct", request.getParameter("product"));
 				request.setAttribute("quantity", request.getParameter("quantity"));

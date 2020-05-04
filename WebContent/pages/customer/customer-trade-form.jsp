@@ -112,6 +112,18 @@
 	              </tr>
 	          </table>
           </form>
+	    <c:if test="${not empty messages}">
+	      <div class="alert alert-danger" role="alert" style="font-size: 16px;">
+	        Erros encontrados ao tentar solicitar a ${isTrade ? 'troca' : 'devolução'}:
+	        <ul>
+	          <c:forEach var="message" items="${messages}">
+	            <li>
+	              <c:out value="${message}" />
+	            </li>
+	          </c:forEach>
+	        </ul>
+	      </div>
+	    </c:if>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->
