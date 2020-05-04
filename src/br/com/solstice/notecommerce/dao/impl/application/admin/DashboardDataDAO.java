@@ -62,12 +62,13 @@ public class DashboardDataDAO extends AbstractDAO {
 					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN products ON sap_prd_id = prd_id " + 
 					"JOIN brands ON prd_brd_id = brd_id " + 
-					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"WHERE sal_date_time >= ? AND sal_date_time < date_add(?, INTERVAL 1 DAY) " + 
 					"GROUP BY date(sal_date_time) " +
 					"ORDER BY date(sal_date_time)";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 			rs = pstm.executeQuery();
 			
 			Map<String, List<BrandSale>> brandSaleGraph = new HashMap<String, List<BrandSale>>();
@@ -91,12 +92,13 @@ public class DashboardDataDAO extends AbstractDAO {
 					"FROM sales " + 
 					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN adresses ON sal_ads_id = ads_id " + 
-					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"WHERE sal_date_time >= ? AND sal_date_time < date_add(?, INTERVAL 1 DAY) " + 
 					"GROUP BY ads_state " + 
 					"ORDER BY ads_state";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 			rs = pstm.executeQuery();
 			
 			Map<String, Long> regionSaleMap = new HashMap<String, Long>();
@@ -115,13 +117,14 @@ public class DashboardDataDAO extends AbstractDAO {
 					"FROM sales " + 
 					"JOIN sales_products ON sal_id = sap_sal_id " + 
 					"JOIN products ON sap_prd_id = prd_id " + 
-					"WHERE sal_date_time >= ? AND sal_date_time <= ? " + 
+					"WHERE sal_date_time >= ? AND sal_date_time < date_add(?, INTERVAL 1 DAY) " + 
 					"GROUP BY prd_title " + 
 					"ORDER BY sum(sap_quantity) desc " + 
 					"LIMIT 10";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 			rs = pstm.executeQuery();
 			
 		    List<ProductTableRow> mostSoldProductsTable = new ArrayList<ProductTableRow>();
@@ -142,13 +145,14 @@ public class DashboardDataDAO extends AbstractDAO {
 			sql = "SELECT prd_id id, prd_title title, sum(trd_quantity) amount " + 
 					"FROM trades " + 
 					"JOIN products ON trd_prd_id = trd_id " + 
-					"WHERE trd_request_date >= ? AND trd_request_date <= ? " + 
+					"WHERE trd_request_date >= ? AND trd_request_date < date_add(?, INTERVAL 1 DAY) " + 
 					"GROUP BY prd_title " + 
 					"ORDER BY sum(trd_quantity) desc " + 
 					"LIMIT 10";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
 			pstm.setDate(2, Date.valueOf(dd.getMaxDate()));
+			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
 			rs = pstm.executeQuery();
 
 		    List<ProductTableRow> mostTradedProductsTable = new ArrayList<ProductTableRow>();
