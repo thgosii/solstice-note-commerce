@@ -38,7 +38,7 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
-
+  <link rel="stylesheet" href="/note-commerce/static/custom/general/css/tables.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE CUSTOM STYLES -->
   <!-- *********************************************************************************** -->
@@ -70,7 +70,7 @@
       <div class="content-header">
         <div class="container">
           <div class="col-sm-6 mb-3">
-            <h1>Minhas Devoluções</h1>
+            <h1>Minhas ${isTrade ? 'Trocas' : 'Devoluções'}</h1>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -87,6 +87,7 @@
                     <th>Data do pedido</th>
                     <th>Venda relacionada</th>
                     <th>Produto</th>
+                    <th>Quantidade</th>
                     <th>Nº Rastreamento</th>
                     <th>Status</th>
                   </tr>
@@ -94,41 +95,55 @@
                 <tbody>
                   <c:forEach items="${trades}" var="trade">
                     <tr>
-                      <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                      <td><a href="sales.html">324543535</a></td>
-                      <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
-                      <td></td>
-                      <td><span class="badge bg-warning">Em troca</span></td>
-                  </tr>
+                      <td><span class="dt-date-sort">${trade.getFormattedISORequestDate()}"</span>${trade.getFormattedRequestDate()}</td>
+                      <td><a href="/note-commerce/customer/sales?operation=consult&show_modal=${trade.sale.id}">${trade.sale.identifyNumber}</a></td>
+                      <td><a href="/note-commerce/admin/products?operation=consult&table_filter=${trade.saleItem.product.title}">${trade.saleItem.product.title}</a></td>
+                      <td>${trade.productQuantity}</td>
+                      <td>${trade.trackingNumber}</td>
+                      <td>
+<c:choose>
+  <c:when test="${isTrade}">
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <span class="badge bg-warning">Aguardando autorização</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <span class="badge bg-danger">Recusada</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <span class="badge bg-info">Aguardando retorno de produto</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <span class="badge bg-success">Produto recebido</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_ON_DELIVERY'}">
+	                        <span class="badge bg-info">Produto em entrega</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'REPLACEMENT_DELIVERED'}">
+	                        <span class="badge bg-success">Produto entregue</span>
+	  </c:when>
+	</c:choose>
+  </c:when>
+  <c:otherwise>
+	<c:choose>
+	  <c:when test="${trade.status.name() == 'AWAITING_AUTHORIZATION'}">
+	                        <span class="badge bg-warning">Aguardando autorização</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'DENIED'}">
+	                        <span class="badge bg-danger">Recusado</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
+	                        <span class="badge bg-info">Aguardando retorno de produto</span>
+	  </c:when>
+	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
+	                        <span class="badge bg-success">Produto devolvido</span>
+	  </c:when>
+	</c:choose>
+  </c:otherwise>
+</c:choose>
+                      </td>
+                    </tr>
                   </c:forEach>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-01-12</span>12/01/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
-                    <td><a href="sales.html">6568768</a></td>
-                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
-                    <td>0-678678678</td>
-                    <td><span class="badge bg-info">Troca Autorizada</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2010-01-12</span>12/01/2010</td>
-                    <td><a href="sales.html">234234</a></td>
-                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
-                    <td></td>
-                    <td><span class="badge bg-warning">Em troca</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="dt-date-sort">2020-05-05</span>05/05/2020</td>
-                    <td><a href="sales.html">324543535</a></td>
-                    <td class="truncate-text" style="max-width: 200px;">Notebook HP Novo i5-15251 GTX 01804tI</td>
-                    <td>0-768686</td>
-                    <td><span class="badge bg-success">Trocado</span></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
