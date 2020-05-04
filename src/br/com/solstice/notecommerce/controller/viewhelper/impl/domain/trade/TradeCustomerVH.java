@@ -103,7 +103,7 @@ public class TradeCustomerVH implements IViewHelper {
 				String quantity = request.getParameter("quantity");
 				String saleQuantity = request.getParameter("saleQuantity");
 				String title = request.getParameter("title");
-				request.getRequestDispatcher("/pages/customer/customer-trade-form.jsp?type=" + tradeType + "&idSale=" + idSale + "&idProduct" + idProduct + "&saleQuantity=" + saleQuantity + "title=" + title).forward(request, response);
+				response.sendRedirect("/note-commerce/pages/customer/customer-trade-form.jsp?type=" + tradeType + "&idSale=" + idSale + "&idProduct" + idProduct + "&saleQuantity=" + saleQuantity + "title=" + title);
 			} else {
 				response.sendRedirect("/note-commerce/customer/trades?type=" + tradeType + "operation=consult");
 			}
