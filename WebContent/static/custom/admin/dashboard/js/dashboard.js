@@ -5,8 +5,12 @@ $(document).ready(() => {
   }
 
   function updateDashboardWith(data) {
+    console.log('Dashboard data received:', data)
     salesChart.updateSeries(data.salesChart)
-    salesMap.series.regions[0].setValues()
+    createMap(data.regionSaleMap)
+    fillTable($('sale-table'), data.mostSoldProductsTable)
+    fillTable($('trade-table'), data.mostTradedProductsTable)
+    // Sales map
   }
 
   // ***********************************************************************************
@@ -35,7 +39,7 @@ $(document).ready(() => {
     function (start, end) {
       console.log('Chosen dashboard period:', start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
       $('#time-option').html(`De ${end.format('MMMM D, YYYY')} até ${start.format('MMMM D, YYYY')}`)
-      getDashboardAt(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
+      getDashboardAt(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')).then(updateDashboardWith)
     }
   )
   $('#time-option').html(`Últimos 30 dias`)
@@ -126,29 +130,75 @@ $(document).ready(() => {
     Sales per region map
   */
 
+  function createMap(regionValues) {
+    try {
+      // Destroy current map
+      $('#region-sales-map').vectorMap('get', 'mapObject').remove()
+      //$('#region-sales-map').replaceWith("<div id=\"region-sales-map\" style=\"height: 465px;\">");
+    } catch(e) {
+      console.error('Error destroying map, probably is not created yet:\n', e)
+    }
+
+    $('#region-sales-map').vectorMap({
+      map: 'brazil',
+      backgroundColor: '#eee',
+      regionStyle: { initial: { fill: '#ccc' }, hover: { fill: '#A0D1DC' } },
+      // colors: { 'am-to': '#222222' },
+      series: {
+        regions: [{
+          values: regionValues,
+          scale: ['#C8FFEE', '#005411'],
+          normalizeFunction: 'polynomial'
+        }]
+      },
+      onRegionTipShow: function (e, el, code) {
+        if (!regionValues[code]) {
+          el.html(`${el.html()}: sem vendas`)
+        } else {
+          const stateSalePercentage = Math.round((regionValues[code] / Number(Object.values(regionValues).reduce((a, b) => (a || 0) + (b || 0), 0))) * 1000) / 10
+          el.html(`${el.html()}: ${regionValues[code] + ' vendas'} (${stateSalePercentage}%)`);
+        }
+      }
+    });
+  }
+
   // Fake demo values
   let mapvalues = {}
   "ac al ap am ba ce df es go ma mt ms mg pa pr pr pe pi rj rn rs ro rr sc sp se to"
     .split(' ').forEach(e => mapvalues[e] = Math.random() > 0.2 ? Math.round(Math.random() * 10000) : undefined)
   console.log('sales map fake data:', mapvalues)
 
-  $('#region-sales-map').vectorMap({
-    map: 'brazil',
-    backgroundColor: '#eee',
-    regionStyle: { initial: { fill: '#ccc' }, hover: { fill: '#A0D1DC' } },
-    // colors: { 'am-to': '#222222' },
-    series: {
-      regions: [{
-        values: mapvalues,
-        scale: ['#C8FFEE', '#005411'],
-        normalizeFunction: 'polynomial'
-      }]
-    },
-    onRegionTipShow: function (e, el, code) {
-      el.html(`${el.html()}: ${mapvalues[code] ? mapvalues[code] + ' vendas' : 'sem vendas'} (12%)`);
-    }
-  });
+  createMap(mapvalues)
 
-  var salesMap = $('#region-sales-map').vectorMap('get', 'mapObject')
+  // var salesMap = $('#region-sales-map').vectorMap('get', 'mapObject')
+  // salesMap.series.regions[0].setValues()
+
+  // ***********************************************************************************
+
+  /*
+    Products tables
+  */
+  
+  function fillTable(tbody, data) {
+    tbody.html('')
+    data.forEach(r => {
+      tbody.append(`
+      <tr>
+        <td style="width: 80%">
+          <a href="/note-commerce/admin/products?operation=consult&table_filter=${r.product.title}">${r.product.title}</a>
+        </td>
+        <td>${r.amount}</td>
+      </tr>
+      `)
+    })
+  }
+
+  // ***********************************************************************************
+
+  /*
+    When everything is ready and initialized calls
+  */
+
+  getDashboardAt(moment().startOf('month').format('YYYY-MM-DD'), moment().endOf('month').format('YYYY-MM-DD')).then(updateDashboardWith)
 
 })

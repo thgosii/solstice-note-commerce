@@ -167,63 +167,15 @@
                   </div> -->
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="height: 400px;">
+                <div id="sold-table" class="card-body table-responsive p-0" style="height: 400px;">
                   <table class="table table-head-fixed">
                     <thead>
                       <tr>
                         <th>Título</th>
-                        <th>Trocados</th>
+                        <th>Vendidos</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-23452 gRTEE EGSEGS 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>321</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>5215</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Le gragg argrg rd gdrdg gsd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenasfasfassf asfaf asf saf assd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -250,63 +202,15 @@
                   </div> -->
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="height: 400px;">
+                <div id="trade-table" class="card-body table-responsive p-0" style="height: 400px;">
                   <table class="table table-head-fixed">
                     <thead>
                       <tr>
                         <th>Título</th>
-                        <th>Vendidos</th>
+                        <th>Trocados/Devolvidos</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-23452 gRTEE EGSEGS 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>321</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>5215</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenovo L-421 Core Duo GTX 1080 Ti 4GB RAM asd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Le gragg argrg rd gdrdg gsd asd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
-                      <tr>
-                        <td style="width: 80%">
-                          <a href="#">Laptop Lenasfasfassf asfaf asf saf assd asd asd </a>
-                        </td>
-                        <td>123</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
