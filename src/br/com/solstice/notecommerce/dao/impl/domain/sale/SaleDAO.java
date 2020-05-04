@@ -49,7 +49,7 @@ public class SaleDAO extends AbstractDAO {
 				address.setDeleted(true);
 			}
 
-			address.setId(new AddressDAO().save(address));
+			address.setId(new AddressDAO(connection).save(address));
 			
 			CreditCard creditCard = sale.getCreditCard();
 
@@ -57,7 +57,7 @@ public class SaleDAO extends AbstractDAO {
 				creditCard.setDeleted(true);
 			}
 
-			creditCard.setId(new CreditCardDAO().save(creditCard));
+			creditCard.setId(new CreditCardDAO(connection).save(creditCard));
 
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -99,7 +99,7 @@ public class SaleDAO extends AbstractDAO {
 
 				sale.setCustomer(customer);
 
-				new CustomerDAO().update(sale.getCustomer());
+				new CustomerDAO(connection).update(sale.getCustomer());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
