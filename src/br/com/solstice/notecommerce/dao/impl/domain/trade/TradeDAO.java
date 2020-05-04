@@ -140,9 +140,7 @@ public class TradeDAO extends AbstractDAO {
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
-			sql = "SELECT sap_quantity, sap_subtotal FROM trades "
-					+ "JOIN sales_products ON trd_sal_id = sap_sal_id AND trd_prd_id = sap_prd_id "
-					+ "WHERE sap_sal_id = ? AND sap_prd_id = ? AND trd_type = ? AND trd_deleted = false";
+			sql = "SELECT * FROM sales_products WHERE sap_sal_id = ? AND sap_prd_id = ?";
 		} else if (operation.equals("findFromSaleAndProduct")) {
 			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
 		}
@@ -178,7 +176,9 @@ public class TradeDAO extends AbstractDAO {
 			} else if (operation.equals("findSaleItem") || operation.equals("findFromSaleAndProduct")) {
 				pstm.setLong(1, trade.getSale().getId());
 				pstm.setLong(2, trade.getSaleItem().getProduct().getId());
-				pstm.setString(3, trade.getType().name());
+				if (operation.equals("findFromSaleAndProduct")) {
+					pstm.setString(3, trade.getType().name());
+				}
 			}
 			
 			System.out.println("  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName() + ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
