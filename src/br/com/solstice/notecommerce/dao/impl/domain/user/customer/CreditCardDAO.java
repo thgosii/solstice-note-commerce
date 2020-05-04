@@ -179,7 +179,7 @@ public class CreditCardDAO extends AbstractDAO {
 				Customer customer = new Customer();
 				customer.setId(rs.getLong("crd_cus_id"));
 				
-				customer = (Customer) new CustomerDAO().consult(customer, "findById").get(0);
+				customer = (Customer) new CustomerDAO(connection).consult(customer, "findById").get(0);
 
 				currentCreditCard.setCustomer(customer);
 
