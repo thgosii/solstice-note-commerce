@@ -38,7 +38,7 @@ $(document).ready(() => {
     },
     function (start, end) {
       console.log('Chosen dashboard period:', start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      $('#time-option').html(`De ${end.format('MMMM D, YYYY')} até ${start.format('MMMM D, YYYY')}`)
+      $('#time-option').html(`De ${start.format('MMMM D, YYYY')} até ${end.format('MMMM D, YYYY')}`)
       getDashboardAt(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD')).then(updateDashboardWith)
     }
   )
