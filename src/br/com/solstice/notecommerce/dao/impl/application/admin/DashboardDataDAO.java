@@ -63,7 +63,7 @@ public class DashboardDataDAO extends AbstractDAO {
 					"JOIN products ON sap_prd_id = prd_id " + 
 					"JOIN brands ON prd_brd_id = brd_id " + 
 					"WHERE sal_date_time >= ? AND sal_date_time < date_add(?, INTERVAL 1 DAY) " + 
-					"GROUP BY date(sal_date_time) " +
+					"GROUP BY date(sal_date_time), brd_name " +
 					"ORDER BY date(sal_date_time)";
 			pstm = connection.prepareStatement(sql);
 			pstm.setDate(1, Date.valueOf(dd.getMinDate()));
