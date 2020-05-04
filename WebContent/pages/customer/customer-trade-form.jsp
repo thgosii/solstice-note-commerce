@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<c:set var="isTrade" value="${param.type == 'exchange'}" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Realizar Troca | LapTop Computadores</title>
+  <title>Realizar ${isTrade ? 'Troca' : 'Devolução'} | LapTop Computadores</title>
 
   <!-- *********************************************************************************** -->
   <!-- REQUIRED STYLES -->
@@ -68,7 +70,7 @@
       <div class="content-header">
         <div class="container">
           <div class="col-sm-6 mb-3">
-            <h1>Realizar troca</h1>
+            <h1>Realizar ${isTrade ? 'troca' : 'devolução'}</h1>
           </div>
         </div><!-- /.container-fluid -->
       </div>
@@ -77,29 +79,39 @@
       <!-- Main content -->
       <div class="content">
         <div class="container">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>
-                  Produto
-                </th>
-                <th>
-                </th>
-                <th>
-                  Preço
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img src="../../static/custom/general/img/laptop-sample1.png" style="width: 70px; height: 50px;">
-                </td>
-                <td>Notebook Acer Aspire 5 - 8GB RAM - SSD - I5 </td>
-                <td>R$ 2.444,21</td>
-              </tr>
-          </table>
-          <a href="exchanges.html" class="btn btn-primary float-right">Confirmar troca</a>
+          <form action="/note-commerce/customer/trades" method="POST">
+             <input type="hidden" name="operation" value="save">
+             <input type="hidden" name="type" value="${param.type}">
+             <input type="hidden" name="product" value="${param.idProduct}">
+             <input type="hidden" name="sale" value="${param.idSale}">
+             
+             <input type="hidden" name="saleQuantity" value="${param.saleQuantity}">
+             <input type="hidden" name="title" value="${param.title}">
+	          <table class="table table-striped">
+	            <thead>
+	              <tr>
+	                <th>
+	                  Produto
+	                </th>
+	                <th>
+	                  Quantidade
+	                </th>
+	                <th>
+	                </th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <tr>
+	                <td style="max-width: 600px">${param.title}</td>
+	                <td style="max-width: 100px">
+	                	<input class="form-control form-control-lg" type="number" min="1" max="${param.saleQuantity}" name="quantity" value="1">
+	                </td>
+	                <td>
+	                	<button class="btn btn-primary btn-lg" type="submit">Solicitar ${isTrade ? 'troca' : 'devolução'}</button>
+	                </td>
+	              </tr>
+	          </table>
+          </form>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->

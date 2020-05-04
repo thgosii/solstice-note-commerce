@@ -98,7 +98,7 @@
               <div class="card-body register-card-body">
                 <div class="form-group">
                   <label for="balance">Valor saldo digital</label>
-                  <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital">
+                  <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital" min="0">
                 </div>
               </div>
             </div>
@@ -270,6 +270,7 @@
 
         // Cannot use digital balance if its empty
         if (currentBalance != 0) {
+          $('#balance').attr('max', currentBalance)
           $('#balance').inputmask('currency', {
             groupSeparator: ',',
             digits: 2,

@@ -160,11 +160,14 @@
 	                    <td>
 	                      <img src="${item.product.image.url}" style="width: 70px; height: 50px;">
 	                    </td>
-	                    <td>${item.product.title}</td>
+	                    <td style="max-width: 350px">${item.product.title}</td>
 	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.product.price}" /></td>
 	                    <td>${item.quantity}</td>
-	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>
-	                    <td><a href="#" class="btn btn-primary btn-sm">Trocar</a></td>
+	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>.btn-xs
+	                    <td>
+	                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=exchange&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Trocar</a>
+	                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=devolution&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Devolver</a>
+	                    </td>
 	                  </tr>
 	                </c:forEach>
 	            </table>
