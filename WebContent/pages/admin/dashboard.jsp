@@ -150,7 +150,7 @@
             <div class="col col-6">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Laptops com mais trocas</h3>
+                  <h3 class="card-title">Laptops com mais unidades vendidas</h3>
 
                   <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -185,7 +185,7 @@
             <div class="col col-6">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Laptops mais vendidos</h3>
+                  <h3 class="card-title">Laptops com mais unidades trocadas e devolvidas</h3>
 
                   <!-- <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
