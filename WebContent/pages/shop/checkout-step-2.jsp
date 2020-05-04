@@ -84,13 +84,18 @@
           <form action="/note-commerce/shop/saleInProgress" method="POST">
             <input type="hidden" name="operation" value="save">
             <input type="hidden" name="step" value="2">
+            
+            <div class="card">
+              <div class="card-header">
+                <h4>Total: R$ <span id="total"></span></h4>
+              </div>
+            </div>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Saldo virtual - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
                 </h3>
               </div>
               <div class="card-body register-card-body">
-                <h4 class="mb-4">Total: R$ <span id="total"></span></h4>
                 <div class="form-group">
                   <label for="balance">Valor saldo digital</label>
                   <input type="text" class="form-control" id="balance" name="balance" placeholder="Valor saldo digital">
@@ -276,6 +281,10 @@
             autoUnmask: true,
             removeMaskOnSubmit: true
           });
+        } else {
+          $('#balance').attr('disabled', 'disabled')
+          $('#balance').attr('placeholder', 'Você não tem saldo para utilizar nessa compra')
+          $('#balance').val('')
         }
 	    })
    });
