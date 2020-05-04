@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:set var="isTrade" value="${param.type == 'exchange'}" />
+<c:set var="isTrade" value="${(not empty type ? type : param.type) == 'exchange'}" />
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,12 +81,12 @@
         <div class="container">
           <form action="/note-commerce/customer/trades" method="POST">
              <input type="hidden" name="operation" value="save">
-             <input type="hidden" name="type" value="${param.type}">
-             <input type="hidden" name="product" value="${param.idProduct}">
-             <input type="hidden" name="sale" value="${param.idSale}">
+             <input type="hidden" name="type" value="${not empty type ? type : param.type}">
+             <input type="hidden" name="product" value="${not empty idProduct ? idProduct : param.idProduct}">
+             <input type="hidden" name="sale" value="${not empty idSale ? idSale : param.idSale}">
              
-             <input type="hidden" name="saleQuantity" value="${param.saleQuantity}">
-             <input type="hidden" name="title" value="${param.title}">
+             <input type="hidden" name="saleQuantity" value="${not empty saleQuantity ? saleQuantity : param.saleQuantity}">
+             <input type="hidden" name="title" value="${not empty title ? title : param.title}">
 	          <table class="table table-striped">
 	            <thead>
 	              <tr>
@@ -102,9 +102,9 @@
 	            </thead>
 	            <tbody>
 	              <tr>
-	                <td style="max-width: 600px">${param.title}</td>
+	                <td style="max-width: 600px">${not empty title ? title : param.title}</td>
 	                <td style="max-width: 100px">
-	                	<input class="form-control form-control-lg" type="number" min="1" max="${param.saleQuantity}" name="quantity" value="1">
+	                	<input class="form-control form-control-lg" type="number" min="1" max="${not empty saleQuantity ? saleQuantity : param.saleQuantity}" name="quantity" value="1">
 	                </td>
 	                <td>
 	                	<button class="btn btn-primary btn-lg" type="submit">Solicitar ${isTrade ? 'troca' : 'devolução'}</button>
