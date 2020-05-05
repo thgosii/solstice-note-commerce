@@ -23,7 +23,7 @@ public class SaleItem extends DomainEntity {
 	// Used by Trade Strategy to calculate balance return
 	public Double getPricePerProduct() {
 		if (quantity > 0 && subTotal > 0d) {
-			return subTotal / quantity;
+			return subTotal / (double) quantity;
 		}
 		return null;
 	}

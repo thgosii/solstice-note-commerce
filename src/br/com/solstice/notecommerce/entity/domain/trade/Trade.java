@@ -33,7 +33,8 @@ public class Trade extends DomainEntity {
 	}
 	
 	public Double getBalanceReturn() {
-		return saleItem.getPricePerProduct() * productQuantity;
+		// TODO: fix not returning decimals
+		return saleItem.getPricePerProduct() * (double) productQuantity;
 	}
 	
 	public String getFormattedRequestDate() {
