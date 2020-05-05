@@ -31,7 +31,7 @@ public class UpdateCustomerBalance extends AbstractStrategy {
 			if (trade.getStatus() == TradeStatus.REPLACEMENT_ON_DELIVERY) { // Replacement product will be sent back
 				// Get SaleItem to get product id to check stock
 				Trade previousTrade = (Trade) tradeDAO.consult(trade, "consult").get(0);
-				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem")).getSaleItem();
+				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem").get(0)).getSaleItem();
 				// TODO: Check stock to see if there is products to be delivered back
 				
 			}
