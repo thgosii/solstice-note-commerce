@@ -377,6 +377,12 @@
             success: function (json) {
               // Insert credit card list rows
               cardList.html('')
+
+              if (json.filter(c => !c.isDeleted).length == 0) {
+                cardList.html('Você não possui nenhum cartão já cadastrado!')
+                $('#nextStepButton').attr('disabled', 'disabled')
+              }
+
               $.each(json, function (i, cc) {
                 if (!cc.isDeleted && i < 10) {
                   createCCRow(cc)
