@@ -3752,6 +3752,828 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "6ad1819e-7e36-41e6-8fec-3e39ca086058",
+    "name": "5 Venda: cadastro endereço e cartão e sem saldo",
+    "commands": [{
+      "id": "b19528cc-e235-4ce5-a51d-4a89d2a0dafc",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "05bcb4fd-248e-4b6b-989d-4767f36ed9a7",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "41a2c400-7c89-4003-9c02-cacf282e4846",
+      "comment": "Acessar página da loja inicial",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "223ba4b9-6505-4c0b-b065-17fc9cbbec18",
+      "comment": "Verificar se foi redirecionado a página principal da loja",
+      "command": "verifyTitle",
+      "target": "Produtos | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d02aee4-0a59-4301-9c9b-1701f016104b",
+      "comment": "",
+      "command": "click",
+      "target": "name=minimum-price",
+      "targets": [
+        ["name=minimum-price", "name"],
+        ["css=.row:nth-child(1) > .form-group > .form-control", "css:finder"],
+        ["xpath=//input[@name='minimum-price']", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "533304b3-87e7-4d5a-932f-4a623222f5f9",
+      "comment": "",
+      "command": "type",
+      "target": "name=minimum-price",
+      "targets": [
+        ["name=minimum-price", "name"],
+        ["css=.row:nth-child(1) > .form-group > .form-control", "css:finder"],
+        ["xpath=//input[@name='minimum-price']", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "2500"
+    }, {
+      "id": "b8483b71-f27a-485d-9896-7d701a60d8c6",
+      "comment": "",
+      "command": "click",
+      "target": "name=maximum-price",
+      "targets": [
+        ["name=maximum-price", "name"],
+        ["css=.row:nth-child(2) .form-control", "css:finder"],
+        ["xpath=//input[@name='maximum-price']", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fad7948c-2bc2-4882-b04b-74bcef6d97b7",
+      "comment": "",
+      "command": "type",
+      "target": "name=maximum-price",
+      "targets": [
+        ["name=maximum-price", "name"],
+        ["css=.row:nth-child(2) .form-control", "css:finder"],
+        ["xpath=//input[@name='maximum-price']", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "3750"
+    }, {
+      "id": "37ab0955-6ebd-44d9-b64d-8f1ac54f3c5a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[3]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Aplicar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4ecfb74-c41e-4ebb-b5e5-8078bb1429f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=#filter-group-brand > .icheck-primary:nth-child(1) > label",
+      "targets": [
+        ["css=#filter-group-brand > .icheck-primary:nth-child(1) > label", "css:finder"],
+        ["xpath=//div[@id='filter-group-brand']/div/label", "xpath:idRelative"],
+        ["xpath=//li/div[2]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Acer')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5ad0728-15b1-4b55-9a50-a4b75b77f0e8",
+      "comment": "",
+      "command": "click",
+      "target": "css=#filter-group-brand > .icheck-primary:nth-child(2) > label",
+      "targets": [
+        ["css=#filter-group-brand > .icheck-primary:nth-child(2) > label", "css:finder"],
+        ["xpath=//div[@id='filter-group-brand']/div[2]/label", "xpath:idRelative"],
+        ["xpath=//div[2]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Asus')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d1591f59-c878-4f9a-8942-5fa2338cde97",
+      "comment": "",
+      "command": "click",
+      "target": "css=.list-group-item:nth-child(1) .btn",
+      "targets": [
+        ["css=.list-group-item:nth-child(1) .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[4]/ul/li/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//li/div/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ddb3e31-0558-454d-8288-d2dd1d941d6b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#filter-group-ram > .icheck-primary:nth-child(2) > label",
+      "targets": [
+        ["css=#filter-group-ram > .icheck-primary:nth-child(2) > label", "css:finder"],
+        ["xpath=//div[@id='filter-group-ram']/div[2]/label", "xpath:idRelative"],
+        ["xpath=//li[2]/div[2]/div[2]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'4GB')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "38c769d5-c207-4a24-a38a-c4f0ea315803",
+      "comment": "",
+      "command": "click",
+      "target": "css=#filter-group-ram > .icheck-primary:nth-child(3) > label",
+      "targets": [
+        ["css=#filter-group-ram > .icheck-primary:nth-child(3) > label", "css:finder"],
+        ["xpath=//div[@id='filter-group-ram']/div[3]/label", "xpath:idRelative"],
+        ["xpath=//li[2]/div[2]/div[3]/label", "xpath:position"],
+        ["xpath=//label[contains(.,'8GB')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c84fbd1-f004-4b4e-916a-57c34d9ae88e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.list-group-item:nth-child(2) .btn",
+      "targets": [
+        ["css=.list-group-item:nth-child(1) .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[4]/ul/li/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//li/div/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da050d24-d620-49ae-aaa0-4593c3162426",
+      "comment": "",
+      "command": "click",
+      "target": "css=.list-group-item:nth-child(3) .btn",
+      "targets": [
+        ["css=.list-group-item:nth-child(1) .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//form[@id='products-filter']/div[4]/ul/li/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//li/div/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f38a1041-bb9a-43d3-8e2b-60d25a8bf44d",
+      "comment": "",
+      "command": "click",
+      "target": "css=#filter-group-os > .icheck-primary:nth-child(1) > label",
+      "targets": [
+        ["css=#filter-group-os > .icheck-primary:nth-child(1) > label", "css:finder"],
+        ["xpath=//div[@id='filter-group-os']/div/label", "xpath:idRelative"],
+        ["xpath=//li[5]/div[2]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Windows')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a0c1d31-1f56-4b78-9215-ec98f89545e6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(2) > .card .fas",
+      "targets": [
+        ["css=.col:nth-child(2) > .card .fas", "css:finder"],
+        ["xpath=//div[@id='products-row']/div[2]/div/div/div[2]/div[2]/button/i", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div[2]/div[2]/button/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cee35e69-1ce7-48b7-a08b-344cd5f372a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) .fas",
+      "targets": [
+        ["css=.col:nth-child(1) .fas", "css:finder"],
+        ["xpath=//div[@id='products-row']/div/div/div/div[2]/div[2]/button/i", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/button/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "12eb900c-e6dc-4aec-84d8-3475f0db91ac",
+      "comment": "",
+      "command": "click",
+      "target": "name=descricao",
+      "targets": [
+        ["name=descricao", "name"],
+        ["css=.form-control-navbar", "css:finder"],
+        ["xpath=//input[@name='descricao']", "xpath:attributes"],
+        ["xpath=//form[@id='form-header-search']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d5af32c-450a-4f5b-804b-b45fb9debdaa",
+      "comment": "",
+      "command": "type",
+      "target": "name=descricao",
+      "targets": [],
+      "value": "branco"
+    }, {
+      "id": "c4d212a7-e17e-47f7-8dc8-cddd1464b5c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fa-search",
+      "targets": [
+        ["css=.fa-search", "css:finder"],
+        ["xpath=//form[@id='form-header-search']/div/div/button/i", "xpath:idRelative"],
+        ["xpath=//i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "15337675-4c46-435c-ba76-5a1d273bff0b",
+      "comment": "Verificar se foi redirecionado a página principal da loja",
+      "command": "verifyTitle",
+      "target": "Produtos | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a707ba02-3c3d-4be7-82d4-3068aa852d3f",
+      "comment": "",
+      "command": "click",
+      "target": "id=product-name-link",
+      "targets": [
+        ["id=product-name-link", "id"],
+        ["linkText=Notebook Samsung Expert X30 8ª Intel Core I5 8GB 1TB LED HD 15,6\" Windows 10 - Branco", "linkText"],
+        ["css=#product-name-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Notebook Samsung Expert X30 8ª Intel Core I5 8GB 1TB LED HD 15,6\" Windows 10 - Branco')]", "xpath:link"],
+        ["xpath=//a[@id='product-name-link']", "xpath:attributes"],
+        ["xpath=//div[@id='products-row']/div/div/div/div/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/note-commerce/shop/products?operation=consult&id=7')])[2]", "xpath:href"],
+        ["xpath=//div[2]/div/div/div/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Notebook Samsung Expert X30 8ª Intel Core I5 8GB 1TB LED HD 15,6\" Windows 10 - Branco')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff24f559-1e0c-4c45-a6c7-de04b63f486e",
+      "comment": "Verificar se foi redirecionado a página de detalhes de um produto",
+      "command": "verifyTitle",
+      "target": "LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e0fb709f-0706-4a1a-bc34-06350f7dfcb6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fa-cart-plus",
+      "targets": [
+        ["css=.fa-cart-plus", "css:finder"],
+        ["xpath=//div[2]/div/button/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b153aef5-10c7-4434-a00f-91922d0941d1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Comprar",
+      "targets": [
+        ["linkText=Comprar", "linkText"],
+        ["css=.btn-info", "css:finder"],
+        ["xpath=(//a[contains(@href, '/note-commerce/shop/cart?operation=consult')])[2]", "xpath:href"],
+        ["xpath=//div[2]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Comprar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd20119e-e2dd-4d59-8bdc-329b2f3d7bd0",
+      "comment": "Verificar se foi redirecionado ao carrinho",
+      "command": "verifyTitle",
+      "target": "Carrinho | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ea492fb6-3ad7-4af7-a30f-c9d0c830fe69",
+      "comment": "",
+      "command": "click",
+      "target": "css=#row_4 .btn:nth-child(3)",
+      "targets": [
+        ["css=#row_4 .btn:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//tr[@id='row_4']/td[4]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63684616-ee3a-4aa5-8d53-6601d33da92c",
+      "comment": "",
+      "command": "click",
+      "target": "css=#row_4 .btn:nth-child(3)",
+      "targets": [
+        ["css=#row_4 .btn:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//tr[@id='row_4']/td[4]/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6c00aa0-a824-43dd-804d-7f32cafbb8ca",
+      "comment": "",
+      "command": "click",
+      "target": "css=#row_7 .btn:nth-child(3)",
+      "targets": [
+        ["css=#row_7 .btn:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[7]", "xpath:attributes"],
+        ["xpath=//tr[@id='row_7']/td[4]/button[2]", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[4]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d33c01c3-16bd-4a8b-9514-87a04169f22e",
+      "comment": "",
+      "command": "click",
+      "target": "css=#row_4 .btn-secondary:nth-child(1)",
+      "targets": [
+        ["css=#row_4 .btn-secondary:nth-child(1)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//tr[@id='row_4']/td[4]/button", "xpath:idRelative"],
+        ["xpath=//td[4]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56646383-069d-4d5a-905b-689dc6a76121",
+      "comment": "Clicar no botão de iniciar compra",
+      "command": "click",
+      "target": "id=initCheckout",
+      "targets": [
+        ["id=initCheckout", "id"],
+        ["css=#initCheckout", "css:finder"],
+        ["xpath=//button[@id='initCheckout']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Iniciar compra')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "45b2487d-350a-4f6f-ab6f-fae61638efa3",
+      "comment": "Verificar se foi redirecionado ao login pois não está logado",
+      "command": "verifyTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f8372d5-1b8d-4c11-b7ee-e22da09adf88",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5c23b05-ee6b-4602-a945-8260cb5d0360",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "ccefa164-2b38-4fa5-96dc-0eb852e2526e",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e03717ab-87df-4679-b258-1467e8e2f56c",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "4b51dfe9-787c-47d2-a067-c89eaddce639",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "84effa50-f48b-430a-9a23-f8f9be3fa06e",
+      "comment": "Verificar se foi redirecionado a página de endereço de entrega",
+      "command": "verifyTitle",
+      "target": "Entrega | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e333e20c-769a-497d-80f9-3b4823b00354",
+      "comment": "Selecionar input de CEP",
+      "command": "click",
+      "target": "id=cep",
+      "targets": [
+        ["id=cep", "id"],
+        ["name=cep", "name"],
+        ["css=#cep", "css:finder"],
+        ["xpath=//input[@id='cep']", "xpath:attributes"],
+        ["xpath=//div/div/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "195892a9-6928-49de-b3d7-d6df7a8bfc0b",
+      "comment": "Inserir CEP",
+      "command": "type",
+      "target": "id=cep",
+      "targets": [],
+      "value": "08773-600"
+    }, {
+      "id": "bb60b51c-9590-4a3b-a9b5-290b3f6bc84c",
+      "comment": "Selecionar input de número",
+      "command": "click",
+      "target": "id=number",
+      "targets": [
+        ["id=number", "id"],
+        ["name=number", "name"],
+        ["css=#number", "css:finder"],
+        ["xpath=//input[@id='number']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e50645d4-3eb2-4e32-9d9a-17f8516fb4b4",
+      "comment": "Inserir número",
+      "command": "type",
+      "target": "id=number",
+      "targets": [
+        ["id=number", "id"],
+        ["name=number", "name"],
+        ["css=#number", "css:finder"],
+        ["xpath=//input[@id='number']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "908"
+    }, {
+      "id": "c1918f24-865a-4d7c-86e6-0f1788f6bccc",
+      "comment": "Esperar o estado ser preenchido automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=state",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "09fec234-bebb-4b31-a989-955cc73718f4",
+      "comment": "Esperar a cidade ser preenchida automaticamente",
+      "command": "waitForElementEditable",
+      "target": "id=city",
+      "targets": [],
+      "value": "7000"
+    }, {
+      "id": "61631586-a9a0-48a6-8182-f6cd97f91c93",
+      "comment": "Esperar o bairro ser preenchido automaticamente",
+      "command": "assertValue",
+      "target": "id=neighbourhood",
+      "targets": [],
+      "value": "Vila Mogilar"
+    }, {
+      "id": "f86af2a6-74f8-453f-8f67-2e30d551da25",
+      "comment": "Marcar opção \"Salvar para próximas compras\"",
+      "command": "click",
+      "target": "id=saveForNext",
+      "targets": [
+        ["id=saveForNext", "id"],
+        ["name=saveForNext", "name"],
+        ["css=#saveForNext", "css:finder"],
+        ["xpath=//input[@id='saveForNext']", "xpath:attributes"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "959a8901-f242-4c8c-8907-089e4867b580",
+      "comment": "Clica no botão \"Próximo\"",
+      "command": "click",
+      "target": "css=.btn:nth-child(12)",
+      "targets": [
+        ["css=.btn:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[2]/div[2]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9a27d4b6-4cf9-4467-b022-08c94033ce35",
+      "comment": "Verificar se foi redirecionado a página de pagamento",
+      "command": "verifyTitle",
+      "target": "Forma de Pagamento | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0eb7b7b2-b397-4fe5-863d-1c5c233ad56f",
+      "comment": "",
+      "command": "click",
+      "target": "id=cc-brand",
+      "targets": [
+        ["id=cc-brand", "id"],
+        ["name=cc-brand", "name"],
+        ["css=#cc-brand", "css:finder"],
+        ["xpath=//select[@id='cc-brand']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72fc23cd-f360-491a-875c-2cbe6899883c",
+      "comment": "",
+      "command": "select",
+      "target": "id=cc-brand",
+      "targets": [],
+      "value": "label=Master Card"
+    }, {
+      "id": "ac86a183-1dee-4b69-9952-660377aa5632",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='MASTER_CARD']", "xpath:attributes"],
+        ["xpath=//select[@id='cc-brand']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Master Card')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2075d55a-1a64-41d5-9ffd-01ca6abcd835",
+      "comment": "",
+      "command": "click",
+      "target": "id=cc-number",
+      "targets": [
+        ["id=cc-number", "id"],
+        ["name=number", "name"],
+        ["css=#cc-number", "css:finder"],
+        ["xpath=//input[@id='cc-number']", "xpath:attributes"],
+        ["xpath=//div[2]/form/div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5dce5b47-33ca-4974-9eab-a12ede414845",
+      "comment": "",
+      "command": "type",
+      "target": "id=cc-number",
+      "targets": [],
+      "value": "5249746917655472"
+    }, {
+      "id": "78f18ba1-546d-414d-b81b-1be8feda2db8",
+      "comment": "",
+      "command": "click",
+      "target": "id=cc-printedName",
+      "targets": [
+        ["id=cc-printedName", "id"],
+        ["name=printedName", "name"],
+        ["css=#cc-printedName", "css:finder"],
+        ["xpath=//input[@id='cc-printedName']", "xpath:attributes"],
+        ["xpath=//div[2]/form/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dbb31f68-6e1e-415b-bfcd-139c183fe8ff",
+      "comment": "",
+      "command": "type",
+      "target": "id=cc-printedName",
+      "targets": [
+        ["id=cc-printedName", "id"],
+        ["name=printedName", "name"],
+        ["css=#cc-printedName", "css:finder"],
+        ["xpath=//input[@id='cc-printedName']", "xpath:attributes"],
+        ["xpath=//div[2]/form/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "CARTÃO DE TESTE DA VENDA"
+    }, {
+      "id": "ff5f3b32-5d21-4391-9959-19a5bcaa9eb9",
+      "comment": "",
+      "command": "click",
+      "target": "id=cc-securityCode",
+      "targets": [
+        ["id=cc-securityCode", "id"],
+        ["name=securityCode", "name"],
+        ["css=#cc-securityCode", "css:finder"],
+        ["xpath=//input[@id='cc-securityCode']", "xpath:attributes"],
+        ["xpath=//div[2]/form/div[2]/div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45c8a7d8-9966-4ae7-9472-8bd05ea27248",
+      "comment": "",
+      "command": "type",
+      "target": "id=cc-securityCode",
+      "targets": [
+        ["id=cc-securityCode", "id"],
+        ["name=securityCode", "name"],
+        ["css=#cc-securityCode", "css:finder"],
+        ["xpath=//input[@id='cc-securityCode']", "xpath:attributes"],
+        ["xpath=//div[2]/form/div[2]/div[2]/div/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "ece6f8ae-9572-4748-b945-d3652b98a1d7",
+      "comment": "",
+      "command": "click",
+      "target": "id=saveForNext",
+      "targets": [
+        ["id=saveForNext", "id"],
+        ["name=saveForNext", "name"],
+        ["css=#saveForNext", "css:finder"],
+        ["xpath=//input[@id='saveForNext']", "xpath:attributes"],
+        ["xpath=//form/div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b333a6f3-0231-4cbb-8559-6f5e1be41737",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > #nextStepButton",
+      "targets": [
+        ["css=form > #nextStepButton", "css:finder"],
+        ["xpath=(//button[@id='nextStepButton'])[2]", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5e26716-16fa-44a7-ac93-755312d9855b",
+      "comment": "Verificar se foi redirecionado a página de pagamento",
+      "command": "verifyTitle",
+      "target": "Revisão | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43058af1-26c8-4675-9293-410d9731e6af",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Finalizar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "68df20c7-1eb5-48a4-b2e0-41c6bd284f87",
+      "comment": "Verificar se foi redirecionado a página de sucesso na venda",
+      "command": "verifyTitle",
+      "target": "Sucesso | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1bef8602-965d-4488-a786-bd3a265a4ec5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Minhas Compras",
+      "targets": [
+        ["linkText=Minhas Compras", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Minhas Compras')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/note-commerce/customer/sales?operation=findByCustomer')])[2]", "xpath:href"],
+        ["xpath=//div[2]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Minhas Compras')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f24b773-d6ff-4d91-a3b1-951bdb59ed56",
+      "comment": "Verificar se foi redirecionado a listagem de  compras",
+      "command": "verifyTitle",
+      "target": "Minhas Compras | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "04ecdc09-8675-462a-978f-348395bd44e8",
+      "comment": "Verificar se há um registro de compra",
+      "command": "verifyElementPresent",
+      "target": "css=tbody tr",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc54abdd-851b-4a7c-aa07-503d491a8dbd",
+      "comment": "Clicar em link para exibir modal de detalhes da compra",
+      "command": "click",
+      "target": "css=tbody td:nth-child(1) a",
+      "targets": [
+        ["linkText=35425645768851", "linkText"],
+        ["css=td > a", "css:finder"],
+        ["xpath=//a[contains(text(),'35425645768851')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'35425645768851')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "62cebfbe-692e-42bf-ac2a-55f245a89583",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-1",
+      "targets": [
+        ["css=.p-1", "css:finder"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'cliente2@teste.com.br')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bd559ae-2706-4225-916b-b7d79fdf539d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Meus endereços",
+      "targets": [
+        ["linkText=Meus endereços", "linkText"],
+        ["css=.dropdown-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/adresses?operation=consult')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus endereços')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd87106e-7f9f-4dfb-a902-f62e0370c18d",
+      "comment": "Verificar se foi redirecionado a listagem de endereços",
+      "command": "verifyTitle",
+      "target": "Meus Endereços | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c0415eb1-093a-4ee5-8c66-f73de249df5c",
+      "comment": "Verificar se endereço cadastrado na venda consta na listagem",
+      "command": "verifyElementPresent",
+      "target": "xpath=//td[contains(.,'08773-600')]",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(1)", "css:finder"],
+        ["xpath=//tr[2]/td", "xpath:position"],
+        ["xpath=//td[contains(.,'08773-600')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "63fde155-1826-4407-a2a5-e9b36062eba2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-1",
+      "targets": [
+        ["css=.p-1", "css:finder"],
+        ["xpath=//li[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'cliente2@teste.com.br')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a5fcd5f-fb8f-466f-a7c3-dc6cae91320a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Meus cartões",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f93053bf-21ee-44b8-a66b-a129772f09cb",
+      "comment": "Verificar se foi redirecionado a listagem de cartões",
+      "command": "verifyTitle",
+      "target": "Meus Cartões | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a2afee39-fcb1-4e63-9047-2e55e89f5271",
+      "comment": "Verificar se endereço cadastrado na venda consta na listagem",
+      "command": "verifyElementPresent",
+      "target": "xpath=//td[contains(.,'CARTÃO DE TESTE DA VENDA')]",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(3)", "css:finder"],
+        ["xpath=//tr[2]/td[3]", "xpath:position"],
+        ["xpath=//td[contains(.,'CARTÃO DE TESTE DA VENDA')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -3788,6 +4610,13 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
+  }, {
+    "id": "cfd49969-0060-4b77-bfa6-494c9eb4e75d",
+    "name": "5 - Condução",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["6ad1819e-7e36-41e6-8fec-3e39ca086058"]
   }],
   "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
   "plugins": []
