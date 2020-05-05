@@ -134,13 +134,16 @@
             </table>
           </div>
           <hr>
+          <div class="mb-4" id="creditCardInfo">
+            
+          </div>
           <div class="mb-4">
             <h4>Pagamento</h4>
             <table class="table table-striped">
               <thead>
              	<tr>
-                  <td><strong>Forma de pagamento</strong></td>
-                  <td><strong>Valor</strong></td>
+                  <th><strong>Forma de pagamento</strong></th>
+                  <th><strong>Valor</strong></tdh>
                 </tr>
               </thead>
               <tbody>
@@ -255,6 +258,11 @@
 	        $("#state").text(json.address.state);
 	        $("#number").text(json.address.number);
 	        $("#complement").text(json.address.complement);
+	        
+	        // Credit Card
+	        if (json.creditCard != null) {
+	        	$("#creditCardInfo").html("<h4>Cartão de crédito</h4><table class='table table-striped'><thead><tr><th><strong>Número</strong></th><th><strong>Nome impresso</strong></th></tr></thead><tbody><tr><td>" + json.creditCard.number + "</td><td>" + json.creditCard.printedName + "</td></tr></tbody></table>");
+	        }
 	        
 	        // Payment
 	        const creditCardUsageText = Number(json.creditCardUsage)
