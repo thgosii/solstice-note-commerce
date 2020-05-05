@@ -134,16 +134,16 @@ public class TradeDAO extends AbstractDAO {
 		if (operation.equals("consult")) { // Gets trade table data and pro
 			if (trade.getSale() != null && trade.getSale().getCustomer() != null && trade.getSale().getCustomer().getUser() != null && trade.getSale().getCustomer().getUser().getId() != null) { // Assumes user id is filled	
 				// User consult (user specific trades)
-				sql = "SELECT trades.*, sal_cus_id FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_type = ? AND trd_deleted = false";
+				sql = "SELECT trades.*, sal_cus_id FROM trades JOIN sales ON trd_sal_id = sal_id WHERE sal_cus_id = ? " + (trade.getId() != null ? "AND trd_id = ? " : "") + "AND trd_type = ? AND trd_deleted = false ORDER BY trd_request_date DESC";
 			} else {
 				// Admin consult (all trades)
-				sql = "SELECT trades.* FROM trades WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_type = ? AND trd_deleted = false";
+				sql = "SELECT trades.* FROM trades WHERE " + (trade.getId() != null ? "trd_id = ? AND " : "") + "trd_type = ? AND trd_deleted = false ORDER BY trd_request_date DESC";
 			}
 		} else if (operation.equals("findSaleItem")) {
 			// Get stored quantity and subtotal of original Sale SaleItem to calculate balance return
 			sql = "SELECT * FROM sales_products WHERE sap_sal_id = ? AND sap_prd_id = ?";
 		} else if (operation.equals("findFromSaleAndProduct")) {
-			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false";
+			sql = "SELECT trades.* FROM trades JOIN sales ON trd_sal_id = sal_id WHERE trd_sal_id = ? AND trd_prd_id = ? AND trd_type = ? AND trd_deleted = false ORDER BY trd_request_date DESC";
 		}
 
 		List<Entity> trades = new ArrayList<Entity>();
