@@ -45,7 +45,7 @@ INSERT INTO `notecommerce_db`.`adresses` (`ads_id`,`ads_cep`,`ads_public_place`,
 
 -- Customers credit cards
 INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (1,'4916559042822551','Cartão de Teste Visa','659',1,0);
-INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (2,'4485283312422825','CARTAO NOME JOÃO','321',2,0);
+INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (2,'4485283312422825','JOÃO DA SILVA','321',2,0);
 INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (3,'5251465567765987','Vesaodir','820',3,0);
 INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (4,'5543849773514305','Kesyothen','638',4,0);
 INSERT INTO `notecommerce_db`.`credit_cards` (`crd_id`,`crd_number`,`crd_printed_name`,`crd_security_code`,`crd_cus_id`,`crd_deleted`) VALUES (5,'4539286124457661','Gouarn Ispe','335',5,0);
