@@ -182,10 +182,10 @@ $(document).ready(() => {
       },
       onRegionTipShow: function (e, el, code) {
         if (!regionValues[code]) {
-          el.html(`${el.html()}: sem vendas`)
+          el.html(`${el.html()}: sem unidades vendidas`)
         } else {
           const stateSalePercentage = Math.round((regionValues[code] / Number(Object.values(regionValues).reduce((a, b) => (a || 0) + (b || 0), 0))) * 1000) / 10
-          el.html(`${el.html()}: ${regionValues[code] + ' vendas'} (${stateSalePercentage}%)`);
+          el.html(`${el.html()}: ${regionValues[code] + ' unidades'} (${stateSalePercentage}%)`);
         }
       }
     });
