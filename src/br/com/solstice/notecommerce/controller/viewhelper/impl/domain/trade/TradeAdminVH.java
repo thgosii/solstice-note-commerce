@@ -69,7 +69,7 @@ public class TradeAdminVH implements IViewHelper {
 		
 		if (operation.equals("update")) {
 			if (null == result.getMessage()) {
-				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType + "operation=consult");
+				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType + "&operation=consult");
 			} else {
 				response.getWriter().write(result.getMessage());
 			}
