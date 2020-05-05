@@ -58,6 +58,11 @@ public class Sale extends DomainEntity {
 		return formatter.format(dateTime);
 	}
 
+	public String getFormattedISODateTime() {
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+		return formatter.format(dateTime);
+	}
+
 	public String getFormattedStatus() {
 		switch (status) {
 		case DELIVERED:
