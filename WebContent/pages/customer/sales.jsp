@@ -93,7 +93,7 @@
                     <tr>
                       <td><a href="#" data-toggle="modal" data-target="#sale-detail-modal_${sale.id}">${sale.identifyNumber}</a></td>
                       <td><span class="dt-date-sort">${sale.getFormattedDateTime()}</span></td>
-                      <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></script></td>
+                      <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></td>
                       <td><span class="badge ${sale.getStatusColorName()}">${sale.getFormattedStatus()}</span></td>
                     </tr>
                   </c:forEach>
