@@ -130,7 +130,7 @@
 	                        <span class="badge bg-warning">Aguardando autorização</span>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'DENIED'}">
-	                        <span class="badge bg-danger">Recusado</span>
+	                        <span class="badge bg-danger">Pedido recusado</span>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
 	                        <span class="badge bg-info">Aguardando retorno de produto</span>
