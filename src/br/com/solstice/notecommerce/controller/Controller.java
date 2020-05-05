@@ -22,6 +22,7 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.application.admin
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.customer.BalanceCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.application.shop.ProductShopVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.product.ProductAdminVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.sale.SaleAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.cart.CartVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleInProgressVH;
@@ -71,6 +72,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/admin/dashboard", new DashboardDataAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/brands", new BrandAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/trades", new TradeAdminVH());
+		viewHelpersMap.put("/note-commerce/admin/sales", new SaleAdminVH());
 
 		// customer
 		viewHelpersMap.put("/note-commerce/signup", new CustomerVH());

@@ -49,7 +49,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="/note-commerce/pages/admin/sales.jsp" class="nav-link">
+              <a href="/note-commerce/admin/sales?operation=consult" class="nav-link">
                 <i class="nav-icon fas fa-dollar-sign"></i>
                 <p>Vendas</p>
               </a>

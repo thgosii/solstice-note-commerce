@@ -141,6 +141,8 @@ public class SaleDAO extends AbstractDAO {
 			sql = "SELECT * from sales WHERE sal_cus_id=?";
 		} else if (operation.equals("findById")) {
 			sql = "SELECT * from sales WHERE sal_id=?";
+		} else if (operation.equals("consult")) {
+			sql = "SELECT * from sales";
 		}
 
 		List<Entity> sales = new ArrayList<Entity>();

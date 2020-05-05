@@ -211,8 +211,10 @@
 	            <h4>Pagamento</h4>
 	            <table class="table table-striped">
 	              <thead>
-	                <td><strong>Forma de pagamento</strong></td>
-	                <td><strong>Valor</strong></td>
+	              	<tr>
+		                <th><strong>Forma de pagamento</strong></th>
+		                <th><strong>Valor</strong></th>
+	                </tr>
 	              </thead>
 	              <tbody>
 	                <tr>
