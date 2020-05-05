@@ -87,7 +87,7 @@
             
             <div class="card">
               <div class="card-header">
-                <h4>Total: R$ <span id="total"></span></h4>
+                <h4>Total: <span id="total"></span></h4>
               </div>
             </div>
             <div class="card">
@@ -282,6 +282,7 @@
             autoUnmask: true,
             removeMaskOnSubmit: true
           });
+          $('#balance').val(0)
         } else {
           $('#balance').attr('disabled', 'disabled')
           $('#balance').attr('placeholder', 'Você não tem saldo para utilizar nessa compra')
