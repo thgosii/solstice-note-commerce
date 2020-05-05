@@ -136,7 +136,7 @@
 	                        <span class="badge bg-info">Aguardando retorno de produto</span>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-	                        <span class="badge bg-success">Produto devolvido</span>
+	                        <span class="badge bg-success">Saldo atualizado</span>
 	  </c:when>
 	</c:choose>
   </c:otherwise>
