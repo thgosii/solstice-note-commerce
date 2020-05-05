@@ -163,17 +163,17 @@
 	                    <td style="max-width: 350px">${item.product.title}</td>
 	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.product.price}" /></td>
 	                    <td>${item.quantity}</td>
-	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>.btn-xs
+	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${item.subTotal}" /></td>
 	                    <td>
-<c:choose>
-	<c:when test="${sale.status.name() == 'DELIVERED'}">
-	                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=exchange&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Trocar</a>
-	                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=devolution&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Devolver</a>                  
-	</c:when>
-	<c:otherwise>
-							<span>Sem ações</span>
-	</c:otherwise>
-</c:choose>
+						<c:choose>
+							<c:when test="${sale.status.name() == 'DELIVERED'}">
+		                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=exchange&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Trocar</a>
+		                    	<a href="/note-commerce/pages/customer/customer-trade-form.jsp?type=devolution&idSale=${sale.id}&idProduct=${item.product.id}&saleQuantity=${item.quantity}&title=${item.product.title}" class="btn btn-outline-danger btn-xs">Devolver</a>                  
+							</c:when>
+							<c:otherwise>
+								<span>Sem ações</span>
+							</c:otherwise>
+						</c:choose>
 						</td>
 	                  </tr>
 	                </c:forEach>
