@@ -20,6 +20,19 @@ public class SaleAdminVH implements IViewHelper {
 		
 		if (operation.equals("consult")) {
 			return new Sale();
+		} else if (operation.equals("update")) {
+			Long id = null;
+			if (null != request.getParameter("id")) {
+				try {
+					id = Long.parseLong(request.getParameter("id"));
+				} catch (Exception ex) {
+				}
+			}
+			
+			Sale sale = new Sale();
+			sale.setId(id);
+			
+			return sale;
 		}
 		
 		return null;
@@ -39,6 +52,16 @@ public class SaleAdminVH implements IViewHelper {
 			}
 			
 			request.getRequestDispatcher("/pages/admin/sales.jsp").forward(request, response);
+		} else if (operation.equals("update")) {
+			Sale sale = (Sale) result.getEntities().get(0);
+			
+			request.setAttribute("sale", sale);
+			
+			if (null == sale) {
+				return;
+			}
+			
+			response.sendRedirect("/note-commerce/admin/sales?operation=consult");
 		}
 	}
 

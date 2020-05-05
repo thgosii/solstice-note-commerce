@@ -116,7 +116,17 @@
 	                    <td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${sale.getTotal()}" /></td>
 	                    <td><span class="badge ${sale.getStatusColorName()}">${sale.getFormattedStatus()}</span></td>
 	                    <td class="text-center">
-	                      <button type="button" class="btn btn-xs btn-primary"><i class="fas fa-truck"></i> Ação</button>
+	                      <c:choose>
+							<c:when test="${sale.status.name() == 'PAYMENT_APPROVED'}">
+		                    	<a href="/note-commerce/admin/sales?operation=update&id=${sale.id}&status=${sale.status.name()}" class="btn btn-xs btn-info">Iniciar entrega</a>
+		                    </c:when>
+		                    <c:when test="${sale.status.name() == 'ON_DELIVERY'}">
+		                    	<a href="/note-commerce/admin/sales?operation=update&id=${sale.id}&status=${sale.status.name()}" class="btn btn-xs btn-secondary">Finalizar entrega</a>
+		                    </c:when>
+							<c:otherwise>
+								<span>Sem ações</span>
+							</c:otherwise>
+						  </c:choose>
 	                    </td>
 	                  </tr>
                   </c:forEach>

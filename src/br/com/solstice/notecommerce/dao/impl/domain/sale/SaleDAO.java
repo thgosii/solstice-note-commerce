@@ -50,7 +50,7 @@ public class SaleDAO extends AbstractDAO {
 			}
 
 			address.setId(new AddressDAO(connection).save(address));
-			
+
 			CreditCard creditCard = sale.getCreditCard();
 
 			if (!sale.isSaveCreditCardForNext()) {
@@ -123,7 +123,35 @@ public class SaleDAO extends AbstractDAO {
 
 	@Override
 	public void update(Entity entity) {
+		openConnection();
+		PreparedStatement pstm = null;
 
+		Sale sale = (Sale) entity;
+
+		String sql = "UPDATE sales SET sal_status=? where sal_id=?";
+
+		try {
+			pstm = connection.prepareStatement(sql);
+
+			pstm.setString(1, sale.getStatus().toString());
+			pstm.setLong(2, sale.getId());
+
+			System.out.println(
+					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
+							+ ": " + pstm.toString().substring(pstm.toString().indexOf(':') + 2));
+
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+				}
+			}
+			closeConnection();
+		}
 	}
 
 	@Override
