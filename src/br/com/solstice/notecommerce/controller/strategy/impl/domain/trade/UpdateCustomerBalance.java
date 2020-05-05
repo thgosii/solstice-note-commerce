@@ -31,7 +31,7 @@ public class UpdateCustomerBalance extends AbstractStrategy {
 			if (trade.getStatus() == TradeStatus.REPLACEMENT_ON_DELIVERY) { // Replacement product will be sent back
 				// Get SaleItem to get product id to check stock
 				Trade previousTrade = (Trade) tradeDAO.consult(trade, "consult").get(0);
-				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem")).getSaleItem();
+				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem").get(0)).getSaleItem();
 				// TODO: Check stock to see if there is products to be delivered back
 				
 			}
@@ -39,7 +39,7 @@ public class UpdateCustomerBalance extends AbstractStrategy {
 			if (trade.getStatus() == TradeStatus.PRODUCT_RECEIVED) { // Devolution about to finish
 				// Get SaleItem to get subtotal to update customer balance
 				Trade previousTrade = (Trade) tradeDAO.consult(trade, "consult").get(0);
-				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem")).getSaleItem();
+				SaleItem saleItem = ((Trade) tradeDAO.consult(previousTrade, "findSaleItem").get(0)).getSaleItem();
 				
 				// Find customer through trade sale id
 				SaleDAO saleDAO = new SaleDAO();
@@ -48,7 +48,8 @@ public class UpdateCustomerBalance extends AbstractStrategy {
 				Customer customer = ((Sale) saleDAO.consult(sale, "findById").get(0)).getCustomer();
 			
 				// Update balance
-				customer.setBalance(customer.getBalance() + saleItem.getSubTotal());
+				previousTrade.setSaleItem(saleItem);
+				customer.setBalance(customer.getBalance() + previousTrade.getBalanceReturn());
 				
 				CustomerDAO customerDAO = new CustomerDAO();
 				

@@ -101,7 +101,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive">
-              <table id="products-table" class="table table-borderless table-striped">
+              <table id="trades-table" class="table table-borderless table-striped">
                 <thead>
                   <tr>
                     <th>Data do pedido</th>
@@ -155,13 +155,13 @@
 	                        <small>Sem Ações</small>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-truck-loading"></i>Confirmar retorno</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-truck-loading"></i> Confirmar retorno</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-check"></i>Iniciar entrega</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-check"></i> Iniciar entrega</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'REPLACEMENT_ON_DELIVERY'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Confirmar entrega</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Confirmar entrega</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'REPLACEMENT_DELIVERED'}">
 	                        <small>Sem Ações</small>
@@ -194,7 +194,7 @@
 	                        <small>Sem Ações</small>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-hand-holding-usd"></i>Confirmar devolução</a>
+	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-hand-holding-usd"></i> Confirmar devolução</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
 	                        <small>Sem Ações</small>
@@ -290,7 +290,7 @@
   <script>
     $(document).ready(() => {
 
-      $('#products-table').DataTable({
+      $('#trades-table').DataTable({
         columnDefs: [
           {
             targets: [6], // Colunas de: [Ações]
@@ -298,6 +298,7 @@
             orderable: false
           }
         ],
+        "order": [[ 0, "desc" ]],
         // Internacionalização Português-Brasil - https://datatables.net/plug-ins/i18n/Portuguese-Brasil
         language: { "sEmptyTable": "Nenhum registro encontrado", "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros", "sInfoEmpty": "Mostrando 0 até 0 de 0 registros", "sInfoFiltered": "(Filtrados de _MAX_ registros)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "_MENU_ resultados por página", "sLoadingRecords": "Carregando...", "sProcessing": "Processando...", "sZeroRecords": "Nenhum registro encontrado", "sSearch": "Pesquisar", "oPaginate": { "sNext": "Próximo", "sPrevious": "Anterior", "sFirst": "Primeiro", "sLast": "Último" }, "oAria": { "sSortAscending": ": Ordenar colunas de forma ascendente", "sSortDescending": ": Ordenar colunas de forma descendente" }, "select": { "rows": { "0": "Nenhuma linha selecionada", "1": "Selecionado 1 linha", "_": "Selecionado %d linhas" } } }
       });

@@ -41,7 +41,6 @@ public class TradeAdminVH implements IViewHelper {
 			try {
 				status = TradeStatus.valueOf(request.getParameter("status"));
 			} catch (Exception exception) {
-				return null;
 			}
 			
 			Trade trade = new Trade();
@@ -69,7 +68,7 @@ public class TradeAdminVH implements IViewHelper {
 		
 		if (operation.equals("update")) {
 			if (null == result.getMessage()) {
-				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType + "operation=consult");
+				response.sendRedirect("/note-commerce/admin/trades?type=" + tradeType + "&operation=consult");
 			} else {
 				response.getWriter().write(result.getMessage());
 			}
