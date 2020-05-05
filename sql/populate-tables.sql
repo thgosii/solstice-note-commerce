@@ -1,14 +1,14 @@
 -- Admin account
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (1,'admin@admin.com','1ED165F7E19BFB8AF429D5BF887C9D58','admin',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (1,'admin@admin.com','1ED165F7E19BFB8AF429D5BF887C9D58','admin',0); -- Admin@123
 
 
 
 -- Customer accounts
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (2,'client@client.com','8B3E0C1BD7D07458888E214FFA3C4959','client',0);
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (3,'cliente2@teste.com.br','A84E52042E0A704405CD09D54A97F18E','client',0);
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (4,'cliente3@teste.com.br','714EF6749C9766EC5D1DD7B55FB8B7CA','client',0);
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (5,'cliente4@teste.com.br','213C55D95F1CA82474D72CE708DD0C55','client',0);
-INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (6,'cliente5@teste.com.br','6B571AB1A9E61BD9F590736BF7F325C5','client',0);
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (2,'client@client.com','8B3E0C1BD7D07458888E214FFA3C4959','client',0); -- Client@123
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (3,'cliente2@teste.com.br','A84E52042E0A704405CD09D54A97F18E','client',0); -- clienteteste!2
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (4,'cliente3@teste.com.br','714EF6749C9766EC5D1DD7B55FB8B7CA','client',0); -- clienteteste!3
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (5,'cliente4@teste.com.br','213C55D95F1CA82474D72CE708DD0C55','client',0); -- clienteteste!4
+INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (6,'cliente5@teste.com.br','6B571AB1A9E61BD9F590736BF7F325C5','client',0); -- ...
 INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (7,'cliente6@teste.com.br','8B2C8F073880416BA12A3C356A575E5C','client',0);
 INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (8,'cliente7@teste.com.br','2753B35A29A615BC77B149F9A4613860','client',0);
 INSERT INTO `notecommerce_db`.`users` (`usr_id`,`usr_email`,`usr_password`,`usr_role`,`usr_deleted`) VALUES (9,'cliente8@teste.com.br','04DF1317DD85006BA3F847F8163EFA2E','client',0);
