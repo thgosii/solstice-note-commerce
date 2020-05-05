@@ -41,7 +41,6 @@ public class TradeAdminVH implements IViewHelper {
 			try {
 				status = TradeStatus.valueOf(request.getParameter("status"));
 			} catch (Exception exception) {
-				return null;
 			}
 			
 			Trade trade = new Trade();
