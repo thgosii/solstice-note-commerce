@@ -155,13 +155,13 @@
 	                        <small>Sem Ações</small>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-truck-loading"></i>Confirmar retorno</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-truck-loading"></i> Confirmar retorno</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-check"></i>Iniciar entrega</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-info"><i class="fas fa-check"></i> Iniciar entrega</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'REPLACEMENT_ON_DELIVERY'}">
-	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Confirmar entrega</a>
+	                        <a href="/note-commerce/admin/trades?type=exchange&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-check"></i> Confirmar entrega</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'REPLACEMENT_DELIVERED'}">
 	                        <small>Sem Ações</small>
@@ -194,7 +194,7 @@
 	                        <small>Sem Ações</small>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'AUTHORIZED'}">
-	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-hand-holding-usd"></i>Confirmar devolução</a>
+	                        <a href="/note-commerce/admin/trades?type=devolution&operation=update&id=${trade.id}" class="btn btn-xs btn-success"><i class="fas fa-hand-holding-usd"></i> Confirmar devolução</a>
 	  </c:when>
 	  <c:when test="${trade.status.name() == 'PRODUCT_RECEIVED'}">
 	                        <small>Sem Ações</small>
