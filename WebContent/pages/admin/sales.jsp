@@ -235,6 +235,23 @@
 	            </table>
 	          </div>
 	          <div class="mb-4">
+	          	<h4>Cartão de crédito</h4>
+	          	<table class='table table-striped'>
+	          	  <thead>
+	          	    <tr>
+	            	  <th><strong>Número</strong></th>
+	            	  <th><strong>Nome impresso</strong></th>
+	            	</tr>
+	              </thead>
+	              <tbody>
+	              <tr>
+	                <td>${sale.creditCard.number}</td>
+	            	<td>${sale.creditCard.printedName}</td>
+	              </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	          <div class="mb-4">
 	            <h4>Pagamento</h4>
 	            <table class="table table-striped">
 	              <thead>

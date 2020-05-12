@@ -2,10 +2,10 @@
   "id": "9d32aa12-f72e-4ac0-a520-9040c594960f",
   "version": "2.0",
   "name": "Note Commerce",
-  "url": "http://localhost:8080/note-commerce/",
+  "url": "http://localhost:8080/note-commerce/admin/sales?operation=consult",
   "tests": [{
     "id": "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e",
-    "name": "Login como admin",
+    "name": "Login como admin@admin.com 1",
     "commands": [{
       "id": "e6ca1385-5cb2-4c28-8d8f-9c1281761812",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -858,7 +858,7 @@
     }]
   }, {
     "id": "a65daab4-2ac6-4e91-b056-32839b51b16a",
-    "name": "Login cliente",
+    "name": "Login como cliente@teste.com.br",
     "commands": [{
       "id": "84f0ae3e-3860-4637-8551-e63d5a98df97",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -3754,7 +3754,7 @@
     }]
   }, {
     "id": "6ad1819e-7e36-41e6-8fec-3e39ca086058",
-    "name": "5 Venda: cadastro endereço e cartão e sem saldo",
+    "name": "5 Venda: com cadastros e sem saldo",
     "commands": [{
       "id": "b19528cc-e235-4ce5-a51d-4a89d2a0dafc",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -4574,6 +4574,3110 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "270fb01a-2ed1-42e5-933d-2292a736b507",
+    "name": "5 Verificar venda recente existente",
+    "commands": [{
+      "id": "4fe32591-c96e-484c-894e-83c3af2d25e1",
+      "comment": "Entrar diretamente na parte administrativa",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/admin/dashboard.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "887d5df6-a68f-4eeb-a04a-4b68a87b6d37",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "302b6f2c-0b92-4f62-91fc-2c6a9e32882b",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5b0ca58f-d6a4-4cfa-9c2f-15ea34bedc7a",
+      "comment": "Abrir dropdown de produtos no menu lateral principal",
+      "command": "click",
+      "target": "css=.nav-item:nth-child(2) .right",
+      "targets": [
+        ["css=.nav-item:nth-child(2) .right", "css:finder"],
+        ["xpath=//i[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3047f8fd-a675-4389-b3fa-172d6832fbae",
+      "comment": "Clicar no botão \"Vendas\" para navegar a listagem",
+      "command": "click",
+      "target": "linkText=Vendas",
+      "targets": [
+        ["linkText=Novo Laptop", "linkText"],
+        ["css=.menu-open .nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/admin/products-new.jsp')]", "xpath:href"],
+        ["xpath=//li[2]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecb5950f-5657-40c7-b9f5-ac4fa0b1e4f8",
+      "comment": "Verificar se foi redirecionado ao form de produtos",
+      "command": "assertTitle",
+      "target": "Vendas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "36998e72-5aea-4468-86d0-ceced4b5b7ae",
+      "comment": "Selecionar filtro de vendas",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3eac23a9-ec76-482b-81ff-44d6504517b3",
+      "comment": "Pesquisar vendas com pagamento aprovado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Pagamento aprovado"
+    }, {
+      "id": "d773ca57-3183-49d2-839a-d243d3b1075f",
+      "comment": "Confirmar existência da venda",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "688566ed-fa0a-45bc-9c95-44195a360157",
+      "comment": "Abrir modal de venda",
+      "command": "click",
+      "target": "css=td [data-toggle=modal]",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4984b124-e06e-4997-ac3f-db015f63fe5a",
+    "name": "5 Alterar status da venda: iniciar entrega",
+    "commands": [{
+      "id": "c443ed2f-df3c-4f43-ae87-c2edd08fec74",
+      "comment": "Entrar diretamente na listagem de vendas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/sales?operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "83946048-8314-4477-b216-9a3f4511bde0",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bca77225-c2f0-478e-b04e-9838217b6564",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Vendas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5cdb51ec-e5a0-4a84-905a-9204b4434b67",
+      "comment": "Selecionar filtro de vendas",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c35779b5-eff1-4cfb-887e-c1d7a3cc36e6",
+      "comment": "Pesquisar vendas com pagamento aprovado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Pagamento aprovado"
+    }, {
+      "id": "21692594-a9ae-4582-8dcb-1e8001890254",
+      "comment": "Confirmar existência da venda",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "660df330-d001-4231-9c20-1861ff52be01",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Iniciar entrega",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f24018a9-3a2d-4816-b6e0-f32c58554424",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Vendas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cabb0ab6-fb32-49b0-812d-3c15e239031b",
+      "comment": "Selecionar filtro de vendas",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af4bf237-1389-412d-bed1-19b852813d25",
+      "comment": "Pesquisar vendas com entrega em andamento",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Entrega em andamento"
+    }, {
+      "id": "d27a9cc6-7ab8-4ba5-aeb7-1317a10202e2",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5342a74c-ffe2-422f-895e-12adce63a91a",
+    "name": "Login como cliente2@teste.com.br 1",
+    "commands": [{
+      "id": "61c224cd-4e1d-41fe-bcd4-57090eaf98c5",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e1f0bbd2-d503-4baa-8668-372d8b6ccbe6",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b87c586e-839a-4c1a-bd16-4f64c687e3ec",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df821fb5-8a31-4924-a9d9-3a1dc63be1a1",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "79d4bf30-6333-4f9a-80bf-c4b66cc283d5",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "45c6383c-b385-4604-8b30-711548ee22bd",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "76eb3e7d-043e-451e-b066-269938b2808b",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "2bba9a3b-5692-4cea-8582-ec812f5883e9",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea795347-4668-4c10-b965-50f9054ae934",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "67d7c442-7254-4b6c-a61b-8e5edaada396",
+    "name": "5 Verificar status da venda: produto em entrega",
+    "commands": [{
+      "id": "51190c9a-04a9-47b3-ae6e-71a154d4531c",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66f00cbf-87f0-49a6-875a-5154492aaf77",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c437cd1d-660c-4c78-aa8f-b3acba805a92",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c0b5b21-bf10-4dad-ba7b-a23b67136adb",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "981e2161-3995-45d9-bdd2-b920643578a8",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "24d67d22-c237-46cc-bfe9-fa366c34b008",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ef2dfda-0843-40aa-adbc-4deb7a5d72ad",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "a0644c5d-afb1-4c1e-950f-9f6d632ee927",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2ae8a0a-91b3-4486-a2bc-129ec371ee30",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b31178c4-de7a-49b5-9f1a-b260486a41ca",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a56ed58f-eeb7-464d-8951-172254e25402",
+      "comment": "Clicar no botão \"Minhas compras\"",
+      "command": "click",
+      "target": "linkText=Minhas compras",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "014ff4a2-918c-4bee-91c8-69271b609ad2",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Compras | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fff11045-dfe7-449f-96e4-c0e4f6194756",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Entrega em andamento')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c98b89b1-1b63-4d59-b4ae-e216eb446999",
+    "name": "5 Alterar status da venda: finalizar entrega",
+    "commands": [{
+      "id": "4af00e93-a2b4-4569-a32d-771181569c69",
+      "comment": "Entrar diretamente na listagem de vendas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/sales?operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a47b616b-99f8-439f-a64d-1fc579472ec5",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d66eafde-272f-4842-a1e1-ff6b0aaeef99",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Vendas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "446f3866-cef8-4df4-95fc-4c4e9da96e1b",
+      "comment": "Selecionar filtro de vendas",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "304f947c-2f0b-4e5d-aeb1-12b63c5c9cdf",
+      "comment": "Pesquisar vendas com pagamento aprovado",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Entrega em andamento"
+    }, {
+      "id": "872b10c0-ebf2-46d3-bfc6-30d1e305f326",
+      "comment": "Confirmar existência da venda",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f358b241-0080-4114-be65-cfcc113d4055",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Finalizar entrega",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d030615-84a0-4a79-bff4-da3c87606256",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Vendas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "72aea58c-9efc-4b0f-8905-64ef1c911f6c",
+      "comment": "Selecionar filtro de vendas",
+      "command": "click",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "06cc4efc-8e51-4821-a129-366e677c9a5d",
+      "comment": "Pesquisar vendas com entrega em andamento",
+      "command": "type",
+      "target": "css=#products-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Entregue"
+    }, {
+      "id": "9fcb7675-19e9-44ec-94b3-f05986b271fd",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c4dee809-b8f3-4afa-83b1-32e74732c9c6",
+    "name": "5 Verificar status da venda: entregue",
+    "commands": [{
+      "id": "a348fcc6-d102-4e22-8f05-fa94e30b8d05",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44445010-eb53-4a40-a675-b7f670c08b2f",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "776a2265-40c1-44d2-9d9a-fcd2818ea1e0",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b0ff13f7-f16c-4844-9a0c-e0de8230e5a4",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53d24255-c8dd-44be-ae22-3c941c244857",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "6f636fbc-75ce-431f-ae94-13e8b28d390b",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "26053105-53a2-4a6a-a506-16542e2ffd5b",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "d0d00a03-2cc7-4686-a11b-a63919a143e9",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "747caaa2-1ff1-4b7b-98f7-2325f12dc149",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7bcbe164-e18e-4b10-bde4-6d438f54b7f9",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d39d4992-54c1-4e08-b261-e12e50006aca",
+      "comment": "Clicar no botão \"Minhas compras\"",
+      "command": "click",
+      "target": "linkText=Minhas compras",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "45b689c5-6a87-4415-b09f-8b45c7bae83c",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Compras | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bba3540f-e755-4bc3-bb20-56e4a6b606a5",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Entregue')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "346746cc-2e4a-4764-be00-d66aa9c790d7",
+    "name": "Login como admin@admin.com 2",
+    "commands": [{
+      "id": "c0e7c418-44fc-44b4-829c-7e860e81affa",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8584298d-f6a5-4af2-b576-d4d2e53c7008",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7e620cc-00bb-4de8-b24e-90869de5c167",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2d0530d6-6569-47c0-acd7-01637eec6fb7",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc970b9e-4a81-4c65-880c-a25f38448b21",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "1e33be70-7b71-4fc8-83b3-86c1fdd67ee2",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95a87dde-cef3-4261-a674-ebd222a7ee3d",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "e802c6ea-5841-4c02-a72e-c02f9b62c913",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3145672-95ad-46bc-bab1-90b1de382ee7",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "9d942b5a-f172-4de5-9826-17d037b28be5",
+    "name": "Login como admin@admin.com 3",
+    "commands": [{
+      "id": "cc7f4815-b2f8-470f-bb5e-6d0eb7908cb6",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "10d82ef9-564b-438b-abef-e713bb61800e",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc68105c-5d81-4aa0-8a4c-cd07847255af",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28def6f3-2819-4e1a-8c04-7e1cd1723b53",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60e274f3-c0b8-4db0-9af8-e7d1880d0f78",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "dbc32f27-9cc3-45f0-888f-c7554ef9f045",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8aa627e4-6493-4819-b8f3-1d4b4943fdc9",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "155af50d-820b-4924-8915-59297e558c98",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "294c9ddf-21ca-4bdc-b3c5-1ebcfa622080",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "230009fa-dc02-4b73-8c18-e2f5943449be",
+    "name": "7 Iniciar devolução",
+    "commands": [{
+      "id": "fd79b766-edd4-483b-b91c-59d3e575bd2d",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e67fa901-5a50-4a90-ab5e-88e7ed37dbb3",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5599bf4-9cf5-4cff-bed3-f8f07b923afb",
+      "comment": "Clicar no botão \"Minhas compras\"",
+      "command": "click",
+      "target": "linkText=Minhas compras",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a03eaf71-ab88-4ff7-96a3-e2d1136ea0ad",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Compras | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5b6b6ce7-efa4-4a98-a521-8c97d7be6e20",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Entregue')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7107fb7f-c86b-41b6-8f21-7660c8e7c4aa",
+      "comment": "Clicar em link para exibir modal de detalhes da compra",
+      "command": "click",
+      "target": "css=tbody td:nth-child(1) a",
+      "targets": [
+        ["linkText=35425645768851", "linkText"],
+        ["css=td > a", "css:finder"],
+        ["xpath=//a[contains(text(),'35425645768851')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'35425645768851')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d95df573-ebbb-4bef-8f9a-27ca72a45d27",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Devolver",
+      "targets": [
+        ["linkText=Devolver", "linkText"],
+        ["css=tr:nth-child(1) .btn:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Devolver')]", "xpath:link"],
+        ["xpath=//div[@id='sale-detail-modal_1']/div/div/div[2]/div/table/tbody/tr/td[6]/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/customer/customer-trade-form.jsp?type=devolution&idSale=1&idProduct=1&saleQuantity=1&title=Notebook Lenovo Ideapad S145-15IWL Intel Core i5 - 8GB 1TB 15,6')]", "xpath:href"],
+        ["xpath=//td[6]/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Devolver')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "035a2c1a-29c4-4f28-b0a4-4a4d58fbeba5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//td[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Solicitar devolução')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca259301-d7a3-4029-825c-9769b3d7bbcd",
+      "comment": "Verificar se foi redirecionado para listagem de devoluções",
+      "command": "assertTitle",
+      "target": "Minhas Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1bfd328c-93d4-49c8-b27b-2a980c8adab1",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Aguardando autorização')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "dc506cf0-ab88-442c-8483-d0f16f69cf9b",
+    "name": "Login como cliente2@teste.com.br 3",
+    "commands": [{
+      "id": "12fe6f0a-e6ac-42c9-85d2-aa44885caa3e",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "59d9d8e6-e105-484e-a5e1-18a312c9e287",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "81e703ff-8e4f-4a19-b832-68dbe1092e0e",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5b38e063-8fcc-4195-a4ae-1172057bb999",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e367ead-4399-4c00-9cdb-10ec4cf5aa03",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "84185e35-645c-4bf4-8a8c-17d4f698b84b",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a78a97f-fb7c-48de-8baf-91a1d2930e3b",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "f9a258dd-bda6-46fd-ba21-3c06bede3bb6",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "391811d1-c0f2-43f2-bd99-7c6a0e2eb8a4",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "2162353c-306c-4026-927d-487337673c22",
+    "name": "Login como cliente2@teste.com.br 2",
+    "commands": [{
+      "id": "5acc2965-b9ff-4395-afff-10ee4c20c097",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98947713-f9b3-4f30-a1b4-4685e71c7a24",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9882b500-06f8-4029-b18f-b474af5ac1c1",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2fe6095f-2eaa-486a-9ada-a32c25283a42",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3a8cd73-48f8-4c19-9540-6b01093cd01e",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "84a69237-1053-48a1-8cba-4dee9c41f4ff",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "955a7cdd-67e8-4f45-956e-43f84d46b77b",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "e84ebde8-73d5-4fb8-985c-e636fabf622b",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ce260101-3a85-41be-b855-6cac7bf270ab",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7edf1957-cc7a-46e8-9039-8eaa1da426fe",
+    "name": "7 Alterar status da devolução: aceitar",
+    "commands": [{
+      "id": "156e98c1-abdd-4113-a11e-8f556f56f2b7",
+      "comment": "Entrar diretamente na listagem de vendas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=devolution&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c1e53698-dc3f-46ef-8dbd-9ae8511365f8",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a26161f8-8f20-430f-a387-b1547064641d",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3a28f78d-b922-43ec-b784-5baae8ee7302",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "addd967c-6da4-4750-a55e-7d7b3423904b",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando autorização"
+    }, {
+      "id": "ef2897d1-03be-40e0-a271-d74cd7010467",
+      "comment": "Confirmar existência da devolução",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "536f4723-d420-4183-943a-836d7f4fd3b4",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Autorizar",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "718cac57-5c18-4ed4-afb6-5b7dbc1121c2",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "12fad90a-9f98-4fda-ae5f-19c66251cc0d",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75d568ae-49e6-474a-ba28-7c45b40473c2",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando retorno de produto"
+    }, {
+      "id": "aa7a1577-d9d0-4f08-a3c0-f15121716087",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4f1bfa66-3660-418d-83ce-214c415be7d9",
+    "name": "7 Alterar status da devolução: confirmar devolução",
+    "commands": [{
+      "id": "6c1e77b7-ca4f-434c-87d9-0e45bd897356",
+      "comment": "Entrar diretamente na listagem de vendas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=devolution&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9b335461-1a67-46e1-a9a9-eda7eab6d376",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7fe5bf76-3a2a-4d0c-bb6a-253fae6ac5fb",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c25c392-c47c-446d-8e25-d27240392990",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a79db006-bdd6-4ead-a094-ffb8e37666e5",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando retorno de produto"
+    }, {
+      "id": "e751632c-1e25-470d-86d4-780707f68848",
+      "comment": "Confirmar existência da devolução",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea0774ba-6999-4951-b9cf-e9eade5b6c02",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Confirmar devolução",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b586970-e630-45f4-b650-9b91fe30efa9",
+      "comment": "Verificar se esta na página inicial administrativa",
+      "command": "assertTitle",
+      "target": "Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "40c5b704-d081-4f10-9934-1815fb444ef7",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f04fd8c-36ba-4416-98d7-64464bc35cd0",
+      "comment": "Pesquisar vendas com entrega em andamento",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ad46201-1314-4d75-a900-fbfa02e0c511",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "76a7a49a-8657-4c83-bdd5-e629efc2dd62",
+    "name": "7 Verificar status da devolução: aguardando retorno",
+    "commands": [{
+      "id": "142d2037-bd9a-40ab-953d-8b2cdb3ffcd4",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b867955-65a7-40cf-9a37-cbcca960a989",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "024a3b1c-7f0e-49c5-a023-99a3fead6e6e",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6b2d7be2-c746-4d97-b60b-d263cc1f2d8d",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e66920e3-74b9-4b23-86d3-c39e67b3a782",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "46f297bc-af58-42e6-83ab-ee606937ab80",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "996db7e3-21f8-4e1a-a82c-a528f5fd1c03",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "0eade7fc-8aa2-4440-95e7-a3564c846911",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ad74e81-7442-4459-a998-4c27eaec2c82",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "438df672-b16e-4886-a411-f9b1a2c27f39",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df876567-7a11-46d3-89da-d98870376772",
+      "comment": "Clicar no botão \"Minhas devoluções\"",
+      "command": "click",
+      "target": "linkText=Minhas devoluções",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff5dacf8-f711-4628-915b-8a78fc1bd596",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0519a6dc-c822-480d-8952-0cefcf2ef219",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Aguardando retorno de produto')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "558a5626-4282-48d6-99c6-29d2032fabf9",
+    "name": "7 Verificar status da devolução: saldo atualizado",
+    "commands": [{
+      "id": "4e3f5804-addd-4313-b7b8-e3cf89a18507",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "712e593d-2e87-447a-9af0-1671b6d0a8d2",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f4608b22-c316-42da-aca7-1ec53847cc5d",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4767b030-57ab-4055-b96d-ea4bdce8ffe5",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "14ad3234-d547-47a2-b10d-1167bc766718",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "785973d0-120a-4077-bf80-8eddd4120dd9",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88ad82f0-3614-4b76-8f8f-2b349e1ed838",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "adeb407d-6a8d-4632-b480-e72142ae3410",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "08cceb9b-3112-4744-a93b-7bda7739d341",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "31fe3e7a-d6cc-4823-9010-dc77e94763e7",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "512d7c37-5694-48bd-8f37-8088b7d41e49",
+      "comment": "Clicar no botão \"Minhas devoluções\"",
+      "command": "click",
+      "target": "linkText=Minhas devoluções",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "09d82398-a94d-4700-b64c-3c3b31fe8a64",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Devoluções | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "41700f49-9fd7-4a7a-acca-b3e8434cef89",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Saldo atualizado')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1fc21df-d0b2-4419-a8d4-28ddea05a3ed",
+      "comment": "Verificar se saldo não está zerado",
+      "command": "verifyElementNotPresent",
+      "target": "xpath=//strong[contains(.,'R$ 0,00')]",
+      "targets": [
+        ["id=navbar-customer-balance", "id"],
+        ["css=#navbar-customer-balance", "css:finder"],
+        ["xpath=//strong[@id='navbar-customer-balance']", "xpath:attributes"],
+        ["xpath=//strong", "xpath:position"],
+        ["xpath=//strong[contains(.,'R$ 0,00')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "a30126bd-2ff4-4ba1-ad08-ee2cfbf76a31",
+    "name": "6 Iniciar troca",
+    "commands": [{
+      "id": "02002a78-f7d7-4a0c-8d49-ca818f7ccdf5",
+      "comment": "Acessar página principal da loja",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/products.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7d9e3a06-f6a6-4e31-8ebd-262f98c369cf",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0eac1ddb-f3cc-4fc5-bba1-06d541d1833c",
+      "comment": "Clicar no botão \"Minhas compras\"",
+      "command": "click",
+      "target": "linkText=Minhas compras",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c51108ca-a8a7-4ab8-85d1-e360cb8662aa",
+      "comment": "Verificar se foi redirecionado para listagem de compras",
+      "command": "assertTitle",
+      "target": "Minhas Compras | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "566c30b8-3d1a-40e4-a76b-01d3d53e3090",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Entregue')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ab0fcea-b303-45d9-8ab3-abb1be684696",
+      "comment": "Clicar em link para exibir modal de detalhes da compra",
+      "command": "click",
+      "target": "css=tbody td:nth-child(1) a",
+      "targets": [
+        ["linkText=35425645768851", "linkText"],
+        ["css=td > a", "css:finder"],
+        ["xpath=//a[contains(text(),'35425645768851')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'35425645768851')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "561eaf8b-62b0-48e9-be27-3b852ecf56c4",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=(//a[contains(text(),'Trocar')])[2]",
+      "targets": [
+        ["css=tr:nth-child(2) .btn:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'Trocar')])[2]", "xpath:link"],
+        ["xpath=//div[@id='sale-detail-modal_1']/div/div/div[2]/div/table/tbody/tr[2]/td[6]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/pages/customer/customer-trade-form.jsp?type=exchange&idSale=1&idProduct=4&saleQuantity=2&title=Notebook Gamer Acer Intel Core i5-8300H 8GB 1TB+128SSD NVIDIA GeForce GTX 105015,6')]", "xpath:href"],
+        ["xpath=//tr[2]/td[6]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ead41a9d-ebfa-46c5-94fc-b04d3b04ce6c",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Realizar Troca | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "390b6a3c-76fc-4b45-a6ed-055251836a22",
+      "comment": "",
+      "command": "click",
+      "target": "name=quantity",
+      "targets": [
+        ["name=quantity", "name"],
+        ["css=.form-control-lg", "css:finder"],
+        ["xpath=//input[@name='quantity']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6ceae63-b569-4334-b469-58d02acabdd9",
+      "comment": "",
+      "command": "type",
+      "target": "name=quantity",
+      "targets": [
+        ["name=quantity", "name"],
+        ["css=.form-control-lg", "css:finder"],
+        ["xpath=//input[@name='quantity']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "6b599fe2-552a-4dc2-8c1d-26ed00b4bb5a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//td[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Solicitar devolução')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9ab3ded-da80-4824-9677-abce6e8a1229",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3ad1727c-a54e-48ff-a68b-cfabcd16a9ce",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Aguardando autorização')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "cf1019fd-4e04-4508-8a1f-202265e2a9da",
+    "name": "6 Alterar status da troca: aguardando retorno",
+    "commands": [{
+      "id": "da541a66-dcc4-4dee-8150-1806176458eb",
+      "comment": "Entrar diretamente na listagem de trocas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=exchange&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3567061b-ce8f-4506-bfd2-6d89c994928b",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a3a05798-6fbf-4daf-882c-b6155e766621",
+      "comment": "Verificar se esta na listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6810e5b4-a089-4f58-b78e-f5c997cd1a03",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e2b3414-834a-4759-beca-b83f85cb3876",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando autorização"
+    }, {
+      "id": "20d0c859-991b-4ce2-ba9f-a277f3e9d6b5",
+      "comment": "Confirmar existência da devolução",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c35b4c6b-d421-43e2-86a0-6b0abb01ee24",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Autorizar",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a13fcfa8-ac7d-4066-af62-36b4b0b9e2bb",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02a42b61-f331-4421-ac26-b347ab6f79fc",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a16fd0d4-650d-43be-b026-382b431215b8",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando retorno de produto"
+    }, {
+      "id": "2cfc56dc-1a2e-4014-85fb-ed3bb50c0f42",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "534ba9e2-69c6-470b-a4a6-e77a8130dec8",
+    "name": "6 Alterar status da troca: iniciar entrega",
+    "commands": [{
+      "id": "8e8d89a7-7cce-4898-8bf4-b129b6ab4100",
+      "comment": "Entrar diretamente na listagem de trocas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=exchange&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8bb63b5-9081-4c7d-9e2d-6846aced792c",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb8a7fa4-4de7-47c9-b954-2097c2c3a26d",
+      "comment": "Verificar se esta na listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e50acc7d-b472-4cda-ba00-5448082a6e14",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "77506787-c30f-459e-ba1e-bc0c43326d02",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Produto recebido"
+    }, {
+      "id": "b81ee0cf-82a9-4f61-9302-68795b3c49f3",
+      "comment": "Confirmar existência da devolução",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4791d8d-179e-4b32-bfe1-ae4261815f17",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Iniciar entrega",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "59f1c73f-fef5-48d5-ad3c-fd95637d068e",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb5dec85-e223-4f83-8829-d4f1fe1c0461",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62bbbad1-90e2-4cb8-8fcb-03537fd8178d",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Produto em entrega"
+    }, {
+      "id": "d31d4887-ddda-42c1-8ed1-737e3c90e86c",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "399ba6e1-e5dc-4f0f-9be9-85f2a011b1b1",
+    "name": "6 Alterar status da troca: confirmar retorno",
+    "commands": [{
+      "id": "f415c5cd-238c-43c2-b227-25f5d7d7bf15",
+      "comment": "Entrar diretamente na listagem de trocas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=exchange&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bcdd61c2-4cbb-4370-8b77-eaa7c304653f",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5a70e479-93b3-4dbd-8fa1-fd859cdaaa63",
+      "comment": "Verificar se esta na listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dcd82c8a-f695-427c-b888-b1ce4690085b",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Aguardando retorno de produto"
+    }, {
+      "id": "77691596-7ec0-4ac1-9ade-f4c435125511",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffe423b3-acea-495a-8a36-b66a4a5df91d",
+      "comment": "Confirmar existência da troca",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9122584c-363f-4684-9d5c-15c9485d637e",
+      "comment": "Clicar em botão de ação",
+      "command": "click",
+      "target": "linkText=Confirmar retorno",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4ea3532-ef12-4489-bff1-bbcae639349f",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f06aa077-4872-4019-9e61-55744bdb55a2",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "970d4af7-2155-4df9-83ea-008f25085c94",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Produto recebido"
+    }, {
+      "id": "f4f3865f-29b0-4bba-925f-6f728125699e",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "744be792-0404-471c-926b-d8f7b50ad9df",
+    "name": "6 Alterar status da troca: confirmar entrega",
+    "commands": [{
+      "id": "bf1b06fb-e711-4dfd-95d2-d5b27190e84f",
+      "comment": "Entrar diretamente na listagem de trocas do administrador",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/admin/trades?type=exchange&operation=consult",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "956d1e56-af84-43f5-8c5a-a975e624f83f",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "920ad35b-b19c-4d77-b3f2-ab111b27d3e1",
+      "comment": "Verificar se esta na listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9df11b3e-b9b7-4340-a92b-b26fb9f8fa05",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9642b9ea-d31b-48f0-8115-2720d742292b",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Produto em entrega"
+    }, {
+      "id": "02ae4693-88e5-4545-9f65-0ec2ed7a2cc3",
+      "comment": "Confirmar existência",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1847bb53-ecfd-4f3e-8fd2-a25fce7b5def",
+      "comment": "Clicar em botão de ação para iniciar entrega",
+      "command": "click",
+      "target": "linkText=Confirmar entrega",
+      "targets": [
+        ["linkText=Iniciar entrega", "linkText"],
+        ["css=.btn-xs", "css:finder"],
+        ["xpath=//a[contains(text(),'Iniciar entrega')]", "xpath:link"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/note-commerce/admin/sales?operation=update&id=1&status=PAYMENT_APPROVED')]", "xpath:href"],
+        ["xpath=//td[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Iniciar entrega')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a898a83-8a9b-47d1-9b41-8887a30babc1",
+      "comment": "Verificar se foi redirecionado para listagem de trocas",
+      "command": "assertTitle",
+      "target": "Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "15f49a18-fe70-455c-a72a-79629a085bbd",
+      "comment": "Selecionar filtro",
+      "command": "click",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "538afe62-b959-4d3e-a100-3f12754fbe55",
+      "comment": "Pesquisar",
+      "command": "type",
+      "target": "css=#trades-table_filter .form-control",
+      "targets": [
+        ["css=#products-table_filter .form-control", "css:finder"],
+        ["xpath=//input[@type='search']", "xpath:attributes"],
+        ["xpath=//div[@id='products-table_filter']/label/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Produto entregue"
+    }, {
+      "id": "a9a1be7d-d9b9-4f7d-95dd-3e28409eb969",
+      "comment": "Confirmar alteração de status",
+      "command": "assertElementNotPresent",
+      "target": "css=.dataTables_empty",
+      "targets": [
+        ["css=.dataTables_empty", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td", "xpath:idRelative"],
+        ["xpath=//td", "xpath:position"],
+        ["xpath=//td[contains(.,'Nenhum registro encontrado')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4d1dca83-9118-40e1-b04f-c0ac83a39a92",
+    "name": "6 Verificar status da troca: autorizado",
+    "commands": [{
+      "id": "314fdab0-2207-4319-882f-369afc6f168d",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "47d1fa46-8b2e-4fe6-aacb-c9549b00ed85",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "51f70936-3213-4132-84dc-82a1f2d68507",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "35d8d66e-3584-4f76-b644-c06dda55eca9",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd3386d9-74b9-4bb6-837b-2b034b14c7d8",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "fdb4d832-53a3-43d3-a81e-8b20b3451196",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7031ab61-5d4b-44cc-a019-c1c02ca64860",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "ef3cfe20-1448-450c-8b4b-06c1cafad76c",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "21bc4a1f-51c8-4a98-88e3-f2fe5b508ff1",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4991102-aa98-4ee8-9f0b-5653cd7407e0",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b45c300c-c547-4d7f-ab23-a3a517c56b1e",
+      "comment": "Clicar no botão \"Minhas trocas\"",
+      "command": "click",
+      "target": "linkText=Minhas trocas",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f075516-52fe-48e7-831e-f88b67996384",
+      "comment": "Verificar se foi redirecionado para listagem",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7bff3f02-c68b-475c-bf59-c2dc9d014abb",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Aguardando retorno de produto')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "7bcec1f6-3afe-43ae-8254-b5aef29b9b99",
+    "name": "6 Verificar status da troca: produto recebido",
+    "commands": [{
+      "id": "b46df3c3-c3eb-442f-b350-a3c93674dbfe",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f498bc07-b21f-426a-93b2-03e10273149e",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a77af6fc-4ab2-4de7-8826-e50315ab9afc",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1e53a9de-7e4c-4d58-9d88-79db839b97c6",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "92277ba1-5cfc-43c7-a3d9-afe82bd33b6e",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "cac464ce-5999-499c-b8de-398382b78bcd",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c02769fc-fc96-4c6a-89d9-9564b043f9a9",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "bd916447-c216-452c-a0bd-53273a23b2eb",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4bd731b4-1c96-46a9-b940-861784b4f50c",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52b94d8e-b26c-4618-a4f8-9ef0fe114f33",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f4abe117-ef5e-4959-8e83-8725b8de40fc",
+      "comment": "Clicar no botão \"Minhas trocas\"",
+      "command": "click",
+      "target": "linkText=Minhas trocas",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "16405afd-beea-4644-a562-5925e2c49b89",
+      "comment": "Verificar se foi redirecionado para listagem",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a713b6dd-2ff8-47b3-ac66-9bc3fb8d59a5",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Produto recebido')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "6f00cf61-d9d5-4c72-9032-1fef3210fbbe",
+    "name": "6 Verificar status da troca: produto em entrega",
+    "commands": [{
+      "id": "efe22c02-0a56-4c5d-a950-17df1ae38b94",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dfe2e11a-1814-48d1-9727-f92545fb1ca2",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b02bdaee-b236-4907-9a21-16731f730c99",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1ec80465-0314-4118-95e7-8ba2e4373a98",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da955183-d406-4a53-80fb-a46afc94e887",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "31a73684-a711-4b4f-8397-984b5d3785bb",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4bdfd7a3-a4d4-4992-8685-edd551eb593c",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "a6f372c2-7236-4166-a8b7-fe8faddce249",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a311f43-f0a0-451e-9873-81a814811efd",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "14118ade-2bd4-4cbd-a749-2fd8801c8a65",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "745c6634-e85c-4cae-8392-22d8115e8edb",
+      "comment": "Clicar no botão \"Minhas trocas\"",
+      "command": "click",
+      "target": "linkText=Minhas trocas",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c75b33f-a4bf-4f57-b174-06518b7dc2de",
+      "comment": "Verificar se foi redirecionado para listagem",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5cd32062-5e3e-42cc-8a62-33885537c084",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Produto em entrega')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "25fd1696-a7f9-4b15-91bd-fefed4e07aed",
+    "name": "6 Verificar status da troca: produto entregue",
+    "commands": [{
+      "id": "c8ed9d4e-dfe4-4724-ad38-a62e2ab9fe31",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fd7c7746-b5e3-4c7b-ad58-99aa2af73c17",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1e604114-4047-4d73-b807-4def285f4a4a",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae55ba17-a7d2-4aab-8e5e-23787a95fe97",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2ca8539-f19b-4c4e-8f01-83ae913ed9b5",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "92b03bf8-2603-4233-90a1-281c2d145334",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e544f67-5c0b-4609-8be7-8d58770385be",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "95ecf9b1-ec17-44ff-b8b1-34d78e43db3b",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d1b03616-06a5-4a81-b99f-781dce52bc4c",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a3ec834-b118-4027-9a92-83d2487e99bb",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3a722566-f2e8-4743-933b-10f882b6bf32",
+      "comment": "Clicar no botão \"Minhas trocas\"",
+      "command": "click",
+      "target": "linkText=Minhas trocas",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba793052-bb18-4017-9aa0-30b7864cfa23",
+      "comment": "Verificar se foi redirecionado para listagem",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a692c883-8272-487a-aa58-12f8f8458c92",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Produto entregue')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5e405660-82f1-46d1-a4fb-44c401a39126",
+    "name": "6 Verificar status da troca: autorizado (1)",
+    "commands": [{
+      "id": "f6dc3f22-16fb-4cb9-985a-3009ec74d8dc",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "27a72534-9e11-4cff-be5e-1e2c82b43aa0",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f0f63f79-5425-4796-92d8-82eea2534441",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "430d4177-40da-464d-9a40-bc0b6ad49a9e",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3db8936-4b82-48e2-8944-340576868404",
+      "comment": "Inserir email de cliente de teste",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "cliente2@teste.com.br"
+    }, {
+      "id": "4a9f9f66-4014-4839-b73b-f7f0884cfb6f",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "44c1a6cc-c864-42c3-9b75-09fd3dc27c48",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "clienteteste!2"
+    }, {
+      "id": "f4e3e071-5322-4d2c-a968-c8f39842d56c",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e632e5e4-868f-4fed-972c-ab1991a19e23",
+      "comment": "Verificar se não foi redirecionado ao login",
+      "command": "assertElementNotPresent",
+      "target": "css=.login-box",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df144847-5df7-40f2-842b-a210d0eefb24",
+      "comment": "Clicar no botão do menu dropdown de cliente",
+      "command": "click",
+      "target": "css=.navbar .fas:nth-child(2)",
+      "targets": [
+        ["linkText=usuário", "linkText"],
+        ["css=.dropdown > .nav-link", "css:finder"],
+        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfea3cc0-8b22-4cd5-b1ca-4a1e47b1869c",
+      "comment": "Clicar no botão \"Minhas trocas\"",
+      "command": "click",
+      "target": "linkText=Minhas trocas",
+      "targets": [
+        ["linkText=Meus cartões", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1734b71-e2b1-4692-abd6-1f73ac6a2954",
+      "comment": "Verificar se foi redirecionado para listagem",
+      "command": "assertTitle",
+      "target": "Minhas Trocas | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f15ff8f4-6af5-43ec-bc55-5a4edb824cd0",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "xpath=//span[contains(.,'Aguardando retorno de produto')]",
+      "targets": [
+        ["css=.bg-warning", "css:finder"],
+        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
+        ["xpath=//td[4]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "91f59f64-66b7-411f-9223-8e2ae4f9e8eb",
+    "name": "Login como admin@admin.com 4",
+    "commands": [{
+      "id": "df898d70-6e4d-4b4b-823e-3282be6ee48b",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "83c8522a-cbda-4b35-8ded-3411a1d1285b",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "14541c79-cfb6-4ba1-a64b-2d3819288478",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e46f0e5f-105c-4474-88f5-f4708677942a",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d0fa924-21aa-4f86-8b87-363bfad5a19e",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "2690ca6e-f098-466e-8cdb-edadddd161c4",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8032da03-d6f0-4077-82ca-1a7be9bac598",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "c7a67b4c-d2e8-4465-9346-da80538b1563",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9575e74-6927-4ae3-b467-e6641f2c7b70",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -4609,15 +7713,29 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977", "346746cc-2e4a-4764-be00-d66aa9c790d7"]
   }, {
     "id": "cfd49969-0060-4b77-bfa6-494c9eb4e75d",
-    "name": "5 - Condução",
+    "name": "5 - Venda",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["6ad1819e-7e36-41e6-8fec-3e39ca086058"]
+    "tests": ["6ad1819e-7e36-41e6-8fec-3e39ca086058", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "270fb01a-2ed1-42e5-933d-2292a736b507", "4984b124-e06e-4997-ac3f-db015f63fe5a", "67d7c442-7254-4b6c-a61b-8e5edaada396", "346746cc-2e4a-4764-be00-d66aa9c790d7", "c98b89b1-1b63-4d59-b4ae-e216eb446999", "c4dee809-b8f3-4afa-83b1-32e74732c9c6"]
+  }, {
+    "id": "f3228279-f4e1-48e7-a4f5-d279ca76058d",
+    "name": "7 - Devolução",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["230009fa-dc02-4b73-8c18-e2f5943449be", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "7edf1957-cc7a-46e8-9039-8eaa1da426fe", "76a7a49a-8657-4c83-bdd5-e629efc2dd62", "346746cc-2e4a-4764-be00-d66aa9c790d7", "4f1bfa66-3660-418d-83ce-214c415be7d9", "558a5626-4282-48d6-99c6-29d2032fabf9"]
+  }, {
+    "id": "020af74b-a230-44fd-b1f5-8c1d5352b4b2",
+    "name": "6 - Troca",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a30126bd-2ff4-4ba1-ad08-ee2cfbf76a31", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "cf1019fd-4e04-4508-8a1f-202265e2a9da", "4d1dca83-9118-40e1-b04f-c0ac83a39a92", "346746cc-2e4a-4764-be00-d66aa9c790d7", "399ba6e1-e5dc-4f0f-9be9-85f2a011b1b1", "7bcec1f6-3afe-43ae-8254-b5aef29b9b99", "9d942b5a-f172-4de5-9826-17d037b28be5", "534ba9e2-69c6-470b-a4a6-e77a8130dec8", "6f00cf61-d9d5-4c72-9032-1fef3210fbbe", "91f59f64-66b7-411f-9223-8e2ae4f9e8eb", "744be792-0404-471c-926b-d8f7b50ad9df", "25fd1696-a7f9-4b15-91bd-fefed4e07aed"]
   }],
-  "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/"],
+  "urls": ["http://localhost:8085/note-commerce/", "http://localhost:8080/note-commerce/", "http://localhost:8080/note-commerce/admin/sales?operation=consult"],
   "plugins": []
 }
