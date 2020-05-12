@@ -122,3 +122,20 @@ create table if not exists trades(
     foreign key (trd_sal_id) references sales(sal_id),
     foreign key (trd_prd_id) references products(prd_id)
 );
+
+create table if not exists stock(
+	stk_id int auto_increment not null,
+	stk_prd_id int not null,
+	stk_quantity int not null,
+	primary key (stk_id),
+    foreign key (stk_prd_id) references products(prd_id)
+);
+
+create table if not exists stock_history(
+	sth_id int auto_increment not null,
+	sth_stk_id int not null,
+	sth_quantity int not null,
+	sth_date datetime not null,
+	primary key (sth_id),
+    foreign key (sth_stk_id) references stock(stk_id)
+);
