@@ -27,6 +27,9 @@ import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.cart.
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleInProgressVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale.SaleShopVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.stock.StockUpdateVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.stock.StockAdminVH;
+import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.stock.StockShopVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeAdminVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.trade.TradeCustomerVH;
 import br.com.solstice.notecommerce.controller.viewhelper.impl.domain.user.LoginVH;
@@ -73,6 +76,8 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/admin/brands", new BrandAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/trades", new TradeAdminVH());
 		viewHelpersMap.put("/note-commerce/admin/sales", new SaleAdminVH());
+		viewHelpersMap.put("/note-commerce/admin/stock", new StockAdminVH());
+		viewHelpersMap.put("/note-commerce/admin/stockHistory", new StockUpdateVH());
 
 		// customer
 		viewHelpersMap.put("/note-commerce/signup", new CustomerVH());
@@ -88,6 +93,7 @@ public class Controller extends HttpServlet {
 		viewHelpersMap.put("/note-commerce/shop/cart", new CartVH());
 		viewHelpersMap.put("/note-commerce/shop/saleInProgress", new SaleInProgressVH());
 		viewHelpersMap.put("/note-commerce/shop/sales", new SaleShopVH());
+		viewHelpersMap.put("/note-commerce/shop/stock", new StockShopVH());
 	}
 
 	@Override
