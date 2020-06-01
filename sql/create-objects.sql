@@ -88,14 +88,21 @@ create table if not exists sales(
 	sal_date_time datetime,
     sal_balance_usage double,
     sal_ads_id int,
-    sal_crd_id int,
     sal_cus_id int,
     sal_status varchar(255),
     sal_identify_number varchar(255),
 	primary key (sal_id),
     foreign key (sal_cus_id) references customers(cus_id),
-    foreign key (sal_ads_id) references adresses(ads_id),
-    foreign key (sal_crd_id) references credit_cards(crd_id)
+    foreign key (sal_ads_id) references adresses(ads_id)
+);
+
+create table if not exists sales_credit_cards(
+	scc_sal_id int,
+	scc_crd_id int,
+	scc_value double,
+	primary key (scc_sal_id, scc_crd_id),
+	foreign key (scc_sal_id) references sales(sal_id),
+	foreign key (scc_crd_id) references credit_cards(crd_id)
 );
 
 create table if not exists sales_products(
