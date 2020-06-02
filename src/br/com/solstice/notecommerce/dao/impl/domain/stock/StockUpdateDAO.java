@@ -16,10 +16,6 @@ import br.com.solstice.notecommerce.entity.domain.stock.Stock;
 import br.com.solstice.notecommerce.entity.domain.stock.StockUpdate;
 
 public class StockUpdateDAO extends AbstractDAO {
-	
-	public StockUpdateDAO() {
-		super();
-	}
 
 	public StockUpdateDAO(Connection connection) {
 		super(connection);
@@ -112,7 +108,14 @@ public class StockUpdateDAO extends AbstractDAO {
 				
 				if (operation.equals("consult")) {
 					currentStockUpdate.setId(rs.getLong("sth_id"));
-					currentStockUpdate.setStock((Stock) stockDAO.consult(new Stock(rs.getLong("sth_stk_id")), operation));
+					
+					// Checks for stock not in list (because of deleted product)
+					List<Entity> listStock = stockDAO.consult(new Stock(rs.getLong("sth_stk_id")), "consult");
+					if (listStock.size() == 0) {
+						continue; // Do not add to list
+					}
+					
+					currentStockUpdate.setStock((Stock) listStock.get(0));
 					currentStockUpdate.setQuantity(rs.getInt("sth_quantity"));
 					currentStockUpdate.setDate(rs.getTimestamp("sth_date").toLocalDateTime());
 				}
