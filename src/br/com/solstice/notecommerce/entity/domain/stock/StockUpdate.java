@@ -1,6 +1,5 @@
 package br.com.solstice.notecommerce.entity.domain.stock;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
