@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.solstice.notecommerce.dao.AbstractDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.stock.StockDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.product.brand.Brand;
 import br.com.solstice.notecommerce.entity.domain.product.file.ProductFile;
+import br.com.solstice.notecommerce.entity.domain.stock.Stock;
 
 public class ProductDAO extends AbstractDAO {
 
@@ -62,6 +64,20 @@ public class ProductDAO extends AbstractDAO {
 
 			if (rs.next()) {
 				idProduct = rs.getLong(1);
+				
+				
+				// Stock creation
+				// Because of DB FK constraint, Stock creation needs to be done after Product creation (can't be done in a Strategy)
+				StockDAO stockDAO = new StockDAO(connection);
+				
+				Stock stock = new Stock();
+				stock.setQuantity(0);
+				
+				Product productToCreateStock = new Product();
+				productToCreateStock.setId(idProduct);
+				stock.setProduct(productToCreateStock);
+				
+				stockDAO.save(stock);
 			}
 
 			return idProduct;
