@@ -35,8 +35,10 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.Validat
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleCreditCardData;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleData;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.admin.SetSaleStatus;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.SetStockQuantity;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockProductExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockSave;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockUpdateSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToSaveAlreadyExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToUpdateExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductQuantity;
@@ -122,6 +124,17 @@ public class Facade implements IFacade {
 		
 		// StockUpdate
 		daosMap.put(StockUpdate.class.getName(), new StockUpdateDAO());
+		
+		Map<String, List<IStrategy>> stockUpdateBusinessRulesMap = new HashMap<String, List<IStrategy>>();
+		
+		List<IStrategy> stockUpdateBusinessRulesSave = new ArrayList<IStrategy>();
+		stockUpdateBusinessRulesSave.add(new ValidateStockUpdateSave());
+		stockUpdateBusinessRulesSave.add(new SetStockQuantity());
+		
+		stockUpdateBusinessRulesMap.put("save", stockUpdateBusinessRulesSave);
+		
+		businessRulesMap.put(StockUpdate.class.getName(), stockUpdateBusinessRulesMap);
+		
 
 		/*
 		 * Customer

@@ -22,6 +22,11 @@ public class ValidateStockProductExists extends AbstractStrategy {
 	public String process(Entity entity) {
 		Stock stock = (Stock) entity;
 		ProductDAO productDAO = new ProductDAO();
+		
+		if (productDAO.consult(stock, "consult").size() < 1) {
+			return "O produto selecionado para o estoque é inválido";
+		}
+		
 		return null;
 	}
 
