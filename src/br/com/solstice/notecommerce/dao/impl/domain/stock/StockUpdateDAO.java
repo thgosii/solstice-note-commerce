@@ -16,6 +16,8 @@ import br.com.solstice.notecommerce.entity.domain.stock.Stock;
 import br.com.solstice.notecommerce.entity.domain.stock.StockUpdate;
 
 public class StockUpdateDAO extends AbstractDAO {
+	
+	public StockUpdateDAO() {}
 
 	public StockUpdateDAO(Connection connection) {
 		super(connection);
