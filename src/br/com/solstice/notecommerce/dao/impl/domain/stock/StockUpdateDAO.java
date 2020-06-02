@@ -90,7 +90,7 @@ public class StockUpdateDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) {
-			sql = "SELECT * FROM notecommerce_db.stock_history";
+			sql = "SELECT * FROM notecommerce_db.stock_history ORDER BY sth_date DESC";
 		}
 		
 		List<Entity> stocks = new ArrayList<Entity>();
