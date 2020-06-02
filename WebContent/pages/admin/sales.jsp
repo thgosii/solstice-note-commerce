@@ -74,7 +74,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="dashboard.html">Admin Home</a></li>
+                <li class="breadcrumb-item"><a href="/note-commerce/pages/admin/dashboard.jsp">Admin Home</a></li>
                 <li class="breadcrumb-item active">Vendas</li>
               </ol>
             </div>
