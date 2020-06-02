@@ -2,6 +2,9 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.stock;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,7 @@ import br.com.solstice.notecommerce.entity.Result;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.stock.Stock;
 import br.com.solstice.notecommerce.entity.domain.stock.StockUpdate;
+import br.com.solstice.notecommerce.entity.domain.trade.Trade;
 
 public class StockUpdateVH implements IViewHelper {
 	
@@ -36,11 +40,14 @@ public class StockUpdateVH implements IViewHelper {
 			} catch (NumberFormatException e) {
 			}
 			
-			LocalDateTime date = null; 
+			String dateString = request.getParameter("date"); 
+			String timeString = request.getParameter("time");
+			LocalDateTime date = null;
 			try {
 				// TODO: apply correct datetimeformatter depending of jquery plugin returned value format
-				date = LocalDateTime.parse(request.getParameter("date"));
-			} catch (NumberFormatException e) {
+				date = LocalDateTime.parse(dateString + " " + timeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
 			Product product = new Product();
@@ -62,7 +69,26 @@ public class StockUpdateVH implements IViewHelper {
 	@Override
 	public void setView(Result result, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		String operation = request.getParameter("operation");
+		
+		request.setAttribute("message", result.getMessage());
+		
+		if (operation.equals("save")) {
+			if (null == result.getMessage()) {
+				response.sendRedirect("/note-commerce/admin/stockHistory?operation=consult");
+			} else {
+				response.getWriter().write(result.getMessage());
+			}
+		} else if (operation.equals("consult")) {
+			List<StockUpdate> stockUpdates = new ArrayList<>();
+			for (Entity entity : result.getEntities()) {
+				stockUpdates.add((StockUpdate) entity);
+			}
+			request.setAttribute("stockUpdates", stockUpdates);
+
+			request.getRequestDispatcher("/pages/admin/stock-history.jsp").forward(request, response);
+		}
+ 
 
 	}
 

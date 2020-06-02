@@ -78,7 +78,7 @@ public class StockDAO extends AbstractDAO {
 
 		Stock stock = (Stock) entity;
 
-		String sql = "UPDATE `notecommerce_db`.`stock` SET `stk_quantity` = ?' WHERE (`stk_prd_id` = ?)";
+		String sql = "UPDATE `notecommerce_db`.`stock` SET `stk_quantity` = ? WHERE (`stk_prd_id` = ?)";
 		
 		try {
 			pstm = connection.prepareStatement(sql);
@@ -142,8 +142,8 @@ public class StockDAO extends AbstractDAO {
 				Stock currentStock = new Stock();
 				
 				if (operation.equals("consult")) {
-					stock.setId(rs.getLong("stk_id"));
-					stock.setQuantity(rs.getInt("stk_quantity"));
+					currentStock.setId(rs.getLong("stk_id"));
+					currentStock.setQuantity(rs.getInt("stk_quantity"));
 					
 					Product product = new Product();
 					product.setId(rs.getLong("stk_prd_id"));
@@ -154,7 +154,7 @@ public class StockDAO extends AbstractDAO {
 						continue; // Do not add to list
 					}
 					
-					stock.setProduct((Product) listStock.get(0));
+					currentStock.setProduct((Product) listStock.get(0));
 				}
 				
 				stocks.add(currentStock);

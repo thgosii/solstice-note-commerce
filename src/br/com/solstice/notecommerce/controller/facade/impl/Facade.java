@@ -39,6 +39,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.SetSto
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockProductExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockSave;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockUpdateSave;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.ValidateStockUpdateStockExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToSaveAlreadyExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeToUpdateExists;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeProductQuantity;
@@ -129,6 +130,7 @@ public class Facade implements IFacade {
 		
 		List<IStrategy> stockUpdateBusinessRulesSave = new ArrayList<IStrategy>();
 		stockUpdateBusinessRulesSave.add(new ValidateStockUpdateSave());
+		stockUpdateBusinessRulesSave.add(new ValidateStockUpdateStockExists());
 		stockUpdateBusinessRulesSave.add(new SetStockQuantity());
 		
 		stockUpdateBusinessRulesMap.put("save", stockUpdateBusinessRulesSave);
