@@ -2,6 +2,8 @@ package br.com.solstice.notecommerce.controller.viewhelper.impl.domain.shop.sale
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import com.google.gson.Gson;
 import br.com.solstice.notecommerce.controller.viewhelper.IViewHelper;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.Result;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleCreditCard;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.user.User;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
@@ -147,11 +150,10 @@ public class SaleInProgressVH implements IViewHelper {
 				return saleInProgress;
 			}
 			case 2: {
-				// Save Credit Card
-				CreditCard creditCard = new CreditCard();
-
+				// Save Credit Cards
 				double balance = 0.0;
-				long creditCardId = 0;
+				
+				List<SaleCreditCard> creditCards = new ArrayList<SaleCreditCard>();
 
 				if (request.getParameter("balance") != null) {
 					try {
@@ -161,9 +163,7 @@ public class SaleInProgressVH implements IViewHelper {
 					}
 				}
 
-				if (request.getParameter("creditCard") != null) {
-					creditCardId = Long.valueOf(request.getParameter("creditCard"));
-				} else {
+				if (request.getParameter("ids") == null && request.getParameter("values") == null) {
 					String number = "";
 					if (null != request.getParameter("number")) {
 						try {
@@ -187,6 +187,8 @@ public class SaleInProgressVH implements IViewHelper {
 						} catch (Exception ex) {
 						}
 					}
+					
+					CreditCard creditCard = new CreditCard();
 
 					creditCard.setNumber(number);
 					creditCard.setSecurityCode(securityCode);
@@ -203,21 +205,66 @@ public class SaleInProgressVH implements IViewHelper {
 					customer.setUser(user);
 
 					creditCard.setCustomer(customer);
+					
+					SaleCreditCard saleCreditCard = new SaleCreditCard();
+					
+					double total = 0.0;
+					try {
+						total = Double.valueOf(request.getParameter("total"));
+					} catch (Exception ex) {}
+					
+					saleCreditCard.setValue(total);
+					saleCreditCard.setCreditCard(creditCard);
+					
+					creditCards.add(saleCreditCard);
+				} else {
+					long[] ids = null;
+					if (null != request.getParameterValues("ids")) {
+						try {
+							String[] idsAux = request.getParameterValues("ids");
+							
+							ids = new long[idsAux.length];
+							
+							for (int i = 0; i < ids.length; i++) {
+								ids[i] = Long.valueOf(idsAux[i]);
+							}
+						} catch (Exception ex) {
+						}
+					}
+					
+					double[] values = null;
+					if (null != request.getParameterValues("values")) {
+						try {
+							String[] valuesAux = request.getParameterValues("values");
+							
+							values = new double[valuesAux.length];
+							
+							for (int i = 0; i < values.length; i++) {
+								values[i] = Double.valueOf(valuesAux[i]);
+							}
+						} catch (Exception ex) {
+						}
+					}
+					
+					for (int i = 0; i < values.length; i++) {
+						SaleCreditCard saleCreditCard = new SaleCreditCard();
+						saleCreditCard.setValue(values[i]);
+						
+						CreditCard creditCard = new CreditCard();
+						creditCard.setId(ids[i]);
+						
+						saleCreditCard.setCreditCard(creditCard);
+						
+						creditCards.add(saleCreditCard);
+					}
 				}
 
 				SaleInProgress saleInProgress = new SaleInProgress();
 
 				boolean saveForNext = request.getParameter("saveForNext") != null ? true : false;
-
 				saleInProgress.setSaveCreditCardForNext(saveForNext);
-
-				if (creditCardId != 0) {
-					creditCard.setId(creditCardId);
-				}
-
 				saleInProgress.setBalanceUsage(balance);
-
-				saleInProgress.setCreditCard(creditCard);
+				saleInProgress.setCreditCards(creditCards);
 
 				return saleInProgress;
 			}
@@ -237,7 +284,7 @@ public class SaleInProgressVH implements IViewHelper {
 		if (operation.equals("save")) {
 			SaleInProgress saleInProgress = (SaleInProgress) result.getEntities().get(0);
 
-			if (saleInProgress.getCreditCard() == null) {
+			if (saleInProgress.getCreditCards() == null) {
 				response.sendRedirect("/note-commerce/pages/shop/checkout-step-2.jsp");
 			} else {
 				response.sendRedirect("/note-commerce/pages/shop/checkout-step-3.jsp");

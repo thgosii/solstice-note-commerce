@@ -14,6 +14,8 @@ public class ValidateSaleData implements IStrategy {
 			return "Preencha os dados da venda corretamente";
 		} else if (sale.getItems() == null) {
 			return "Preencha os dados da venda corretamente";
+		} else if (sale.getCreditCards() == null ) {
+			return "Preencha os dados da venda corretamente";
 		}
 
 		return null;

@@ -135,7 +135,7 @@
           </div>
           <hr>
           <div class="mb-4" id="creditCardInfo">
-            
+
           </div>
           <div class="mb-4">
             <h4>Pagamento</h4>
@@ -260,8 +260,14 @@
 	        $("#complement").text(json.address.complement);
 	        
 	        // Credit Card
-	        if (json.creditCard != null) {
-	        	$("#creditCardInfo").html("<h4>Cartão de crédito</h4><table class='table table-striped'><thead><tr><th><strong>Número</strong></th><th><strong>Nome impresso</strong></th></tr></thead><tbody><tr><td>" + json.creditCard.number + "</td><td>" + json.creditCard.printedName + "</td></tr></tbody></table>");
+	        let creditCards = "";
+	        
+	        for (let i = 0; i < json.creditCards.length; i++) {
+	        	creditCards += "<tr><td>" + json.creditCards[i].creditCard.number + "</td><td>" + Number(json.creditCards[i].value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + "</td></tr>";
+	        }
+	        
+	        if (json.creditCards != null) {
+	        	$("#creditCardInfo").html("<h4>Cartões de crédito</h4><table class='table table-striped'><thead><tr><th><strong>Número do cartão</strong></th><th><strong>Valor utilizado</strong></th></tr></thead><tbody>" + creditCards + "</tbody></table>");
 	        }
 	        
 	        // Payment

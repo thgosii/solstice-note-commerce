@@ -13,6 +13,7 @@ import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.Cart;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleCreditCard;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleInProgress;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.user.User;
@@ -50,7 +51,7 @@ public class SaleInProgressSH implements ISessionHelper {
 		sessionSaleInProgress.setItems(saleItems);
 		sessionSaleInProgress.calculateTotal();
 
-		if (saleInProgress.getCreditCard() == null) {
+		if (saleInProgress.getCreditCards() == null) {
 			// Set address
 
 			if (saleInProgress.getAddress().getId() != null) {
@@ -61,11 +62,17 @@ public class SaleInProgressSH implements ISessionHelper {
 			sessionSaleInProgress.setSaveAddressForNext(saleInProgress.isSaveAddressForNext());
 		} else {
 			// Set credit card and balance usage
-			if (saleInProgress.getCreditCard().getId() != null) {
-				saleInProgress.setCreditCard(
-						(CreditCard) new CreditCardDAO().consult(saleInProgress.getCreditCard(), "findById").get(0));
+			if (saleInProgress.getCreditCards() != null) {
+				if (saleInProgress.getCreditCards().get(0).getCreditCard().getId() != null) {
+					for (SaleCreditCard saleCreditCard : saleInProgress.getCreditCards()) {
+						saleCreditCard.setCreditCard((CreditCard) new CreditCardDAO()
+								.consult(saleCreditCard.getCreditCard(), "findById").get(0));
+					}
+				} else {
+					saleInProgress.getCreditCards().get(0).setValue(sessionSaleInProgress.getTotal());
+				}
 			}
-			sessionSaleInProgress.setCreditCard(saleInProgress.getCreditCard());
+			sessionSaleInProgress.setCreditCards(saleInProgress.getCreditCards());
 			sessionSaleInProgress.setBalanceUsage(saleInProgress.getBalanceUsage());
 			sessionSaleInProgress.calculateCreditCardUsage();
 			sessionSaleInProgress.setSaveCreditCardForNext(saleInProgress.isSaveCreditCardForNext());

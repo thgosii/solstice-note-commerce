@@ -26,7 +26,8 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
-
+  <!-- Ion Slider -->
+  <link rel="stylesheet" href="/note-commerce/static/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
   <!-- *********************************************************************************** -->
   <!-- /PAGE PLUGIN STYLES -->
   <!-- *********************************************************************************** -->
@@ -92,7 +93,7 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Saldo virtual - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
+                <h3 class="card-title">Utilize o <b>saldo virtual</b> com ou sem os cartões cadastrados - <small>Você tem <strong id="cus_balance"></strong> em saldo digital</small>
                 </h3>
               </div>
               <div class="card-body register-card-body">
@@ -104,21 +105,31 @@
             </div>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Selecione um Cartão de crédito</h3>
+                <h3 class="card-title">Escolha quanto usar em cada um de seus <b>cartões cadastrados</b></h3>
               </div>
               <div class="card-body register-card-body">
-                <div class="form-group">
-                  <label for="creditCard">Cartão de crédito</label>
-                  <select class="form-control" id="creditCard" name="creditCard">
-                  </select>
+                <div>
+                  <div class="row">
+                    <div class="col col-4">
+                      <p class="text-bold">Número do cartão</p>
+                    </div>
+                    <div class="col col-3">
+                      <p class="text-bold">Nome impresso no cartão</p>
+                    </div>
+                    <div class="col col-5">
+                      <p class="text-bold">Valor a ser utilizado</p>
+                    </div>
+                  </div>
                 </div>
+              	<div id="cardList">
+              	</div>
                 <button type="submit" class="btn btn-primary float-right" id="nextStepButton">Próximo</button>
               </div>
             </div>
 	      </form>
 	      <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Insira um Cartão de crédito</h3>
+              <h3 class="card-title">Ou cadastre um <b>novo cartão de crédito</b> para utilizar nessa compra</h3>
             </div>
             <div class="card-body register-card-body">
               <form action="/note-commerce/shop/saleInProgress" method="POST">
@@ -194,7 +205,20 @@
   <!-- *********************************************************************************** -->
   <!-- PAGE EXTRA HTML -->
   <!-- *********************************************************************************** -->
-
+  <template id="template-cc">
+    <div class="row">
+      <div class="col col-4">
+        <p class="cc-number-text"></p>
+      </div>
+      <div class="col col-3">
+        <p class="cc-owner"></p>
+      </div>
+      <div class="col col-5">
+        <input type="hidden" name="ids">
+        <input class="cc-range" type="text" name="values">
+      </div>
+    </div>
+  </template>
   <!-- *********************************************************************************** -->
   <!-- /PAGE EXTRA HTML -->
   <!-- *********************************************************************************** -->
@@ -221,9 +245,12 @@
 <!-- *********************************************************************************** -->
 <!-- InputMask -->
 <script src="/note-commerce/static/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- Ion Slider -->
+<script src="/note-commerce/static/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 <!-- *********************************************************************************** -->
 <!-- PAGE CUSTOM SCRIPTS -->
 <!-- *********************************************************************************** -->
+<script src="/note-commerce/static/custom/shop/sale/js/step2.js"></script>
 <script src="/note-commerce/static/custom/customer/creditcard/js/brand-regex.js"></script>
 <!-- *********************************************************************************** -->
 <!-- /PAGE CUSTOM SCRIPTS -->
@@ -235,61 +262,6 @@
 <!-- PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->
 <!-- *********************************************************************************** -->
 <script>
-  $(document).ready(() => {
-	  $.ajax({
-	      url: '/note-commerce/customer/creditCards?operation=consult&isAsync=true',
-	      type: 'GET',
-	      dataType: 'json',
-	      success: function (json) {
-	        $.each(json, function (i, value) {
-	          if (!value.isDeleted) {
-	          	let creditCardLabel = value.number + ", " + value.printedName;
-	          	$('#creditCard').append($(`<option>`).text(creditCardLabel).attr('value', value.id));
-	          }
-	        });
-	      }
-	  });
-	  
-	  $.ajax({
-	      url: '/note-commerce/shop/saleInProgress?operation=consult',
-	      type: 'GET',
-	      dataType: 'json',
-	      success: function (data) {
-	    	const totalText = Number(data.total)
-		        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-	        $("#total").text(totalText);
-	      }
-	  });
-	  
-	  $.ajax('/note-commerce/customer/balance?operation=consult')
-	    .then(data => {
-        currentBalance = data.balance;
-	      const currentBalanceText = Number(data.balance)
-	        .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-        $('#cus_balance').text(currentBalanceText)
-
-        // Cannot use digital balance if its empty
-        if (currentBalance != 0) {
-          $('#balance').attr('max', currentBalance)
-          $('#balance').inputmask('currency', {
-            groupSeparator: ',',
-            digits: 2,
-            radixPoint: '.',
-            prefix: 'R$ ',
-            rightAlign: false,
-            max: currentBalance,
-            allowMinus: false,
-            autoUnmask: true,
-            removeMaskOnSubmit: true
-          });
-          $('#balance').val(0)
-        } else {
-          $('#balance').attr('disabled', 'disabled')
-          $('#balance').attr('placeholder', 'Você não tem saldo para utilizar nessa compra')
-          $('#balance').val('')
-        }
-	    })
-   });
 </script>
 <!-- *********************************************************************************** -->
 <!-- /PLUGIN INITIALIZATION AND DYNAMIC SCRIPTS -->

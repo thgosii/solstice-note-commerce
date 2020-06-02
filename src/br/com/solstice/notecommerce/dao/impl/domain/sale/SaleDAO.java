@@ -16,6 +16,7 @@ import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CreditCardDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.user.customer.CustomerDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.Sale;
+import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleCreditCard;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleItem;
 import br.com.solstice.notecommerce.entity.domain.shop.sale.SaleStatus;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
@@ -40,7 +41,7 @@ public class SaleDAO extends AbstractDAO {
 		Sale sale = (Sale) entity;
 
 		String sql = "INSERT INTO sales "
-				+ "(sal_date_time, sal_balance_usage, sal_ads_id, sal_crd_id, sal_cus_id, sal_status, sal_identify_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ "(sal_date_time, sal_balance_usage, sal_ads_id, sal_cus_id, sal_status, sal_identify_number) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try {
 			Address address = sale.getAddress();
@@ -51,23 +52,24 @@ public class SaleDAO extends AbstractDAO {
 
 			address.setId(new AddressDAO(connection).save(address));
 
-			CreditCard creditCard = sale.getCreditCard();
+			if (sale.getCreditCards().get(0).getCreditCard().getId() == null) {
+				CreditCard creditCard = sale.getCreditCards().get(0).getCreditCard();
 
-			if (!sale.isSaveCreditCardForNext()) {
-				creditCard.setDeleted(true);
+				if (!sale.isSaveCreditCardForNext()) {
+					creditCard.setDeleted(true);
+				}
+
+				creditCard.setId(new CreditCardDAO(connection).save(creditCard));
 			}
-
-			creditCard.setId(new CreditCardDAO(connection).save(creditCard));
 
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			pstm.setTimestamp(1, Timestamp.valueOf(sale.getDateTime()));
 			pstm.setDouble(2, sale.getBalanceUsage());
 			pstm.setLong(3, address.getId());
-			pstm.setLong(4, creditCard.getId());
-			pstm.setLong(5, sale.getCustomer().getId());
-			pstm.setString(6, sale.getStatus().toString());
-			pstm.setString(7, sale.getIdentifyNumber());
+			pstm.setLong(4, sale.getCustomer().getId());
+			pstm.setString(5, sale.getStatus().toString());
+			pstm.setString(6, sale.getIdentifyNumber());
 
 			System.out.println(
 					"  " + this.getClass().getSimpleName() + "#" + new Exception().getStackTrace()[0].getMethodName()
@@ -100,6 +102,13 @@ public class SaleDAO extends AbstractDAO {
 				sale.setCustomer(customer);
 
 				new CustomerDAO(connection).update(sale.getCustomer());
+
+				// Credit cards
+
+				for (SaleCreditCard saleCreditCard : sale.getCreditCards()) {
+					saleCreditCard.setSale(sale);
+					new SaleCreditCardDAO().save(saleCreditCard);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -210,11 +219,6 @@ public class SaleDAO extends AbstractDAO {
 				address = (Address) new AddressDAO(connection).consult(address, "findById").get(0);
 				currentSale.setAddress(address);
 
-				CreditCard creditCard = new CreditCard();
-				creditCard.setId(rs.getLong("sal_crd_id"));
-				creditCard = (CreditCard) new CreditCardDAO(connection).consult(creditCard, "findById").get(0);
-				currentSale.setCreditCard(creditCard);
-
 				SaleItem saleItemAux = new SaleItem();
 				saleItemAux.setSale(currentSale);
 
@@ -222,6 +226,14 @@ public class SaleDAO extends AbstractDAO {
 						.map(saleItem -> (SaleItem) saleItem).collect(Collectors.toList());
 
 				currentSale.setItems(saleItems);
+
+				SaleCreditCard saleCreditCardAux = new SaleCreditCard();
+				saleCreditCardAux.setSale(currentSale);
+				
+				List<SaleCreditCard> saleCreditCards = new SaleCreditCardDAO().consult(saleCreditCardAux, "consult").stream()
+						.map(e -> (SaleCreditCard) e).collect(Collectors.toList());
+
+				currentSale.setCreditCards(saleCreditCards);
 
 				sales.add(currentSale);
 			}

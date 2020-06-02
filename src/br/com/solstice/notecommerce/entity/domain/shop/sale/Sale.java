@@ -7,7 +7,6 @@ import java.util.List;
 import br.com.solstice.notecommerce.entity.domain.DomainEntity;
 import br.com.solstice.notecommerce.entity.domain.user.customer.Customer;
 import br.com.solstice.notecommerce.entity.domain.user.customer.address.Address;
-import br.com.solstice.notecommerce.entity.domain.user.customer.credit_card.CreditCard;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,13 +21,14 @@ import lombok.ToString;
 public class Sale extends DomainEntity {
 
 	private double balanceUsage;
-	private CreditCard creditCard;
 	private Address address;
 	private Customer customer;
+	private List<SaleCreditCard> creditCards;
 	private List<SaleItem> items;
 	private LocalDateTime dateTime;
 	private SaleStatus status;
 	private String identifyNumber;
+	
 	private boolean saveAddressForNext;
 	private boolean saveCreditCardForNext;
 
