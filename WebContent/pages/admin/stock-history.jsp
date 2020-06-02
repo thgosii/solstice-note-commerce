@@ -113,10 +113,10 @@
                     <tr>
                       <td>
                         <c:if test="${update.quantity > 0}">
-                          <i class="nav-icon fas fa-arrow-up text-primary text-lg"></i>
+                          <i class="nav-icon fas fa-arrow-up text-success text-lg"></i>
                         </c:if>
                         <c:if test="${update.quantity < 0}">
-                          <i class="nav-icon fas fa-arrow-down text-primary text-lg"></i>
+                          <i class="nav-icon fas fa-arrow-down text-danger text-lg"></i>
                         </c:if>
                       </td>
                       <td>
