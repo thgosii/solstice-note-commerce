@@ -12,10 +12,6 @@ import br.com.solstice.notecommerce.entity.Result;
 
 public class StockShopVH implements IViewHelper {
 
-	public StockShopVH() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public Entity getEntity(HttpServletRequest request) {
 		// TODO Auto-generated method stub
