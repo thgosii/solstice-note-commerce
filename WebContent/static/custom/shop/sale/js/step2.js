@@ -106,7 +106,7 @@ $(document).ready(() => {
 
         const totalText = Number(data.total)
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-          $("#total").text(totalText);
+        $("#total").text(totalText);
 
         // Get credit cards
         $.ajax({

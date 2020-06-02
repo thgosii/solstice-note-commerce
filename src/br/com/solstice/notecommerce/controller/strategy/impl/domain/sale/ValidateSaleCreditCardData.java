@@ -11,17 +11,19 @@ public class ValidateSaleCreditCardData implements IStrategy {
 	public String process(Entity entity) {
 		Sale sale = (Sale) entity;
 
-		CreditCard creditCard = sale.getCreditCard();
+		if (sale.getCreditCards().get(0).getCreditCard().getId() == null) {
+			CreditCard creditCard = sale.getCreditCards().get(0).getCreditCard();
 
-		if (creditCard.getId() == null) {
-			if (null == creditCard.getNumber() || creditCard.getNumber().trim().isEmpty()) {
-				return "Preencha todos os campos obrigatórios do cartão de crédito";
-			}
-			if (null == creditCard.getSecurityCode() || creditCard.getSecurityCode().trim().isEmpty()) {
-				return "Preencha todos os campos obrigatórios do cartão de crédito";
-			}
-			if (null == creditCard.getPrintedName() || creditCard.getPrintedName().trim().isEmpty()) {
-				return "Preencha todos os campos obrigatórios do cartão de crédito";
+			if (creditCard.getId() == null) {
+				if (null == creditCard.getNumber() || creditCard.getNumber().trim().isEmpty()) {
+					return "Preencha todos os campos obrigatórios do cartão de crédito";
+				}
+				if (null == creditCard.getSecurityCode() || creditCard.getSecurityCode().trim().isEmpty()) {
+					return "Preencha todos os campos obrigatórios do cartão de crédito";
+				}
+				if (null == creditCard.getPrintedName() || creditCard.getPrintedName().trim().isEmpty()) {
+					return "Preencha todos os campos obrigatórios do cartão de crédito";
+				}
 			}
 		}
 

@@ -28,9 +28,10 @@ public class SaleShopVH implements IViewHelper {
 			if (request.getSession().getAttribute("saleInProgress") != null) {
 				saleInProgress = (SaleInProgress) request.getSession().getAttribute("saleInProgress");
 
-				if (saleInProgress.getCreditCard() != null) {
-					sale.setCreditCard(saleInProgress.getCreditCard());
+				if (saleInProgress.getCreditCards() != null) {
+					sale.setCreditCards(saleInProgress.getCreditCards());
 				}
+				
 				sale.setAddress(saleInProgress.getAddress());
 				sale.setBalanceUsage(saleInProgress.getBalanceUsage());
 				sale.setCustomer(saleInProgress.getCustomer());
