@@ -3,8 +3,6 @@ package br.com.solstice.notecommerce.controller.strategy.impl.domain.trade;
 import java.util.Arrays;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.I2F;
-
 import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
 import br.com.solstice.notecommerce.dao.impl.domain.trade.TradeDAO;
 import br.com.solstice.notecommerce.entity.Entity;

@@ -1,11 +1,8 @@
 package br.com.solstice.notecommerce.controller.strategy.impl.domain.product;
 
 import java.util.Arrays;
-import java.util.List;
 
 import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
-import br.com.solstice.notecommerce.controller.strategy.IStrategy;
-import br.com.solstice.notecommerce.controller.strategy.impl.domain.trade.ValidateTradeUpdate;
 import br.com.solstice.notecommerce.dao.impl.domain.product.BrandDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
