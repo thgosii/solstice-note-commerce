@@ -35,7 +35,9 @@ public class StockUpdateDAO extends AbstractDAO {
 		try {
 			pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-			pstm.setLong(1, stockUpdate.getStock().getId());
+			StockDAO stockDAO = new StockDAO(connection);
+			Stock stock = (Stock) stockDAO.consult(stockUpdate.getStock(), "consult").get(0); // find stock by product id
+			pstm.setLong(1, stock.getId());
 			pstm.setInt(2, stockUpdate.getQuantity());
 			pstm.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
 

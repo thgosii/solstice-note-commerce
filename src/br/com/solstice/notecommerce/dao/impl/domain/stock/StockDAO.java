@@ -114,7 +114,7 @@ public class StockDAO extends AbstractDAO {
 		String sql = "";
 
 		if (operation.equals("consult")) { // Gets trade table data
-			if (stock.getProduct() != null && stock.getProduct().getId() != null) {
+			if (stock.getProduct() != null && stock.getProduct().getId() != null) { // find by product id
 				// Stock of a single product
 				sql = "SELECT * FROM notecommerce_db.stock WHERE stk_prd_id = ?";
 			} else {
