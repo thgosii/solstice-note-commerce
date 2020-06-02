@@ -144,7 +144,7 @@ public class DashboardDataDAO extends AbstractDAO {
 			// mostTradedProductsTable
 			sql = "SELECT prd_id id, prd_title title, sum(trd_quantity) amount " + 
 					"FROM trades " + 
-					"JOIN products ON trd_prd_id = trd_id " + 
+					"JOIN products ON trd_prd_id = prd_id " + 
 					"WHERE trd_request_date >= ? AND trd_request_date < date_add(?, INTERVAL 1 DAY) " + 
 					"GROUP BY prd_title " + 
 					"ORDER BY sum(trd_quantity) desc " + 
