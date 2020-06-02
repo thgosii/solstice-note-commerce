@@ -3754,7 +3754,7 @@
     }]
   }, {
     "id": "6ad1819e-7e36-41e6-8fec-3e39ca086058",
-    "name": "5 Venda: com cadastros e sem saldo",
+    "name": "5 Venda: novo endereço; uso cartões; sem saldo",
     "commands": [{
       "id": "b19528cc-e235-4ce5-a51d-4a89d2a0dafc",
       "comment": "Deslogar de qualquer conta logada anteriormente",
@@ -4292,132 +4292,37 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "0eb7b7b2-b397-4fe5-863d-1c5c233ad56f",
+      "id": "81df7bf1-f9cf-46a8-a188-b8cebe05f2e8",
       "comment": "",
       "command": "click",
-      "target": "id=cc-brand",
-      "targets": [
-        ["id=cc-brand", "id"],
-        ["name=cc-brand", "name"],
-        ["css=#cc-brand", "css:finder"],
-        ["xpath=//select[@id='cc-brand']", "xpath:attributes"],
-        ["xpath=//select", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "72fc23cd-f360-491a-875c-2cbe6899883c",
-      "comment": "",
-      "command": "select",
-      "target": "id=cc-brand",
+      "target": "css=.js-irs-0 > .irs-bar",
       "targets": [],
-      "value": "label=Master Card"
-    }, {
-      "id": "ac86a183-1dee-4b69-9952-660377aa5632",
-      "comment": "",
-      "command": "click",
-      "target": "css=option:nth-child(2)",
-      "targets": [
-        ["css=option:nth-child(2)", "css:finder"],
-        ["xpath=//option[@value='MASTER_CARD']", "xpath:attributes"],
-        ["xpath=//select[@id='cc-brand']/option[2]", "xpath:idRelative"],
-        ["xpath=//option[2]", "xpath:position"],
-        ["xpath=//option[contains(.,'Master Card')]", "xpath:innerText"]
-      ],
       "value": ""
     }, {
-      "id": "2075d55a-1a64-41d5-9ffd-01ca6abcd835",
+      "id": "cb872d8d-cc9f-435f-a8b2-9a53629b09dd",
       "comment": "",
       "command": "click",
-      "target": "id=cc-number",
-      "targets": [
-        ["id=cc-number", "id"],
-        ["name=number", "name"],
-        ["css=#cc-number", "css:finder"],
-        ["xpath=//input[@id='cc-number']", "xpath:attributes"],
-        ["xpath=//div[2]/form/div/div[2]/div/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "5dce5b47-33ca-4974-9eab-a12ede414845",
-      "comment": "",
-      "command": "type",
-      "target": "id=cc-number",
+      "target": "css=.js-irs-2 .irs-line",
       "targets": [],
-      "value": "5249746917655472"
-    }, {
-      "id": "78f18ba1-546d-414d-b81b-1be8feda2db8",
-      "comment": "",
-      "command": "click",
-      "target": "id=cc-printedName",
-      "targets": [
-        ["id=cc-printedName", "id"],
-        ["name=printedName", "name"],
-        ["css=#cc-printedName", "css:finder"],
-        ["xpath=//input[@id='cc-printedName']", "xpath:attributes"],
-        ["xpath=//div[2]/form/div[2]/div/div/input", "xpath:position"]
-      ],
       "value": ""
     }, {
-      "id": "dbb31f68-6e1e-415b-bfcd-139c183fe8ff",
-      "comment": "",
-      "command": "type",
-      "target": "id=cc-printedName",
-      "targets": [
-        ["id=cc-printedName", "id"],
-        ["name=printedName", "name"],
-        ["css=#cc-printedName", "css:finder"],
-        ["xpath=//input[@id='cc-printedName']", "xpath:attributes"],
-        ["xpath=//div[2]/form/div[2]/div/div/input", "xpath:position"]
-      ],
-      "value": "CARTÃO DE TESTE DA VENDA"
-    }, {
-      "id": "ff5f3b32-5d21-4391-9959-19a5bcaa9eb9",
+      "id": "59fbf62f-e503-4cbc-abbf-a5e95358efb9",
       "comment": "",
       "command": "click",
-      "target": "id=cc-securityCode",
-      "targets": [
-        ["id=cc-securityCode", "id"],
-        ["name=securityCode", "name"],
-        ["css=#cc-securityCode", "css:finder"],
-        ["xpath=//input[@id='cc-securityCode']", "xpath:attributes"],
-        ["xpath=//div[2]/form/div[2]/div[2]/div/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "45c8a7d8-9966-4ae7-9472-8bd05ea27248",
-      "comment": "",
-      "command": "type",
-      "target": "id=cc-securityCode",
-      "targets": [
-        ["id=cc-securityCode", "id"],
-        ["name=securityCode", "name"],
-        ["css=#cc-securityCode", "css:finder"],
-        ["xpath=//input[@id='cc-securityCode']", "xpath:attributes"],
-        ["xpath=//div[2]/form/div[2]/div[2]/div/input", "xpath:position"]
-      ],
-      "value": "123"
-    }, {
-      "id": "ece6f8ae-9572-4748-b945-d3652b98a1d7",
-      "comment": "",
-      "command": "click",
-      "target": "id=saveForNext",
-      "targets": [
-        ["id=saveForNext", "id"],
-        ["name=saveForNext", "name"],
-        ["css=#saveForNext", "css:finder"],
-        ["xpath=//input[@id='saveForNext']", "xpath:attributes"],
-        ["xpath=//form/div[3]/input", "xpath:position"]
-      ],
+      "target": "css=.js-irs-1 > .irs-bar",
+      "targets": [],
       "value": ""
     }, {
       "id": "b333a6f3-0231-4cbb-8559-6f5e1be41737",
       "comment": "",
       "command": "click",
-      "target": "css=form > #nextStepButton",
+      "target": "id=nextStepButton",
       "targets": [
-        ["css=form > #nextStepButton", "css:finder"],
-        ["xpath=(//button[@id='nextStepButton'])[2]", "xpath:attributes"],
-        ["xpath=//form/button", "xpath:position"]
+        ["id=nextStepButton", "id"],
+        ["css=.card-body > #nextStepButton", "css:finder"],
+        ["xpath=//button[@id='nextStepButton']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Próximo')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -4564,14 +4469,10 @@
       "value": ""
     }, {
       "id": "a2afee39-fcb1-4e63-9047-2e55e89f5271",
-      "comment": "Verificar se endereço cadastrado na venda consta na listagem",
-      "command": "verifyElementPresent",
+      "comment": "Verificar se cartão cadastrado na venda consta na listagem",
+      "command": "//verifyElementPresent",
       "target": "xpath=//td[contains(.,'CARTÃO DE TESTE DA VENDA')]",
-      "targets": [
-        ["css=tr:nth-child(2) > td:nth-child(3)", "css:finder"],
-        ["xpath=//tr[2]/td[3]", "xpath:position"],
-        ["xpath=//td[contains(.,'CARTÃO DE TESTE DA VENDA')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }]
   }, {
@@ -7678,6 +7579,46 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "afb251f2-442c-4c20-9575-3dfa4825b585",
+    "name": "test",
+    "commands": [{
+      "id": "41227377-c81b-4d6d-8aeb-69dd0856679e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/pages/shop/checkout-step-2.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c6677ad8-d2fb-4a03-8dd1-8dbfbb6551a3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.js-irs-0 > .irs-bar",
+      "targets": [
+        ["css=.js-irs-0 > .irs-bar", "css:finder"],
+        ["xpath=//div[@id='cardList']/div/div[3]/span/span[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/span/span[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ae503df-033f-4ed1-8e71-33da874bd778",
+      "comment": "",
+      "command": "click",
+      "target": "css=.js-irs-2 .irs-line",
+      "targets": [
+        ["css=.js-irs-1 .irs-line", "css:finder"],
+        ["xpath=//div[@id='cardList']/div[2]/div[3]/span/span/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[3]/span/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb327464-06ac-4b10-89b4-c0f4557247db",
+      "comment": "",
+      "command": "click",
+      "target": "css=.js-irs-1 > .irs-bar",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -7713,7 +7654,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977", "346746cc-2e4a-4764-be00-d66aa9c790d7"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977", "6ad1819e-7e36-41e6-8fec-3e39ca086058", "346746cc-2e4a-4764-be00-d66aa9c790d7", "270fb01a-2ed1-42e5-933d-2292a736b507", "4984b124-e06e-4997-ac3f-db015f63fe5a", "67d7c442-7254-4b6c-a61b-8e5edaada396", "9d942b5a-f172-4de5-9826-17d037b28be5", "c98b89b1-1b63-4d59-b4ae-e216eb446999", "c4dee809-b8f3-4afa-83b1-32e74732c9c6"]
   }, {
     "id": "cfd49969-0060-4b77-bfa6-494c9eb4e75d",
     "name": "5 - Venda",
