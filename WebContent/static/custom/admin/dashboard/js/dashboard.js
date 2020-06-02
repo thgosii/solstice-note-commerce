@@ -77,25 +77,26 @@ $(document).ready(() => {
   */
 
   // Script to generate fake series of data
-  var d = []
-  var names = ['Acer', 'Asus', 'Dell', 'Hp', 'Lenovo', 'Positivo', 'Samsung']
-  for (let i = 0; i < names.length; i++) {
-    var v = []
-    for (let j = 0; j < 10; j++) {
-      v.push({
-        x: new Date(1483057000025 + (j * 1000 * 3600 * 24)).toISOString().split('T')[0],
-        y: Math.round(Math.random() * 150)
-      })
-    }
-    d.push({
-      name: names[i],
-      data: v
-    })
-  }
-  console.log('sales chart fake data:', d)
+  // var d = []
+  // var names = ['Acer', 'Asus', 'Dell', 'Hp', 'Lenovo', 'Positivo', 'Samsung']
+  // for (let i = 0; i < names.length; i++) {
+  //   var v = []
+  //   for (let j = 0; j < 10; j++) {
+  //     v.push({
+  //       x: new Date(1483057000025 + (j * 1000 * 3600 * 24)).toISOString().split('T')[0],
+  //       y: Math.round(Math.random() * 150)
+  //     })
+  //   }
+  //   d.push({
+  //     name: names[i],
+  //     data: v
+  //   })
+  // }
+  // console.log('sales chart fake data:', d)
 
   var salesChartOptions = {
-    series: d, // update series: https://apexcharts.com/docs/methods/
+    //series: d,
+    series: [], // update series: https://apexcharts.com/docs/methods/
     chart: {
       type: 'area',
       stacked: false,
@@ -192,12 +193,13 @@ $(document).ready(() => {
   }
 
   // Fake demo values
-  let mapvalues = {}
-  "ac al ap am ba ce df es go ma mt ms mg pa pr pr pe pi rj rn rs ro rr sc sp se to"
-    .split(' ').forEach(e => mapvalues[e] = Math.random() > 0.2 ? Math.round(Math.random() * 10000) : undefined)
-  console.log('sales map fake data:', mapvalues)
+  // let mapvalues = {}
+  // "ac al ap am ba ce df es go ma mt ms mg pa pr pr pe pi rj rn rs ro rr sc sp se to"
+  //   .split(' ').forEach(e => mapvalues[e] = Math.random() > 0.2 ? Math.round(Math.random() * 10000) : undefined)
+  // console.log('sales map fake data:', mapvalues)
 
-  createMap(mapvalues)
+  // createMap(mapvalues)
+  createMap({})
 
   // var salesMap = $('#region-sales-map').vectorMap('get', 'mapObject')
   // salesMap.series.regions[0].setValues()
