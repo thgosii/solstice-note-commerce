@@ -1,6 +1,7 @@
 package br.com.solstice.notecommerce.controller.facade.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.Vali
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.product.ValidateStorage;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateExistsAddress;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateExistsCreditCard;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.SetProductStock;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateBalance;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidatePayment;
 import br.com.solstice.notecommerce.controller.strategy.impl.domain.sale.ValidateSaleAddressData;
@@ -242,6 +244,14 @@ public class Facade implements IFacade {
 		saleBusinessRulesSave.add(new ValidateExistsCreditCard());
 		saleBusinessRulesSave.add(new ValidateSaleAddressData());
 		saleBusinessRulesSave.add(new ValidateSaleCreditCardData());
+		saleBusinessRulesSave.add(new SetProductStock(Arrays.asList(
+				ValidateSaleData.class.getName(), 
+				ValidatePayment.class.getName(), 
+				ValidateBalance.class.getName(), 
+				ValidateExistsAddress.class.getName(), 
+				ValidateExistsCreditCard.class.getName(),
+				ValidateSaleAddressData.class.getName(),
+				ValidateSaleCreditCardData.class.getName())));
 
 		List<IStrategy> saleBusinessRulesUpdate = new ArrayList<IStrategy>();
 		saleBusinessRulesUpdate.add(new SetSaleStatus());
