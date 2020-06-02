@@ -74,9 +74,15 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="stock-up.html" class="nav-link">
+                  <a href="/note-commerce/pages/admin/stock-up.jsp" class="nav-link">
                     <i class="nav-icon fas fa-arrow-up text-success"></i>
                     <p>Entrada em estoque</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/note-commerce/admin/stockHistory?operation=consult" class="nav-link">
+                    <i class="nav-icon fas fa-boxes text-primary"></i>
+                    <p>História de entrada/saida</p>
                   </a>
                 </li>
               </ul>
