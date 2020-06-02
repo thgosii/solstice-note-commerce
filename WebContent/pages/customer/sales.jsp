@@ -208,6 +208,25 @@
 	            </table>
 	          </div>
 	          <div class="mb-4">
+	          	<h4>Cartões de crédito</h4>
+	          	<table class="table table-striped">
+	          		<thead>
+	          			<tr>
+	          				<th>Número do cartão</th>
+	          				<th>Valor utilizado</th>
+	          			</tr>
+	          		</thead>
+	          		<tbody>
+	          			<c:forEach var="saleCreditCard" items="${sale.creditCards}">
+	          				<tr>
+	          					<td>${saleCreditCard.creditCard.number}</td>
+	          					<td><fmt:formatNumber type="currency" currencySymbol="R$ " value="${saleCreditCard.value}"/></td>
+	          				</tr>
+	          			</c:forEach>
+	          		</tbody>
+	          	</table>
+	          </div>
+	          <div class="mb-4">
 	            <h4>Pagamento</h4>
 	            <table class="table table-striped">
 	              <thead>

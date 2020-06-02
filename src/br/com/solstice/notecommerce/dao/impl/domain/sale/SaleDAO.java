@@ -227,6 +227,14 @@ public class SaleDAO extends AbstractDAO {
 
 				currentSale.setItems(saleItems);
 
+				SaleCreditCard saleCreditCardAux = new SaleCreditCard();
+				saleCreditCardAux.setSale(currentSale);
+				
+				List<SaleCreditCard> saleCreditCards = new SaleCreditCardDAO().consult(saleCreditCardAux, "consult").stream()
+						.map(e -> (SaleCreditCard) e).collect(Collectors.toList());
+
+				currentSale.setCreditCards(saleCreditCards);
+
 				sales.add(currentSale);
 			}
 
