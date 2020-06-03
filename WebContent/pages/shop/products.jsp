@@ -320,6 +320,9 @@
   <template id="product-card">
     <div class="col col-4">
       <div class="card card-primary product-card">
+        <div class="ribbon-wrapper ribbon-lg d-none">
+          <div class="ribbon"></div>
+        </div>
         <a href="#" id="product-image-link">
           <div class="card-body text-center">
             <img id="product-image" class="img-fluid">

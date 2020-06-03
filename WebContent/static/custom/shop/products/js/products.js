@@ -37,9 +37,9 @@ $(document).ready(() => {
     Product filter
   */
 
-  let products = []
+  let stocks = []
 
-  function createProductCard(product) {
+  function createProductCard(product, quantity) {
     let card = $($('#product-card').html());
     card.find("#product-name-link").text(product.title);
     card.find("#product-name-link").attr('href', "/note-commerce/shop/products?operation=consult&id=" + product.id);
@@ -51,6 +51,18 @@ $(document).ready(() => {
       card.find("button[name='addProduct']").removeClass('btn-success');
       card.find("button[name='addProduct']").addClass('btn-secondary');
     });
+
+    if (quantity < 11) {
+      card.find(".ribbon-wrapper").removeClass('d-none');
+      if (quantity !== 0) {
+        card.find(".ribbon").addClass('bg-warning');
+        card.find(".ribbon").text(quantity + ' restantes');
+      } else {
+        card.find(".ribbon").addClass('bg-danger');
+        card.find(".ribbon").text('Sem estoque');
+      }
+    }
+
     return card;
   }
   
@@ -113,9 +125,10 @@ $(document).ready(() => {
     const filters = getFilters(checkPrice);
     console.log('filters:', filters)
     
-    products.forEach(product => {
+    stocks.forEach(s => {
+      const product = s.product;
       if (meetFilterRequirements(filters, product))
-        $('#products-row').append(createProductCard(product));
+        $('#products-row').append(createProductCard(product, s.quantity));
     });
 
     // No products found
@@ -154,12 +167,12 @@ $(document).ready(() => {
 
   // Load products
   $.ajax({
-    url: '/note-commerce/shop/products?operation=consult',
+    url: '/note-commerce/shop/stock?operation=consult',
     type: 'GET',
     dataType: 'json',
     success: function (json) {
-      products = json;
-      console.log('products:', products)
+      stocks = json;
+      console.log('stock:', stocks)
       filterProducts();
     }
   });
