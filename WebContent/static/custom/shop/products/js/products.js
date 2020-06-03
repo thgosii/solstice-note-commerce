@@ -60,6 +60,7 @@ $(document).ready(() => {
       } else {
         card.find(".ribbon").addClass('bg-danger');
         card.find(".ribbon").text('Sem estoque');
+        card.find("button[name=addProduct]").remove()
       }
     }
 
