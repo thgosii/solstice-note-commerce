@@ -7352,142 +7352,6 @@
       "value": ""
     }]
   }, {
-    "id": "5e405660-82f1-46d1-a4fb-44c401a39126",
-    "name": "6 Verificar status da troca: autorizado (1)",
-    "commands": [{
-      "id": "f6dc3f22-16fb-4cb9-985a-3009ec74d8dc",
-      "comment": "Deslogar de qualquer conta logada anteriormente",
-      "command": "open",
-      "target": "http://localhost:8080/note-commerce/logout",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "27a72534-9e11-4cff-be5e-1e2c82b43aa0",
-      "comment": "Ajustar tamanho da tela para melhor visualização",
-      "command": "setWindowSize",
-      "target": "1221x1090",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "f0f63f79-5425-4796-92d8-82eea2534441",
-      "comment": "Verificar se foi redirecionado para tela de login",
-      "command": "assertTitle",
-      "target": "Login | LapTop Computadores",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "430d4177-40da-464d-9a40-bc0b6ad49a9e",
-      "comment": "Selecionar input de email",
-      "command": "click",
-      "target": "name=email",
-      "targets": [
-        ["name=email", "name"],
-        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@name='email']", "xpath:attributes"],
-        ["xpath=//div/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "d3db8936-4b82-48e2-8944-340576868404",
-      "comment": "Inserir email de cliente de teste",
-      "command": "type",
-      "target": "name=email",
-      "targets": [
-        ["name=email", "name"],
-        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@name='email']", "xpath:attributes"],
-        ["xpath=//div/input", "xpath:position"]
-      ],
-      "value": "cliente2@teste.com.br"
-    }, {
-      "id": "4a9f9f66-4014-4839-b73b-f7f0884cfb6f",
-      "comment": "Selecionar input de senha",
-      "command": "click",
-      "target": "name=password",
-      "targets": [
-        ["name=email", "name"],
-        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@name='email']", "xpath:attributes"],
-        ["xpath=//div/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "44c1a6cc-c864-42c3-9b75-09fd3dc27c48",
-      "comment": "Inserir senha",
-      "command": "type",
-      "target": "name=password",
-      "targets": [
-        ["name=password", "name"],
-        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
-        ["xpath=//input[@name='password']", "xpath:attributes"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "clienteteste!2"
-    }, {
-      "id": "f4e3e071-5322-4d2c-a968-c8f39842d56c",
-      "comment": "Clicar no botão de entrar",
-      "command": "click",
-      "target": "css=button[type=submit]",
-      "targets": [
-        ["css=.btn", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "e632e5e4-868f-4fed-972c-ab1991a19e23",
-      "comment": "Verificar se não foi redirecionado ao login",
-      "command": "assertElementNotPresent",
-      "target": "css=.login-box",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "df144847-5df7-40f2-842b-a210d0eefb24",
-      "comment": "Clicar no botão do menu dropdown de cliente",
-      "command": "click",
-      "target": "css=.navbar .fas:nth-child(2)",
-      "targets": [
-        ["linkText=usuário", "linkText"],
-        ["css=.dropdown > .nav-link", "css:finder"],
-        ["xpath=(//a[contains(@href, '#')])[5]", "xpath:href"],
-        ["xpath=//li[3]/a", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "bfea3cc0-8b22-4cd5-b1ca-4a1e47b1869c",
-      "comment": "Clicar no botão \"Minhas trocas\"",
-      "command": "click",
-      "target": "linkText=Minhas trocas",
-      "targets": [
-        ["linkText=Meus cartões", "linkText"],
-        ["css=.dropdown-item:nth-child(3)", "css:finder"],
-        ["xpath=//a[contains(@href, '/note-commerce/customer/creditCards?operation=consult')]", "xpath:href"],
-        ["xpath=//a[3]", "xpath:position"],
-        ["xpath=//a[contains(.,' Meus cartões')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "a1734b71-e2b1-4692-abd6-1f73ac6a2954",
-      "comment": "Verificar se foi redirecionado para listagem",
-      "command": "assertTitle",
-      "target": "Minhas Trocas | LapTop Computadores",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "f15ff8f4-6af5-43ec-bc55-5a4edb824cd0",
-      "comment": "",
-      "command": "verifyElementPresent",
-      "target": "xpath=//span[contains(.,'Aguardando retorno de produto')]",
-      "targets": [
-        ["css=.bg-warning", "css:finder"],
-        ["xpath=//table[@id='products-table']/tbody/tr/td[4]/span", "xpath:idRelative"],
-        ["xpath=//td[4]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Entrega em andamento')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }]
-  }, {
     "id": "91f59f64-66b7-411f-9223-8e2ae4f9e8eb",
     "name": "Login como admin@admin.com 4",
     "commands": [{
@@ -7619,6 +7483,558 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "415229bd-1744-4f8a-97b0-5c2aeff7c6b0",
+    "name": "Login como admin@admin.com 5",
+    "commands": [{
+      "id": "7ffd85a2-d811-417e-bd2c-193ca6e7a999",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fd44cb05-d0a8-4488-b247-f3c164ee4e35",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "96cd2f96-de01-4c35-a76b-d9502a9171aa",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "82bb1a76-3f96-4602-8d05-a3790dbe0abd",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59acc9d9-895e-4c6c-b871-6b75d042ac6f",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "04190d75-f0f1-4297-a338-45f05d2a892e",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b0189e8b-8db2-4ac1-bcd8-ca380012d0db",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "bced41aa-eee6-42f7-9f40-2f8d7e00c499",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aced6de8-9ab7-449e-9f35-de42c06f9ec5",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8633719c-9041-42c9-96a4-64cf646dc4f1",
+    "name": "Login como admin@admin.com 6",
+    "commands": [{
+      "id": "8c079d08-8e04-4ab0-9da6-bb21e3273846",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3962345f-7e67-4e31-bb74-65b46d10d230",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb152c0b-800d-4a7b-ad1d-46975c99e034",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ba57be5-776c-4934-97bf-5b5572c2c008",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "db4b1b35-ca0a-4242-9a0a-b0e4202b3a9f",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "c603076e-2412-4f77-b58c-3a3605f77514",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0fc2824b-d586-4f50-a156-aa9030df81fe",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "420079d6-7b1b-49e8-aa86-0e098ec1382b",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "786da2f2-f8ee-4b06-9151-5f4278ddfffa",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7682d790-5807-4337-932d-fab7afad693a",
+    "name": "Login como admin@admin.com 7",
+    "commands": [{
+      "id": "8a543341-f293-4cd9-9e5f-a6643d4a4078",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "de13123f-e6f4-4db2-80dd-a6495dcf4716",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb4b0a08-d7f3-48e1-8514-0c9979f3f37a",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "53f057c1-cecb-4d00-b6a3-a5d167cd034f",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6d19414-9c85-4243-bd1c-032780fdcf26",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "19e60bcf-2f77-47d7-837b-40179ae7d252",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f621a4ad-5536-4fe6-b693-e16e23424b59",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "e64ef75a-61b2-4b56-99b9-4f0f5dfb0347",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae04a3cc-b42e-4bcf-b7c6-a1f532e03e73",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "9a828514-0b29-4c74-8291-45152bacbfb6",
+    "name": "Login como admin@admin.com 8",
+    "commands": [{
+      "id": "06395cff-411d-4d1f-a031-c193b857a728",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc0f4374-2b26-4952-928d-bb394473b96c",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0157c35c-a8ea-4771-81ab-5be2efab96a9",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc2e8577-1e76-41ce-a267-384428b15a23",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "044edffa-1902-4ed9-b532-8e3ab895958a",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "f27c9384-7e50-4b1c-b13b-c1a83a4ea4e9",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9c5dfdb-f6e1-47f4-842a-42afa50580bd",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "565b0d29-0ec1-4e0b-97b7-c94e100555af",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e33f8249-7236-4ded-8578-82b2fa9c1882",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "2228b471-9814-46a5-a97a-097679241ef3",
+    "name": "Login como admin@admin.com 9",
+    "commands": [{
+      "id": "335598be-f1c4-43a8-9f1a-a9a7b08648d9",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60c25040-887e-4eea-9c46-1331eddb9263",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fafeb899-94f0-4d6c-b2b4-ca81e1b56902",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4072933d-ef13-4254-a455-8b592bcca5ef",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "887b2e44-4f37-45cf-a830-4cab4b6e47bf",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "d960d6c3-c2d9-46ad-93f1-e2f0b8ff5b3c",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "363edde8-d768-4296-8f5c-d025091fa021",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "b7694771-532e-473c-939d-e47e80ef36dd",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "748a2348-b0d6-4ce0-8f8f-714fb29e863d",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d7d61ced-8b5a-442b-85b5-8461b80506a4",
+    "name": "Login como admin@admin.com 10",
+    "commands": [{
+      "id": "cf24dfb9-fe4e-4d53-b0c4-5cbf7b9a51f2",
+      "comment": "Deslogar de qualquer conta logada anteriormente",
+      "command": "open",
+      "target": "http://localhost:8080/note-commerce/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b219d937-e571-482a-9373-ffdff3d50d9e",
+      "comment": "Ajustar tamanho da tela para melhor visualização",
+      "command": "setWindowSize",
+      "target": "1221x1090",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aac4a623-314e-42ec-a449-47b2ca7078fa",
+      "comment": "Verificar se foi redirecionado para tela de login",
+      "command": "assertTitle",
+      "target": "Login | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87678d48-1c0b-4c16-bbad-881706eb7436",
+      "comment": "Selecionar input de email",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3dad231-3a65-47f5-9057-450d4f2b2920",
+      "comment": "Inserir email de admin",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "39dc1633-e0d7-4f5d-82cb-8b90ec69e9c6",
+      "comment": "Selecionar input de senha",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.input-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4243fc1a-5dcb-4bdb-a0bb-02d9a3473cd6",
+      "comment": "Inserir senha",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.input-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Admin@123"
+    }, {
+      "id": "8e88ba6b-8055-408a-bfa0-af22901149d2",
+      "comment": "Clicar no botão de entrar",
+      "command": "click",
+      "target": "css=button[type=submit]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2110b615-0d48-4c95-a413-56c5f625ebe1",
+      "comment": "Verificar se foi redirecionado para a parte adiminstrativa",
+      "command": "assertTitle",
+      "target": "Dashboard | LapTop Computadores",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "d1baa331-644e-4705-9deb-910ded221603",
@@ -7654,7 +8070,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977", "6ad1819e-7e36-41e6-8fec-3e39ca086058", "346746cc-2e4a-4764-be00-d66aa9c790d7", "270fb01a-2ed1-42e5-933d-2292a736b507", "4984b124-e06e-4997-ac3f-db015f63fe5a", "67d7c442-7254-4b6c-a61b-8e5edaada396", "9d942b5a-f172-4de5-9826-17d037b28be5", "c98b89b1-1b63-4d59-b4ae-e216eb446999", "c4dee809-b8f3-4afa-83b1-32e74732c9c6"]
+    "tests": ["ff55318b-fbd6-4f7a-9764-05d292cb9ae3", "73c6f640-0e98-4b9e-a908-1466040103e9", "1e16ee84-f40d-46ed-812c-5890ab9b529c", "a65daab4-2ac6-4e91-b056-32839b51b16a", "60835918-fca2-4694-a44b-a6aff8a29134", "137419b2-0118-484c-963b-e892d13c2128", "4b552ac5-fc17-41fb-9e00-c73b973ae8b1", "194a350f-ca79-4456-8612-114e39a42e9f", "d6f2e98c-65fc-4577-a22a-93b0469d543d", "7e3bbe58-f249-41a5-b045-ead8ab719dfc", "bce62a3c-00c9-4483-9125-d379ac3db4ca", "ffa9968e-a9c2-4e5b-abaa-694d3e2f22c8", "017c8b22-6e8a-45c7-8bc6-9e6d2a351e1e", "91741aa8-1a9f-44d9-8768-d94b6f237f8c", "2a38b781-91b6-47f6-9722-c988445e104a", "61fedc3c-d524-474d-8c16-f2668e206013", "40cc4469-034b-48a6-bc47-6dfd59548a35", "16b95fac-3bc6-45dc-b195-0fa70fb34eee", "e9cfc361-4608-4931-9aa0-e6d898f9f977", "6ad1819e-7e36-41e6-8fec-3e39ca086058", "346746cc-2e4a-4764-be00-d66aa9c790d7", "270fb01a-2ed1-42e5-933d-2292a736b507", "4984b124-e06e-4997-ac3f-db015f63fe5a", "67d7c442-7254-4b6c-a61b-8e5edaada396", "9d942b5a-f172-4de5-9826-17d037b28be5", "c98b89b1-1b63-4d59-b4ae-e216eb446999", "c4dee809-b8f3-4afa-83b1-32e74732c9c6", "a30126bd-2ff4-4ba1-ad08-ee2cfbf76a31", "91f59f64-66b7-411f-9223-8e2ae4f9e8eb", "cf1019fd-4e04-4508-8a1f-202265e2a9da", "4d1dca83-9118-40e1-b04f-c0ac83a39a92", "415229bd-1744-4f8a-97b0-5c2aeff7c6b0", "399ba6e1-e5dc-4f0f-9be9-85f2a011b1b1", "7bcec1f6-3afe-43ae-8254-b5aef29b9b99", "8633719c-9041-42c9-96a4-64cf646dc4f1", "534ba9e2-69c6-470b-a4a6-e77a8130dec8", "6f00cf61-d9d5-4c72-9032-1fef3210fbbe", "7682d790-5807-4337-932d-fab7afad693a", "744be792-0404-471c-926b-d8f7b50ad9df", "25fd1696-a7f9-4b15-91bd-fefed4e07aed", "230009fa-dc02-4b73-8c18-e2f5943449be", "9a828514-0b29-4c74-8291-45152bacbfb6", "7edf1957-cc7a-46e8-9039-8eaa1da426fe", "76a7a49a-8657-4c83-bdd5-e629efc2dd62", "2228b471-9814-46a5-a97a-097679241ef3", "4f1bfa66-3660-418d-83ce-214c415be7d9", "558a5626-4282-48d6-99c6-29d2032fabf9"]
   }, {
     "id": "cfd49969-0060-4b77-bfa6-494c9eb4e75d",
     "name": "5 - Venda",
