@@ -13,6 +13,8 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
   - Dashboard
   - Product managment
   - Control options for simulated features
+- Login and customer/admin account
+- Basic product stock functionality (history, manual up and automatic down)
 
 ## Installing and Running
 Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-ide-enterprise-java-developers), [Apache Tomcat](https://tomcat.apache.org/download-80.cgi) and MySQL
@@ -29,6 +31,10 @@ Requirements: Java 1.8+, [Eclipse IDE (JEE)](https://www.eclipse.org/downloads/p
 
 ## Authors
 [g-otn](https://github.com/g-otn) and [thiago-bezerra](https://github.com/thiago-bezerra).
+
+## Acknowledgements
+- Prof. Doctor Rodrigo Rocha Silva, for assigning us this project
+- [ioxua](https://github.com/ioxua) and [marcelovbcfilho](https://gitlab.com/marcelovbcfilho), for giving us some tips and for the nice discussions about the project
 
 ## License
 This project is licensed under [MIT](/LICENSE), and uses [AdminLTE 3](https://github.com/ColorlibHQ/AdminLTE/tree/v3.0.2), 
