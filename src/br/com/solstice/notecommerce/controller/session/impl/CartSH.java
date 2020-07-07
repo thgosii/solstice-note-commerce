@@ -8,10 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import br.com.solstice.notecommerce.controller.session.ISessionHelper;
 import br.com.solstice.notecommerce.dao.impl.domain.product.ProductDAO;
+import br.com.solstice.notecommerce.dao.impl.domain.stock.StockDAO;
 import br.com.solstice.notecommerce.entity.Entity;
 import br.com.solstice.notecommerce.entity.domain.product.Product;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.Cart;
 import br.com.solstice.notecommerce.entity.domain.shop.cart.CartItem;
+import br.com.solstice.notecommerce.entity.domain.stock.Stock;
 
 public class CartSH implements ISessionHelper {
 
@@ -19,7 +21,15 @@ public class CartSH implements ISessionHelper {
 	public void save(Entity entity, HttpSession session) {
 		CartItem cartItem = (CartItem) entity;
 
-		cartItem.setProduct((Product) new ProductDAO().consult(cartItem.getProduct(), "findById").get(0));
+		// Check if has stock
+		Product product = (Product) new ProductDAO().consult(cartItem.getProduct(), "findById").get(0);
+		Stock stock = (Stock) new StockDAO().consult(new Stock(product, null), "consult").get(0);
+		if (stock.getQuantity() < cartItem.getQuantity()) {
+			System.out.println("no stock");
+			return;
+		}
+		
+		cartItem.setProduct(product);
 		cartItem.setSubTotal(cartItem.getProduct().getPrice() * cartItem.getQuantity());
 
 		Cart cart = null;
@@ -60,6 +70,15 @@ public class CartSH implements ISessionHelper {
 		
 		for (CartItem item : cart.getItems()) {
 			if (item.getProduct().getId() == cartItem.getProduct().getId()) {
+
+				// Check if has stock
+				Product product = (Product) new ProductDAO().consult(cartItem.getProduct(), "findById").get(0);
+				Stock stock = (Stock) new StockDAO().consult(new Stock(product, null), "consult").get(0);
+				if (stock.getQuantity() < cartItem.getQuantity()) {
+					System.out.println("no stock2");
+					return;
+				}
+				
 				item.setQuantity(cartItem.getQuantity());
 				item.setSubTotal(item.getQuantity() * item.getProduct().getPrice());
 			}

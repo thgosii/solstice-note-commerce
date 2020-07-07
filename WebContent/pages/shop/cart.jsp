@@ -250,10 +250,11 @@
       url: '/note-commerce/shop/cart',
       data: { operation: 'update', productId: id, quantity: qty },
       success: function () {
-        fixMoneyNumbers();
-        $("#qty_" + id).text(qty);
-        $("#subTotal_" + id).text(parseFloat(qty * parseFloat($("#price_" + id).text())).toFixed(2));
-        calculateTotal();
+        location.reload(); // New cart item quantity is unknown (may not update to qty because of stock limits), must reload page to know
+        // fixMoneyNumbers();
+        // $("#qty_" + id).text(qty);
+        // $("#subTotal_" + id).text(parseFloat(qty * parseFloat($("#price_" + id).text())).toFixed(2));
+        // calculateTotal();
       },
       dataType: "text"
     });

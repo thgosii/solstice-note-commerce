@@ -19,7 +19,7 @@ public class ValidatePayment implements IStrategy {
 		
 		if (sale.getCreditCards().get(0).getCreditCard().getId() != null) {
 			for (SaleCreditCard saleCreditCard : sale.getCreditCards()) {
-				if (saleCreditCard.getValue() < 10.0) {
+				if (saleCreditCard.getValue() < 10.0 && sale.getBalanceUsage() < 0.02) {
 					return "Todos os cartões devem possuir pelo menos 10 reais";
 				}
 			}

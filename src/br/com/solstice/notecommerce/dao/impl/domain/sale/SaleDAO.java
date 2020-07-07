@@ -107,7 +107,7 @@ public class SaleDAO extends AbstractDAO {
 
 				for (SaleCreditCard saleCreditCard : sale.getCreditCards()) {
 					saleCreditCard.setSale(sale);
-					new SaleCreditCardDAO().save(saleCreditCard);
+					new SaleCreditCardDAO(connection).save(saleCreditCard);
 				}
 			}
 		} catch (SQLException e) {
@@ -230,7 +230,7 @@ public class SaleDAO extends AbstractDAO {
 				SaleCreditCard saleCreditCardAux = new SaleCreditCard();
 				saleCreditCardAux.setSale(currentSale);
 				
-				List<SaleCreditCard> saleCreditCards = new SaleCreditCardDAO().consult(saleCreditCardAux, "consult").stream()
+				List<SaleCreditCard> saleCreditCards = new SaleCreditCardDAO(connection).consult(saleCreditCardAux, "consult").stream()
 						.map(e -> (SaleCreditCard) e).collect(Collectors.toList());
 
 				currentSale.setCreditCards(saleCreditCards);
