@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.solstice.notecommerce.controller.strategy.AbstractStrategy;
 import br.com.solstice.notecommerce.controller.strategy.IStrategy;
+import br.com.solstice.notecommerce.controller.strategy.impl.domain.stock.SetStockQuantity;
 import br.com.solstice.notecommerce.dao.impl.domain.stock.StockDAO;
 import br.com.solstice.notecommerce.dao.impl.domain.stock.StockUpdateDAO;
 import br.com.solstice.notecommerce.entity.Entity;
@@ -29,7 +30,6 @@ public class SetProductStock extends AbstractStrategy implements IStrategy {
 		StockDAO stockDAO = new StockDAO();
 		
 		for (SaleItem saleItem : sale.getItems()) {
-			System.out.println("saleitem: " + saleItem);
 			Stock stock = new Stock();
 			stock.setProduct(saleItem.getProduct());
 			Stock stockOfProduct = (Stock) stockDAO.consult(stock, "consult").get(0);
@@ -54,6 +54,8 @@ public class SetProductStock extends AbstractStrategy implements IStrategy {
 			stockUpdate.setQuantity(saleItem.getQuantity() * -1);
 			System.out.println("stockupdate save: " + stockUpdate);
 			stockUpdateDAO.save(stockUpdate);
+			
+			new SetStockQuantity().process(stockUpdate);
 		}
 		
 		
