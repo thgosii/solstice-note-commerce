@@ -9,7 +9,7 @@ fictional company "LapTop Computadores" by the fictional software company "Solst
   - Checkout and simulated payement
   - Customer account and registration
   - Simulated tracking orders, refunds and custom products exchanges
-- Admin CMS
+- Admin panel
   - Dashboard
   - Product managment
   - Control options for simulated features
