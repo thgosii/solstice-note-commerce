@@ -2,6 +2,11 @@
 This is a Java EE application of a laptop e-commerce. It was made for the 
 fictional company "LapTop Computadores" by the fictional software company "Solstice".
 
+<div align="center">
+   <img src="https://user-images.githubusercontent.com/44736064/220257202-94f4e508-2cd8-4198-8878-c4642ffa6347.png" width="400">
+   <img src="https://user-images.githubusercontent.com/44736064/220257505-eda5dd42-f082-4b38-b0a4-2e96e669d395.png" width="400">
+</div>
+
 ## Overview
 - Shop
   - Basic product listing and local filtering
